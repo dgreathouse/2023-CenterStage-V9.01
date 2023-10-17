@@ -13,7 +13,8 @@ This repository contains the FTC Code for the CENTERSTAGE (2023-2024) competitio
 
 ## Code Overview
 Code utilizes FTCLib from FTCLib.org. Command based programming using Java and Android studio.
-###Subsystems include
+
+### Subsystems
 - DriveSubsystem
 - ArmSubsystem
 - LEDSubsystem
