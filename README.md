@@ -10,7 +10,7 @@ This repository contains the FTC Code for the CENTERSTAGE (2023-2024) competitio
 - Camera for Apriltag detection
 - Drone launcher utilizing 1 motor, pulley and sled design.
 - Control hub and 1 Expansion hub.
-
+- LEDs for looks and indication of pixel color in claw. Utilizes a Lumidriver from Sparkfun
 ## Code Overview
 Code utilizes FTCLib from FTCLib.org. Command based programming using Java and Android studio.
 
