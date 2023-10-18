@@ -105,13 +105,17 @@ public class TeleOpMode_Linear extends CommandOpMode {
 
         // Set Arm Position Horizontal
         Hw.s_gpDriver.getGamepadButton(GamepadKeys.Button.X).whenPressed(new InstantCommand(() -> m_arm.armGotoPosition(ArmPos.STRAIGHT), m_arm));
-        // Set Drive PID to 0
-        Hw.s_gpDriver.getGamepadButton(GamepadKeys.Button.X).whenPressed(new InstantCommand(() -> m_arm.armGotoPosition(ArmPos.FLOOR), m_arm));
+
+        // Set Drive PID to -45
+        Hw.s_gpDriver.getGamepadButton(GamepadKeys.Button.DPAD_UP).whenPressed(new InstantCommand(() -> m_drive.setDrivePIDAngle(-45), m_drive));
         // Set Drive PID to 45 for wing Red
+        Hw.s_gpDriver.getGamepadButton(GamepadKeys.Button.DPAD_DOWN).whenPressed(new InstantCommand(() -> m_drive.setDrivePIDAngle(45), m_drive));
 
-        // Set Drive PID to 180
+        // Set Drive PID to 90
+        Hw.s_gpDriver.getGamepadButton(GamepadKeys.Button.DPAD_LEFT).whenPressed(new InstantCommand(() -> m_drive.setDrivePIDAngle(90), m_drive));
 
-        // Set Drive PID to -45 for wing Blue
+        // Set Drive PID to -90
+        Hw.s_gpDriver.getGamepadButton(GamepadKeys.Button.DPAD_RIGHT).whenPressed(new InstantCommand(() -> m_drive.setDrivePIDAngle(-90), m_drive));
 
         // Set up buttons for Operator
 

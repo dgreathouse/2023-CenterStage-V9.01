@@ -16,7 +16,7 @@ public class DriveSubsystem extends SubsystemBase {
     // Declare the MotorEx and Vector2D classes for each motor
     private MotorEx m_lDrive, m_rDrive, m_bDrive;
     private KiwiDrive m_drive;
-
+    double drivePIDAngle = 0;
 
     // Declare a CommandOpMode variable
     private CommandOpMode m_opMode;
@@ -86,7 +86,12 @@ public class DriveSubsystem extends SubsystemBase {
         YawPitchRollAngles angles = Hw.s_imu.getRobotYawPitchRollAngles();
         return angles.getYaw(AngleUnit.DEGREES);
     }
-
+    public void setDrivePIDAngle(double _angle){
+        drivePIDAngle = _angle;
+    }
+    public double getDrivePIDAngle(){
+        return drivePIDAngle;
+    }
     /**
      * Reset the gyro Yaw which is what is used for the robot angle
      */
