@@ -11,7 +11,7 @@ import org.firstinspires.ftc.teamcode.Subsystems.DriveSubsystem;
 
 import java.util.concurrent.TimeUnit;
 
-@Autonomous(name = "RED Left TP BD Park", group = "Auto RED")
+@Autonomous(name = "RED Left Play 1", group = "Auto RED")
 public class AutoRedLeftTP_BD_P extends CommandOpMode {
     Timing.Timer m_timer;
 
@@ -35,11 +35,11 @@ public class AutoRedLeftTP_BD_P extends CommandOpMode {
         // Register subsystems
         register(drive);
 
-
         m_timer = new Timing.Timer(100, TimeUnit.MILLISECONDS);
         m_timer.start();
     }
     @Override
+
     public void runOpMode() throws InterruptedException{
         initialize();
 

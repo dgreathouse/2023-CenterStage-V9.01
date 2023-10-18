@@ -20,46 +20,24 @@ public class LEDDefaultCommand  extends CommandBase {
     PixelColor m_botColor = PixelColor.WHITE;
     PixelColor m_topColor = PixelColor.WHITE;
 
-    ServoEx m_topServo;
-    ServoEx m_botServo;
     public LEDDefaultCommand(CommandOpMode _opMode, LEDSubsystem _led){
         m_opMode = _opMode;
         m_led = _led;
-
+        addRequirements(_led);
     }
     @Override
     public void initialize(){
-        m_topServo = new SimpleServo(m_opMode.hardwareMap,Hw.s_ledTop, 0,180, AngleUnit.DEGREES);
-        m_botServo = new SimpleServo(m_opMode.hardwareMap,Hw.s_ledBot, 0,180, AngleUnit.DEGREES);
+
     }
     @Override
     public void execute(){
         // Read the buttons
         setColor();
-        setServoColor(m_topColor, m_topServo);
-        setServoColor(m_botColor, m_botServo);
+        m_led.setTopServoPosition(m_topColor);
+        m_led.setBotServoPosition(m_botColor);
         // Set the Servo out to color values
     }
-    private void setServoColor(PixelColor _color, ServoEx _servo){
-        switch (_color){
-            case GREEN:
-                _servo.setPosition(k.LEDS.GreenServoValue);
-                break;
-            case WHITE:
-                _servo.setPosition(k.LEDS.WhiteServoValue);
-                break;
-            case PURPLE:
-                _servo.setPosition(k.LEDS.PurpleServoValue);
-                break;
-            case YELLOW:
-                _servo.setPosition(k.LEDS.YellowServoValue);
-                break;
 
-            default:
-                _servo.setPosition(k.LEDS.OffServoValue);
-                break;
-        }
-    }
     private void setColor(){
         if(Hw.s_gpOperator.isDown(GamepadKeys.Button.RIGHT_BUMPER)) {
             if (Hw.s_gpOperator.isDown(GamepadKeys.Button.DPAD_UP)) {
