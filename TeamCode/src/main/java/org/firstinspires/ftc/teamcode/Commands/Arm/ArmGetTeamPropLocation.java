@@ -43,9 +43,9 @@ public class ArmGetTeamPropLocation extends CommandBase {
                 dis = m_arm.getTeamPropDistance();
             }
             if(dis > k.ARM.TeamPropMinimumDistance_mm){
-                m_arm.m_teamPropLocation = TeamPropLocation.RIGHT;
+                k.ARM.TeamPropLoc = TeamPropLocation.RIGHT;
             }else {
-                m_arm.m_teamPropLocation = TeamPropLocation.LEFT;
+                k.ARM.TeamPropLoc  = TeamPropLocation.LEFT;
             }
         }
         isFinished = true;

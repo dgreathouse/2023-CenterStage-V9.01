@@ -29,6 +29,7 @@ public class k {
     }
     public static final class ARM {
         public static final double TeamPropMinimumDistance_mm = 20;
+        public static TeamPropLocation TeamPropLoc = TeamPropLocation.CENTER;
     }
     public static final class CLAW {
         public static final double CloseAngle = 0.0;

@@ -22,7 +22,7 @@ public class ArmSubsystem extends SubsystemBase {
     private ServoEx m_teamPropServo;
     public ArmPos m_armPos = ArmPos.NONE;
     public Rev2mDistanceSensor m_distanceSensor;
-    public TeamPropLocation m_teamPropLocation = TeamPropLocation.CENTER;
+
     public ArmSubsystem(CommandOpMode _opMode) {
         m_opMode = _opMode;
         initHardware();
