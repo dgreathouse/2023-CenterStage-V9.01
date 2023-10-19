@@ -16,7 +16,7 @@ public class DriveSubsystem extends SubsystemBase {
     // Declare the MotorEx and Vector2D classes for each motor
     private MotorEx m_lDrive, m_rDrive, m_bDrive;
     private KiwiDrive m_drive;
-    double drivePIDAngle = 0;
+    double drivePIDAngle = 361;
 
     // Declare a CommandOpMode variable
     private CommandOpMode m_opMode;

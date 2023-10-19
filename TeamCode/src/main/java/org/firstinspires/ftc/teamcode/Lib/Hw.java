@@ -13,6 +13,7 @@ public class Hw {
     public static String s_b = "b";  // Drive Back Motor
     public static String s_SH = "s"; // Shoulder Motor
     public static String s_clawSR = "csr";
+    public static String s_distance = "dis";
     public static String s_ledTop = "lt";
     public static String s_ledBot = "lb";
     // Expansion hub

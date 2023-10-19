@@ -52,21 +52,15 @@ public class DriveDefaultCommand extends CommandBase {
         // Handle rotation value
         if(Math.abs(m_z) > 0.2){ // in rotation mode
             // Scale the turning rotation down by 1/2
-            if(Math.abs(m_z) > 0.2){
-                m_z = Math.signum(m_z) * (Math.abs(m_z) - 0.2);
-            }
+            m_z = Math.signum(m_z) * (Math.abs(m_z) - 0.2);
             m_z = m_z * 0.35;
-
             m_drive.setDrivePIDAngle(361);
         }else if(Math.abs(m_drive.getDrivePIDAngle()) < 360){ // In PID rotation
-            double angle = m_drive.getRobotAngle();
-            m_z = -rotPID.calculate(angle, m_drive.getDrivePIDAngle());
+            m_z = -rotPID.calculate(m_drive.getRobotAngle(), m_drive.getDrivePIDAngle());
         }else { // Not PID and lower than the deadband
             m_z = 0.0;
         }
-
         // Call the drive method "driveCaresianXY" with the stick X,Y,Z and angle parameters
-        // TODO check subsystem for PID angle or rotation > 0.2. Set m_z correctly with PID or RightX
         m_drive.driveXY(m_x,m_y, m_z);
 
         m_opMode.telemetry.addData("X", m_x);

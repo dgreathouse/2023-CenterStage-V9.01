@@ -3,9 +3,14 @@ package org.firstinspires.ftc.teamcode.Subsystems;
 import com.arcrobotics.ftclib.command.CommandOpMode;
 import com.arcrobotics.ftclib.command.SubsystemBase;
 import com.arcrobotics.ftclib.hardware.ServoEx;
+import com.arcrobotics.ftclib.hardware.SimpleServo;
+import com.qualcomm.hardware.rev.Rev2mDistanceSensor;
 
+import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
+import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 import org.firstinspires.ftc.teamcode.Lib.ArmPos;
 import org.firstinspires.ftc.teamcode.Lib.GlobalData;
+import org.firstinspires.ftc.teamcode.Lib.Hw;
 import org.firstinspires.ftc.teamcode.Lib.TeamPropLocation;
 
 public class ArmSubsystem extends SubsystemBase {
@@ -16,7 +21,8 @@ public class ArmSubsystem extends SubsystemBase {
     private Forearm m_forearm;
     private ServoEx m_teamPropServo;
     public ArmPos m_armPos = ArmPos.NONE;
-
+    public Rev2mDistanceSensor m_distanceSensor;
+    public TeamPropLocation m_teamPropLocation = TeamPropLocation.CENTER;
     public ArmSubsystem(CommandOpMode _opMode) {
         m_opMode = _opMode;
         initHardware();
@@ -30,6 +36,8 @@ public class ArmSubsystem extends SubsystemBase {
         m_claw = new Claw(m_opMode);
         m_shoulder = new Shoulder(m_opMode);
         m_forearm = new Forearm(m_opMode);
+        m_teamPropServo = new SimpleServo(m_opMode.hardwareMap, Hw.s_distance, 0, 300, AngleUnit.DEGREES);
+        m_distanceSensor = m_opMode.hardwareMap.get(Rev2mDistanceSensor.class, Hw.s_distance);
     }
 
     /**
@@ -77,17 +85,11 @@ public class ArmSubsystem extends SubsystemBase {
         m_forearm.move(_speed);
     }
     // Team Prop functions
-    void setTeamPropServo(int _pos){
+    public void setTeamPropServo(int _pos){
         m_teamPropServo.setPosition(_pos);
     }
-    public void getTeamPropLocation(){
-        /*TODO:  Read Distance Sensor, If Team Prop located return LEFT, Else Move Servo to
-            the Center and if Team Prop located return Center, else return right. Before reading the
-            next position you must wait for the servo to move.
-        */
-        
-        // Set the correct value for the location of the team prop from the if statements
-        GlobalData.s_teamPropLocation = TeamPropLocation.CENTER;
+    public double getTeamPropDistance(){
+        return m_distanceSensor.getDistance(DistanceUnit.MM);
     }
     // CLAW functions
     public void setClawGripAngle(double _angle){

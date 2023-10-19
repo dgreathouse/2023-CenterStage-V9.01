@@ -6,6 +6,7 @@ import com.arcrobotics.ftclib.util.Timing;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
 import org.firstinspires.ftc.teamcode.CommandGroups.AutoDriveTurnCommandGroup;
+import org.firstinspires.ftc.teamcode.CommandGroups.AutoLeft.AutoRedLeftTP_BD_P_CommandGroup;
 import org.firstinspires.ftc.teamcode.Lib.Hw;
 import org.firstinspires.ftc.teamcode.Subsystems.DriveSubsystem;
 
@@ -30,7 +31,7 @@ public class AutoRedLeftTP_BD_P extends CommandOpMode {
         //drive.setDefaultCommand(new DriveDefaultCommand(this, drive));
 
         // Create Commands
-        auto = new AutoDriveTurnCommandGroup(this, drive);
+        auto = new AutoRedLeftTP_BD_P_CommandGroup(this, drive);
 
         // Register subsystems
         register(drive);
