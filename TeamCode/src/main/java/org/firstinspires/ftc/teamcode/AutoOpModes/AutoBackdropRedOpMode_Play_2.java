@@ -14,7 +14,7 @@ import org.firstinspires.ftc.teamcode.Subsystems.DriveSubsystem;
 
 import java.util.concurrent.TimeUnit;
 
-@Autonomous(name = "Backdrop Red Play 1", group = "Auto Wing Red")
+@Autonomous(name = "Backdrop Red Play 2", group = "Auto Wing Red")
 public class AutoBackdropRedOpMode_Play_2 extends CommandOpMode {
     Timing.Timer m_timer;
 
