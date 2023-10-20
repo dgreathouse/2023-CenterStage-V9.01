@@ -5,22 +5,24 @@ import com.arcrobotics.ftclib.command.CommandScheduler;
 import com.arcrobotics.ftclib.util.Timing;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
-import org.firstinspires.ftc.teamcode.CommandGroups.AutoDriveTurnCommandGroup;
-import org.firstinspires.ftc.teamcode.CommandGroups.AutoLeft.AutoRedLeftTP_BD_P_CommandGroup;
+import org.firstinspires.ftc.teamcode.CommandGroups.AutoWing.AutoWingBlue_Play_3;
+import org.firstinspires.ftc.teamcode.CommandGroups.AutoWing.AutoWingBlue_Play_4;
 import org.firstinspires.ftc.teamcode.Lib.Hw;
+import org.firstinspires.ftc.teamcode.Subsystems.ArmSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystems.DriveSubsystem;
 
 import java.util.concurrent.TimeUnit;
 
-@Autonomous(name = "RED Left Play 1", group = "Auto RED")
-public class AutoRedLeftTP_BD_P extends CommandOpMode {
+@Autonomous(name = "Wing Blue Play 4", group = "Auto Wing Blue")
+public class AutoWingBlueOpMode_Play_4 extends CommandOpMode {
     Timing.Timer m_timer;
 
     double m_timerAvg = 0.0;
     double m_timerCnt = 0;
     Hw hw;
     DriveSubsystem drive;
-    AutoDriveTurnCommandGroup auto;
+    ArmSubsystem arm;
+    AutoWingBlue_Play_4 auto;
     @Override
     public void initialize() {
         hw = new Hw(this);
@@ -28,10 +30,11 @@ public class AutoRedLeftTP_BD_P extends CommandOpMode {
 
         // Create Subsystems
         drive = new DriveSubsystem(this);
+        arm = new ArmSubsystem(this);
         //drive.setDefaultCommand(new DriveDefaultCommand(this, drive));
 
         // Create Commands
-        auto = new AutoRedLeftTP_BD_P_CommandGroup(this, drive);
+        auto = new AutoWingBlue_Play_4(this, drive,arm);
 
         // Register subsystems
         register(drive);

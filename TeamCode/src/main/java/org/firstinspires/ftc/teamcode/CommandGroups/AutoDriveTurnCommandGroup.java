@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.CommandGroups;
 
 import com.arcrobotics.ftclib.command.CommandOpMode;
+import com.arcrobotics.ftclib.command.ParallelCommandGroup;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 
 import org.firstinspires.ftc.teamcode.Commands.AutoStopOpModeCommand;
@@ -12,6 +13,10 @@ public class AutoDriveTurnCommandGroup extends SequentialCommandGroup {
 
     public AutoDriveTurnCommandGroup(CommandOpMode _opMode, DriveSubsystem _drive) {
         addCommands(
+
+                new ParallelCommandGroup( // Drive to backdrop while moving the arm
+
+                ),
                 //new AutoDetectAprilTag(_opMode, 30)
             //new AutoDriveDistance(_opMode,_drive,50,.7, DAngle.ang_0,10)
                // new AutoDriveTimeVel(_opMode,_drive,0,0.5,0,2.0),
