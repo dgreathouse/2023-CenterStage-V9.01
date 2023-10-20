@@ -5,8 +5,8 @@ import com.arcrobotics.ftclib.command.CommandScheduler;
 import com.arcrobotics.ftclib.util.Timing;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
-import org.firstinspires.ftc.teamcode.CommandGroups.AutoBackdrop.AutoBackdropBlue_Play_1;
-import org.firstinspires.ftc.teamcode.CommandGroups.AutoBackdrop.AutoBackdropBlue_Play_5;
+import org.firstinspires.ftc.teamcode.CommandGroups.22291.BAutoBackdropBlue_Play_5;
+import org.firstinspires.ftc.teamcode.CommandGroups.14623.GAutoBackdropBlue_Play_5;
 import org.firstinspires.ftc.teamcode.Lib.Hw;
 import org.firstinspires.ftc.teamcode.Subsystems.ArmSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystems.DriveSubsystem;
@@ -22,7 +22,9 @@ public class AutoBackdropBlueOpMode_Play_5 extends CommandOpMode {
     Hw hw;
     DriveSubsystem drive;
     ArmSubsystem arm;
-    AutoBackdropBlue_Play_5 auto;
+    GAutoBackdropBlue_Play_5 Gauto;
+    BAutoBackdropBlue_Play_5 Bauto;
+
     @Override
     public void initialize() {
         hw = new Hw(this);
@@ -31,13 +33,12 @@ public class AutoBackdropBlueOpMode_Play_5 extends CommandOpMode {
         // Create Subsystems
         drive = new DriveSubsystem(this);
         arm = new ArmSubsystem(this);
-        //drive.setDefaultCommand(new DriveDefaultCommand(this, drive));
 
         // Create Commands
-        auto = new AutoBackdropBlue_Play_5(this, drive,arm);
+        createCommandGroup();
 
         // Register subsystems
-        register(drive);
+        register(drive,arm);
 
         m_timer = new Timing.Timer(100, TimeUnit.MILLISECONDS);
         m_timer.start();
@@ -49,7 +50,9 @@ public class AutoBackdropBlueOpMode_Play_5 extends CommandOpMode {
 
         waitForStart();
         // Schedule the auto play to run
-        CommandScheduler.getInstance().schedule(auto);
+        scheduleCommandGroup();
+        
+        
         // run the scheduler
         while (!isStopRequested() || opModeIsActive()) {
             run();
@@ -62,4 +65,20 @@ public class AutoBackdropBlueOpMode_Play_5 extends CommandOpMode {
         }
         reset();
     }
+    private void createCommandGroup() {
+        if(GlobalData.TeamNunber == 22291) {
+        	Gauto = new BAutoBackdropBlue_Play_5(this, drive,arm);
+        }else {
+        	Bauto = new GAutoBackdropBlue_Play_5(this, drive,arm);
+        }
+
+    }
+    private scheduleCommandGroup() {
+        if(GlobalData.TeamNunber == 22291) {
+        	CommandScheduler.getInstance().schedule(Bauto);
+        }else {
+        	CommandScheduler.getInstance().schedule(Gauto);
+        }
+    }
+
 }
