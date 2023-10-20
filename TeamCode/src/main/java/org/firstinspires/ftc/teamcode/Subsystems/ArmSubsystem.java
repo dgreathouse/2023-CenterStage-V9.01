@@ -36,7 +36,7 @@ public class ArmSubsystem extends SubsystemBase {
         m_claw = new Claw(m_opMode);
         m_shoulder = new Shoulder(m_opMode);
         m_forearm = new Forearm(m_opMode);
-        m_teamPropServo = new SimpleServo(m_opMode.hardwareMap, Hw.s_distance, 0, 300, AngleUnit.DEGREES);
+        m_teamPropServo = new SimpleServo(m_opMode.hardwareMap, Hw.s_distanceServo, 0, 300, AngleUnit.DEGREES);
         m_distanceSensor = m_opMode.hardwareMap.get(Rev2mDistanceSensor.class, Hw.s_distance);
     }
 
