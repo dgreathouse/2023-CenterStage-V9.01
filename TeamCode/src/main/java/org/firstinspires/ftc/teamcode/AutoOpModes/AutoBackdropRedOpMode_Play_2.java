@@ -5,8 +5,9 @@ import com.arcrobotics.ftclib.command.CommandScheduler;
 import com.arcrobotics.ftclib.util.Timing;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
-import org.firstinspires.ftc.teamcode.CommandGroups.22291.BAutoBackdropRed_Play_2;
-import org.firstinspires.ftc.teamcode.CommandGroups.14623.GAutoBackdropRed_Play_2;
+import org.firstinspires.ftc.teamcode.CommandGroups.Boys_22291.BAutoBackdropRed_Play_2;
+import org.firstinspires.ftc.teamcode.CommandGroups.Girls_14623.GAutoBackdropRed_Play_2;
+import org.firstinspires.ftc.teamcode.Lib.GlobalData;
 import org.firstinspires.ftc.teamcode.Lib.Hw;
 import org.firstinspires.ftc.teamcode.Subsystems.ArmSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystems.DriveSubsystem;
@@ -66,15 +67,15 @@ public class AutoBackdropRedOpMode_Play_2 extends CommandOpMode {
         reset();
     }
     private void createCommandGroup() {
-        if(GlobalData.TeamNunber == 22291) {
-        	Gauto = new BAutoBackdropRed_Play_2(this, drive,arm);
+        if(GlobalData.TeamNumber == 22291) {
+        	Bauto = new BAutoBackdropRed_Play_2(this, drive,arm);
         }else {
-        	Bauto = new GAutoBackdropRed_Play_2(this, drive,arm);
+        	Gauto = new GAutoBackdropRed_Play_2(this, drive,arm);
         }
 
     }
-    private scheduleCommandGroup() {
-        if(GlobalData.TeamNunber == 22291) {
+    private void scheduleCommandGroup() {
+        if(GlobalData.TeamNumber == 22291) {
         	CommandScheduler.getInstance().schedule(Bauto);
         }else {
         	CommandScheduler.getInstance().schedule(Gauto);

@@ -5,8 +5,9 @@ import com.arcrobotics.ftclib.command.CommandScheduler;
 import com.arcrobotics.ftclib.util.Timing;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
-import org.firstinspires.ftc.teamcode.CommandGroups.22291.BAutoWingBlue_Play_1;
-import org.firstinspires.ftc.teamcode.CommandGroups.14623.GAutoWingBlue_Play_1;
+import org.firstinspires.ftc.teamcode.CommandGroups.Boys_22291.BAutoWingBlue_Play_1;
+import org.firstinspires.ftc.teamcode.CommandGroups.Girls_14623.GAutoWingBlue_Play_1;
+import org.firstinspires.ftc.teamcode.Lib.GlobalData;
 import org.firstinspires.ftc.teamcode.Lib.Hw;
 import org.firstinspires.ftc.teamcode.Subsystems.ArmSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystems.DriveSubsystem;
@@ -66,18 +67,18 @@ public class AutoWingBlueOpMode_Play_1 extends CommandOpMode {
         reset();
     }
     private void createCommandGroup() {
-        if(GlobalData.TeamNunber == 22291) {
-        	Gauto = new GAutoWingBlue_Play_1(this, drive,arm);
-        }else {
+        if(GlobalData.TeamNumber == 22291) {
         	Bauto = new BAutoWingBlue_Play_1(this, drive,arm);
+        }else {
+        	Gauto = new GAutoWingBlue_Play_1(this, drive,arm);
         }
 
     }
-    private scheduleCommandGroup() {
-        if(GlobalData.TeamNunber == 22291) {
-        	CommandScheduler.getInstance().schedule(Bauto);
+    private void scheduleCommandGroup() {
+        if(GlobalData.TeamNumber == 22291) {
+            CommandScheduler.getInstance().schedule(Bauto);
         }else {
-        	CommandScheduler.getInstance().schedule(Gauto);
+            CommandScheduler.getInstance().schedule(Gauto);
         }
     }
 }
