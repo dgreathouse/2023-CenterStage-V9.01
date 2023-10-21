@@ -19,6 +19,11 @@ import org.firstinspires.ftc.teamcode.Lib.k;
 import org.firstinspires.ftc.teamcode.Subsystems.ArmSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystems.DriveSubsystem;
 
+/** Girls Auto Backdrop Blue Play 1
+ * Detect team prop and drop off pixel at spike mark.
+ * Drive to backdrop and drop off pixel.
+ * Drive to the right to park our of the way for the backdrop.
+ */
 public class GAutoBackdropBlue_Play_1 extends SequentialCommandGroup {
 
     public GAutoBackdropBlue_Play_1(CommandOpMode _opMode, DriveSubsystem _drive, ArmSubsystem _arm) {
@@ -33,7 +38,7 @@ public class GAutoBackdropBlue_Play_1 extends SequentialCommandGroup {
 
                 ),
                 new ArmRotateFingers(_opMode,_arm, k.CLAW.OpenUpperAngle),
-                new AutoDriveTimeVel(_opMode, _drive, 90,0.5, -90,2000),
+                new AutoDriveTimeVel(_opMode, _drive, 0,0.5, 90,2000),
                 new ArmGotoPosition(_opMode,_arm,ArmPos.FLOOR)
         );
 
