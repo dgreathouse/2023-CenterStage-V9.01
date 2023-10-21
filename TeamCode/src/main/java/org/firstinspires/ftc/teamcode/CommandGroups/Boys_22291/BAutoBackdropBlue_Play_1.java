@@ -8,6 +8,7 @@ import org.firstinspires.ftc.teamcode.Commands.Arm.ArmGetTeamPropLocation;
 import org.firstinspires.ftc.teamcode.Commands.Arm.ArmGotoPosition;
 import org.firstinspires.ftc.teamcode.Commands.Arm.ArmRotateFingers;
 import org.firstinspires.ftc.teamcode.Commands.AutoDetectAprilTag;
+import org.firstinspires.ftc.teamcode.Commands.AutoStopOpModeCommand;
 import org.firstinspires.ftc.teamcode.Commands.Drive.AutoDriveTimeVel;
 import org.firstinspires.ftc.teamcode.Commands.Drive.AutoDriveToBackdrop;
 import org.firstinspires.ftc.teamcode.Commands.Drive.AutoDriveToTeamProp;
@@ -34,7 +35,8 @@ public class BAutoBackdropBlue_Play_1 extends SequentialCommandGroup {
                 ),
                 new ArmRotateFingers(_opMode,_arm, k.CLAW.OpenUpperAngle),
                 new AutoDriveTimeVel(_opMode, _drive, 90,0.5, -90,2000),
-                new ArmGotoPosition(_opMode,_arm,ArmPos.FLOOR)
+                new ArmGotoPosition(_opMode,_arm,ArmPos.FLOOR),
+                new AutoStopOpModeCommand(_opMode)
         );
 
     }

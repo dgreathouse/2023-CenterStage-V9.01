@@ -4,6 +4,7 @@ import com.arcrobotics.ftclib.command.CommandOpMode;
 import com.arcrobotics.ftclib.command.ParallelCommandGroup;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 
+import org.firstinspires.ftc.teamcode.Commands.AutoStopOpModeCommand;
 import org.firstinspires.ftc.teamcode.Lib.GlobalData;
 import org.firstinspires.ftc.teamcode.Lib.TeamColor;
 import org.firstinspires.ftc.teamcode.Subsystems.ArmSubsystem;
@@ -16,7 +17,8 @@ public class GAutoWingRed_Play_2 extends SequentialCommandGroup {
         addCommands(
             new ParallelCommandGroup(
 
-            )
+            ),
+                new AutoStopOpModeCommand(_opMode) // This must be the last line of every command list
 
 
         );

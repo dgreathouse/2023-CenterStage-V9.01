@@ -24,7 +24,8 @@ public class BAutoBackdropRed_Play_1 extends SequentialCommandGroup {
         addCommands(
             new ParallelCommandGroup(
 
-            )
+            ),
+                new AutoStopOpModeCommand(_opMode) // This must be the last line of every command list
 
 
         );
