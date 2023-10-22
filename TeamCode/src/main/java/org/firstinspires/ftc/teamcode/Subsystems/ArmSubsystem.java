@@ -10,6 +10,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 import org.firstinspires.ftc.teamcode.Lib.ArmPos;
 import org.firstinspires.ftc.teamcode.Lib.Hw;
+import org.firstinspires.ftc.teamcode.Lib.k;
 
 public class ArmSubsystem extends SubsystemBase {
 
@@ -49,14 +50,30 @@ public class ArmSubsystem extends SubsystemBase {
     }
     public void armGotoPosition(){
         // Use the m_armAng and move the Shoulder, Claw and Forearm
+        // Areas to deal with. Less than 0 degrees when straight.
+        //   Claw needs to be parallel with the ground not the backdrop
+        // Claw needs to be at 30 degrees always when greater than 0 degrees.
 
-       // m_shoulder.sePosition((int)(m_armAng * (280/360)));
+        // Set the shoulder
+        setShoulderPosition(m_armAng);
+        // Set the Forearm
+        setForearmPosition(m_armAng * k.FOREARM.ExtentScale_mmPdeg);
+        // Set the Claw
+        if(m_armAng < k.CLAW.ShoulderAngleAt30Deg){
+            setClawAngle(m_armAng * k.CLAW.ShoulderAngleToFloorAng + k.CLAW.ShoulderAngleToFloorOffset);
+        }else {
+            setClawAngle(m_armAng * k.CLAW.ShoulderAngleToBackdropAng + k.CLAW.ShoulderAngleToBackdropOffset);
+        }
+
     }
-    public void armShoulderMove(double _speed){
-        double pos = m_shoulder.getPosition();
-        // TODO: set scale factor of shoulder position to match the 30 degree angle while shoulder moves
-        //m_claw.setClawRotateAngle(pos * 1, 0.5);
-        m_shoulder.move(_speed);
+    public void setShoulderPosition(double _angle){
+        m_shoulder.setAngle((int) _angle);
+    }
+    public void setForearmPosition(double _mm){
+        m_forearm.setPosition((int)_mm);
+    }
+    public void setClawAngle(double _ang){
+        m_claw.setClawRotateAngle((int)_ang,0.4);
     }
     public void armForearmMove(double _speed){
         // Limits are applied in the forearm

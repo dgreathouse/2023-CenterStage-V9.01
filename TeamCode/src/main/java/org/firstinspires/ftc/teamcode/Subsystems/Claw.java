@@ -9,6 +9,7 @@ import com.arcrobotics.ftclib.hardware.motors.MotorEx;
 
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.teamcode.Lib.Hw;
+import org.firstinspires.ftc.teamcode.Lib.k;
 
 public class Claw {
     ServoEx m_right;
@@ -34,8 +35,8 @@ public class Claw {
         m_rotateMotor.resetEncoder();
 
     }
-    public void setClawRotateAngle(int _angle, double _speed){
-        m_rotateMotor.setTargetPosition(_angle);
+    public void setClawRotateAngle(double _angle, double _speed){
+        m_rotateMotor.setTargetPosition((int)(_angle * k.CLAW.Motor_CountsPDeg));
         m_rotateMotor.set(_speed);
 
     }

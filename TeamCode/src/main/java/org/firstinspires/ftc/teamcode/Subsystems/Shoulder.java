@@ -24,18 +24,17 @@ public class Shoulder {
         m_motor.setZeroPowerBehavior(Motor.ZeroPowerBehavior.BRAKE);
         m_motor.setPositionCoefficient(0.10);
     }
-    public void sePosition(int _pos){
-        m_motor.setRunMode(Motor.RunMode.PositionControl);
-        m_motor.setTargetPosition(_pos);
-        m_motor.set(0.8);
+    public void setAngle(double _ang){
+        m_motor.setTargetPosition((int) (_ang * k.SHOULDER.Motor_CountsPDeg));
+        m_motor.set(0.4);
     }
-    public int getPosition(){
-       return  m_motor.getCurrentPosition();
+    public double getAngle(){
+       return  m_motor.getCurrentPosition() / k.SHOULDER.Motor_CountsPDeg;
     }
     public void move(double _speed){
         m_motor.setRunMode(Motor.RunMode.RawPower);
         // TODO set constants to k.java values
-        if(getPosition() > k.SHOULDER.RotateUpLimit || getPosition() <= k.SHOULDER.RotateDownLimit) {
+        if(getAngle() > k.SHOULDER.RotateUpLimit || getAngle() <= k.SHOULDER.RotateDownLimit) {
             m_motor.set(0);
         }else {
             m_motor.set(_speed);

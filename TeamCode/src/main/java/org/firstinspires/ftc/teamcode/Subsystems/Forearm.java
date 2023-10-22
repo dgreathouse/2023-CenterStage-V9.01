@@ -20,10 +20,9 @@ public class Forearm {
         m_motor.setRunMode(Motor.RunMode.PositionControl);
 
     }
-    public void setPosition(int _pos){
-        m_motor.setRunMode(Motor.RunMode.PositionControl);
-        m_motor.setTargetPosition(_pos);
-        m_motor.set(0.8);
+    public void setPosition(double _mm){
+        m_motor.setTargetPosition((int) (_mm * k.FOREARM.Motor_CountsPmm));
+        m_motor.set(0.6);
     }
     public int getPosition(){
         return m_motor.getCurrentPosition();
