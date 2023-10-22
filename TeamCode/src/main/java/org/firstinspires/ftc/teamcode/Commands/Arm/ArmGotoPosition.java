@@ -25,7 +25,7 @@ public class ArmGotoPosition extends CommandBase {
 
     @Override
     public void initialize(){
-        m_arm.armGotoPosition(m_pos);
+        m_arm.setArmPosition(m_pos);
     }
     @Override
     public void execute(){
