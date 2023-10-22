@@ -9,9 +9,7 @@ import com.qualcomm.hardware.rev.Rev2mDistanceSensor;
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 import org.firstinspires.ftc.teamcode.Lib.ArmPos;
-import org.firstinspires.ftc.teamcode.Lib.GlobalData;
 import org.firstinspires.ftc.teamcode.Lib.Hw;
-import org.firstinspires.ftc.teamcode.Lib.TeamPropLocation;
 
 public class ArmSubsystem extends SubsystemBase {
 
@@ -20,7 +18,8 @@ public class ArmSubsystem extends SubsystemBase {
     private Shoulder m_shoulder;
     private Forearm m_forearm;
     private ServoEx m_teamPropServo;
-    public ArmPos m_armPos = ArmPos.NONE;
+
+    public double m_armAng = 0.0;
     public Rev2mDistanceSensor m_distanceSensor;
 
     public ArmSubsystem(CommandOpMode _opMode) {
@@ -46,42 +45,21 @@ public class ArmSubsystem extends SubsystemBase {
      * @param _pos
      */
     public void armGotoPosition(ArmPos _pos) {
-        switch (_pos) {
-            case STRAIGHT:
-                m_forearm.setPosition(0);
-                m_shoulder.sePosition(30);
-                m_claw.setClawRotateAngle(0,.5);
-                break;
-            case UP:
-                m_forearm.setPosition(0);
-                m_shoulder.sePosition(30);
-                m_claw.setClawRotateAngle(180,.5);
-                break;
-            case FLOOR:
-                m_forearm.setPosition(0);
-                m_shoulder.sePosition(0);
-                m_claw.setClawRotateAngle(1,.5);
-                break;
-            case ANGLE_30:
-                m_forearm.setPosition(0);
-                m_shoulder.sePosition(30);
-                m_claw.setClawRotateAngle(3,.5);
-                break;
-            case NONE:
-                // Set the shoulder to Power mode instead of PID mode.
-                // Adjust the claw angle to match the shoulder angle and backdrop angle after off the floor.
-                break;
-            default:
-                break;
-        }
+
+    }
+    public void armGotoPosition(){
+        // Use the m_armAng and move the Shoulder, Claw and Forearm
+
+       // m_shoulder.sePosition((int)(m_armAng * (280/360)));
     }
     public void armShoulderMove(double _speed){
         double pos = m_shoulder.getPosition();
         // TODO: set scale factor of shoulder position to match the 30 degree angle while shoulder moves
-        m_claw.setClawRotateAngle(pos * 1.0, 0.5);
+        //m_claw.setClawRotateAngle(pos * 1, 0.5);
         m_shoulder.move(_speed);
     }
     public void armForearmMove(double _speed){
+        // Limits are applied in the forearm
         m_forearm.move(_speed);
     }
     // Team Prop functions
@@ -95,9 +73,34 @@ public class ArmSubsystem extends SubsystemBase {
     public void setClawGripAngle(double _angle){
         m_claw.setClawGripAngle(_angle);
     }
+    public void setArmPosition(ArmPos _armPos){
+        switch (_armPos){
+            case STRAIGHT:
+                setArmAngle(0.0);
+                break;
+            case UP:
+                setArmAngle(90);
+                break;
+            case STACK_3:
+                setArmAngle(-30);
+                break;
+            case STACK_5:
+                setArmAngle(-25);
+                break;
+            case FLOOR:
+                setArmAngle(-35);
+                break;
+            case NONE:
+                break;
 
+        }
+
+    }
+    public void setArmAngle(double _angle){
+        m_armAng = _angle;
+    }
     @Override
     public void periodic() {
-
+        m_opMode.telemetry.addData("Claw Angle", m_claw.getClawRotateAngle());
     }
 }

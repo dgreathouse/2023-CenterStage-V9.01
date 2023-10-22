@@ -30,6 +30,8 @@ public class k {
     public static final class ARM {
         public static final double TeamPropMinimumDistance_mm = 20;
         public static TeamPropLocation TeamPropLoc = TeamPropLocation.CENTER;
+
+
     }
     public static final class CLAW {
         public static final double CloseAngle = 0.0;
@@ -40,12 +42,12 @@ public class k {
 
     }
     public static final class SHOULDER {
-        public static final double RotateUpLimit = 0;
-        public static final double RotateDownLimit = 100;
+        public static final double RotateUpLimit = 90; //deg
+        public static final double RotateDownLimit = -36;  //deg
     }
     public static final class FOREARM {
         public static final double RetractLimit = 0;
-        public static final double ExtendLimit = 100;
+        public static final double ExtendLimit = 240; // mm
     }
     public static final class LEDS {
         public static final double WhiteServoValue = 0;

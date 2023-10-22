@@ -27,13 +27,20 @@ public class Claw {
         m_right = new SimpleServo(m_opMode.hardwareMap,Hw.s_clawSR, 0, 180, AngleUnit.DEGREES);
 
         m_rotateMotor = new MotorEx(m_opMode.hardwareMap, Hw.s_clawRotate);
+       // m_rotateMotor.encoder.setDistancePerPulse(288/360);
         m_rotateMotor.setRunMode(Motor.RunMode.PositionControl);
+        m_rotateMotor.encoder.setDirection(Motor.Direction.FORWARD);
         m_rotateMotor.setPositionCoefficient(0.1);
+        m_rotateMotor.resetEncoder();
 
     }
-    public void setClawRotateAngle(double _angle, double _speed){
-        m_rotateMotor.setTargetPosition((int)_angle);
+    public void setClawRotateAngle(int _angle, double _speed){
+        m_rotateMotor.setTargetPosition(_angle);
         m_rotateMotor.set(_speed);
+
+    }
+    public int getClawRotateAngle(){
+        return m_rotateMotor.getCurrentPosition();
     }
     public void setClawGripAngle(double _angle){
         m_right.setPosition(_angle);

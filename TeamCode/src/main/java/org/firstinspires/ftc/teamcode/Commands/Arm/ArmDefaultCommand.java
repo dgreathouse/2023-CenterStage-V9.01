@@ -4,6 +4,7 @@ import com.arcrobotics.ftclib.command.CommandBase;
 import com.arcrobotics.ftclib.command.CommandOpMode;
 import com.arcrobotics.ftclib.gamepad.GamepadKeys;
 import com.arcrobotics.ftclib.gamepad.TriggerReader;
+import com.arcrobotics.ftclib.util.MathUtils;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.teamcode.Lib.ArmPos;
@@ -15,7 +16,7 @@ import org.firstinspires.ftc.teamcode.Subsystems.ArmSubsystem;
  * This command is used during Driver Control
  * Responsible for:
  * o - Reading joystick buttons
- * o - Commanding the Shoulder, Forearm, Claw and driving LEDs.
+ * o - Commanding the Shoulder, Forearm, Claw
  *
  */
 public class ArmDefaultCommand extends CommandBase {
@@ -38,44 +39,69 @@ public class ArmDefaultCommand extends CommandBase {
 
     @Override
     public void execute(){
-        // Arm movement
-        // Buttons and Axis move the arm. If the axis is greater than a particular value the button
-        // PID values are canceled by putting the ArmPos to NONE.
-        // The angle of the Claw will always be at 30 degrees if it is not Straight or Floor
-        // This here only handles the Axis movement and the buttons are done in the OpMode
 
-        if(Math.abs(Hw.s_gpOperator.getLeftX()) > m_DB || Math.abs(Hw.s_gpOperator.getLeftY()) > m_DB) {
-            m_arm.m_armPos = ArmPos.NONE;
-        }
-        switch (m_arm.m_armPos){
-            case FLOOR:
-                m_arm.armGotoPosition(ArmPos.FLOOR);
-                break;
-            case STRAIGHT:
-                m_arm.armGotoPosition(ArmPos.STRAIGHT);
-                break;
-            case UP:
-                m_arm.armGotoPosition(ArmPos.UP);
-                break;
-            case ANGLE_30:
-                m_arm.armGotoPosition(ArmPos.ANGLE_30);
-                break;
-            case NONE:
-                double x = Hw.s_gpOperator.getLeftX();
-                double y = Hw.s_gpOperator.getLeftY();
-                if(Math.abs(x) > m_DB) {
-                    x = Math.signum(x) * (Math.abs(x) - m_DB);
-                    m_arm.armForearmMove((x));
-                }
-                if(Math.abs(y) > m_DB){
-                    y = Math.signum(y) * (Math.abs(y) - m_DB);
-                    m_arm.armShoulderMove(y);
-                }
-                break;
-            default:
-                break;
+        // The Claw will stay parallel to the ground if the shoulder is less than 10 degrees.
+        // Over 10 degrees of shoulder movement will place the claw at 30 degrees for the backdrop.
+        // This class command can be used by autonomous by just setting the angle needed arm.armSetPosition(_pos
+        // Buttons must set angle for Straight, Floor, 5 Stack and 3 Stack.
+        // Axis will set the angle. A button to turn on Forearm move Override with Right Stick Movement
+        // The forearm will extend as needed when the shoulder is greater than 90 degrees.
+        // Start position for encoder is 0. This will be offset to correct angle at startup.
 
+
+        // Get the x,y value
+        double x = Hw.s_gpOperator.getLeftX();
+        double y = Hw.s_gpOperator.getLeftY();
+
+        if(Math.hypot(x,y) > 0.8) {                         // If X and Y is at the edge
+            double ang = Math.atan2(Math.abs(x), y);        // Find Angle
+            m_arm.setArmAngle(ang);                         // Set the angle in the ArmSubsystem
         }
+        // Stop the position movement if START button pushed. Move forearm to climb
+        if(!Hw.s_gpOperator.getGamepadButton(GamepadKeys.Button.START).get()){
+            m_arm.armGotoPosition();
+        }else {
+            double ry = Hw.s_gpOperator.getRightY();
+            m_arm.armForearmMove(ry);
+        }
+
+
+
+
+
+
+//        if(Math.abs(Hw.s_gpOperator.getLeftX()) > m_DB || Math.abs(Hw.s_gpOperator.getLeftY()) > m_DB) {
+//            m_arm.m_armPos = ArmPos.NONE;
+//        }
+//        switch (m_arm.m_armPos){
+//            case FLOOR:
+//                m_arm.armGotoPosition(ArmPos.FLOOR);
+//                break;
+//            case STRAIGHT:
+//                m_arm.armGotoPosition(ArmPos.STRAIGHT);
+//                break;
+//            case UP:
+//                m_arm.armGotoPosition(ArmPos.UP);
+//                break;
+//            case ANGLE_30:
+//                m_arm.armGotoPosition(ArmPos.ANGLE_30);
+//                break;
+//            case NONE:
+//                double x = Hw.s_gpOperator.getLeftX();
+//                double y = Hw.s_gpOperator.getLeftY();
+//                if(Math.abs(x) > m_DB) {
+//                    x = Math.signum(x) * (Math.abs(x) - m_DB);
+//                    m_arm.armForearmMove((x));
+//                }
+//                if(Math.abs(y) > m_DB){
+//                    y = Math.signum(y) * (Math.abs(y) - m_DB);
+//                    m_arm.armShoulderMove(y);
+//                }
+//                break;
+//            default:
+//                break;
+//
+//        }
         // Manage the Claw
         lowerPixelRelease.readValue();
         if(lowerPixelRelease.isDown()){
@@ -85,6 +111,8 @@ public class ArmDefaultCommand extends CommandBase {
         if(upperPixelRelease.isDown()){
             m_arm.setClawGripAngle(k.CLAW.OpenUpperAngle);
         }
+        // Based on the shoulder angle when above a certain point the claw must stay at 30 degrees.
+
 
     }
     @Override

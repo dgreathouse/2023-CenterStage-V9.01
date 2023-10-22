@@ -18,7 +18,7 @@ public class DriveDefaultCommand extends CommandBase {
     CommandOpMode m_opMode;
     // Create local variables of type double to store the stick X,Y,Z values and Angle of robot.
     double m_x, m_y, m_z, m_ang;
-    PIDController rotPID = new PIDController(.01,0,0);
+    PIDController rotPID = new PIDController(.0075,0.005,0);
     /** Constructor of class
      *
      * @param _opMode The opMode used which will be teleOp or Autonomous

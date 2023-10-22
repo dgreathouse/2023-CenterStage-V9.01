@@ -25,7 +25,7 @@ public class ArmGetTeamPropLocation extends CommandBase {
     public ArmGetTeamPropLocation(CommandOpMode _opMode, ArmSubsystem _arm) {
         m_opMode = _opMode;
         m_arm = _arm;
-
+        addRequirements(m_arm);
     }
 
     @Override

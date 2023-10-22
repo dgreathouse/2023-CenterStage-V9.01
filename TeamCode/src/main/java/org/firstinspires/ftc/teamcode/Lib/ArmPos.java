@@ -5,6 +5,9 @@ public enum ArmPos {
     STRAIGHT,
     UP,
     ANGLE_30,
+    STACK_5,
+    STACK_3,
+
     NONE
 
 }

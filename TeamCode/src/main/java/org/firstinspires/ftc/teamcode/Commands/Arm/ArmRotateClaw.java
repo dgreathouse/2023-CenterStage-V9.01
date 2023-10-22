@@ -17,7 +17,7 @@ public class ArmRotateClaw extends CommandBase {
         m_opMode = _opMode;
         m_arm = _arm;
         m_pos = _pos;
-
+        addRequirements(m_arm);
     }
 
     @Override

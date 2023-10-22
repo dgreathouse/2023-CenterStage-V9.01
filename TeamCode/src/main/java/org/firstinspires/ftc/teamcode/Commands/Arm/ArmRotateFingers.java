@@ -17,7 +17,7 @@ public class ArmRotateFingers extends CommandBase {
         m_opMode = _opMode;
         m_arm = _arm;
         m_angle = _angle;
-
+        addRequirements(m_arm);
     }
 
     @Override
