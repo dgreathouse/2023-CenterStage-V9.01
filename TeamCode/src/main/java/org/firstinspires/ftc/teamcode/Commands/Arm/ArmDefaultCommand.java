@@ -5,9 +5,7 @@ import com.arcrobotics.ftclib.command.CommandOpMode;
 import com.arcrobotics.ftclib.gamepad.GamepadKeys;
 import com.arcrobotics.ftclib.gamepad.TriggerReader;
 import com.arcrobotics.ftclib.util.MathUtils;
-import com.qualcomm.robotcore.hardware.HardwareMap;
 
-import org.firstinspires.ftc.teamcode.Lib.ArmPos;
 import org.firstinspires.ftc.teamcode.Lib.Hw;
 import org.firstinspires.ftc.teamcode.Lib.k;
 import org.firstinspires.ftc.teamcode.Subsystems.ArmSubsystem;
@@ -55,7 +53,8 @@ public class ArmDefaultCommand extends CommandBase {
 
         if(Math.hypot(x,y) > 0.8) {                         // If X and Y is at the edge
             double ang = Math.atan2(Math.abs(x), y);        // Find Angle
-            m_arm.setArmAngle(ang);                         // Set the angle in the ArmSubsystem
+            ang = MathUtils.clamp(ang, k.SHOULDER.ThumbRotateDownLimit, k.SHOULDER.ThumbRotateUpLimit);
+            m_arm.setArmAngle(ang - k.SHOULDER.ThumbRotateDownLimit);  // Set the angle in the ArmSubsystem
         }
         // Stop the position movement if START button pushed. Move forearm to climb
         if(!Hw.s_gpOperator.getGamepadButton(GamepadKeys.Button.START).get()){

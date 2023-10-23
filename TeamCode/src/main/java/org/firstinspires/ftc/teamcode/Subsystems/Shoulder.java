@@ -34,7 +34,7 @@ public class Shoulder {
     public void move(double _speed){
         m_motor.setRunMode(Motor.RunMode.RawPower);
         // TODO set constants to k.java values
-        if(getAngle() > k.SHOULDER.RotateUpLimit || getAngle() <= k.SHOULDER.RotateDownLimit) {
+        if(getAngle() > k.SHOULDER.ThumbRotateUpLimit || getAngle() <= k.SHOULDER.ThumbRotateDownLimit) {
             m_motor.set(0);
         }else {
             m_motor.set(_speed);

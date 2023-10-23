@@ -30,25 +30,28 @@ public class k {
     public static final class ARM {
         public static final double TeamPropMinimumDistance_mm = 20;
         public static TeamPropLocation TeamPropLoc = TeamPropLocation.CENTER;
+        public static final double[] ShoulderAngles = {0,10,15,35,60,85};
+        public static final double[] ClawAngles = {0,-10,-10,25,0,-25};
+
+
     }
     public static final class CLAW {
         public static final double CloseAngle = 0.0;
-        public static final double OpenLowerAngle = 1.0;
-        public static final double OpenUpperAngle = 2.0;
-        public static final double RotateUpLimit = 0;
-        public static final double RotateDownLimit = 100;
-        public static final double ShoulderAngleAt30Deg = SHOULDER.RotateDownLimit + 10;
-        public static final double ShoulderAngleToFloorAng = 1;
-        public static final double ShoulderAngleToFloorOffset = 0;
-        public static final double ShoulderAngleToBackdropAng = 1;
-        public static final double ShoulderAngleToBackdropOffset = 0;
-        public static final double Motor_CountsPDeg = 1;
+        public static final double OpenLowerAngle = 0.1;
+        public static final double OpenUpperAngle = 0.2;
+        public static final double OpenAngle = 0.5;
+
+        public static final double RotateUpLimit = 25;
+        public static final double RotateDownLimit = -25;
+        public static final double Motor_CountsPDeg = 0.8;
 
     }
     public static final class SHOULDER {
-        public static final double RotateUpLimit = 90; //deg
-        public static final double RotateDownLimit = -36;  //deg
-        public static final double Motor_CountsPDeg = 2.987;
+        public static final double ThumbRotateUpLimit = 90; //deg
+        public static final double ThumbRotateDownLimit = -35;  //deg
+        public static final double UpLimit = ThumbRotateUpLimit - ThumbRotateDownLimit;
+        public static final double DownLimit = 0;
+        public static final double Motor_CountsPDeg = 2.136;
     }
     public static final class FOREARM {
         public static final double RetractLimit = 0;

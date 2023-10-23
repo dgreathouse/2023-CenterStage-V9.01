@@ -10,6 +10,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 import org.firstinspires.ftc.teamcode.Lib.ArmPos;
 import org.firstinspires.ftc.teamcode.Lib.Hw;
+import org.firstinspires.ftc.teamcode.Lib.Interpolate;
 import org.firstinspires.ftc.teamcode.Lib.k;
 
 public class ArmSubsystem extends SubsystemBase {
@@ -25,6 +26,7 @@ public class ArmSubsystem extends SubsystemBase {
 
     public ArmSubsystem(CommandOpMode _opMode) {
         m_opMode = _opMode;
+
         initHardware();
     }
 
@@ -39,37 +41,17 @@ public class ArmSubsystem extends SubsystemBase {
         m_teamPropServo = new SimpleServo(m_opMode.hardwareMap, Hw.s_distanceServo, 0, 300, AngleUnit.DEGREES);
         m_distanceSensor = m_opMode.hardwareMap.get(Rev2mDistanceSensor.class, Hw.s_distance);
     }
-
-    /**
-     * Set the arm, shoulder and Claw position with an enum value
-     *
-     * @param _pos
-     */
-    public void armGotoPosition(ArmPos _pos) {
-
-    }
     public void armGotoPosition(){
-        // Use the m_armAng and move the Shoulder, Claw and Forearm
-        // Areas to deal with. Less than 0 degrees when straight.
-        //   Claw needs to be parallel with the ground not the backdrop
-        // Claw needs to be at 30 degrees always when greater than 0 degrees.
-
         // Set the shoulder
         setShoulderAngle(m_armAng);
         // Set the Forearm
-        if(m_armAng < 0){
+        if(m_armAng < -k.SHOULDER.ThumbRotateDownLimit){
             setForearmPosition(0);
         }else {
-            setForearmPosition(m_armAng * k.FOREARM.ExtentScale_mmPdeg);
+            setForearmPosition((m_armAng+k.SHOULDER.ThumbRotateDownLimit) * k.FOREARM.ExtentScale_mmPdeg);
         }
-
         // Set the Claw
-        if(m_armAng < k.CLAW.ShoulderAngleAt30Deg){
-            setClawAngle(m_armAng * k.CLAW.ShoulderAngleToFloorAng + k.CLAW.ShoulderAngleToFloorOffset);
-        }else {
-            setClawAngle(m_armAng * k.CLAW.ShoulderAngleToBackdropAng + k.CLAW.ShoulderAngleToBackdropOffset);
-        }
-
+        setClawAngle(Interpolate.getY(k.ARM.ShoulderAngles,k.ARM.ClawAngles,m_armAng));
     }
     public void setShoulderAngle(double _angle){
         m_shoulder.setAngle((int) _angle);
@@ -98,22 +80,16 @@ public class ArmSubsystem extends SubsystemBase {
     public void setArmPosition(ArmPos _armPos){
         switch (_armPos){
             case STRAIGHT:
-                setArmAngle(0.0);
+                setArmAngle(Math.abs(k.SHOULDER.DownLimit - k.SHOULDER.ThumbRotateDownLimit));
                 break;
-            case UP:
-                setArmAngle(90);
-                break;
-            case STACK_3:
-                setArmAngle(k.SHOULDER.RotateDownLimit + 8);
+             case STACK_3:
+                setArmAngle(8);
                 break;
             case STACK_5:
-                setArmAngle(k.SHOULDER.RotateDownLimit + 10);
+                setArmAngle(10);
                 break;
             case FLOOR:
-                setArmAngle(k.SHOULDER.RotateDownLimit);
-                break;
-            case ANGLE_30:
-                setArmAngle(10);
+                setArmAngle(0);
                 break;
             case NONE:
                 break;

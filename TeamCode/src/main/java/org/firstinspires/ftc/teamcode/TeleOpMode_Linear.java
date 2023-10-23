@@ -119,17 +119,18 @@ public class TeleOpMode_Linear extends CommandOpMode {
 
         // Close the claw (left Bumper)
         Hw.s_gpOperator.getGamepadButton(GamepadKeys.Button.LEFT_BUMPER).whenPressed(new InstantCommand(()-> m_arm.setClawGripAngle(k.CLAW.CloseAngle),m_arm));
-
+        // Close the claw (right Bumper)
+        Hw.s_gpOperator.getGamepadButton(GamepadKeys.Button.RIGHT_BUMPER).whenPressed(new InstantCommand(()-> m_arm.setClawGripAngle(k.CLAW.OpenAngle),m_arm));
         // Lower Arm to floor (Button X(ps)/A(xbox))
         Hw.s_gpOperator.getGamepadButton(GamepadKeys.Button.A).whenPressed(new InstantCommand(() -> m_arm.setArmPosition(ArmPos.FLOOR), m_arm));
         // Raise Arm to be vertical for climbing (Button Triangle(ps)/Y(xbox))
-        Hw.s_gpOperator.getGamepadButton(GamepadKeys.Button.Y).whenPressed(new InstantCommand(() -> m_arm.setArmPosition(ArmPos.UP), m_arm));
+        Hw.s_gpOperator.getGamepadButton(GamepadKeys.Button.Y).whenPressed(new InstantCommand(() -> m_arm.setArmPosition(ArmPos.STACK_5), m_arm));
         // Extend and Retract forearm (Left X and Y Axis)
 
         // Set arm to horizontal (Button Square(ps)/X(xbox))
         Hw.s_gpOperator.getGamepadButton(GamepadKeys.Button.X).whenPressed(new InstantCommand(() -> m_arm.setArmPosition(ArmPos.STRAIGHT), m_arm));
         // Set arm to backdrop (Button Circle(ps)/B(xbox))
-        Hw.s_gpOperator.getGamepadButton(GamepadKeys.Button.B).whenPressed(new InstantCommand(() -> m_arm.setArmPosition(ArmPos.ANGLE_30), m_arm));
+        Hw.s_gpOperator.getGamepadButton(GamepadKeys.Button.B).whenPressed(new InstantCommand(() -> m_arm.setArmPosition(ArmPos.STACK_3), m_arm));
         // Rotate Arm (Right Y Axis)
         // Launch Drone (Button back)
         Hw.s_gpOperator.getGamepadButton(GamepadKeys.Button.BACK).whenPressed(new DroneLaunchCommand(this,m_drone));

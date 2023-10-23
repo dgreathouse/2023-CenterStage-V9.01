@@ -6,6 +6,7 @@ import com.arcrobotics.ftclib.hardware.ServoEx;
 import com.arcrobotics.ftclib.hardware.SimpleServo;
 import com.arcrobotics.ftclib.hardware.motors.Motor;
 import com.arcrobotics.ftclib.hardware.motors.MotorEx;
+import com.arcrobotics.ftclib.util.MathUtils;
 
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.teamcode.Lib.Hw;
@@ -36,6 +37,7 @@ public class Claw {
 
     }
     public void setClawRotateAngle(double _angle, double _speed){
+        _angle = MathUtils.clamp(_angle, k.CLAW.RotateDownLimit, k.CLAW.RotateUpLimit);
         m_rotateMotor.setTargetPosition((int)(_angle * k.CLAW.Motor_CountsPDeg));
         m_rotateMotor.set(_speed);
 
