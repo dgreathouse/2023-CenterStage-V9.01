@@ -93,9 +93,7 @@ public class ArmSubsystem extends SubsystemBase {
                 break;
             case NONE:
                 break;
-
         }
-
     }
     public void setArmAngle(double _angle){
         m_armAng = _angle;
@@ -103,5 +101,6 @@ public class ArmSubsystem extends SubsystemBase {
     @Override
     public void periodic() {
         m_opMode.telemetry.addData("Claw Angle", m_claw.getClawRotateAngle());
+        m_opMode.telemetry.addData("m_armAng", m_armAng);
     }
 }
