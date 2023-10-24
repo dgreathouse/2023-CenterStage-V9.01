@@ -9,6 +9,7 @@ import com.qualcomm.hardware.rev.Rev2mDistanceSensor;
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 import org.firstinspires.ftc.teamcode.Lib.ArmPos;
+import org.firstinspires.ftc.teamcode.Lib.GlobalData;
 import org.firstinspires.ftc.teamcode.Lib.Hw;
 import org.firstinspires.ftc.teamcode.Lib.Interpolate;
 import org.firstinspires.ftc.teamcode.Lib.k;
@@ -45,11 +46,12 @@ public class ArmSubsystem extends SubsystemBase {
         // Set the shoulder
         setShoulderAngle(m_armAng);
         // Set the Forearm
-        if(m_armAng < -k.SHOULDER.ThumbRotateDownLimit){
+        if(m_armAng < k.SHOULDER.ThumbRotateUpLimit - 90){
             setForearmPosition(0);
         }else {
-            setForearmPosition((m_armAng+k.SHOULDER.ThumbRotateDownLimit) * k.FOREARM.ExtentScale_mmPdeg);
+            setForearmPosition(m_armAng * k.FOREARM.ExtentScale_mmPdeg);
         }
+
         // Set the Claw
         setClawAngle(Interpolate.getY(k.ARM.ShoulderAngles,k.ARM.ClawAngles,m_armAng));
     }
@@ -57,6 +59,7 @@ public class ArmSubsystem extends SubsystemBase {
         m_shoulder.setAngle((int) _angle);
     }
     public void setForearmPosition(double _mm){
+        m_opMode.telemetry.addData("Forearm mm",_mm);
         m_forearm.setPosition((int)_mm);
     }
     public void setClawAngle(double _ang){
@@ -67,7 +70,7 @@ public class ArmSubsystem extends SubsystemBase {
         m_forearm.move(_speed);
     }
     // Team Prop functions
-    public void setTeamPropServo(int _pos){
+    public void setTeamPropServo(double _pos){
         m_teamPropServo.setPosition(_pos);
     }
     public double getTeamPropDistance(){
@@ -76,6 +79,30 @@ public class ArmSubsystem extends SubsystemBase {
     // CLAW functions
     public void setClawGripAngle(double _angle){
         m_claw.setClawGripAngle(_angle);
+    }
+    public double getClawGripAngle(){
+        if(GlobalData.TeamNumber == 22291){
+            return k.CLAW.CloseAngle_22291;
+        }
+        return k.CLAW.CloseAngle_14623;
+    }
+    public double getClawOpenAngle(){
+        if(GlobalData.TeamNumber == 22291){
+            return k.CLAW.OpenAngle_22291;
+        }
+        return k.CLAW.OpenAngle_14623;
+    }
+    public double getClawLowerAngle(){
+        if(GlobalData.TeamNumber == 22291){
+            return k.CLAW.OpenLowerAngle_22291;
+        }
+        return k.CLAW.OpenLowerAngle_14623;
+    }
+    public double getClawUpperAngle(){
+        if(GlobalData.TeamNumber == 22291){
+            return k.CLAW.OpenUpperAngle_22291;
+        }
+        return k.CLAW.OpenUpperAngle_14623;
     }
     public void setArmPosition(ArmPos _armPos){
         switch (_armPos){
@@ -98,6 +125,7 @@ public class ArmSubsystem extends SubsystemBase {
     public void setArmAngle(double _angle){
         m_armAng = _angle;
     }
+
     @Override
     public void periodic() {
         m_opMode.telemetry.addData("Claw Angle", m_claw.getClawRotateAngle());

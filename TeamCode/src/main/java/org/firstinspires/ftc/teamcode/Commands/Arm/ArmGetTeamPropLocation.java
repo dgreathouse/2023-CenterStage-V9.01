@@ -31,13 +31,15 @@ public class ArmGetTeamPropLocation extends CommandBase {
     @Override
     public void initialize(){
        m_servoTiming = new Timing.Timer(1000, TimeUnit.MILLISECONDS);
+
     }
     @Override
     public void execute(){
 
         double dis = m_arm.getTeamPropDistance();
+        m_opMode.telemetry.addData("dis",dis);
         if(dis > k.ARM.TeamPropMinimumDistance_mm){
-            m_arm.setTeamPropServo(5);
+            m_arm.setTeamPropServo(.1);
             m_servoTiming.start();
             while(!m_servoTiming.done()){
                 dis = m_arm.getTeamPropDistance();

@@ -34,22 +34,26 @@ public class k {
         public static final double[] ClawAngles = {0,-10,-10,25,0,-25};
 
 
+
     }
     public static final class CLAW {
-        public static final double CloseAngle = 0.0;
-        public static final double OpenLowerAngle = 0.1;
-        public static final double OpenUpperAngle = 0.2;
-        public static final double OpenAngle = 0.5;
-
+        public static final double CloseAngle_22291 = 0.4;
+        public static final double OpenLowerAngle_22291 = 0.355;
+        public static final double OpenUpperAngle_22291 = 0.2;
+        public static final double OpenAngle_22291 = 0.2;
+        public static final double CloseAngle_14623 = 0.4;
+        public static final double OpenLowerAngle_14623 = 0.355;
+        public static final double OpenUpperAngle_14623 = 0.2;
+        public static final double OpenAngle_14623 = 0.2;
         public static final double RotateUpLimit = 25;
         public static final double RotateDownLimit = -25;
         public static final double Motor_CountsPDeg = 0.8;
 
     }
     public static final class SHOULDER {
-        public static final double ThumbRotateUpLimit = 90; //deg
-        public static final double ThumbRotateDownLimit = -35;  //deg
-        public static final double UpLimit = ThumbRotateUpLimit - ThumbRotateDownLimit;
+        public static final double ThumbRotateUpLimit = 125; //deg
+        public static final double ThumbRotateDownLimit = 0;  //deg
+
         public static final double DownLimit = 0;
         public static final double Motor_CountsPDeg = 2.136;
     }

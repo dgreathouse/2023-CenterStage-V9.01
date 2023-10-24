@@ -31,15 +31,15 @@ public class Shoulder {
     public double getAngle(){
        return  m_motor.getCurrentPosition() / k.SHOULDER.Motor_CountsPDeg;
     }
-    public void move(double _speed){
-        m_motor.setRunMode(Motor.RunMode.RawPower);
-        // TODO set constants to k.java values
-        if(getAngle() > k.SHOULDER.ThumbRotateUpLimit || getAngle() <= k.SHOULDER.ThumbRotateDownLimit) {
-            m_motor.set(0);
-        }else {
-            m_motor.set(_speed);
-        }
-
-
-    }
+//    public void move(double _speed){
+//        m_motor.setRunMode(Motor.RunMode.RawPower);
+//        // TODO set constants to k.java values
+//        if(getAngle() > k.SHOULDER.ThumbRotateUpLimit || getAngle() <= k.SHOULDER.ThumbRotateDownLimit) {
+//            m_motor.set(0);
+//        }else {
+//            m_motor.set(_speed);
+//        }
+//
+//
+//    }
 }

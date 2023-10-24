@@ -36,6 +36,7 @@ import com.arcrobotics.ftclib.util.Timing;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.Commands.Arm.ArmDefaultCommand;
+import org.firstinspires.ftc.teamcode.Commands.Arm.ArmSetTeamPropLocation;
 import org.firstinspires.ftc.teamcode.Commands.Drive.DriveDefaultCommand;
 import org.firstinspires.ftc.teamcode.Commands.Drone.DroneDefaultCommand;
 import org.firstinspires.ftc.teamcode.Commands.Drone.DroneLaunchCommand;
@@ -118,9 +119,9 @@ public class TeleOpMode_Linear extends CommandOpMode {
         // Set up buttons for Operator
 
         // Close the claw (left Bumper)
-        Hw.s_gpOperator.getGamepadButton(GamepadKeys.Button.LEFT_BUMPER).whenPressed(new InstantCommand(()-> m_arm.setClawGripAngle(k.CLAW.CloseAngle),m_arm));
+        Hw.s_gpOperator.getGamepadButton(GamepadKeys.Button.LEFT_BUMPER).whenPressed(new InstantCommand(()-> m_arm.setClawGripAngle(m_arm.getClawGripAngle()),m_arm));
         // Close the claw (right Bumper)
-        Hw.s_gpOperator.getGamepadButton(GamepadKeys.Button.RIGHT_BUMPER).whenPressed(new InstantCommand(()-> m_arm.setClawGripAngle(k.CLAW.OpenAngle),m_arm));
+        Hw.s_gpOperator.getGamepadButton(GamepadKeys.Button.RIGHT_BUMPER).whenPressed(new InstantCommand(()-> m_arm.setClawGripAngle(m_arm.getClawOpenAngle()),m_arm));
         // Lower Arm to floor (Button X(ps)/A(xbox))
         Hw.s_gpOperator.getGamepadButton(GamepadKeys.Button.A).whenPressed(new InstantCommand(() -> m_arm.setArmPosition(ArmPos.FLOOR), m_arm));
         // Raise Arm to be vertical for climbing (Button Triangle(ps)/Y(xbox))
@@ -136,8 +137,7 @@ public class TeleOpMode_Linear extends CommandOpMode {
         Hw.s_gpOperator.getGamepadButton(GamepadKeys.Button.BACK).whenPressed(new DroneLaunchCommand(this,m_drone));
         // Set Lower Color (White DPAD.UP, Green DPAD.DOWN, Purple DPAD.LEFT, Yellow DPAD.RIGHT)
         // Set Upper Color Right Bumper and (White DPAD.UP, Green DPAD.DOWN, Purple DPAD.LEFT, Yellow DPAD.RIGHT)
-
-
+        Hw.s_gpOperator.getGamepadButton(GamepadKeys.Button.DPAD_UP).whenPressed(new ArmSetTeamPropLocation(this,m_arm,0.0));
 
         m_timer = new Timing.Timer(100, TimeUnit.MILLISECONDS);
         m_timer.start();
@@ -153,7 +153,6 @@ public class TeleOpMode_Linear extends CommandOpMode {
         while (!isStopRequested() && opModeIsActive()) {
             run();
             // Calculate the run rate of this loop
-            // TODO: Handle the LEDs here since there is no subsystem for the LEDs
 
             telemetry.update();
             telemetry.addData("CPU Load TeleOp %", 100 - m_timer.remainingTime());
