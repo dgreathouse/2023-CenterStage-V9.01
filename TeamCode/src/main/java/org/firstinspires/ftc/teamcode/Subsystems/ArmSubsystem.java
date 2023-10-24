@@ -80,7 +80,7 @@ public class ArmSubsystem extends SubsystemBase {
     public void setClawGripAngle(double _angle){
         m_claw.setClawGripAngle(_angle);
     }
-    public double getClawGripAngle(){
+    public double getClawCloseAngle(){
         if(GlobalData.TeamNumber == 22291){
             return k.CLAW.CloseAngle_22291;
         }
@@ -92,13 +92,13 @@ public class ArmSubsystem extends SubsystemBase {
         }
         return k.CLAW.OpenAngle_14623;
     }
-    public double getClawLowerAngle(){
+    public double getClawReleaseLowerAngle(){
         if(GlobalData.TeamNumber == 22291){
             return k.CLAW.OpenLowerAngle_22291;
         }
         return k.CLAW.OpenLowerAngle_14623;
     }
-    public double getClawUpperAngle(){
+    public double getClawReleaseUpperAngle(){
         if(GlobalData.TeamNumber == 22291){
             return k.CLAW.OpenUpperAngle_22291;
         }

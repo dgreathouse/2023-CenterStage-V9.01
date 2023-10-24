@@ -46,7 +46,8 @@ public class Claw {
         return m_rotateMotor.getCurrentPosition();
     }
     public void setClawGripAngle(double _angle){
-        m_right.setPosition(_angle);
+        double angle = _angle / 300.0;
+        m_right.setPosition(angle);
     }
 
 }

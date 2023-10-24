@@ -6,7 +6,6 @@ import com.arcrobotics.ftclib.gamepad.GamepadKeys;
 import com.arcrobotics.ftclib.gamepad.TriggerReader;
 
 import org.firstinspires.ftc.teamcode.Lib.Hw;
-import org.firstinspires.ftc.teamcode.Lib.k;
 import org.firstinspires.ftc.teamcode.Subsystems.ArmSubsystem;
 
 /** Arm Default Command
@@ -57,7 +56,7 @@ public class ArmDefaultCommand extends CommandBase {
             m_arm.setArmAngle(ang);  // Set the angle in the ArmSubsystem
         }
         // Stop the position movement if START button pushed. Move forearm to climb
-        if(!Hw.s_gpOperator.getGamepadButton(GamepadKeys.Button.START).get()){
+        if(!Hw.s_gpOperator.getGamepadButton(GamepadKeys.Button.DPAD_RIGHT).get()){
             m_arm.armGotoPosition();
         }else {
             double ry = Hw.s_gpOperator.getRightY();
@@ -68,11 +67,11 @@ public class ArmDefaultCommand extends CommandBase {
         // Manage the Claw
         lowerPixelRelease.readValue();
         if(lowerPixelRelease.isDown()){
-            m_arm.setClawGripAngle(m_arm.getClawLowerAngle());
+            m_arm.setClawGripAngle(m_arm.getClawReleaseLowerAngle());
         }
         upperPixelRelease.readValue();
         if(upperPixelRelease.isDown()){
-            m_arm.setClawGripAngle(m_arm.getClawUpperAngle());
+            m_arm.setClawGripAngle(m_arm.getClawReleaseUpperAngle());
         }
         // Based on the shoulder angle when above a certain point the claw must stay at 30 degrees.
 

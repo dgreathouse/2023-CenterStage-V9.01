@@ -22,7 +22,8 @@ public class Hw {
     public static String s_Drone = "d";
     public static String s_forearm = "f";
 
-    public static GamepadEx s_gpOperator, s_gpDriver;
+    public static GamepadEx s_gpOperator;
+    public static GamepadEx s_gpDriver;
     public static IMU s_imu;
     CommandOpMode m_opMode;
     public Hw(CommandOpMode _opMode) {
