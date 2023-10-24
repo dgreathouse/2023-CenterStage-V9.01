@@ -101,7 +101,7 @@ public class TeleOpMode_Linear extends CommandOpMode {
         // Toggle is Field Oriented Mode
         Hw.s_gpDriver.getGamepadButton(GamepadKeys.Button.RIGHT_BUMPER).whenPressed(new InstantCommand(() -> m_drive.toggleIsFieldOriented(), m_drive));
 
-        // Set Arm Position Horizontal
+        // Set arm to Straight (Button Circle(ps)/B(xbox))
         Hw.s_gpDriver.getGamepadButton(GamepadKeys.Button.B).whenPressed(new InstantCommand(() -> m_arm.setArmPosition(ArmPos.STRAIGHT), m_arm));
 
         // Set Drive PID to -45
@@ -125,11 +125,10 @@ public class TeleOpMode_Linear extends CommandOpMode {
         Hw.s_gpOperator.getGamepadButton(GamepadKeys.Button.A).whenPressed(new InstantCommand(() -> m_arm.setArmPosition(ArmPos.FLOOR), m_arm));
         // Set arm to get pixels from top of stack of 5 (Button Triangle(ps)/Y(xbox))
         Hw.s_gpOperator.getGamepadButton(GamepadKeys.Button.Y).whenPressed(new InstantCommand(() -> m_arm.setArmPosition(ArmPos.STACK_5), m_arm));
-        // Extend and Retract forearm (Left X and Y Axis)
 
-        // Set arm to horizontal (Button Square(ps)/X(xbox))
+        // Set arm to Straight (Button Circle(ps)/B(xbox))
         Hw.s_gpOperator.getGamepadButton(GamepadKeys.Button.B).whenPressed(new InstantCommand(() -> m_arm.setArmPosition(ArmPos.STRAIGHT), m_arm));
-        // Set arm to backdrop (Button Circle(ps)/B(xbox))
+        // Set arm to Stack of 3 (Button Square(ps)/X(xbox))
         Hw.s_gpOperator.getGamepadButton(GamepadKeys.Button.B).whenPressed(new InstantCommand(() -> m_arm.setArmPosition(ArmPos.STACK_3), m_arm));
         // Rotate Arm (Right Y Axis)
         // Launch Drone (Button back)
