@@ -69,7 +69,7 @@ public class k {
         public static final double RetractLimit = 0;
         public static final double ExtendLimit = 240; // mm
         public static final double Motor_CountsPmm = 1;
-        public static final double ExtentScale_mmPdeg = ExtendLimit/75;
+        public static final double ExtentScale_mmPdeg = ExtendLimit/90;
     }
     public static final class LEDS {
         public static final double WhiteServoValue = 0;

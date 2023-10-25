@@ -67,7 +67,7 @@ public class TeleOpMode_Linear extends CommandOpMode {
     private DriveSubsystem m_drive;
     private ArmSubsystem m_arm;
     private DroneSubsystem m_drone;
-    private LEDSubsystem m_led;
+ //   private LEDSubsystem m_led;
     // Declare OpMode members.
 
     @Override
@@ -79,19 +79,19 @@ public class TeleOpMode_Linear extends CommandOpMode {
         m_drive = new DriveSubsystem(this);
         m_arm = new ArmSubsystem(this);
         m_drone = new DroneSubsystem(this);
-        m_led = new LEDSubsystem(this);
+     //   m_led = new LEDSubsystem(this);
 
         // Create Default Commands
         DriveDefaultCommand driveDefaultCommand = new DriveDefaultCommand(this, m_drive);
         ArmDefaultCommand armDefaultCommand = new ArmDefaultCommand(this,m_arm);
         DroneDefaultCommand droneDefaultCommand = new DroneDefaultCommand(this,m_drone);
-        LEDDefaultCommand ledDefaultCommand = new LEDDefaultCommand(this,m_led);
+      //  LEDDefaultCommand ledDefaultCommand = new LEDDefaultCommand(this,m_led);
 
         // Set Default Commands
         m_drive.setDefaultCommand(driveDefaultCommand);
         m_arm.setDefaultCommand(armDefaultCommand);
         m_drone.setDefaultCommand(droneDefaultCommand);
-        m_led.setDefaultCommand(ledDefaultCommand);
+     //   m_led.setDefaultCommand(ledDefaultCommand);
 
         // Set up buttons Driver
         // Left/Right Thumbstick for driving done in the DriveDefaultCommand class

@@ -15,7 +15,7 @@ import org.firstinspires.ftc.teamcode.Lib.k;
 public class Claw {
     ServoEx m_right;
     MotorEx m_rotateMotor;
-
+    double m_gripAngle;
 
     CommandOpMode m_opMode;
 
@@ -47,7 +47,11 @@ public class Claw {
     }
     public void setClawGripAngle(double _angle){
         double angle = _angle / 300.0;
+        m_gripAngle = _angle;
         m_right.setPosition(angle);
+    }
+    public double getClawGripAngle(){
+        return m_gripAngle;
     }
 
 }

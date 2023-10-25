@@ -154,14 +154,14 @@ public class DriveSubsystem extends SubsystemBase {
     }
     @Override
     public void periodic(){
-        m_opMode.telemetry.addData("L Inches", m_lDrive.getDistance());
-        m_opMode.telemetry.addData("R Inches", m_rDrive.getDistance());
-        m_opMode.telemetry.addData("B Inches", m_bDrive.getDistance());
-        m_opMode.telemetry.addData("L Vel", m_lDrive.getVelocity());
-        m_opMode.telemetry.addData("R Vel", m_rDrive.getVelocity());
-        m_opMode.telemetry.addData("B Vel", m_bDrive.getVelocity());
+//        m_opMode.telemetry.addData("L Inches", m_lDrive.getDistance());
+//        m_opMode.telemetry.addData("R Inches", m_rDrive.getDistance());
+//        m_opMode.telemetry.addData("B Inches", m_bDrive.getDistance());
+//        m_opMode.telemetry.addData("L Vel", m_lDrive.getVelocity());
+//        m_opMode.telemetry.addData("R Vel", m_rDrive.getVelocity());
+//        m_opMode.telemetry.addData("B Vel", m_bDrive.getVelocity());
         m_opMode.telemetry.addData("Robot Angle",getRobotAngle());
-        m_opMode.telemetry.addData("DriveDistance", getDriveDistanceInches(DAngle.ang_0));
+//        m_opMode.telemetry.addData("DriveDistance", getDriveDistanceInches(DAngle.ang_0));
         m_opMode.telemetry.addData("DriveAngle", m_drive.getDriveAngle());
         m_opMode.telemetry.addData("Strafe", m_drive.getStrafe());
         m_opMode.telemetry.addData("Forward",m_drive.getForward());
