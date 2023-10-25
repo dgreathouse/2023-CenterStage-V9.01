@@ -7,17 +7,15 @@ This repository contains the FTC Code for the CENTERSTAGE (2023-2024) competitio
 - Rotating Arm with linear extension
 - Rotating claw motor
 - Distance sensor for Team prop detection
-- Camera for Apriltag detection
+- Camera for Apriltag detection (Not needed)
 - Drone launcher utilizing 1 motor, pulley and sled design.
 - Control hub and 1 Expansion hub.
-- LEDs for looks and indication of pixel color in claw. Utilizes a Lumidriver from Sparkfun
 ## Code Overview
 Code utilizes FTCLib from FTCLib.org. Command based programming using Java and Android studio.
 
 ### Subsystems
 - DriveSubsystem
 - ArmSubsystem
-- LEDSubsystem
 - DroneSubsysem
 ### Arm consists of the following classes
 - Claw
