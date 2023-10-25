@@ -62,8 +62,6 @@ public class ArmDefaultCommand extends CommandBase {
             double ry = Hw.s_gpOperator.getRightY();
             m_arm.armForearmMove(ry);
         }
-
-
         // Manage the Claw
         lowerPixelRelease.readValue();
         if(lowerPixelRelease.isDown()){

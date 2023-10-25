@@ -7,6 +7,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
 import org.firstinspires.ftc.teamcode.CommandGroups.Boys_22291.BAutoWingBlue_Play_1;
 import org.firstinspires.ftc.teamcode.CommandGroups.Girls_14623.GAutoWingBlue_Play_1;
+import org.firstinspires.ftc.teamcode.Commands.Arm.ArmDefaultCommand;
 import org.firstinspires.ftc.teamcode.Lib.GlobalData;
 import org.firstinspires.ftc.teamcode.Lib.Hw;
 import org.firstinspires.ftc.teamcode.Subsystems.ArmSubsystem;
@@ -23,6 +24,7 @@ public class AutoWingBlueOpMode_Play_1 extends CommandOpMode {
     Hw hw;
     DriveSubsystem drive;
     ArmSubsystem arm;
+    ArmDefaultCommand armDefaultCommand;
     GAutoWingBlue_Play_1 Gauto;
     BAutoWingBlue_Play_1 Bauto;
 
@@ -37,7 +39,8 @@ public class AutoWingBlueOpMode_Play_1 extends CommandOpMode {
 
         // Create Commands
         createCommandGroup();
-
+        armDefaultCommand = new ArmDefaultCommand(this, arm);
+        arm.setDefaultCommand(armDefaultCommand);
         // Register subsystems
         register(drive,arm);
 
