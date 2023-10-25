@@ -25,16 +25,14 @@ public class BAutoBackdropBlue_Play_1 extends SequentialCommandGroup {
         GlobalData.s_teamColor = TeamColor.BLUE;
         addCommands(
                 new ArmGetTeamPropLocation(_opMode, _arm),
+                new ArmRotateFingers(_opMode,_arm,_arm.getClawCloseAngle()),
                 new AutoDriveToTeamProp(_opMode, _drive),
+                new ArmRotateFingers(_opMode,_arm,_arm.getClawReleaseLowerAngle()),
+                new ArmGotoPosition(_opMode,_arm, _arm.getArmSetAngle(ArmPos.STRAIGHT)),
                 new AutoRotateRobot(_opMode, _drive, 90, 0.5, 2),
-                new ArmGotoPosition(_opMode, _arm, ArmPos.ANGLE_30),
-                new ParallelCommandGroup(
-                        new AutoDriveToBackdrop(_opMode, _drive)
-
-                ),
-                new ArmRotateFingers(_opMode,_arm, k.CLAW.OpenUpperAngle_22291),
+                new AutoDriveToBackdrop(_opMode, _drive),
+                new ArmRotateFingers(_opMode,_arm, _arm.getClawReleaseUpperAngle()),
                 new AutoDriveTimeVel(_opMode, _drive, 90,0.5, -90,2000),
-                new ArmGotoPosition(_opMode,_arm,ArmPos.FLOOR),
                 new AutoStopOpModeCommand(_opMode)
         );
 

@@ -37,32 +37,36 @@ public class k {
 
     }
     public static final class CLAW {
-        // Claw Grip angles are done in degrees. The maximum degree the servo can move is 300 degrees
-        // The minimum is zero. Set the appropriate angle that works for your robot. These values
-        // can not be the same for both robots.
-        // Options to make the grip work better are.
-        // 1. Adjust the numbers so they work good for the top and bottom
-        // 2. Add different foam on the pixels to help with the grip types.
-        // 3. Arrange the top claw to be at a different angle.
-        // 4. ...
-        public static final double CloseAngle_22291 = 120;
-        public static final double OpenLowerAngle_22291 = 106.5;
-        public static final double OpenUpperAngle_22291 = 60.0;
-        public static final double OpenAngle_22291 = 60.0;
-        public static final double CloseAngle_14623 = 120.0;
-        public static final double OpenLowerAngle_14623 = 106.5;
-        public static final double OpenUpperAngle_14623 = 60.0;
-        public static final double OpenAngle_14623 = 60.0;
+
         public static final double RotateUpLimit = 25;
         public static final double RotateDownLimit = -25;
         public static final double Motor_CountsPDeg = 0.8;
 
+        public static final double CloseAngle_22291 = 120;
+        public static final double OpenLowerAngle_22291 = 106.5;
+        public static final double OpenUpperAngle_22291 = 60.0;
+        public static final double OpenAngle_22291 = 60.0;
+
+        public static final double CloseAngle_14623 = 120.0;
+        public static final double OpenLowerAngle_14623 = 106.5;
+        public static final double OpenUpperAngle_14623 = 60.0;
+        public static final double OpenAngle_14623 = 60.0;
+
     }
     public static final class SHOULDER {
+
+        public static final double AngleStraight_22291 = 35.0;
+        public static final double AngleStack_5_22291 = 10.0;
+        public static final double AngleStack_3_22291 = 10.0;
+        public static final double AngleFloor_22291 = 0.0;
+
+        public static final double AngleStraight_14623 = 35.0;
+        public static final double AngleStack_5_14623 = 10.0;
+        public static final double AngleStack_3_14623 = 10.0;
+        public static final double AngleFloor_14623 = 0.0;
+
         public static final double ThumbRotateUpLimit = 125; //deg
         public static final double ThumbRotateDownLimit = 0;  //deg
-
-        public static final double DownLimit = 0;
         public static final double Motor_CountsPDeg = 2.136;
     }
     public static final class FOREARM {

@@ -14,18 +14,18 @@ import org.firstinspires.ftc.teamcode.Subsystems.DriveSubsystem;
 public class ArmGotoPosition extends CommandBase {
     CommandOpMode m_opMode;
     ArmSubsystem m_arm;
-    ArmPos m_pos;
+    double m_ang;
 
-    public ArmGotoPosition(CommandOpMode _opMode, ArmSubsystem _arm, ArmPos _pos) {
+    public ArmGotoPosition(CommandOpMode _opMode, ArmSubsystem _arm, double _ang) {
         m_opMode = _opMode;
         m_arm = _arm;
-        m_pos = _pos;
+        m_ang = _ang;
         addRequirements(m_arm);
     }
 
     @Override
     public void initialize(){
-       // m_arm.setArmPosition(m_pos);
+        m_arm.setArmAngle(m_ang);
     }
     @Override
     public void execute(){

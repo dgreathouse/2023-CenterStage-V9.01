@@ -107,7 +107,7 @@ public class ArmSubsystem extends SubsystemBase {
     public void setArmPosition(ArmPos _armPos){
         switch (_armPos){
             case STRAIGHT:
-                setArmAngle(Math.abs(k.SHOULDER.DownLimit - k.SHOULDER.ThumbRotateDownLimit));
+                setArmAngle(35);
                 break;
              case STACK_3:
                 setArmAngle(8);
@@ -125,7 +125,35 @@ public class ArmSubsystem extends SubsystemBase {
     public void setArmAngle(double _angle){
         m_armAng = _angle;
     }
+    public double getArmSetAngle(ArmPos _armPos){
+        if(_armPos == ArmPos.STRAIGHT){
+            if(GlobalData.TeamNumber == 22291){
+                return k.SHOULDER.AngleStraight_22291;
+            }
+            return k.SHOULDER.AngleStraight_14623;
+        }
+        if(_armPos == ArmPos.STACK_5){
+            if(GlobalData.TeamNumber == 22291){
+                return k.SHOULDER.AngleStack_5_22291;
+            }
+            return k.SHOULDER.AngleStack_5_14623;
+        }
+        if(_armPos == ArmPos.FLOOR){
+            if(GlobalData.TeamNumber == 22291){
+                return k.SHOULDER.AngleFloor_22291;
+            }
+            return k.SHOULDER.AngleFloor_14623;
+        }
 
+        if(_armPos == ArmPos.STACK_3){
+            if(GlobalData.TeamNumber == 22291){
+                return k.SHOULDER.AngleStack_3_22291;
+            }
+            return k.SHOULDER.AngleStack_3_14623;
+        }
+        return k.SHOULDER.AngleStraight_14623;
+
+    }
     @Override
     public void periodic() {
         m_opMode.telemetry.addData("Shoulder Angle", m_armAng);
