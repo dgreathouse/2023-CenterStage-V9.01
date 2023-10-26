@@ -13,11 +13,9 @@ import org.firstinspires.ftc.teamcode.Subsystems.DriveSubsystem;
 public class BAutoWingRed_Play_3 extends SequentialCommandGroup {
 
     public BAutoWingRed_Play_3(CommandOpMode _opMode, DriveSubsystem _drive, ArmSubsystem _arm) {
-        GlobalData.s_teamColor = TeamColor.RED;
+        GlobalData.TeamColor = TeamColor.RED;
         addCommands(
-            new ParallelCommandGroup(
 
-            ),
                 new AutoStopOpModeCommand(_opMode) // This must be the last line of every command list
 
 

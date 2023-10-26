@@ -11,7 +11,7 @@ public class Hw {
     public static String s_fl = "l"; // Drive Left Motor
     public static String s_fr = "r"; // Drive Right Motor
     public static String s_b = "b";  // Drive Back Motor
-    public static String s_SH = "s"; // Shoulder Motor
+
     public static String s_clawSR = "csr";
     public static String s_distance = "dis";
     public static String s_distanceServo = "disS";
@@ -21,7 +21,7 @@ public class Hw {
     public static String s_clawRotate = "crm";
     public static String s_Drone = "d";
     public static String s_forearm = "f";
-
+    public static String s_SH = "s"; // Shoulder Motor
     public static GamepadEx s_gpOperator;
     public static GamepadEx s_gpDriver;
     public static IMU s_imu;

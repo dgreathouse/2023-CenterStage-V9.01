@@ -4,8 +4,10 @@ import com.arcrobotics.ftclib.command.CommandBase;
 import com.arcrobotics.ftclib.command.CommandOpMode;
 import com.arcrobotics.ftclib.controller.PIDController;
 import com.arcrobotics.ftclib.util.Timing;
-import com.qualcomm.robotcore.util.ElapsedTime;
 
+import org.firstinspires.ftc.teamcode.Lib.GlobalData;
+import org.firstinspires.ftc.teamcode.Lib.TeamColor;
+import org.firstinspires.ftc.teamcode.Lib.TeamPropLocation;
 import org.firstinspires.ftc.teamcode.Lib.k;
 import org.firstinspires.ftc.teamcode.Subsystems.DriveSubsystem;
 
@@ -25,7 +27,7 @@ public class AutoDriveToBackdrop extends CommandBase {
     int m_timeOut = 1;
     double m_speed = 0.5;
 
-    PIDController rotPID = new PIDController(.01,0,0);
+    PIDController rotPID = new PIDController(0.0075,0.05,0);
     Timing.Timer m_elapsedTimer;
 
     public AutoDriveToBackdrop(CommandOpMode _opMode, DriveSubsystem _drive) {
@@ -37,31 +39,41 @@ public class AutoDriveToBackdrop extends CommandBase {
     public void initialize(){
         rotPID.reset();
         m_drive.resetMotors();
-
-        m_speed = 0.5;
-        switch (k.ARM.TeamPropLoc){
-            case CENTER:
+        if(k.ARM.TeamPropLoc == TeamPropLocation.CENTER){
+            if(GlobalData.TeamColor == TeamColor.BLUE){
                 m_angle = 0;
                 m_robotAngle = 0;
-                m_timeOut = 1;
-                break;
-            case LEFT:
-                m_angle = 1;
-                m_robotAngle = 1;
-                m_timeOut = 1;
-                break;
-            case RIGHT:
-                m_angle = 2;
-                m_robotAngle = 2;
-                m_timeOut = 1;
-                break;
-            default:
-                break;
-
+                m_timeOut = 0;
+            }else{//RED
+                m_angle = 90;
+                m_robotAngle = 0;
+                m_timeOut = 1500;
+            }
+        }else if(k.ARM.TeamPropLoc == TeamPropLocation.RIGHT){
+            if(GlobalData.TeamColor == TeamColor.BLUE){
+                m_angle = 0;
+                m_robotAngle = 0;
+                m_timeOut = 0;
+            }else{  //RED
+                m_angle = 0;
+                m_robotAngle = 0;
+                m_timeOut = 0;
+            }
+        }else {
+            if(GlobalData.TeamColor == TeamColor.BLUE){
+                m_angle = 0;
+                m_robotAngle = 0;
+                m_timeOut = 0;
+            }else{//RED
+                m_angle = 0;
+                m_robotAngle = 0;
+                m_timeOut = 0;
+            }
         }
+        m_speed = 0.3;
+
         m_elapsedTimer =  new Timing.Timer(m_timeOut, TimeUnit.MILLISECONDS);
         m_elapsedTimer.start();
-
     }
     @Override
     public void execute(){

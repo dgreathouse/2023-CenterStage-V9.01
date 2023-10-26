@@ -74,6 +74,7 @@ public class ArmSubsystem extends SubsystemBase {
         m_teamPropServo.setPosition(_pos);
     }
     public double getTeamPropDistance(){
+
         return m_distanceSensor.getDistance(DistanceUnit.MM);
     }
     // CLAW functions
@@ -156,7 +157,8 @@ public class ArmSubsystem extends SubsystemBase {
     }
     @Override
     public void periodic() {
-        m_opMode.telemetry.addData("Shoulder Angle", m_armAng);
+        m_opMode.telemetry.addData("TeamPropDis", getTeamPropDistance());
+        m_opMode.telemetry.addData("Shoulder Angle", m_shoulder.getAngle());
         m_opMode.telemetry.addData("Claw Angle", m_claw.getClawRotateAngle());
         m_opMode.telemetry.addData("Claw Grip Angle", m_claw.getClawGripAngle());
         m_opMode.telemetry.addData("Forearm Distance", m_forearm.getPosition());

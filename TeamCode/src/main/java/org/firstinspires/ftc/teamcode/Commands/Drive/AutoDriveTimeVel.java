@@ -3,12 +3,10 @@ package org.firstinspires.ftc.teamcode.Commands.Drive;
 import com.arcrobotics.ftclib.command.CommandBase;
 import com.arcrobotics.ftclib.command.CommandOpMode;
 import com.arcrobotics.ftclib.controller.PIDController;
-import com.arcrobotics.ftclib.controller.wpilibcontroller.ProfiledPIDController;
-import com.arcrobotics.ftclib.trajectory.TrapezoidProfile;
+import com.arcrobotics.ftclib.util.MathUtils;
 import com.arcrobotics.ftclib.util.Timing;
-import com.qualcomm.robotcore.util.ElapsedTime;
 
-import org.firstinspires.ftc.teamcode.Lib.DAngle;
+import org.firstinspires.ftc.teamcode.Lib.k;
 import org.firstinspires.ftc.teamcode.Subsystems.DriveSubsystem;
 
 import java.util.concurrent.TimeUnit;
@@ -22,19 +20,19 @@ import java.util.concurrent.TimeUnit;
 public class AutoDriveTimeVel extends CommandBase {
     CommandOpMode m_opMode;
     DriveSubsystem m_drive;
-    double m_angle;
+    double m_driveAngle;
     double m_robotAngle;
     int m_timeOut;
     double m_speed;
 
-    PIDController rotPID = new PIDController(.01,0,0);
+    PIDController rotPID = new PIDController(k.DRIVE.Rot_P,k.DRIVE.Rot_I,0);
     Timing.Timer m_timer;
 
 
-    public AutoDriveTimeVel(CommandOpMode _opMode, DriveSubsystem _drive, double _angle, double _speed, double _robotAngle, int _timeOut) {
+    public AutoDriveTimeVel(CommandOpMode _opMode, DriveSubsystem _drive, double _driveAngle, double _speed, double _robotAngle, int _timeOut) {
         m_opMode = _opMode;
         m_drive = _drive;
-        m_angle = _angle;
+        m_driveAngle = _driveAngle;
         m_speed = _speed;
         m_robotAngle = _robotAngle;
         m_timeOut = _timeOut;
@@ -43,7 +41,7 @@ public class AutoDriveTimeVel extends CommandBase {
     @Override
     public void initialize(){
         rotPID.reset();
-        m_drive.resetMotors();
+        rotPID.setTolerance(1.0);
         m_timer = new Timing.Timer(m_timeOut, TimeUnit.MILLISECONDS);
         m_timer.start();
     }
@@ -51,7 +49,8 @@ public class AutoDriveTimeVel extends CommandBase {
     @Override
     public void execute(){
         double rot = -rotPID.calculate(m_drive.getRobotAngle(), m_robotAngle);
-        m_drive.drivePolar(m_angle, m_speed, rot);
+        rot = MathUtils.clamp(rot,-m_speed,m_speed);
+        m_drive.drivePolar(m_driveAngle, m_speed, rot);
     }
 
     @Override

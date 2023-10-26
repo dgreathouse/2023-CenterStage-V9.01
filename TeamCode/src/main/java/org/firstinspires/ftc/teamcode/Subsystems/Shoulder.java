@@ -22,11 +22,13 @@ public class Shoulder {
         m_motor.setRunMode(Motor.RunMode.PositionControl);
         m_motor.setInverted(false);
         m_motor.setZeroPowerBehavior(Motor.ZeroPowerBehavior.BRAKE);
-        m_motor.setPositionCoefficient(0.10);
+        m_motor.setPositionCoefficient(0.06);
+        m_motor.setPositionTolerance(.1);
     }
     public void setAngle(double _ang){
+
         m_motor.setTargetPosition((int) (_ang * k.SHOULDER.Motor_CountsPDeg));
-        m_motor.set(0.4);
+        m_motor.set(0.10);
     }
     public double getAngle(){
        return  m_motor.getCurrentPosition() / k.SHOULDER.Motor_CountsPDeg;

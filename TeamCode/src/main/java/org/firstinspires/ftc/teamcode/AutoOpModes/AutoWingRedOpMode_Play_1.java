@@ -62,6 +62,7 @@ public class AutoWingRedOpMode_Play_1 extends CommandOpMode {
             run();
             // Calculate the run rate of this loop
             telemetry.addData("CPU Load Auto %", 100 - m_timer.remainingTime());
+            telemetry.addData("TeamPropLocation", GlobalData.TeamPropLocation);
             telemetry.update();
             // wait till timer is > 50ms to try an create a stable run rate
             while(!m_timer.done()){} m_timer.start();

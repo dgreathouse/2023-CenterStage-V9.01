@@ -8,6 +8,7 @@ import com.arcrobotics.ftclib.hardware.motors.MotorEx;
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.YawPitchRollAngles;
 import org.firstinspires.ftc.teamcode.Lib.DAngle;
+import org.firstinspires.ftc.teamcode.Lib.GlobalData;
 import org.firstinspires.ftc.teamcode.Lib.Hw;
 import org.firstinspires.ftc.teamcode.Lib.KiwiDrive;
 import org.firstinspires.ftc.teamcode.Lib.k;
@@ -17,7 +18,7 @@ public class DriveSubsystem extends SubsystemBase {
     private MotorEx m_lDrive, m_rDrive, m_bDrive;
     private KiwiDrive m_drive;
     double drivePIDAngle = 361;
-
+    double TeamPropDist = 0;
     // Declare a CommandOpMode variable
     private CommandOpMode m_opMode;
 
@@ -160,6 +161,9 @@ public class DriveSubsystem extends SubsystemBase {
 //        m_opMode.telemetry.addData("L Vel", m_lDrive.getVelocity());
 //        m_opMode.telemetry.addData("R Vel", m_rDrive.getVelocity());
 //        m_opMode.telemetry.addData("B Vel", m_bDrive.getVelocity());
+
+//                m_opMode.telemetry.addData("TeamPropCenterDis", GlobalData.TeamPropDistanceCenter);
+//        m_opMode.telemetry.addData("TeamPropSideDis", GlobalData.TeamPropDistanceSide);
         m_opMode.telemetry.addData("Robot Angle",getRobotAngle());
 //        m_opMode.telemetry.addData("DriveDistance", getDriveDistanceInches(DAngle.ang_0));
         m_opMode.telemetry.addData("DriveAngle", m_drive.getDriveAngle());

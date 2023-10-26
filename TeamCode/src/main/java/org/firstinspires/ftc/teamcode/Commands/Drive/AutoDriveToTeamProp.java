@@ -4,8 +4,9 @@ import com.arcrobotics.ftclib.command.CommandBase;
 import com.arcrobotics.ftclib.command.CommandOpMode;
 import com.arcrobotics.ftclib.controller.PIDController;
 import com.arcrobotics.ftclib.util.Timing;
-import com.qualcomm.robotcore.util.ElapsedTime;
 
+import org.firstinspires.ftc.teamcode.Lib.GlobalData;
+import org.firstinspires.ftc.teamcode.Lib.TeamColor;
 import org.firstinspires.ftc.teamcode.Lib.TeamPropLocation;
 import org.firstinspires.ftc.teamcode.Lib.k;
 import org.firstinspires.ftc.teamcode.Subsystems.DriveSubsystem;
@@ -26,7 +27,7 @@ public class AutoDriveToTeamProp extends CommandBase {
     int m_timeOut = 1;
     double m_speed = 0.5;
 
-    PIDController rotPID = new PIDController(.01,0,0);
+    PIDController rotPID = new PIDController(0.0075,0.05,0);
     Timing.Timer m_elapsedTimer;
     //ElapsedTime m_elapsedTimer = new ElapsedTime(ElapsedTime.Resolution.MILLISECONDS);
 
@@ -40,28 +41,42 @@ public class AutoDriveToTeamProp extends CommandBase {
     public void initialize(){
         rotPID.reset();
         m_drive.resetMotors();
-
-        m_speed = 0.5;
-        switch (k.ARM.TeamPropLoc){
-            case CENTER:
-                m_angle = 0;
-                m_robotAngle = 0;
-                m_timeOut = 1;
-            break;
+        switch (GlobalData.TeamPropLocation){
             case LEFT:
-                m_angle = 1;
-                m_robotAngle = 1;
-                m_timeOut = 1;
+                if(GlobalData.TeamColor == TeamColor.BLUE){
+                    m_angle = -90;
+                    m_robotAngle = 0;
+                    m_timeOut = 1000;
+                }else {  // RED
+                    m_angle = -45;
+                    m_robotAngle = 45;
+                    m_timeOut = 1000;
+                }
+                break;
+            case CENTER:
+            case NONE:
+                if(GlobalData.TeamColor == TeamColor.BLUE){
+                    m_angle = 0;
+                    m_robotAngle = 0;
+                    m_timeOut = 1000;
+                }
                 break;
             case RIGHT:
-                m_angle = 2;
-                m_robotAngle = 2;
-                m_timeOut = 1;
-                break;
-            default:
+                if(GlobalData.TeamColor == TeamColor.BLUE){
+                    m_angle = 45;
+                    m_robotAngle = -45;
+                    m_timeOut = 1000;
+                }else {  // RED
+                    m_angle = 90;
+                    m_robotAngle = 0;
+                    m_timeOut = 1000;
+                }
                 break;
 
         }
+
+        m_speed = 0.3;
+
         m_elapsedTimer =  new Timing.Timer(m_timeOut, TimeUnit.MILLISECONDS);
         m_elapsedTimer.start();
     }

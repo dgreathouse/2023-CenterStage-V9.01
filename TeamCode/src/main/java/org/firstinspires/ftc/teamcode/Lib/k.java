@@ -10,6 +10,8 @@ public class k {
         public static final double InchPerCount = WheelCircumference_in / CPR;
         public static final double[] DriveDistance =       { 00.00,01.00,02.00,03.00,04.00,05.00,12.00,24.00,36.00,48.00,100.00 };
         public static final double[] DriveTime_Speed60 = { 00.00,01.00,02.00,03.00,04.00,05.00,12.00,24.00,36.00,48.00,100.00 };
+        public static final double Rot_P = 0.0075;
+        public static final double Rot_I = 0.05;
 
     }
     public static final class CAMERA {
@@ -67,7 +69,11 @@ public class k {
 
         public static final double ThumbRotateUpLimit = 125; //deg
         public static final double ThumbRotateDownLimit = 0;  //deg
-        public static final double Motor_CountsPDeg = 2.136;
+        // 16 tooth to 48 tooth or 3:1/0.333 435 RPM motor with a
+        // 384.5 counts/rev
+        // at shoulder that is 384.5 * 3 = 1153.5 counts per Rev of shoulder
+        // That means there is 1153.5/360 = 3.204 counts/deg
+        public static final double Motor_CountsPDeg = 3.204;
     }
     public static final class FOREARM {
         public static final double RetractLimit = 0;
