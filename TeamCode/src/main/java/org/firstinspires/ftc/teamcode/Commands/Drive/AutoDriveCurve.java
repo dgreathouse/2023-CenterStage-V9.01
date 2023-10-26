@@ -48,7 +48,7 @@ public class AutoDriveCurve extends CommandBase {
     public void execute(){
         double pid = -drivePID.calculate(m_drive.getDriveDistanceInches(m_angle), m_inches);
         double rot = -rotPID.calculate(m_drive.getRobotAngle(), 0);
-        // FIXME: The angle alone gives a normalized value which means speed will be max
+
         double y = pid * Math.sin(Math.toRadians(DAngle.getAngle(m_angle)));
         double x = pid * Math.cos(Math.toRadians(DAngle.getAngle(m_angle)));
         m_drive.driveXY(y,x,rot);

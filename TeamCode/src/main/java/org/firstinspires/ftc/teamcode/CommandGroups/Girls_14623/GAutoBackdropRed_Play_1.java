@@ -29,21 +29,22 @@ public class GAutoBackdropRed_Play_1 extends SequentialCommandGroup {
                 new ArmRotateFingers(_opMode,_arm, _arm.getClawCloseAngle()),               // Grab the pixels
                 new AutoDelayCommand(_opMode,500),                                          // Delay while the claw grabs the pixels
                 new ArmGotoPosition(_opMode,_arm,_arm.getArmSetAngle(ArmPos.STACK_3)),      // Raise the arm to Stack of 3 to drive
-                new AutoDriveTimeVel(_opMode, _drive,0,0.4,0,1200),                          // Drive out to be closer to Team Prop
+                new AutoDriveTimeVel(_opMode, _drive,0,0.4,0,1200),                         // Drive out to be closer to Team Prop
                 new ArmGetTeamPropLocation(_opMode, _arm, TeamPropLocation.CENTER),         // Check the Center Team Prop
-                new AutoRotateRobot(_opMode,_drive, -45,0.25,3000),                          // Turn to the other Team Prop location
+                new AutoRotateRobot(_opMode,_drive, -45,0.25,3000),                         // Turn to the other Team Prop location
                 new ArmGetTeamPropLocation(_opMode, _arm, TeamPropLocation.RIGHT),          // Check the Right Team Prop
-                new AutoRotateRobot(_opMode,_drive, 0,0.25,3000),                            // Rotate to be straight again
+                new AutoRotateRobot(_opMode,_drive, 0,0.25,3000),                           // Rotate to be straight again
                 new AutoDriveToTeamProp(_opMode,_drive),                                    // Drive to team prop based on location
                 new ArmRotateFingers(_opMode,_arm, _arm.getClawReleaseLowerAngle()),        // Release Lower Pixel
                 new ArmGotoPosition(_opMode,_arm,_arm.getArmSetAngle(ArmPos.STRAIGHT)),     // Put the arm Straight
                 new AutoDriveToBackdrop(_opMode,_drive),                                    // Drive to the backdrop
-                new AutoRotateRobot(_opMode,_drive, -90,0.2,3000),                           // Rotate Robot to backdrop now that we are in front of the correct location
+                new AutoRotateRobot(_opMode,_drive, -90,0.2,3000),                          // Rotate Robot to backdrop now that we are in front of the correct location
                 new AutoDriveTimeVel(_opMode, _drive,90,0.3,-90,500),                       // Drive to backdrop
                 new ArmRotateFingers(_opMode,_arm, _arm.getClawReleaseLowerAngle()),        // Release upper claw
                 new AutoDriveTimeVel(_opMode, _drive,-90,0.3,-90,500),                      // Drive back away from the backdrop
-                new AutoDriveTimeVel(_opMode, _drive,0,0.3,-90,1500),                       // Drive to the left and park
                 // END Initial Backdrop Pixels
+                new AutoDriveTimeVel(_opMode, _drive,0,0.3,-90,1500),                       // Drive to the left and park
+
                 new AutoStopOpModeCommand(_opMode) // This must be the last line of every command list
 
 

@@ -25,8 +25,8 @@ public class Claw {
         initHardware();
     }
     public void initHardware(){
-        // TODO: Adjust the servo angles
-        m_right = new SimpleServo(m_opMode.hardwareMap,Hw.s_clawSR, 0, 180, AngleUnit.DEGREES);
+
+        m_right = new SimpleServo(m_opMode.hardwareMap,Hw.s_clawSR, 0, 300, AngleUnit.DEGREES);
 
         m_rotateMotor = new MotorEx(m_opMode.hardwareMap, Hw.s_clawRotate);
        // m_rotateMotor.encoder.setDistancePerPulse(288/360);
