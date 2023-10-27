@@ -3,7 +3,6 @@ package org.firstinspires.ftc.teamcode.Commands.Arm;
 import com.arcrobotics.ftclib.command.CommandBase;
 import com.arcrobotics.ftclib.command.CommandOpMode;
 
-import org.firstinspires.ftc.teamcode.Lib.ArmPos;
 import org.firstinspires.ftc.teamcode.Subsystems.ArmSubsystem;
 
 /**

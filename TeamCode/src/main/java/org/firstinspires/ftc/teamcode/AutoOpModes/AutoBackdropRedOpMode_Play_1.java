@@ -65,7 +65,7 @@ public class AutoBackdropRedOpMode_Play_1 extends CommandOpMode {
             telemetry.addData("TeamPropLocation", GlobalData.TeamPropLocation);
             telemetry.update();
             // wait till timer is > 50ms to try an create a stable run rate
-            while(!m_timer.done()){} m_timer.start();
+            //while(!m_timer.done()){} m_timer.start();
 
         }
         reset();

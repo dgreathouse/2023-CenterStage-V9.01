@@ -6,7 +6,6 @@ import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import org.firstinspires.ftc.teamcode.Commands.Arm.ArmGetTeamPropLocation;
 import org.firstinspires.ftc.teamcode.Commands.Arm.ArmGotoPosition;
 import org.firstinspires.ftc.teamcode.Commands.Arm.ArmRotateFingers;
-import org.firstinspires.ftc.teamcode.Commands.AutoDelayCommand;
 import org.firstinspires.ftc.teamcode.Commands.AutoStopOpModeCommand;
 import org.firstinspires.ftc.teamcode.Commands.Drive.AutoDriveTimeVel;
 import org.firstinspires.ftc.teamcode.Commands.Drive.AutoDriveToBackdrop;
@@ -31,7 +30,7 @@ public class GAutoBackdropBlue_Play_1 extends SequentialCommandGroup {
                 // TODO: This was copied from "GAutoBackdropRed_Play_1" Update this for being on the BLUE side
                 // BEGIN Initial Backdrop Pixels
                 new ArmRotateFingers(_opMode,_arm, _arm.getClawCloseAngle()),               // Grab the pixels
-                new AutoDelayCommand(_opMode,500),                                          // Delay while the claw grabs the pixels
+          //      new AutoDelayCommand(_opMode,500),                                          // Delay while the claw grabs the pixels
                 new ArmGotoPosition(_opMode,_arm,_arm.getArmSetAngle(ArmPos.STACK_3)),      // Raise the arm to Stack of 3 to drive
                 new AutoDriveTimeVel(_opMode, _drive,0,0.4,0,1200),                         // Drive out to be closer to Team Prop
                 new ArmGetTeamPropLocation(_opMode, _arm, TeamPropLocation.CENTER),         // Check the Center Team Prop
@@ -39,6 +38,7 @@ public class GAutoBackdropBlue_Play_1 extends SequentialCommandGroup {
                 new ArmGetTeamPropLocation(_opMode, _arm, TeamPropLocation.RIGHT),          // Check the Right Team Prop
                 new AutoRotateRobot(_opMode,_drive, 0,0.25,3000),                           // Rotate to be straight again
                 new AutoDriveToTeamProp(_opMode,_drive),                                    // Drive to team prop based on location
+
                 new ArmRotateFingers(_opMode,_arm, _arm.getClawReleaseLowerAngle()),        // Release Lower Pixel
                 new ArmGotoPosition(_opMode,_arm,_arm.getArmSetAngle(ArmPos.STRAIGHT)),     // Put the arm Straight
                 new AutoDriveToBackdrop(_opMode,_drive),                                    // Drive to the backdrop

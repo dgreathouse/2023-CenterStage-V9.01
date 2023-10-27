@@ -16,7 +16,6 @@ import org.firstinspires.ftc.teamcode.Lib.ArmPos;
 import org.firstinspires.ftc.teamcode.Lib.GlobalData;
 import org.firstinspires.ftc.teamcode.Lib.TeamColor;
 import org.firstinspires.ftc.teamcode.Lib.TeamPropLocation;
-import org.firstinspires.ftc.teamcode.Lib.k;
 import org.firstinspires.ftc.teamcode.Subsystems.ArmSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystems.DriveSubsystem;
 
@@ -33,13 +32,12 @@ public class GAutoBackdropRed_Play_1 extends SequentialCommandGroup {
                 new ArmGetTeamPropLocation(_opMode, _arm, TeamPropLocation.CENTER),         // Check the Center Team Prop
                 new AutoRotateRobot(_opMode,_drive, -45,0.25,3000),                         // Turn to the other Team Prop location
                 new ArmGetTeamPropLocation(_opMode, _arm, TeamPropLocation.RIGHT),          // Check the Right Team Prop
+                new ArmGetTeamPropLocation(_opMode, _arm, TeamPropLocation.LEFT),           // Check the Right Team Prop
                 new AutoRotateRobot(_opMode,_drive, 0,0.25,3000),                           // Rotate to be straight again
                 new AutoDriveToTeamProp(_opMode,_drive),                                    // Drive to team prop based on location
                 new ArmRotateFingers(_opMode,_arm, _arm.getClawReleaseLowerAngle()),        // Release Lower Pixel
                 new ArmGotoPosition(_opMode,_arm,_arm.getArmSetAngle(ArmPos.STRAIGHT)),     // Put the arm Straight
                 new AutoDriveToBackdrop(_opMode,_drive),                                    // Drive to the backdrop
-                new AutoRotateRobot(_opMode,_drive, -90,0.2,3000),                          // Rotate Robot to backdrop now that we are in front of the correct location
-                new AutoDriveTimeVel(_opMode, _drive,90,0.3,-90,500),                       // Drive to backdrop
                 new ArmRotateFingers(_opMode,_arm, _arm.getClawReleaseLowerAngle()),        // Release upper claw
                 new AutoDriveTimeVel(_opMode, _drive,-90,0.3,-90,500),                      // Drive back away from the backdrop
                 // END Initial Backdrop Pixels

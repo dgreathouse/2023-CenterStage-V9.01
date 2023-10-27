@@ -18,6 +18,7 @@ public class AutoDelayCommand extends CommandBase {
     @Override
     public void initialize(){
         m_timer = new Timing.Timer(m_delay_ms, TimeUnit.MILLISECONDS);
+        m_timer.start();
     }
     @Override
     public void execute(){

@@ -2,9 +2,7 @@ package org.firstinspires.ftc.teamcode.Commands.Drone;
 
 import com.arcrobotics.ftclib.command.CommandBase;
 import com.arcrobotics.ftclib.command.CommandOpMode;
-import com.arcrobotics.ftclib.gamepad.GamepadKeys;
 
-import org.firstinspires.ftc.teamcode.Lib.Hw;
 import org.firstinspires.ftc.teamcode.Subsystems.DroneSubsystem;
 
 public class DroneDefaultCommand  extends CommandBase {

@@ -36,7 +36,6 @@ import com.arcrobotics.ftclib.util.Timing;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.Commands.Arm.ArmDefaultCommand;
-import org.firstinspires.ftc.teamcode.Commands.Arm.ArmGetTeamPropLocation;
 import org.firstinspires.ftc.teamcode.Commands.Drive.DriveDefaultCommand;
 import org.firstinspires.ftc.teamcode.Commands.Drone.DroneDefaultCommand;
 import org.firstinspires.ftc.teamcode.Commands.Drone.DroneLaunchCommand;
