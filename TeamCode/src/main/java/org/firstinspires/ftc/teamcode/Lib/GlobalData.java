@@ -6,4 +6,5 @@ public class GlobalData {
     public static double TeamPropDistanceCenter = 0;
     public static double TeamPropDistanceSide = 0;
     public static int TeamNumber = 14623;
+    public static boolean ArmAutoEnable = false;
 }

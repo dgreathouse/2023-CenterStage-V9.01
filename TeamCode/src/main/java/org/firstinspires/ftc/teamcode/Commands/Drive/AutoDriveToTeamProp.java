@@ -24,7 +24,7 @@ public class AutoDriveToTeamProp extends CommandBase {
     double m_driveAngle = 0;
     double m_robotAngle = 0;
     int m_timeOut = 1000;
-    double m_speed = 0.5;
+    double m_speed = 0.4;
 
     PIDController rotPID;
     Timing.Timer m_elapsedTimer;
@@ -42,39 +42,62 @@ public class AutoDriveToTeamProp extends CommandBase {
         switch (GlobalData.TeamPropLocation){
             case CENTER:
             case NONE:
-                if(GlobalData.TeamColor == TeamColor.BLUE){
-                    m_driveAngle = 0;
-                    m_robotAngle = 0;
-                    m_timeOut = 1000;
-                }else {  // RED
-                    m_driveAngle = 0;
-                    m_robotAngle = 0;
-                    m_timeOut = 1001;
-                }
+
+                m_driveAngle = 00;
+                m_robotAngle = 0;
+                m_timeOut = 600;
+
                 break;
             case LEFT:
-                if(GlobalData.TeamColor == TeamColor.BLUE){
-                    m_driveAngle = -90;
-                    m_robotAngle = 0;
-                    m_timeOut = 1000;
-                }else {  // RED
-                    m_driveAngle = -45;
-                    m_robotAngle = 45;
-                    m_timeOut = 1001;
-                }
+
+                m_driveAngle = -90;
+                m_robotAngle = 0;
+                m_timeOut = 400;
+
                 break;
 
             case RIGHT:
-                if(GlobalData.TeamColor == TeamColor.BLUE){
-                    m_driveAngle = 45;
-                    m_robotAngle = -45;
-                    m_timeOut = 1000;
-                }else {  // RED
-                    m_driveAngle = 90;
-                    m_robotAngle = 0;
-                    m_timeOut = 1001;
-                }
+
+                m_driveAngle = 90;
+                m_robotAngle = 0;
+                m_timeOut = 400;
+
                 break;
+//            case CENTER:
+//            case NONE:
+//                if(GlobalData.TeamColor == TeamColor.BLUE){
+//                    m_driveAngle = 0;
+//                    m_robotAngle = 0;
+//                    m_timeOut = 700;
+//                }else {  // RED
+//                    m_driveAngle = 0;
+//                    m_robotAngle = 0;
+//                    m_timeOut = 700;
+//                }
+//                break;
+//            case LEFT:
+//                if(GlobalData.TeamColor == TeamColor.BLUE){
+//                    m_driveAngle = -90;
+//                    m_robotAngle = 0;
+//                    m_timeOut = 500;
+//                }else {  // RED
+//                    m_driveAngle = -45;
+//                    m_robotAngle = 45;
+//                    m_timeOut = 500;
+//                }
+//                break;
+//
+//            case RIGHT:
+//                if(GlobalData.TeamColor == TeamColor.BLUE){
+//                    m_driveAngle = 45;
+//                    m_robotAngle = -45;
+//                    m_timeOut = 1000;
+//                }else {  // RED
+//                    m_driveAngle = 90;
+//                    m_robotAngle = 0;
+//                    m_timeOut = 500;
+//                }
+//                break;
 
         }
 

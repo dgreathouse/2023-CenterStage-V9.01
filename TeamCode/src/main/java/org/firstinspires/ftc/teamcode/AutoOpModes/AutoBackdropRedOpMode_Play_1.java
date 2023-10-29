@@ -10,6 +10,7 @@ import org.firstinspires.ftc.teamcode.CommandGroups.Girls_14623.GAutoBackdropRed
 import org.firstinspires.ftc.teamcode.Commands.Arm.ArmDefaultCommand;
 import org.firstinspires.ftc.teamcode.Lib.GlobalData;
 import org.firstinspires.ftc.teamcode.Lib.Hw;
+import org.firstinspires.ftc.teamcode.Lib.TeamPropLocation;
 import org.firstinspires.ftc.teamcode.Subsystems.ArmSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystems.DriveSubsystem;
 
@@ -46,6 +47,7 @@ public class AutoBackdropRedOpMode_Play_1 extends CommandOpMode {
 
         m_timer = new Timing.Timer(100, TimeUnit.MILLISECONDS);
         m_timer.start();
+        GlobalData.TeamPropLocation = TeamPropLocation.NONE;
     }
     @Override
 
@@ -65,6 +67,7 @@ public class AutoBackdropRedOpMode_Play_1 extends CommandOpMode {
             telemetry.addData("TeamPropLocation", GlobalData.TeamPropLocation);
             telemetry.update();
             // wait till timer is > 50ms to try an create a stable run rate
+            // TODO: Decide if timer is needed and helps with accuracy of driving and change accordingly
             //while(!m_timer.done()){} m_timer.start();
 
         }

@@ -6,6 +6,7 @@ import com.arcrobotics.ftclib.controller.PIDController;
 
 
 import org.firstinspires.ftc.teamcode.Lib.Hw;
+import org.firstinspires.ftc.teamcode.Lib.k;
 import org.firstinspires.ftc.teamcode.Subsystems.DriveSubsystem;
 
 public class DriveDefaultCommand extends CommandBase {
@@ -16,7 +17,7 @@ public class DriveDefaultCommand extends CommandBase {
     CommandOpMode m_opMode;
     // Create local variables of type double to store the stick X,Y,Z values and Angle of robot.
     double m_x, m_y, m_z, m_ang;
-    PIDController rotPID = new PIDController(.0075,0.005,0);
+    PIDController rotPID;// = new PIDController(k.DRIVE.Rot_P,k.DRIVE.Rot_I,0);
     /** Constructor of class
      *
      * @param _opMode The opMode used which will be teleOp or Autonomous
@@ -36,6 +37,7 @@ public class DriveDefaultCommand extends CommandBase {
     @Override
     public void initialize(){
         m_drive.setIsFieldOriented(true);
+        rotPID = new PIDController(k.DRIVE.Rot_P,k.DRIVE.Rot_I,0);
     }
 
     @Override

@@ -24,7 +24,7 @@ public class AutoDriveToBackdrop extends CommandBase {
     double m_driveAngle = 0;
     double m_robotAngle = 0;
     int m_timeOut = 1000;
-    double m_speed = 0.5;
+    double m_speed = 0.4;
 
     PIDController rotPID;
     Timing.Timer m_elapsedTimer;
@@ -40,38 +40,39 @@ public class AutoDriveToBackdrop extends CommandBase {
         rotPID.reset();
 
         switch (GlobalData.TeamPropLocation) {
-            case LEFT:
-                if (GlobalData.TeamColor == TeamColor.BLUE) {
-                    m_driveAngle = -93;
-                    m_robotAngle = 90;
-                    m_timeOut = 1500;
-                } else {  // RED
-                    m_driveAngle = 90;
-                    m_robotAngle = -90;
-                    m_timeOut = 1500;
-                }
-                break;
             case CENTER:
             case NONE:
                 if (GlobalData.TeamColor == TeamColor.BLUE) {
                     m_driveAngle = -90;
                     m_robotAngle = 90;
-                    m_timeOut = 1500;
+                    m_timeOut = 2000;
                 } else {  // RED
                     m_driveAngle = 90;
                     m_robotAngle = -90;
-                    m_timeOut = 1500;
+                    m_timeOut = 2500;
                 }
                 break;
+            case LEFT:
+                if (GlobalData.TeamColor == TeamColor.BLUE) {
+                    m_driveAngle = -80;
+                    m_robotAngle = 90;
+                    m_timeOut = 2600;
+                } else {  // RED
+                    m_driveAngle = 80;
+                    m_robotAngle = -90;
+                    m_timeOut = 2600;
+                }
+                break;
+
             case RIGHT:
                 if (GlobalData.TeamColor == TeamColor.BLUE) {
-                    m_driveAngle = -87;
+                    m_driveAngle = -80;
                     m_robotAngle = 90;
-                    m_timeOut = 1500;
+                    m_timeOut = 2500;
                 } else {  // RED
-                    m_driveAngle = 87;
+                    m_driveAngle = 80;
                     m_robotAngle = -90;
-                    m_timeOut = 1500;
+                    m_timeOut = 2500;
                 }
                 break;
         }

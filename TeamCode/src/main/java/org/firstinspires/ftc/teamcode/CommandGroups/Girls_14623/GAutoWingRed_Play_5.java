@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.CommandGroups.Girls_14623;
 import com.arcrobotics.ftclib.command.CommandOpMode;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 
+import org.firstinspires.ftc.teamcode.Commands.AutoDelayCommand;
 import org.firstinspires.ftc.teamcode.Commands.AutoStopOpModeCommand;
 import org.firstinspires.ftc.teamcode.Lib.GlobalData;
 import org.firstinspires.ftc.teamcode.Lib.TeamColor;
@@ -15,6 +16,7 @@ public class GAutoWingRed_Play_5 extends SequentialCommandGroup {
         GlobalData.TeamColor = TeamColor.RED;
         addCommands(
 
+                new AutoDelayCommand(_opMode,10000),
                 new AutoStopOpModeCommand(_opMode) // This must be the last line of every command list
 
 

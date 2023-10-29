@@ -20,7 +20,6 @@ public class ArmSubsystem extends SubsystemBase {
     private Claw m_claw;
     private Shoulder m_shoulder;
     private Forearm m_forearm;
-    private ServoEx m_teamPropServo;
 
     public double m_armAng = 0.0;
     public Rev2mDistanceSensor m_distanceSensor;
@@ -39,7 +38,7 @@ public class ArmSubsystem extends SubsystemBase {
         m_claw = new Claw(m_opMode);
         m_shoulder = new Shoulder(m_opMode);
         m_forearm = new Forearm(m_opMode);
-        m_teamPropServo = new SimpleServo(m_opMode.hardwareMap, Hw.s_distanceServo, 0, 300, AngleUnit.DEGREES);
+
         m_distanceSensor = m_opMode.hardwareMap.get(Rev2mDistanceSensor.class, Hw.s_distance);
     }
     public void armGotoPosition(){
@@ -70,9 +69,7 @@ public class ArmSubsystem extends SubsystemBase {
         m_forearm.move(_speed);
     }
     // Team Prop functions
-    public void setTeamPropServo(double _pos){
-        m_teamPropServo.setPosition(_pos);
-    }
+
     public double getTeamPropDistance(){
 
         return m_distanceSensor.getDistance(DistanceUnit.MM);
