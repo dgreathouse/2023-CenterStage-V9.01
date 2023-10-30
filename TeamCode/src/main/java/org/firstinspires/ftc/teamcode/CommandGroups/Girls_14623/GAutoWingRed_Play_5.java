@@ -16,7 +16,7 @@ public class GAutoWingRed_Play_5 extends SequentialCommandGroup {
         GlobalData.TeamColor = TeamColor.RED;
         addCommands(
 
-                new AutoDelayCommand(_opMode,10000),
+                //new AutoDelayCommand(_opMode,10000),
                 new AutoStopOpModeCommand(_opMode) // This must be the last line of every command list
 
 

@@ -42,26 +42,30 @@ public class k {
 
         public static final double RotateUpLimit = 25;
         public static final double RotateDownLimit = -25;
-        public static final double Motor_CountsPDeg = 0.8;
+        public static final double Motor_CountsPDeg = 288.0/360.0;
 
-        public static final double CloseAngle_22291 = 120;
-        public static final double OpenLowerAngle_22291 = 106.5;
+        public static final double CloseAngle_22291 = 115;
+        public static final double OpenLowerAngle_22291 = 101.5;
         public static final double OpenUpperAngle_22291 = 60.0;
         public static final double OpenAngle_22291 = 60.0;
 
-        public static final double CloseAngle_14623 = 120.0;
-        public static final double OpenLowerAngle_14623 = 106.5;
+        public static final double CloseAngle_14623 = 115.0;
+        public static final double OpenLowerAngle_14623 = 101.5;
         public static final double OpenUpperAngle_14623 = 60.0;
         public static final double OpenAngle_14623 = 60.0;
 
     }
     public static final class SHOULDER {
 
+        public static final double AngleVertical_22291 = 125.0;
+        public static final double AngleBackdropUpLimit_22291 = 85;
         public static final double AngleStraight_22291 = 35.0;
         public static final double AngleStack_5_22291 = 10.0;
         public static final double AngleStack_3_22291 = 10.0;
         public static final double AngleFloor_22291 = 0.0;
 
+        public static final double AngleVertical_14623 = 125.0;
+        public static final double AngleBackdropUpLimit_14623 = 85;
         public static final double AngleStraight_14623 = 35.0;
         public static final double AngleStack_5_14623 = 10.0;
         public static final double AngleStack_3_14623 = 10.0;
@@ -76,10 +80,10 @@ public class k {
         public static final double Motor_CountsPDeg = 3.204;
     }
     public static final class FOREARM {
-        public static final double RetractLimit = 0;
-        public static final double ExtendLimit = 240; // mm
-        public static final double Motor_CountsPmm = 1;
-        public static final double ExtentScale_mmPdeg = ExtendLimit/90;
+        public static final double RetractLimit = 5;
+        public static final double ExtendLimit = 230; // mm
+        public static final double Motor_CountsPmm = 6;
+       // public static final double ExtentScale_mmPdeg = ExtendLimit/(85 - 35);
     }
     public static final class LEDS {
         public static final double WhiteServoValue = 0;

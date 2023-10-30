@@ -36,6 +36,10 @@ import com.arcrobotics.ftclib.util.Timing;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.Commands.Arm.ArmDefaultCommand;
+import org.firstinspires.ftc.teamcode.Commands.Arm.ArmSetClawPos;
+import org.firstinspires.ftc.teamcode.Commands.Arm.ArmSetForearmPower;
+import org.firstinspires.ftc.teamcode.Commands.Arm.ArmSetShouldPower;
+import org.firstinspires.ftc.teamcode.Commands.Arm.ArmTestSetShouldAngle;
 import org.firstinspires.ftc.teamcode.Commands.Drive.DriveDefaultCommand;
 import org.firstinspires.ftc.teamcode.Commands.Drone.DroneDefaultCommand;
 import org.firstinspires.ftc.teamcode.Commands.Drone.DroneLaunchCommand;
@@ -126,10 +130,12 @@ public class TeleOpMode_Linear extends CommandOpMode {
         // Set arm to Straight (Button Circle(ps)/B(xbox))
         Hw.s_gpOperator.getGamepadButton(GamepadKeys.Button.B).whenPressed(new InstantCommand(() -> m_arm.setArmPosition(ArmPos.STRAIGHT), m_arm));
         // Set arm to Stack of 3 (Button Square(ps)/X(xbox))
-        Hw.s_gpOperator.getGamepadButton(GamepadKeys.Button.X).whenPressed(new InstantCommand(() -> m_arm.setArmPosition(ArmPos.STACK_3), m_arm));
+     //   Hw.s_gpOperator.getGamepadButton(GamepadKeys.Button.X).whenPressed(new InstantCommand(() -> m_arm.setArmPosition(ArmPos.STACK_3), m_arm));
         // Rotate Arm (Right Y Axis)
         // Launch Drone (Button back)
-        Hw.s_gpOperator.getGamepadButton(GamepadKeys.Button.DPAD_DOWN).whenPressed(new DroneLaunchCommand(this,m_drone));
+        Hw.s_gpOperator.getGamepadButton(GamepadKeys.Button.DPAD_UP).whenPressed(new DroneLaunchCommand(this,m_drone));
+   //     Hw.s_gpOperator.getGamepadButton(GamepadKeys.Button.DPAD_LEFT).whenPressed(new ArmSetClawPos(this, m_arm,-0.5));
+   //     Hw.s_gpOperator.getGamepadButton(GamepadKeys.Button.DPAD_RIGHT).whenPressed(new ArmSetClawPos(this, m_arm,0.5));
         // Set Lower Color (White DPAD.UP, Green DPAD.DOWN, Purple DPAD.LEFT, Yellow DPAD.RIGHT)
         // Set Upper Color Right Bumper and (White DPAD.UP, Green DPAD.DOWN, Purple DPAD.LEFT, Yellow DPAD.RIGHT)
         //Hw.s_gpOperator.getGamepadButton(GamepadKeys.Button.DPAD_UP).whenPressed(new ArmGetTeamPropLocation(this,m_arm));

@@ -18,14 +18,15 @@ public class Forearm {
     public void initHardware(){
         m_motor = new MotorEx(m_opMode.hardwareMap, Hw.s_forearm, Motor.GoBILDA.RPM_435);
         m_motor.setRunMode(Motor.RunMode.PositionControl);
+        m_motor.setPositionCoefficient(0.02);
 
     }
     public void setPosition(double _mm){
         m_motor.setTargetPosition((int) (_mm * k.FOREARM.Motor_CountsPmm));
-        m_motor.set(0.6);
+        m_motor.set(0.23);
     }
-    public int getPosition(){
-        return m_motor.getCurrentPosition();
+    public double getPosition(){
+        return m_motor.getCurrentPosition() / k.FOREARM.Motor_CountsPmm;
     }
     public void move(double _speed){
         m_motor.setRunMode(Motor.RunMode.RawPower);

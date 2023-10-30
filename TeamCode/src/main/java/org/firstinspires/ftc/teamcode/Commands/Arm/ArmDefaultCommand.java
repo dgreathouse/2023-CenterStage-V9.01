@@ -48,8 +48,7 @@ public class ArmDefaultCommand extends CommandBase {
         // Get the x,y value
         double x = Hw.s_gpOperator.getLeftX();
         double y = Hw.s_gpOperator.getLeftY();
-        m_opMode.telemetry.addData("xR", x);
-        m_opMode.telemetry.addData("yR", y);
+
         if(Math.hypot(x,y) > 0.8) {                                     // If X and Y is at the edge
             double ang = (125.0/180.0) * (180.0 - Math.toDegrees(Math.atan2(Math.abs(x),y)));     // Find Angle
             m_opMode.telemetry.addData("xyA", ang);

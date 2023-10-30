@@ -8,6 +8,7 @@ import com.arcrobotics.ftclib.controller.wpilibcontroller.ProfiledPIDController;
 import com.arcrobotics.ftclib.hardware.motors.Motor;
 import com.arcrobotics.ftclib.hardware.motors.MotorEx;
 
+import org.firstinspires.ftc.teamcode.Lib.ArmPos;
 import org.firstinspires.ftc.teamcode.Lib.Hw;
 import org.firstinspires.ftc.teamcode.Lib.k;
 import org.opencv.core.Mat;
@@ -18,11 +19,13 @@ public class Shoulder {
     private CommandOpMode m_opMode;
     private PIDController rotPID;
     private ArmFeedforward armFeedforward;
+    private ArmSubsystem m_arm;
     private double ks, kv, kCos;
     private double vel = 0.01;
-    private double kfa;
-    public Shoulder(CommandOpMode _opMode) {
+    private double kfa, kfaMax;
+    public Shoulder(CommandOpMode _opMode, ArmSubsystem _arm) {
         m_opMode = _opMode;
+        m_arm = _arm;
         initHardware();
     }
 
@@ -32,37 +35,42 @@ public class Shoulder {
         m_motor.setInverted(false);
         m_motor.setZeroPowerBehavior(Motor.ZeroPowerBehavior.BRAKE);
 
-        rotPID = new PIDController(0.06,0.01,0);
+        rotPID = new PIDController(0.0075,0.025,0);
         rotPID.setTolerance(1);
-        rotPID.setIntegrationBounds(-0.5,0.5);
+        rotPID.setIntegrationBounds(-5,5);
         rotPID.reset();
 
-        ks = 0.01;
-        kv = 0.01;
-        kCos = 0.01;
-        vel = 0.01;
-        kfa = .02; // Forearm Constant multiplier for arm extension.
-        armFeedforward = new ArmFeedforward(0.001,0.05,0,0);
+        ks = 0.0;
+        kv = 0.0;
+        kCos = 0.2;
+        vel = 0.0;
+        kfa = 0.2; // Forearm Constant multiplier for arm extension.
+        kfaMax = 0.45;
+        //armFeedforward = new ArmFeedforward(ks,kCos,kv,0);
 
     }
     public void setAngle(double _ang){
 
-        double ang = getAngle();
-        ang -= 35;
-        ang = Math.toRadians(ang);
+        double Cosang = getAngle();
+        Cosang -= m_arm.getArmSetAngle(ArmPos.STRAIGHT);
+        Cosang = Math.toRadians(Cosang);
+        double ShAngRad = Math.toRadians(_ang);
+        double kfaScale = (kfaMax - kfa) / Math.toRadians(m_arm.getArmSetAngle(ArmPos.BACKDROPUPLIMIT) - m_arm.getArmSetAngle(ArmPos.STRAIGHT));
         // Calculate the Arm Feedforward
-        double cos = 0;
-        // Forearm extends so Cos is not constant.
-        if(ang > 0){
-            cos = kCos * Math.cos(ang) * kfa;
-        }else {
-            cos = kCos * Math.cos(ang);
+        double cos = Math.cos(Cosang) * kfa;
+        // Between the area where the arm extends and changes the cos value
+        if(Cosang > 0 && Cosang < Math.toRadians(m_arm.getArmSetAngle(ArmPos.BACKDROPUPLIMIT))){
+            cos = cos + Cosang * kfaScale;
+        }else if(Cosang > m_arm.getArmSetAngle(ArmPos.BACKDROPUPLIMIT)){
+            cos = Math.cos(Cosang) * kfa * 0.8;
         }
 
         double rot = rotPID.calculate(getAngle(), _ang);
-        double velSigned = vel * Math.signum(rot);
-        double ff = ks * Math.signum(vel) + velSigned * cos + kv * vel;
-        m_motor.set(rot + ff);
+
+        m_motor.set(cos + rot);
+    }
+    public void setPower(double _pwr){
+        m_motor.set(_pwr);
     }
     public double getAngle(){
        return  m_motor.getCurrentPosition() / k.SHOULDER.Motor_CountsPDeg;

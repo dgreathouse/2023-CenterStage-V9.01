@@ -5,6 +5,10 @@ public class GlobalData {
     public static TeamColor TeamColor = org.firstinspires.ftc.teamcode.Lib.TeamColor.RED;
     public static double TeamPropDistanceCenter = 0;
     public static double TeamPropDistanceSide = 0;
-    public static int TeamNumber = 14623;
+    public static int TeamNumber = 22291;
     public static boolean ArmAutoEnable = false;
+    public static double ShoulderTestPower = 0.0;
+    public static double ForearmTestPower = 0.0;
+    public static double ClawAngTestPos = 0.0;
+
 }

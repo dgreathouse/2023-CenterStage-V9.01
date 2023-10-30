@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode.Subsystems;
 
 import com.arcrobotics.ftclib.command.CommandOpMode;
 
+import com.arcrobotics.ftclib.controller.PIDController;
 import com.arcrobotics.ftclib.hardware.ServoEx;
 import com.arcrobotics.ftclib.hardware.SimpleServo;
 import com.arcrobotics.ftclib.hardware.motors.Motor;
@@ -16,7 +17,7 @@ public class Claw {
     ServoEx m_right;
     MotorEx m_rotateMotor;
     double m_gripAngle;
-
+    PIDController m_pid;
     CommandOpMode m_opMode;
 
     public Claw(CommandOpMode _opMode)
@@ -30,20 +31,24 @@ public class Claw {
 
         m_rotateMotor = new MotorEx(m_opMode.hardwareMap, Hw.s_clawRotate);
        // m_rotateMotor.encoder.setDistancePerPulse(288/360);
-        m_rotateMotor.setRunMode(Motor.RunMode.PositionControl);
+        m_rotateMotor.setRunMode(Motor.RunMode.RawPower);
         m_rotateMotor.encoder.setDirection(Motor.Direction.FORWARD);
-        m_rotateMotor.setPositionCoefficient(0.1);
+        m_pid = new PIDController(0.01,0.001,0.0);
+        m_pid.setTolerance(1);
         m_rotateMotor.resetEncoder();
 
-    }
-    public void setClawRotateAngle(double _angle, double _speed){
-        _angle = MathUtils.clamp(_angle, k.CLAW.RotateDownLimit, k.CLAW.RotateUpLimit);
-        m_rotateMotor.setTargetPosition((int)(_angle * k.CLAW.Motor_CountsPDeg));
-        m_rotateMotor.set(_speed);
 
     }
-    public int getClawRotateAngle(){
-        return m_rotateMotor.getCurrentPosition();
+    public void setClawRotateAngle(double _angle){
+        _angle = MathUtils.clamp(_angle, k.CLAW.RotateDownLimit, k.CLAW.RotateUpLimit);
+        double rot = m_pid.calculate(getClawRotateAngle(),_angle);
+
+//        m_rotateMotor.setTargetPosition((int)(_angle * k.CLAW.Motor_CountsPDeg));
+        m_rotateMotor.set(rot);
+
+    }
+    public double getClawRotateAngle(){
+        return m_rotateMotor.getCurrentPosition() / k.CLAW.Motor_CountsPDeg;
     }
     public void setClawGripAngle(double _angle){
         double angle = _angle / 300.0;
