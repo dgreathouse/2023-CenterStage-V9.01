@@ -8,7 +8,6 @@ import com.arcrobotics.ftclib.hardware.motors.MotorEx;
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.YawPitchRollAngles;
 import org.firstinspires.ftc.teamcode.Lib.DAngle;
-import org.firstinspires.ftc.teamcode.Lib.GlobalData;
 import org.firstinspires.ftc.teamcode.Lib.Hw;
 import org.firstinspires.ftc.teamcode.Lib.KiwiDrive;
 import org.firstinspires.ftc.teamcode.Lib.k;
@@ -35,7 +34,7 @@ public class DriveSubsystem extends SubsystemBase {
 
     }
     public void initHardware(){
-        m_lDrive = new MotorEx(m_opMode.hardwareMap, Hw.s_fl, Motor.GoBILDA.RPM_435);
+        m_lDrive = new MotorEx(m_opMode.hardwareMap, Hw.DriveFrontLeft, Motor.GoBILDA.RPM_435);
         m_lDrive.setInverted(true);
         m_lDrive.setRunMode(Motor.RunMode.VelocityControl);
         m_lDrive.setZeroPowerBehavior(Motor.ZeroPowerBehavior.BRAKE);
@@ -43,7 +42,7 @@ public class DriveSubsystem extends SubsystemBase {
         m_lDrive.encoder.setDirection(Motor.Direction.FORWARD);
         m_lDrive.setVeloCoefficients(1.0,0.01,0);
 
-        m_rDrive = new MotorEx(m_opMode.hardwareMap, Hw.s_fr, Motor.GoBILDA.RPM_435);
+        m_rDrive = new MotorEx(m_opMode.hardwareMap, Hw.DriveFrontRight, Motor.GoBILDA.RPM_435);
         m_rDrive.setInverted(true);
         m_rDrive.setRunMode(Motor.RunMode.VelocityControl);
         m_rDrive.setZeroPowerBehavior(Motor.ZeroPowerBehavior.BRAKE);
@@ -51,7 +50,7 @@ public class DriveSubsystem extends SubsystemBase {
         m_rDrive.encoder.setDirection(Motor.Direction.REVERSE);
         m_rDrive.setVeloCoefficients(1.0,0.01,0);
 
-        m_bDrive = new MotorEx(m_opMode.hardwareMap, Hw.s_b, Motor.GoBILDA.RPM_435);
+        m_bDrive = new MotorEx(m_opMode.hardwareMap, Hw.DriveBack, Motor.GoBILDA.RPM_435);
         m_bDrive.setInverted(true);
         m_bDrive.setRunMode(Motor.RunMode.VelocityControl);
         m_bDrive.setZeroPowerBehavior(Motor.ZeroPowerBehavior.BRAKE);
@@ -166,7 +165,7 @@ public class DriveSubsystem extends SubsystemBase {
 //        m_opMode.telemetry.addData("TeamPropSideDis", GlobalData.TeamPropDistanceSide);
         m_opMode.telemetry.addData("Robot Angle",getRobotAngle());
 //        m_opMode.telemetry.addData("DriveDistance", getDriveDistanceInches(DAngle.ang_0));
-        m_opMode.telemetry.addData("DriveAngle", m_drive.getDriveAngle());
+        m_opMode.telemetry.addData("Drive Angle", m_drive.getDriveAngle());
         m_opMode.telemetry.addData("Strafe", m_drive.getStrafe());
         m_opMode.telemetry.addData("Forward",m_drive.getForward());
         m_opMode.telemetry.addData("FieldOriented", m_drive.getIsFieldOriented());

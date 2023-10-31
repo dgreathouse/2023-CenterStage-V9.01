@@ -3,6 +3,9 @@ package org.firstinspires.ftc.teamcode.Lib;
 import com.arcrobotics.ftclib.hardware.motors.Motor;
 
 public class k {
+    public static final class SYSTEM{
+        public static final boolean isLoopRateLimited = false;
+    }
     public static final class DRIVE {
         public static final double CPR = Motor.GoBILDA.RPM_435.getCPR();
         public static final double WheelDiameter_in = 3.78;
@@ -85,12 +88,6 @@ public class k {
         public static final double Motor_CountsPmm = 6;
        // public static final double ExtentScale_mmPdeg = ExtendLimit/(85 - 35);
     }
-    public static final class LEDS {
-        public static final double WhiteServoValue = 0;
-        public static final double GreenServoValue = 1;
-        public static final double YellowServoValue = 2;
-        public static final double PurpleServoValue = 3;
-        public static final double OffServoValue = 3;
-    }
+
 
 }

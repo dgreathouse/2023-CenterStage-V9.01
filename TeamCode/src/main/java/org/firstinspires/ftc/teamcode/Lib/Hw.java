@@ -8,20 +8,18 @@ import com.qualcomm.robotcore.hardware.IMU;
 
 public class Hw {
     // Control Hub
-    public static String s_fl = "l"; // Drive Left Motor
-    public static String s_fr = "r"; // Drive Right Motor
-    public static String s_b = "b";  // Drive Back Motor
+    public static String DriveFrontLeft = "l"; // Drive Left Motor
+    public static String DriveFrontRight = "r"; // Drive Right Motor
+    public static String DriveBack = "b";  // Drive Back Motor
+    public static String ForearmMotor = "f";
+    public static String ClawServoRotate = "csr";
+    public static String DistanceSensor = "dis";
 
-    public static String s_clawSR = "csr";
-    public static String s_distance = "dis";
-    public static String s_distanceServo = "disS";
-    public static String s_ledTop = "lt";
-    public static String s_ledBot = "lb";
     // Expansion hub
-    public static String s_clawRotate = "crm";
-    public static String s_Drone = "d";
-    public static String s_forearm = "f";
-    public static String s_SH = "s"; // Shoulder Motor
+    public static String ClawRotateMotor = "crm";
+    public static String DroneMotor = "d";
+    public static String ShoulderMotor = "s"; // Shoulder Motor
+
     public static GamepadEx s_gpOperator;
     public static GamepadEx s_gpDriver;
     public static IMU s_imu;

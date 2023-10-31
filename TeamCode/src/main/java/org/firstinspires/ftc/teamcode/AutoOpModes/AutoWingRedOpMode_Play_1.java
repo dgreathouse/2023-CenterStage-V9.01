@@ -10,6 +10,7 @@ import org.firstinspires.ftc.teamcode.CommandGroups.Girls_14623.GAutoWingRed_Pla
 import org.firstinspires.ftc.teamcode.Commands.Arm.ArmDefaultCommand;
 import org.firstinspires.ftc.teamcode.Lib.GlobalData;
 import org.firstinspires.ftc.teamcode.Lib.Hw;
+import org.firstinspires.ftc.teamcode.Lib.k;
 import org.firstinspires.ftc.teamcode.Subsystems.ArmSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystems.DriveSubsystem;
 
@@ -65,7 +66,7 @@ public class AutoWingRedOpMode_Play_1 extends CommandOpMode {
             telemetry.addData("TeamPropLocation", GlobalData.TeamPropLocation);
             telemetry.update();
             // wait till timer is > 50ms to try an create a stable run rate
-            while(!m_timer.done()){} m_timer.start();
+            if(k.SYSTEM.isLoopRateLimited){while(!m_timer.done()){} m_timer.start();}
 
         }
         reset();

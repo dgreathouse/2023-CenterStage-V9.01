@@ -16,7 +16,7 @@ public class DroneSubsystem extends SubsystemBase {
         initHardware();
     }
     private void initHardware() {
-        m_motor = new MotorEx(m_opMode.hardwareMap, Hw.s_Drone, Motor.GoBILDA.RPM_1620);
+        m_motor = new MotorEx(m_opMode.hardwareMap, Hw.DroneMotor, Motor.GoBILDA.RPM_1620);
         m_motor.setRunMode(Motor.RunMode.RawPower);
         m_motor.setZeroPowerBehavior(Motor.ZeroPowerBehavior.BRAKE);
     }

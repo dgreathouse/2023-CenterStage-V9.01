@@ -18,8 +18,7 @@ public class KiwiDrive extends RobotDrive{
         m_lVector = new Vector2d(Math.cos(Math.toRadians(30.0)), Math.sin(Math.toRadians(30.0)));
         m_rVector = new Vector2d(Math.cos(Math.toRadians(150.0)), Math.sin(Math.toRadians(150.0)));
         m_bVector = new Vector2d(Math.cos(Math.toRadians(270.0)),  Math.sin(Math.toRadians(270.0)));
-
-    }
+      }
     public void driveXY(double _strafe, double _forward, double _rotate, double _heading){
         // Set the class values before clipping
         m_strafe = _strafe;

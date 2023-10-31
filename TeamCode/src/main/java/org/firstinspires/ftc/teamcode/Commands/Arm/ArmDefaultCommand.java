@@ -51,7 +51,7 @@ public class ArmDefaultCommand extends CommandBase {
 
         if(Math.hypot(x,y) > 0.8) {                                     // If X and Y is at the edge
             double ang = (125.0/180.0) * (180.0 - Math.toDegrees(Math.atan2(Math.abs(x),y)));     // Find Angle
-            m_opMode.telemetry.addData("xyA", ang);
+            m_opMode.telemetry.addData("Thumbstick Angle", ang);
             m_arm.setArmAngle(ang);  // Set the angle in the ArmSubsystem
         }
         // Stop the position movement if START button pushed. Move forearm to climb

@@ -36,15 +36,12 @@ import com.arcrobotics.ftclib.util.Timing;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.Commands.Arm.ArmDefaultCommand;
-import org.firstinspires.ftc.teamcode.Commands.Arm.ArmSetClawPos;
-import org.firstinspires.ftc.teamcode.Commands.Arm.ArmSetForearmPower;
-import org.firstinspires.ftc.teamcode.Commands.Arm.ArmSetShouldPower;
-import org.firstinspires.ftc.teamcode.Commands.Arm.ArmTestSetShouldAngle;
 import org.firstinspires.ftc.teamcode.Commands.Drive.DriveDefaultCommand;
 import org.firstinspires.ftc.teamcode.Commands.Drone.DroneDefaultCommand;
 import org.firstinspires.ftc.teamcode.Commands.Drone.DroneLaunchCommand;
 import org.firstinspires.ftc.teamcode.Lib.ArmPos;
 import org.firstinspires.ftc.teamcode.Lib.Hw;
+import org.firstinspires.ftc.teamcode.Lib.k;
 import org.firstinspires.ftc.teamcode.Subsystems.ArmSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystems.DriveSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystems.DroneSubsystem;
@@ -61,15 +58,10 @@ import java.util.concurrent.TimeUnit;
 public class TeleOpMode_Linear extends CommandOpMode {
     Timing.Timer m_timer;
 
-    double m_timerAvg = 0.0;
-    double m_timerCnt = 0;
-    double m_loopRate = 0;
     private Hw hw;
     private DriveSubsystem m_drive;
     private ArmSubsystem m_arm;
     private DroneSubsystem m_drone;
- //   private LEDSubsystem m_led;
-    // Declare OpMode members.
 
     @Override
     public void initialize() {
@@ -80,19 +72,16 @@ public class TeleOpMode_Linear extends CommandOpMode {
         m_drive = new DriveSubsystem(this);
         m_arm = new ArmSubsystem(this);
         m_drone = new DroneSubsystem(this);
-     //   m_led = new LEDSubsystem(this);
 
         // Create Default Commands
         DriveDefaultCommand driveDefaultCommand = new DriveDefaultCommand(this, m_drive);
         ArmDefaultCommand armDefaultCommand = new ArmDefaultCommand(this,m_arm);
         DroneDefaultCommand droneDefaultCommand = new DroneDefaultCommand(this,m_drone);
-      //  LEDDefaultCommand ledDefaultCommand = new LEDDefaultCommand(this,m_led);
 
         // Set Default Commands
         m_drive.setDefaultCommand(driveDefaultCommand);
         m_arm.setDefaultCommand(armDefaultCommand);
         m_drone.setDefaultCommand(droneDefaultCommand);
-     //   m_led.setDefaultCommand(ledDefaultCommand);
 
         // Set up buttons Driver
         // Left/Right Thumbstick for driving done in the DriveDefaultCommand class
@@ -103,7 +92,7 @@ public class TeleOpMode_Linear extends CommandOpMode {
         Hw.s_gpDriver.getGamepadButton(GamepadKeys.Button.RIGHT_BUMPER).whenPressed(new InstantCommand(() -> m_drive.toggleIsFieldOriented(), m_drive));
 
         // Set arm to Straight (Button Circle(ps)/B(xbox))
-        Hw.s_gpDriver.getGamepadButton(GamepadKeys.Button.B).whenPressed(new InstantCommand(() -> m_arm.setArmPosition(ArmPos.STRAIGHT), m_arm));
+        Hw.s_gpDriver.getGamepadButton(GamepadKeys.Button.B).whenPressed(new InstantCommand(() -> m_arm.setArmAngle(ArmPos.STRAIGHT), m_arm));
 
         // Set Drive PID to -45
         Hw.s_gpDriver.getGamepadButton(GamepadKeys.Button.DPAD_UP).whenPressed(new InstantCommand(() -> m_drive.setDrivePIDAngle(-45), m_drive));
@@ -123,12 +112,12 @@ public class TeleOpMode_Linear extends CommandOpMode {
         // Close the claw (right Bumper)
         Hw.s_gpOperator.getGamepadButton(GamepadKeys.Button.RIGHT_BUMPER).whenPressed(new InstantCommand(()-> m_arm.setClawGripAngle(m_arm.getClawOpenAngle()),m_arm));
         // Lower Arm to floor (Button X(ps)/A(xbox))
-        Hw.s_gpOperator.getGamepadButton(GamepadKeys.Button.A).whenPressed(new InstantCommand(() -> m_arm.setArmPosition(ArmPos.FLOOR), m_arm));
+        Hw.s_gpOperator.getGamepadButton(GamepadKeys.Button.A).whenPressed(new InstantCommand(() -> m_arm.setArmAngle(ArmPos.FLOOR), m_arm));
         // Set arm to get pixels from top of stack of 5 (Button Triangle(ps)/Y(xbox))
-        Hw.s_gpOperator.getGamepadButton(GamepadKeys.Button.Y).whenPressed(new InstantCommand(() -> m_arm.setArmPosition(ArmPos.STACK_5), m_arm));
+        Hw.s_gpOperator.getGamepadButton(GamepadKeys.Button.Y).whenPressed(new InstantCommand(() -> m_arm.setArmAngle(ArmPos.STACK_5), m_arm));
 
         // Set arm to Straight (Button Circle(ps)/B(xbox))
-        Hw.s_gpOperator.getGamepadButton(GamepadKeys.Button.B).whenPressed(new InstantCommand(() -> m_arm.setArmPosition(ArmPos.STRAIGHT), m_arm));
+        Hw.s_gpOperator.getGamepadButton(GamepadKeys.Button.B).whenPressed(new InstantCommand(() -> m_arm.setArmAngle(ArmPos.STRAIGHT), m_arm));
         // Set arm to Stack of 3 (Button Square(ps)/X(xbox))
      //   Hw.s_gpOperator.getGamepadButton(GamepadKeys.Button.X).whenPressed(new InstantCommand(() -> m_arm.setArmPosition(ArmPos.STACK_3), m_arm));
         // Rotate Arm (Right Y Axis)
@@ -158,7 +147,7 @@ public class TeleOpMode_Linear extends CommandOpMode {
             telemetry.update();
             telemetry.addData("CPU Load TeleOp %", 100 - m_timer.remainingTime());
             // wait till timer is > 100ms to try an create a stable run rate
-            while(!m_timer.done()){} m_timer.start();
+            if(k.SYSTEM.isLoopRateLimited){while(!m_timer.done()){} m_timer.start();}
         }
         reset();
     }
