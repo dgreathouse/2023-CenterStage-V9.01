@@ -53,7 +53,7 @@ public class ArmSubsystem extends SubsystemBase {
         //m_forearm.move(GlobalData.ForearmTestPower);
 
         // Set the Claw
-        setClawAngle(Interpolate.getY(k.ARM.ShoulderAngles, k.ARM.ClawAngles, m_shoulder.getAngle()));
+        //setClawAngle(Interpolate.getY(k.ARM.ShoulderAngles, k.ARM.ClawAngles, m_shoulder.getAngle()));
         //setClawTestPos(GlobalData.ClawAngTestPos);
 
     }
