@@ -19,7 +19,7 @@ public class ArmSubsystem extends SubsystemBase {
     public Rev2mDistanceSensor m_distanceSensor;
 
     public double m_armAng = 0.0;
-
+    private double m_IClawAngle = 0;
     public ArmSubsystem(CommandOpMode _opMode) {
         m_opMode = _opMode;
         initHardware();
@@ -49,11 +49,12 @@ public class ArmSubsystem extends SubsystemBase {
         //setShouldTestPower(GlobalData.ShoulderTestPower);
 
         // Set the Forearm
-        setForearmPosition(getForearmPositionFromAngle());
+        //setForearmPosition(getForearmPositionFromAngle());
         //m_forearm.move(GlobalData.ForearmTestPower);
 
         // Set the Claw
-        //setClawAngle(Interpolate.getY(k.ARM.ShoulderAngles, k.ARM.ClawAngles, m_shoulder.getAngle()));
+        m_IClawAngle = Interpolate.getY(k.ARM.ShoulderAngles, k.ARM.ClawAngles, m_shoulder.getAngle());
+        setClawAngle(m_IClawAngle);
         //setClawTestPos(GlobalData.ClawAngTestPos);
 
     }
@@ -199,12 +200,21 @@ public class ArmSubsystem extends SubsystemBase {
 
     @Override
     public void periodic() {
-        m_opMode.telemetry.addData("Team Prop Distance", getTeamPropDistance());
-        m_opMode.telemetry.addData("Actual    Shoulder Angle", m_shoulder.getAngle());
-        m_opMode.telemetry.addData("Requested Shoulder Angle", m_armAng);
-        m_opMode.telemetry.addData("Claw Angle", m_claw.getClawRotateAngle());
-        m_opMode.telemetry.addData("Claw Grip Angle", m_claw.getClawGripAngle());
-        m_opMode.telemetry.addData("Forearm Distance", m_forearm.getPosition());
+        m_opMode.telemetry.addData("Team Prop Distance", "%3.3f", getTeamPropDistance());
+
+        m_opMode.telemetry.addData("Shoulder Angle", "%3.3f", m_shoulder.getAngle());
+        m_opMode.telemetry.addData("Shoulder Power", "%3.3f", m_shoulder.getPower());
+        m_opMode.telemetry.addData("Shoulder Angle Requested", "%3.3f", m_armAng);
+        m_opMode.telemetry.addData("Shoulder Up Vel Limit", "%3.3f",k.SHOULDER.RotationPID_Max);
+        m_opMode.telemetry.addData("Shoulder Down Vel Limit", "%3.3f",k.SHOULDER.RotationPID_Min);
+        m_opMode.telemetry.addData("Claw Angle", "%3.3f", m_claw.getClawRotateAngle());
+        m_opMode.telemetry.addData("Claw Requested Angle", "%3.3f", m_IClawAngle);
+        m_opMode.telemetry.addData("Claw Grip Angle", "%3.3f", m_claw.getClawGripAngle());
+
+        m_opMode.telemetry.addData("Forearm Distance", "%3.3f", m_forearm.getPosition());
+        m_opMode.telemetry.addData("Forearm Speed", "%3.3f", m_forearm.getSpeed());
+        m_opMode.telemetry.addData("Forearm Actual Speed", "%3.3f", m_forearm.getActualSpeed());
+
    //     m_opMode.telemetry.addData("Shoulder Test Power", GlobalData.ShoulderTestPower);
    //     m_opMode.telemetry.addData("Forearm Test Power", GlobalData.ForearmTestPower);
 

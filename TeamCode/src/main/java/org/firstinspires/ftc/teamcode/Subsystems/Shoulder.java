@@ -5,6 +5,7 @@ import com.arcrobotics.ftclib.controller.PIDController;
 import com.arcrobotics.ftclib.controller.wpilibcontroller.ArmFeedforward;
 import com.arcrobotics.ftclib.hardware.motors.Motor;
 import com.arcrobotics.ftclib.hardware.motors.MotorEx;
+import com.arcrobotics.ftclib.util.MathUtils;
 
 import org.firstinspires.ftc.teamcode.Lib.ArmPos;
 import org.firstinspires.ftc.teamcode.Lib.Hw;
@@ -20,6 +21,7 @@ public class Shoulder {
     private double ks, kv, kCos;
     private double vel = 0.01;
     private double kfa, kfaMax;
+    private double shoulderPower = 0;
     public Shoulder(CommandOpMode _opMode, ArmSubsystem _arm) {
         m_opMode = _opMode;
         m_arm = _arm;
@@ -32,8 +34,8 @@ public class Shoulder {
         m_motor.setInverted(false);
         m_motor.setZeroPowerBehavior(Motor.ZeroPowerBehavior.BRAKE);
         m_motor.resetEncoder();
-        rotPID = new PIDController(0.0075,0.025,0);
-        rotPID.setTolerance(.1);
+        rotPID = new PIDController(1.10,2.875,0.01);
+        rotPID.setTolerance(.01);
         rotPID.setIntegrationBounds(-5,5);
         rotPID.reset();
 
@@ -59,37 +61,40 @@ public class Shoulder {
      * @param _ang The angle you want the shoulder to move to
      */
     public void setAngle(double _ang){
-
-        // Get the current arm angle in degrees
-        double Cosang = getAngle();
         // Subtract the straight angle from it to make horizontal be 0 Degrees
-        Cosang -= m_arm.getArmSetAngle(ArmPos.STRAIGHT);
+        double CurrentAngleOffsetDeg = getAngle() - m_arm.getArmSetAngle(ArmPos.STRAIGHT);
         // Convert the angle to radians for Cos function
-        Cosang = Math.toRadians(Cosang);
+        double CurrentAngleOffsetRad = Math.toRadians(CurrentAngleOffsetDeg);
 
-        double ShAngRad = Math.toRadians(_ang);
+        double RequestedAngleOffsetRad = Math.toRadians(_ang - m_arm.getArmSetAngle(ArmPos.STRAIGHT));
         // Find scale factor for feed forward. This is the power setting that makes the arm rotate freely.
         double kfaScale = (kfaMax - kfa) / Math.toRadians(m_arm.getArmSetAngle(ArmPos.BACKDROPUPLIMIT) - m_arm.getArmSetAngle(ArmPos.STRAIGHT));
         // Calculate the Arm Feedforward. Cos of 0 Deg = 1.0, 1.0 * kfa = 0.2
-        double cos = Math.cos(Cosang) * kfa;
+        double cos = Math.cos(CurrentAngleOffsetRad) * kfa;
         // Between the area where the arm extends and changes the cos value
-        if(Cosang > 0 && Cosang < Math.toRadians(m_arm.getArmSetAngle(ArmPos.BACKDROPUPLIMIT))){
-            cos = cos + Cosang * kfaScale;  // Add a little more power since the forearm is extending
+        if(CurrentAngleOffsetRad > 0 && CurrentAngleOffsetRad < Math.toRadians(m_arm.getArmSetAngle(ArmPos.BACKDROPUPLIMIT))){
+            cos = cos + CurrentAngleOffsetRad * kfaScale;  // Add a little more power since the forearm is extending
         }
         // Calculate the PID value, Since the feedforward is doing most the PID does not have to do much
-        double rot = rotPID.calculate(getAngle(), _ang);
+        // The PID is basically the velocity the arm will rotate at.
+        double rot = rotPID.calculate(CurrentAngleOffsetRad, RequestedAngleOffsetRad);
+        rot = MathUtils.clamp(rot,k.SHOULDER.RotationPID_Min, k.SHOULDER.RotationPID_Max);
         // When near vertical the arm needs very little to make it move so scale back the PID near vertical
-        if(Cosang > Math.toRadians(m_arm.getArmSetAngle(ArmPos.BACKDROPUPLIMIT))){
+        if(CurrentAngleOffsetRad > Math.toRadians(m_arm.getArmSetAngle(ArmPos.BACKDROPUPLIMIT))){
             rot = rot * 0.8;
         }
         // Set the raw power to the motor of the cos/feedforward and PID values
+        //setPower(cos);
         setPower(cos + rot);
     }
     public void setPower(double _pwr){
+        shoulderPower = _pwr;
         m_motor.set(_pwr);
     }
     public double getAngle(){
        return  m_motor.getCurrentPosition() / k.SHOULDER.Motor_CountsPDeg;
     }
-
+    public double getPower(){
+        return shoulderPower;
+    }
 }

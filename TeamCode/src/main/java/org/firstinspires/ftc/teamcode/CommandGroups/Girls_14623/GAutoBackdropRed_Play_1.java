@@ -33,7 +33,7 @@ public class GAutoBackdropRed_Play_1 extends SequentialCommandGroup {
                 new ArmGetTeamPropLocation(_opMode, _arm, TeamPropLocation.CENTER),         // Check the Center Team Prop
                 new AutoRotateRobot(_opMode,_drive, -65,0.25,3000),                         // Turn to the other Team Prop location
                 new ArmGetTeamPropLocation(_opMode, _arm, TeamPropLocation.RIGHT),          // Check the Right Team Prop
-                new ArmGetTeamPropLocation(_opMode, _arm, TeamPropLocation.LEFT),           // Check the Right Team Prop
+                new ArmGetTeamPropLocation(_opMode, _arm, TeamPropLocation.LEFT),           // Check the Left Team Prop
                 new AutoRotateRobot(_opMode,_drive, 0,0.25,3000),                           // Rotate to be straight again
                 new ArmGotoPosition(_opMode,_arm,_arm.getArmSetAngle(ArmPos.STACK_3)),      // Raise the arm to Stack of 3 to drive
                 new AutoDriveToTeamProp(_opMode,_drive),                                    // Drive to team prop based on location

@@ -163,11 +163,13 @@ public class DriveSubsystem extends SubsystemBase {
 
 //                m_opMode.telemetry.addData("TeamPropCenterDis", GlobalData.TeamPropDistanceCenter);
 //        m_opMode.telemetry.addData("TeamPropSideDis", GlobalData.TeamPropDistanceSide);
-        m_opMode.telemetry.addData("Robot Angle",getRobotAngle());
+        m_opMode.telemetry.addData("Robot Angle", "%3.3f",getRobotAngle());
 //        m_opMode.telemetry.addData("DriveDistance", getDriveDistanceInches(DAngle.ang_0));
-        m_opMode.telemetry.addData("Drive Angle", m_drive.getDriveAngle());
-        m_opMode.telemetry.addData("Strafe", m_drive.getStrafe());
-        m_opMode.telemetry.addData("Forward",m_drive.getForward());
+        m_opMode.telemetry.addData("Drive Angle", "%3.3f", m_drive.getDriveAngle());
+        m_opMode.telemetry.addLine("------------------------------------");
+        m_opMode.telemetry.addData("Strafe", "%3.3f", m_drive.getStrafe());
+        m_opMode.telemetry.addData("Forward", "%3.3f",m_drive.getForward());
         m_opMode.telemetry.addData("FieldOriented", m_drive.getIsFieldOriented());
+        m_opMode.telemetry.addLine("------------------------------------");
     }
 }

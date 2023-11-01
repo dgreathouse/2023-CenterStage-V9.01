@@ -19,7 +19,7 @@ public class Claw {
     double m_gripAngle;
     PIDController m_pid;
     CommandOpMode m_opMode;
-
+    double clawAngle = 0;
     public Claw(CommandOpMode _opMode)
     {
         m_opMode = _opMode;
@@ -33,11 +33,13 @@ public class Claw {
         m_rotateMotor.encoder.setDirection(Motor.Direction.FORWARD);
         m_rotateMotor.resetEncoder();
 
-        m_pid = new PIDController(0.01,0.001,0.0);
-        m_pid.setTolerance(.1);
+        m_pid = new PIDController(0.03,0.01,0.0);
+        m_pid.setTolerance(.01);
     }
     public void setClawRotateAngle(double _angle){
-        _angle = MathUtils.clamp(_angle, k.CLAW.RotateDownLimit, k.CLAW.RotateUpLimit);
+
+        //_angle = MathUtils.clamp(_angle, k.CLAW.RotateDownLimit, k.CLAW.RotateUpLimit);
+        clawAngle = _angle;
         double rot = m_pid.calculate(getClawRotateAngle(),_angle);
 
         m_rotateMotor.set(rot);
@@ -45,6 +47,9 @@ public class Claw {
     }
     public double getClawRotateAngle(){
         return m_rotateMotor.getCurrentPosition() / k.CLAW.Motor_CountsPDeg;
+    }
+    public double getClawRequestedAngle(){
+        return clawAngle;
     }
     public void setClawGripAngle(double _angle){
         double angle = _angle / 300.0;

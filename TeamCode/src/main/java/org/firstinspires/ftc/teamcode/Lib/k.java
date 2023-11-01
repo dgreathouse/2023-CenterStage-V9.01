@@ -2,6 +2,8 @@ package org.firstinspires.ftc.teamcode.Lib;
 
 import com.arcrobotics.ftclib.hardware.motors.Motor;
 
+import java.util.ArrayList;
+
 public class k {
     public static final class SYSTEM{
         public static final boolean isLoopRateLimited = false;
@@ -35,8 +37,9 @@ public class k {
     public static final class ARM {
         public static final double TeamPropMinimumDistance_mm = 20;
         public static TeamPropLocation TeamPropLoc = TeamPropLocation.CENTER;
-        public static final double[] ShoulderAngles = {0,10,15,35,60,85};
-        public static final double[] ClawAngles = {0,-10,-10,25,0,-25};
+        public static final double[] ShoulderAngles = {0,8,10,35,60,85};
+        public static final double[] ClawAngles = {0,-4,-6,25,0,-6};
+
 
 
 
@@ -81,9 +84,11 @@ public class k {
         // at shoulder that is 384.5 * 3 = 1153.5 counts per Rev of shoulder
         // That means there is 1153.5/360 = 3.204 counts/deg
         public static final double Motor_CountsPDeg = 3.204;
+        public static double RotationPID_Min = -0.1;
+        public static double RotationPID_Max = 0.3;
     }
     public static final class FOREARM {
-        public static final double RetractLimit = 5;
+        public static final double RetractLimit = 0;
         public static final double ExtendLimit = 230; // mm
         public static final double Motor_CountsPmm = 6;
        // public static final double ExtentScale_mmPdeg = ExtendLimit/(85 - 35);

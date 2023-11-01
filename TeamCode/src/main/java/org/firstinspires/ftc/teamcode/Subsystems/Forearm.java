@@ -12,16 +12,18 @@ public class Forearm {
     private CommandOpMode m_opMode;
     private MotorEx m_motor;
     private PIDController m_pid;
+    private double m_speed = 0;
+    private double m_actualSpeed = 0;
     public Forearm(CommandOpMode _opMode) {
         m_opMode = _opMode;
         initHardware();
     }
     private void initHardware(){
-        m_motor = new MotorEx(m_opMode.hardwareMap, Hw.ForearmMotor, Motor.GoBILDA.RPM_435);
+        m_motor = new MotorEx(m_opMode.hardwareMap, Hw.ForearmMotor, Motor.GoBILDA.RPM_1620);
         m_motor.setRunMode(Motor.RunMode.RawPower);
         m_motor.resetEncoder();
-        m_pid = new PIDController(0.02, 0.001, 0);
-        m_pid.setTolerance(0.5);
+        m_pid = new PIDController(0.01, 0.15, 0);
+        m_pid.setTolerance(0.1);
     }
 
     /** <p>Set the distance the arm should move in mm</p>
@@ -45,6 +47,8 @@ public class Forearm {
      * @param _speed The speed to move the motor.
      */
     public void move(double _speed){
+        m_actualSpeed = _speed;
+        m_speed = limitTravel(_speed);
         m_motor.set(limitTravel(_speed));
     }
     public double limitTravel(double _speed){
@@ -61,6 +65,12 @@ public class Forearm {
                 return _speed;
             }
         }
+    }
+    public double getSpeed(){
+        return m_speed;
+    }
+    public double getActualSpeed(){
+        return m_actualSpeed;
     }
 
 }
