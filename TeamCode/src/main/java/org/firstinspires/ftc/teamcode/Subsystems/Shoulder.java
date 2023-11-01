@@ -84,8 +84,8 @@ public class Shoulder {
             rot = rot * 0.8;
         }
         // Set the raw power to the motor of the cos/feedforward and PID values
-        //setPower(cos);
-        setPower(cos + rot);
+        setPower(cos);
+        //setPower(cos + rot);
     }
     public void setPower(double _pwr){
         shoulderPower = _pwr;
