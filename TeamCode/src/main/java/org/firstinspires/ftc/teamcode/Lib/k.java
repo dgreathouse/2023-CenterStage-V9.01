@@ -90,7 +90,9 @@ public class k {
     public static final class FOREARM {
         public static final double RetractLimit = 0;
         public static final double ExtendLimit = 230; // mm
-        public static final double Motor_CountsPmm = 6;
+        // 8mm lead screw means 8mm per rotation.
+        // Gears are 36:60, Counts/Rev of motor = 103.8 for 1620 RPM Motor
+        public static final double Motor_CountsPmm = 21.625;
        // public static final double ExtentScale_mmPdeg = ExtendLimit/(85 - 35);
     }
 
