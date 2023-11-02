@@ -84,8 +84,8 @@ public class k {
         // at shoulder that is 384.5 * 3 = 1153.5 counts per Rev of shoulder
         // That means there is 1153.5/360 = 3.204 counts/deg
         public static final double Motor_CountsPDeg = 3.204;
-        public static double RotationPID_Min = -0.1;
-        public static double RotationPID_Max = 0.3;
+        public static double RotationPID_Min = -0.2;
+        public static double RotationPID_Max = 0.4;
     }
     public static final class FOREARM {
         public static final double RetractLimit = 0;
