@@ -50,10 +50,10 @@ public class k {
         public static final double RotateDownLimit = -25;
         public static final double Motor_CountsPDeg = 288.0/360.0;
 
-        public static final double CloseAngle_22291 = 115;
-        public static final double OpenLowerAngle_22291 = 101.5;
-        public static final double OpenUpperAngle_22291 = 60.0;
-        public static final double OpenAngle_22291 = 60.0;
+        public static final double CloseAngle_22291 = 280;
+        public static final double OpenLowerAngle_22291 = 268;
+        public static final double OpenUpperAngle_22291 = 220;
+        public static final double OpenAngle_22291 = 220;
 
         public static final double CloseAngle_14623 = 115.0;
         public static final double OpenLowerAngle_14623 = 101.5;

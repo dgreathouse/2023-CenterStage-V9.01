@@ -42,7 +42,7 @@ public class BAutoBackdropBlue_Play_1 extends SequentialCommandGroup {
                 new ArmRotateFingers(_opMode,_arm, _arm.getClawReleaseLowerAngle()),        // Release upper claw
                 new AutoDriveTimeVel(_opMode, _drive,-90,0.3,-90,500),                      // Drive back away from the backdrop
                 // END Initial Backdrop Pixels
-                new AutoDriveTimeVel(_opMode, _drive,0,0.3,-90,1500),                       // Drive to the left and park
+                new AutoDriveTimeVel(_opMode, _drive,0,0.3,90,1500),                       // Drive to the left and park
 
                 new AutoStopOpModeCommand(_opMode) // This must be the last line of every command list
         );
