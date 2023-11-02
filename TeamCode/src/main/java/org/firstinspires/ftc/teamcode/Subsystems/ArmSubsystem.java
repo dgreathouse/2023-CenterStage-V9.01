@@ -140,6 +140,8 @@ public class ArmSubsystem extends SubsystemBase {
                 setArmAngle(getArmSetAngle(ArmPos.BACKDROPUPLIMIT));
             case VERTICAL:
                 setArmAngle(getArmSetAngle(ArmPos.VERTICAL));
+            case ANGLE_BACKDROP:
+                setArmAngle(getArmSetAngle(ArmPos.ANGLE_BACKDROP));
             case NONE:
                 break;
         }
