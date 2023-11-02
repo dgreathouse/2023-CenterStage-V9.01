@@ -54,7 +54,7 @@ public class ArmSubsystem extends SubsystemBase {
 
         // Set the Claw
         m_IClawAngle = Interpolate.getY(k.ARM.ShoulderAngles, k.ARM.ClawAngles, m_shoulder.getAngle());
-        setClawAngle(m_IClawAngle);
+       // setClawAngle(m_IClawAngle);
         //setClawTestPos(GlobalData.ClawAngTestPos);
 
     }
@@ -185,6 +185,12 @@ public class ArmSubsystem extends SubsystemBase {
                 return k.SHOULDER.AngleVertical_22291;
             }
             return k.SHOULDER.AngleVertical_14623;
+        }
+        if(_armPos == ArmPos.ANGLE_BACKDROP){
+            if (GlobalData.TeamNumber == 22291) {
+                return k.SHOULDER.AngleBackdrop_22291;
+            }
+            return k.SHOULDER.AngleBackdrop_22291;
         }
         return k.SHOULDER.AngleStraight_14623;
 

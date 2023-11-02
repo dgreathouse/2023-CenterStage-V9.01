@@ -119,6 +119,8 @@ public class TeleOpMode_Linear extends CommandOpMode {
         Hw.s_gpOperator.getGamepadButton(GamepadKeys.Button.Y).whenPressed(new InstantCommand(() -> m_arm.setArmAngle(ArmPos.STACK_5), m_arm));
         // Set arm to Straight (Button Circle(ps)/B(xbox))
         Hw.s_gpOperator.getGamepadButton(GamepadKeys.Button.B).whenPressed(new InstantCommand(() -> m_arm.setArmAngle(ArmPos.STRAIGHT), m_arm));
+        // Set arm to Backdrop angle (Button Square(ps)/X(xbox))
+        Hw.s_gpOperator.getGamepadButton(GamepadKeys.Button.X).whenPressed(new InstantCommand(() -> m_arm.setArmAngle(ArmPos.ANGLE_BACKDROP), m_arm));
 
         // Launch Drone (Button Left DPAD)
         Hw.s_gpOperator.getGamepadButton(GamepadKeys.Button.DPAD_LEFT).whenPressed(new DroneLaunchCommand(this,m_drone));
