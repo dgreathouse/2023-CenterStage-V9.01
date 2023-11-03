@@ -78,9 +78,9 @@ public class AutoDriveToTeamProp extends CommandBase {
                 } else {
 
                     m_driveAngle = 90;
-                    m_robotAngle = 0;
-                    m_timeOut = 850;
-                    m_speed = 0.4;
+                    m_robotAngle = -80;
+                    m_timeOut = 2000;
+                    m_speed = 0.0;
                 }
                 break;
 //            case CENTER:

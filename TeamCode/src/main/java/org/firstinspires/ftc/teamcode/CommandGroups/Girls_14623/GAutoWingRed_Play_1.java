@@ -34,7 +34,7 @@ public class GAutoWingRed_Play_1 extends SequentialCommandGroup {
                 new ArmAutoGotoPosition(_opMode, _arm, armData.getArmSetAngle(ArmPos.STRAIGHT)),
                 new AutoDriveTimeVel(_opMode, _drive,0,0.4,0,1400),
                 new ArmGetTeamPropLocation(_opMode, _arm, TeamPropLocation.CENTER),
-                new AutoRotateRobot(_opMode,_drive, -45,0.25,3000),
+                new AutoRotateRobot(_opMode,_drive, 45,0.25,3000),
                 new ArmGetTeamPropLocation(_opMode, _arm, TeamPropLocation.RIGHT),
                 new ArmGetTeamPropLocation(_opMode, _arm, TeamPropLocation.LEFT),
                 new AutoRotateRobot(_opMode,_drive, 0,0.25,3000),
