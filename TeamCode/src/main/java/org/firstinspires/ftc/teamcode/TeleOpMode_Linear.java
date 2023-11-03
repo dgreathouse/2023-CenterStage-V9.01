@@ -38,6 +38,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import org.firstinspires.ftc.teamcode.Commands.Arm.ArmDefaultCommand;
 import org.firstinspires.ftc.teamcode.Commands.Arm.ArmIncreaseShouldDownVelocity;
 import org.firstinspires.ftc.teamcode.Commands.Arm.ArmIncreaseShouldUpVelocity;
+import org.firstinspires.ftc.teamcode.Commands.ClawGrip.ClawGripDefaultCommand;
 import org.firstinspires.ftc.teamcode.Commands.Drive.DriveDefaultCommand;
 import org.firstinspires.ftc.teamcode.Commands.Drone.DroneDefaultCommand;
 import org.firstinspires.ftc.teamcode.Commands.Drone.DroneLaunchCommand;
@@ -45,6 +46,7 @@ import org.firstinspires.ftc.teamcode.Lib.ArmPos;
 import org.firstinspires.ftc.teamcode.Lib.Hw;
 import org.firstinspires.ftc.teamcode.Lib.k;
 import org.firstinspires.ftc.teamcode.Subsystems.ArmSubsystem;
+import org.firstinspires.ftc.teamcode.Subsystems.ClawGripSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystems.DriveSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystems.DroneSubsystem;
 
@@ -64,6 +66,7 @@ public class TeleOpMode_Linear extends CommandOpMode {
     private DriveSubsystem m_drive;
     private ArmSubsystem m_arm;
     private DroneSubsystem m_drone;
+    private ClawGripSubsystem m_clawGrip;
 
     @Override
     public void initialize() {
@@ -74,16 +77,17 @@ public class TeleOpMode_Linear extends CommandOpMode {
         m_drive = new DriveSubsystem(this);
         m_arm = new ArmSubsystem(this);
         m_drone = new DroneSubsystem(this);
-
+        m_clawGrip = new ClawGripSubsystem(this);
         // Create Default Commands
         DriveDefaultCommand driveDefaultCommand = new DriveDefaultCommand(this, m_drive);
         ArmDefaultCommand armDefaultCommand = new ArmDefaultCommand(this,m_arm);
         DroneDefaultCommand droneDefaultCommand = new DroneDefaultCommand(this,m_drone);
-
+        ClawGripDefaultCommand clawGripDefaultCommand = new ClawGripDefaultCommand(this, m_clawGrip);
         // Set Default Commands
         m_drive.setDefaultCommand(driveDefaultCommand);
         m_arm.setDefaultCommand(armDefaultCommand);
         m_drone.setDefaultCommand(droneDefaultCommand);
+        m_clawGrip.setDefaultCommand(clawGripDefaultCommand);
 
         // Set up buttons Driver
         // Left/Right Thumbstick for driving done in the DriveDefaultCommand class
@@ -93,7 +97,6 @@ public class TeleOpMode_Linear extends CommandOpMode {
         // Toggle is Field Oriented Mode
         Hw.s_gpDriver.getGamepadButton(GamepadKeys.Button.RIGHT_BUMPER).whenPressed(new InstantCommand(() -> m_drive.toggleIsFieldOriented(), m_drive));
 
-        // Set arm to Straight (Button Circle(ps)/B(xbox))
         Hw.s_gpDriver.getGamepadButton(GamepadKeys.Button.B).whenPressed(new InstantCommand(() -> m_arm.setArmAngle(ArmPos.STRAIGHT), m_arm));
 
         // Set Drive PID to -45
@@ -110,9 +113,9 @@ public class TeleOpMode_Linear extends CommandOpMode {
         // Set up buttons for Operator
 
         // Close the claw (left Bumper)
-        Hw.s_gpOperator.getGamepadButton(GamepadKeys.Button.LEFT_BUMPER).whenPressed(new InstantCommand(()-> m_arm.setClawGripAngle(m_arm.getClawCloseAngle()),m_arm));
+        Hw.s_gpOperator.getGamepadButton(GamepadKeys.Button.LEFT_BUMPER).whenPressed(new InstantCommand(()-> m_clawGrip.setClawGripAngle(m_clawGrip.getClawCloseAngle()),m_arm));
         // Close the claw (right Bumper)
-        Hw.s_gpOperator.getGamepadButton(GamepadKeys.Button.RIGHT_BUMPER).whenPressed(new InstantCommand(()-> m_arm.setClawGripAngle(m_arm.getClawOpenAngle()),m_arm));
+        Hw.s_gpOperator.getGamepadButton(GamepadKeys.Button.RIGHT_BUMPER).whenPressed(new InstantCommand(()-> m_clawGrip.setClawGripAngle(m_clawGrip.getClawOpenAngle()),m_arm));
         // Lower Arm to floor (Button X(ps)/A(xbox))
         Hw.s_gpOperator.getGamepadButton(GamepadKeys.Button.A).whenPressed(new InstantCommand(() -> m_arm.setArmAngle(ArmPos.FLOOR), m_arm));
         // Set arm to get pixels from top of stack of 5 (Button Triangle(ps)/Y(xbox))

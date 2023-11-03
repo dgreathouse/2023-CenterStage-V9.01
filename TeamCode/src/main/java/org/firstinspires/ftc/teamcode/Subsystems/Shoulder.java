@@ -7,6 +7,7 @@ import com.arcrobotics.ftclib.hardware.motors.Motor;
 import com.arcrobotics.ftclib.hardware.motors.MotorEx;
 import com.arcrobotics.ftclib.util.MathUtils;
 
+import org.firstinspires.ftc.teamcode.Lib.ArmData;
 import org.firstinspires.ftc.teamcode.Lib.ArmPos;
 import org.firstinspires.ftc.teamcode.Lib.Hw;
 import org.firstinspires.ftc.teamcode.Lib.k;
@@ -17,12 +18,12 @@ public class Shoulder {
     private CommandOpMode m_opMode;
     private PIDController rotPID;
     private ArmFeedforward armFeedforward;
-    private ArmSubsystem m_arm; // Used here to get the limits from the arm.
+    private ArmData m_arm; // Used here to get the limits from the arm.
     private double ks, kv, kCos;
     private double vel = 0.01;
     private double kfa, kfaMax;
     private double shoulderPower = 0;
-    public Shoulder(CommandOpMode _opMode, ArmSubsystem _arm) {
+    public Shoulder(CommandOpMode _opMode, ArmData _arm) {
         m_opMode = _opMode;
         m_arm = _arm;
         initHardware();
@@ -34,9 +35,9 @@ public class Shoulder {
         m_motor.setInverted(false);
         m_motor.setZeroPowerBehavior(Motor.ZeroPowerBehavior.BRAKE);
         m_motor.resetEncoder();
-        rotPID = new PIDController(1.10,2.875,0.01);
+        rotPID = new PIDController(.8,0.25,0.0);
         rotPID.setTolerance(.01);
-        rotPID.setIntegrationBounds(-5,5);
+        rotPID.setIntegrationBounds(-8,8);
         rotPID.reset();
 
         ks = 0.0;
@@ -60,7 +61,7 @@ public class Shoulder {
      *
      * @param _ang The angle you want the shoulder to move to
      */
-    public void setAngle(double _ang){
+    public void setAngle1(double _ang){
         // Subtract the straight angle from it to make horizontal be 0 Degrees
         double CurrentAngleOffsetDeg = getAngle() - m_arm.getArmSetAngle(ArmPos.STRAIGHT);
         // Convert the angle to radians for Cos function
@@ -72,7 +73,7 @@ public class Shoulder {
         // Calculate the Arm Feedforward. Cos of 0 Deg = 1.0, 1.0 * kfa = 0.2
         double cos = Math.cos(CurrentAngleOffsetRad) * kfa;
         // Between the area where the arm extends and changes the cos value
-        if(CurrentAngleOffsetRad > 0 && CurrentAngleOffsetRad < Math.toRadians(m_arm.getArmSetAngle(ArmPos.BACKDROPUPLIMIT))){
+        if(CurrentAngleOffsetRad > Math.toRadians(m_arm.getArmSetAngle(ArmPos.STRAIGHT)) && CurrentAngleOffsetRad < Math.toRadians(m_arm.getArmSetAngle(ArmPos.BACKDROPUPLIMIT))){
             cos = cos + CurrentAngleOffsetRad * kfaScale;  // Add a little more power since the forearm is extending
         }
         // Calculate the PID value, Since the feedforward is doing most the PID does not have to do much
@@ -81,9 +82,27 @@ public class Shoulder {
         rot = MathUtils.clamp(rot,k.SHOULDER.RotationPID_Min, k.SHOULDER.RotationPID_Max);
         // When near vertical the arm needs very little to make it move so scale back the PID near vertical
         if(CurrentAngleOffsetRad > Math.toRadians(m_arm.getArmSetAngle(ArmPos.BACKDROPUPLIMIT))){
-            rot = rot * 0.8;
+ //           rot = rot * 0.8;
         }
         // Set the raw power to the motor of the cos/feedforward and PID values
+        //setPower(cos);
+        setPower(cos + rot);
+    }
+    public void setAngle(double _ang){
+        // Subtract the straight angle from it to make horizontal be 0 Degrees
+        double CurrentAngleOffsetDeg = getAngle() - m_arm.getArmSetAngle(ArmPos.STRAIGHT);
+        // Convert the angle to radians for Cos function
+        double CurrentAngleOffsetRad = Math.toRadians(CurrentAngleOffsetDeg);
+        double RequestedAngleOffsetRad = Math.toRadians(_ang - m_arm.getArmSetAngle(ArmPos.STRAIGHT));
+        double kfaScale = (kfaMax - kfa) / Math.toRadians(m_arm.getArmSetAngle(ArmPos.BACKDROPUPLIMIT) - m_arm.getArmSetAngle(ArmPos.STRAIGHT));
+        double cos = Math.cos(CurrentAngleOffsetRad) * kfa;
+        // Between the area where the arm extends and changes the cos value
+        if(getAngle() > m_arm.getArmSetAngle(ArmPos.STRAIGHT) && getAngle() < m_arm.getArmSetAngle(ArmPos.BACKDROPUPLIMIT)){
+            cos = cos + CurrentAngleOffsetRad * kfaScale;  // Add a little more power since the forearm is extending
+        }
+        // The PID is basically the velocity the arm will rotate at.
+        double rot = rotPID.calculate(CurrentAngleOffsetRad, RequestedAngleOffsetRad);
+        rot = MathUtils.clamp(rot,k.SHOULDER.RotationPID_Min, k.SHOULDER.RotationPID_Max);
         //setPower(cos);
         setPower(cos + rot);
     }

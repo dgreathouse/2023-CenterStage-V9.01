@@ -3,52 +3,20 @@ package org.firstinspires.ftc.teamcode.CommandGroups.Boys_22291;
 import com.arcrobotics.ftclib.command.CommandOpMode;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 
-import org.firstinspires.ftc.teamcode.Commands.Arm.ArmGetTeamPropLocation;
-import org.firstinspires.ftc.teamcode.Commands.Arm.ArmGotoPosition;
-import org.firstinspires.ftc.teamcode.Commands.Arm.ArmRotateFingers;
-import org.firstinspires.ftc.teamcode.Commands.AutoDelayCommand;
 import org.firstinspires.ftc.teamcode.Commands.AutoStopOpModeCommand;
-import org.firstinspires.ftc.teamcode.Commands.Drive.AutoDriveTimeVel;
-import org.firstinspires.ftc.teamcode.Commands.Drive.AutoDriveToTeamProp;
-import org.firstinspires.ftc.teamcode.Commands.Drive.AutoRotateRobot;
-import org.firstinspires.ftc.teamcode.Lib.ArmPos;
 import org.firstinspires.ftc.teamcode.Lib.GlobalData;
 import org.firstinspires.ftc.teamcode.Lib.TeamColor;
-import org.firstinspires.ftc.teamcode.Lib.TeamPropLocation;
+import org.firstinspires.ftc.teamcode.Subsystems.ArmAutoSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystems.ArmSubsystem;
+import org.firstinspires.ftc.teamcode.Subsystems.ClawAutoGripSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystems.DriveSubsystem;
 
 public class BAutoWingRed_Play_2 extends SequentialCommandGroup {
 
-    public BAutoWingRed_Play_2(CommandOpMode _opMode, DriveSubsystem _drive, ArmSubsystem _arm) {
+    public BAutoWingRed_Play_2(CommandOpMode _opMode, DriveSubsystem _drive, ArmAutoSubsystem _arm, ClawAutoGripSubsystem _claw) {
         GlobalData.TeamColor = TeamColor.RED;
         addCommands(
-                // TODO: This was copied from "GAutoWingBlue_Play_1" Update this
-                // BEGIN Initial Backdrop Pixels
-                new ArmRotateFingers(_opMode,_arm, _arm.getClawCloseAngle()),               // Grab the pixels
-                new AutoDelayCommand(_opMode,500),                                          // Delay while the claw grabs the pixels
-                new ArmGotoPosition(_opMode,_arm,_arm.getArmSetAngle(ArmPos.STACK_3)),      // Raise the arm to Stack of 3 to drive
-                new AutoDriveTimeVel(_opMode, _drive,0,0.4,0,1200),                         // Drive out to be closer to Team Prop
-                new ArmGetTeamPropLocation(_opMode, _arm, TeamPropLocation.CENTER),         // Check the Center Team Prop
-                new AutoRotateRobot(_opMode,_drive, -45,0.25,3000),                         // Turn to the other Team Prop location
-                new ArmGetTeamPropLocation(_opMode, _arm, TeamPropLocation.RIGHT),          // Check the Right Team Prop
-                new ArmGetTeamPropLocation(_opMode, _arm, TeamPropLocation.LEFT),           // Check the Right Team Prop
-                new AutoRotateRobot(_opMode,_drive, 0,0.25,3000),                           // Rotate to be straight again
-                new AutoDriveToTeamProp(_opMode,_drive),                                    // Drive to team prop based on location
-                new ArmRotateFingers(_opMode,_arm, _arm.getClawReleaseLowerAngle()),        // Release Lower Pixel
-                new ArmGotoPosition(_opMode,_arm,_arm.getArmSetAngle(ArmPos.STRAIGHT)),     // Put the arm Straight
-                new AutoRotateRobot(_opMode,_drive, 0,0.25,3000),                           // Rotate to be straight again
-                new AutoDriveTimeVel(_opMode, _drive,0,0.4,0,1200),                         // Drive back to wall
-                new AutoRotateRobot(_opMode,_drive, 0,0.25,3000),                           // Rotate for back to point at backdrop
-                new AutoDriveTimeVel(_opMode, _drive,0,0.4,0,1200),                         // Drive to backdrop backwards
-                new AutoRotateRobot(_opMode,_drive, 0,0.25,3000),                           // Rotate rotate to point at backdrop.
-                new AutoDriveTimeVel(_opMode, _drive,0,0.4,0,1200),                         // Strafe to backdrop
-                new AutoDriveTimeVel(_opMode, _drive,0,0.4,0,1200),                         // Drive to backdrop
-                new ArmRotateFingers(_opMode,_arm, _arm.getClawReleaseLowerAngle()),        // Release Upper Pixel
-                new AutoDriveTimeVel(_opMode, _drive,0,0.4,0,1200),                         // Drive away from backdrop
 
-                // END Initial Backdrop Pixels
-                new AutoDriveTimeVel(_opMode, _drive,0,0.3,-90,1500),                       // Drive to the left and park
 
                 new AutoStopOpModeCommand(_opMode) // This must be the last line of every command list
 

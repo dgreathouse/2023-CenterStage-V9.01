@@ -12,11 +12,11 @@ import org.firstinspires.ftc.teamcode.Subsystems.DriveSubsystem;
 
 import java.util.concurrent.TimeUnit;
 
-/** Drive to Team Prop Location. The robot starts in the center.
+/**
+ * Drive to Team Prop Location. The robot starts in the center.
  * The Global variable k.ARM.TeamPropLocation is set by a locator before this command.
  * The location will determine the angle to drive and rotate.
  * Those angles are stored here instead of the k.ARM location.
- *
  */
 public class AutoDriveToTeamProp extends CommandBase {
     CommandOpMode m_opMode;
@@ -35,33 +35,53 @@ public class AutoDriveToTeamProp extends CommandBase {
     }
 
     @Override
-    public void initialize(){
-        rotPID = new PIDController(k.DRIVE.Rot_P,k.DRIVE.Rot_I,0);
+    public void initialize() {
+        rotPID = new PIDController(k.DRIVE.Rot_P, k.DRIVE.Rot_I, 0);
         rotPID.reset();
 
-        switch (GlobalData.TeamPropLocation){
+        switch (GlobalData.TeamPropLocation) {
             case CENTER:
             case NONE:
-
-                m_driveAngle = 00;
-                m_robotAngle = 0;
-                m_timeOut = 600;
-
+                if (GlobalData.TeamColor == TeamColor.BLUE) {
+                    m_driveAngle = 00;
+                    m_robotAngle = 0;
+                    m_timeOut = 500;
+                    m_speed = 0.4;
+                } else {
+                    m_driveAngle = 00;
+                    m_robotAngle = 0;
+                    m_timeOut = 500;
+                    m_speed = 0.4;
+                }
                 break;
             case LEFT:
-
-                m_driveAngle = -90;
-                m_robotAngle = 0;
-                m_timeOut = 400;
-
+                if (GlobalData.TeamColor == TeamColor.BLUE) {
+                    m_driveAngle = -90;
+                    m_robotAngle = 0;
+                    m_timeOut = 850;
+                    m_speed = 0.4;
+                } else {
+                    m_driveAngle = -90;
+                    m_robotAngle = 80;
+                    m_timeOut = 2000;
+                    m_speed = 0.0;
+                }
                 break;
 
             case RIGHT:
+                if (GlobalData.TeamColor == TeamColor.BLUE) {
+                    m_driveAngle = -90;
+                    m_robotAngle = -80;
+                    m_timeOut = 2000;
+                    m_speed = 0.0;
 
-                m_driveAngle = 90;
-                m_robotAngle = 0;
-                m_timeOut = 400;
+                } else {
 
+                    m_driveAngle = 90;
+                    m_robotAngle = 0;
+                    m_timeOut = 850;
+                    m_speed = 0.4;
+                }
                 break;
 //            case CENTER:
 //            case NONE:
@@ -101,26 +121,29 @@ public class AutoDriveToTeamProp extends CommandBase {
 
         }
 
-        m_elapsedTimer =  new Timing.Timer(m_timeOut, TimeUnit.MILLISECONDS);
+        m_elapsedTimer = new Timing.Timer(m_timeOut, TimeUnit.MILLISECONDS);
         m_elapsedTimer.start();
     }
+
     @Override
-    public void execute(){
+    public void execute() {
 
         double rot = -rotPID.calculate(m_drive.getRobotAngle(), m_robotAngle);
         m_drive.drivePolar(m_driveAngle, m_speed, rot);
 
     }
+
     @Override
-    public boolean isFinished(){
-        if(m_elapsedTimer.done()){
+    public boolean isFinished() {
+        if (m_elapsedTimer.done()) {
             m_drive.disableMotors();
             return true;
         }
         return false;
     }
+
     @Override
-    public void end(boolean _interrupted){
+    public void end(boolean _interrupted) {
         m_drive.disableMotors();
     }
 }

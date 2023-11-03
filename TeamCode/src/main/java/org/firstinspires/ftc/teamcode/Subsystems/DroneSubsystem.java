@@ -21,7 +21,7 @@ public class DroneSubsystem extends SubsystemBase {
         m_motor.setZeroPowerBehavior(Motor.ZeroPowerBehavior.BRAKE);
     }
     public void spin(double _speed){
-        m_motor.set(-_speed);
+        m_motor.set(_speed);
     }
     @Override
     public void periodic() {

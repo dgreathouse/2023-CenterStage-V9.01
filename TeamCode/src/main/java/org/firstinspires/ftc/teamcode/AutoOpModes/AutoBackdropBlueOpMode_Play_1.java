@@ -8,11 +8,17 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
 import org.firstinspires.ftc.teamcode.CommandGroups.Boys_22291.BAutoBackdropBlue_Play_1;
 import org.firstinspires.ftc.teamcode.CommandGroups.Girls_14623.GAutoBackdropBlue_Play_1;
+import org.firstinspires.ftc.teamcode.Commands.Arm.ArmAutoDefaultCommand;
 import org.firstinspires.ftc.teamcode.Commands.Arm.ArmDefaultCommand;
+import org.firstinspires.ftc.teamcode.Commands.ClawGrip.ClawGripAutoDefaultCommand;
+import org.firstinspires.ftc.teamcode.Commands.ClawGrip.ClawGripDefaultCommand;
 import org.firstinspires.ftc.teamcode.Lib.GlobalData;
 import org.firstinspires.ftc.teamcode.Lib.Hw;
 import org.firstinspires.ftc.teamcode.Lib.k;
+import org.firstinspires.ftc.teamcode.Subsystems.ArmAutoSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystems.ArmSubsystem;
+import org.firstinspires.ftc.teamcode.Subsystems.ClawAutoGripSubsystem;
+import org.firstinspires.ftc.teamcode.Subsystems.ClawGripSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystems.DriveSubsystem;
 
 import java.util.concurrent.TimeUnit;
@@ -25,8 +31,8 @@ public class AutoBackdropBlueOpMode_Play_1 extends CommandOpMode {
     double m_timerCnt = 0;
     Hw hw;
     DriveSubsystem drive;
-    ArmSubsystem arm;
-    ArmDefaultCommand armDefaultCommand;
+    ArmAutoSubsystem arm;
+    ClawAutoGripSubsystem claw;
     GAutoBackdropBlue_Play_1 Gauto;
     BAutoBackdropBlue_Play_1 Bauto;
 
@@ -37,12 +43,14 @@ public class AutoBackdropBlueOpMode_Play_1 extends CommandOpMode {
 
         // Create Subsystems
         drive = new DriveSubsystem(this);
-        arm = new ArmSubsystem(this);
+        arm = new ArmAutoSubsystem(this);
+        claw = new ClawAutoGripSubsystem(this);
+
+
+
 
         // Create Commands
         createCommandGroup();
-        armDefaultCommand = new ArmDefaultCommand(this, arm);
-        arm.setDefaultCommand(armDefaultCommand);
         // Register subsystems
         register(drive,arm);
 
@@ -57,7 +65,8 @@ public class AutoBackdropBlueOpMode_Play_1 extends CommandOpMode {
         waitForStart();
         // Schedule the auto play to run
         scheduleCommandGroup();
-        
+        //schedule(armDefaultCommand);
+        //schedule(clawGripDefaultCommand);
         
         // run the scheduler
         while (!isStopRequested() || opModeIsActive()) {
@@ -74,9 +83,9 @@ public class AutoBackdropBlueOpMode_Play_1 extends CommandOpMode {
     }
     private void createCommandGroup() {
         if(GlobalData.TeamNumber == 22291) {
-        	Bauto = new BAutoBackdropBlue_Play_1(this, drive,arm);
+        	Bauto = new BAutoBackdropBlue_Play_1(this, drive,arm,claw);
         }else {
-        	Gauto = new GAutoBackdropBlue_Play_1(this, drive,arm);
+        	Gauto = new GAutoBackdropBlue_Play_1(this, drive,arm,claw);
         }
 
     }

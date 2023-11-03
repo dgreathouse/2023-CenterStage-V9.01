@@ -9,17 +9,18 @@ import com.arcrobotics.ftclib.util.Timing;
 
 import org.firstinspires.ftc.teamcode.Lib.GlobalData;
 import org.firstinspires.ftc.teamcode.Lib.Hw;
+import org.firstinspires.ftc.teamcode.Subsystems.ArmAutoSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystems.ArmSubsystem;
 
 /** Arm Auto Default Command
 
  */
 public class ArmAutoDefaultCommand extends CommandBase {
-    ArmSubsystem m_arm;
+    ArmAutoSubsystem m_arm;
     CommandOpMode m_opMode;
+    int x = 0;
 
-
-    public ArmAutoDefaultCommand(CommandOpMode _opMode, ArmSubsystem _arm){
+    public ArmAutoDefaultCommand(CommandOpMode _opMode, ArmAutoSubsystem _arm){
         m_opMode = _opMode;
         m_arm = _arm;
 
@@ -35,7 +36,7 @@ public class ArmAutoDefaultCommand extends CommandBase {
 
         if(GlobalData.ArmAutoEnable){
             m_arm.armGotoPosition();
-
+           // m_opMode.telemetry.addData("HHHHHHHHHHHH",x++);
         }
 
     }

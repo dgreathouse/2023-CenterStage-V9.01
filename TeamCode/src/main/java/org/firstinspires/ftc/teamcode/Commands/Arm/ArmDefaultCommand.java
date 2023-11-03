@@ -19,8 +19,7 @@ public class ArmDefaultCommand extends CommandBase {
     ArmSubsystem m_arm;
     CommandOpMode m_opMode;
     double m_DB = 0.2;
-    TriggerReader lowerPixelRelease;
-    TriggerReader upperPixelRelease;
+
     public ArmDefaultCommand(CommandOpMode _opMode, ArmSubsystem _arm){
         m_opMode = _opMode;
         m_arm = _arm;
@@ -29,8 +28,7 @@ public class ArmDefaultCommand extends CommandBase {
     }
     @Override
     public void initialize(){
-        lowerPixelRelease = new TriggerReader(Hw.s_gpOperator,GamepadKeys.Trigger.LEFT_TRIGGER);
-        upperPixelRelease = new TriggerReader(Hw.s_gpOperator,GamepadKeys.Trigger.RIGHT_TRIGGER);
+
     }
 
     @Override
@@ -61,15 +59,7 @@ public class ArmDefaultCommand extends CommandBase {
             double ry = Hw.s_gpOperator.getRightY();
             m_arm.armForearmMove(ry);
         }
-        // Manage the Claw
-        lowerPixelRelease.readValue();
-        if(lowerPixelRelease.isDown()){
-            m_arm.setClawGripAngle(m_arm.getClawReleaseLowerAngle());
-        }
-        upperPixelRelease.readValue();
-        if(upperPixelRelease.isDown()){
-            m_arm.setClawGripAngle(m_arm.getClawReleaseUpperAngle());
-        }
+
         // Based on the shoulder angle when above a certain point the claw must stay at 30 degrees.
 
 

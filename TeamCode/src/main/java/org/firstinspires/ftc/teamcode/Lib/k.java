@@ -38,7 +38,7 @@ public class k {
         public static final double TeamPropMinimumDistance_mm = 20;
         public static TeamPropLocation TeamPropLoc = TeamPropLocation.CENTER;
         public static final double[] ShoulderAngles = {0,8,10,35,60,85};
-        public static final double[] ClawAngles = {0,-4,-6,25,0,-6};
+        public static final double[] ClawAngles = {0,-4,10,35,0,-6};
 
 
 
@@ -55,7 +55,7 @@ public class k {
         public static final double OpenUpperAngle_22291 = 220;
         public static final double OpenAngle_22291 = 220;
 
-        public static final double CloseAngle_14623 = 115.0;
+        public static final double CloseAngle_14623 = 119.0;
         public static final double OpenLowerAngle_14623 = 101.5;
         public static final double OpenUpperAngle_14623 = 60.0;
         public static final double OpenAngle_14623 = 60.0;
@@ -68,7 +68,7 @@ public class k {
         public static final double AngleStraight_22291 = 35.0;
         public static final double AngleBackdrop_22291 = 60.0;
         public static final double AngleStack_5_22291 = 10.0;
-        public static final double AngleStack_3_22291 = 10.0;
+        public static final double AngleStack_3_22291 = 8.0;
         public static final double AngleFloor_22291 = 0.0;
 
         public static final double AngleVertical_14623 = 125.0;
@@ -76,7 +76,7 @@ public class k {
         public static final double AngleStraight_14623 = 35.0;
         public static final double AngleBackdrop_14623 = 60.0;
         public static final double AngleStack_5_14623 = 10.0;
-        public static final double AngleStack_3_14623 = 10.0;
+        public static final double AngleStack_3_14623 = 8.0;
         public static final double AngleFloor_14623 = 0.0;
 
         public static final double ThumbRotateUpLimit = 125; //deg
@@ -86,8 +86,8 @@ public class k {
         // at shoulder that is 384.5 * 3 = 1153.5 counts per Rev of shoulder
         // That means there is 1153.5/360 = 3.204 counts/deg
         public static final double Motor_CountsPDeg = 3.204;
-        public static double RotationPID_Min = -0.2;
-        public static double RotationPID_Max = 0.4;
+        public static double RotationPID_Min = -0.12;
+        public static double RotationPID_Max = 1;
     }
     public static final class FOREARM {
         public static final double RetractLimit = 0;

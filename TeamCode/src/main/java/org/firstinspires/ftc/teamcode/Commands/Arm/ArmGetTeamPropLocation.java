@@ -5,6 +5,7 @@ import com.arcrobotics.ftclib.command.CommandOpMode;
 
 import org.firstinspires.ftc.teamcode.Lib.GlobalData;
 import org.firstinspires.ftc.teamcode.Lib.TeamPropLocation;
+import org.firstinspires.ftc.teamcode.Subsystems.ArmAutoSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystems.ArmSubsystem;
 
 /**
@@ -12,12 +13,12 @@ import org.firstinspires.ftc.teamcode.Subsystems.ArmSubsystem;
  */
 public class ArmGetTeamPropLocation extends CommandBase {
     CommandOpMode m_opMode;
-    ArmSubsystem m_arm;
+    ArmAutoSubsystem m_arm;
     TeamPropLocation m_teamPropLocation;
 
     boolean isFinished = false;
 
-    public ArmGetTeamPropLocation(CommandOpMode _opMode, ArmSubsystem _arm, TeamPropLocation _location) {
+    public ArmGetTeamPropLocation(CommandOpMode _opMode, ArmAutoSubsystem _arm, TeamPropLocation _location) {
         m_opMode = _opMode;
         m_arm = _arm;
         m_teamPropLocation = _location;

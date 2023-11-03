@@ -14,9 +14,9 @@ import org.firstinspires.ftc.teamcode.Lib.Hw;
 import org.firstinspires.ftc.teamcode.Lib.k;
 
 public class Claw {
-    ServoEx m_right;
+    //ServoEx m_right;
     MotorEx m_rotateMotor;
-    double m_gripAngle;
+
     PIDController m_pid;
     CommandOpMode m_opMode;
     double clawAngle = 0;
@@ -26,7 +26,7 @@ public class Claw {
         initHardware();
     }
     private void initHardware(){
-        m_right = new SimpleServo(m_opMode.hardwareMap,Hw.ClawServoRotate, 0, 300, AngleUnit.DEGREES);
+        //m_right = new SimpleServo(m_opMode.hardwareMap,Hw.ClawServoRotate, 0, 300, AngleUnit.DEGREES);
 
         m_rotateMotor = new MotorEx(m_opMode.hardwareMap, Hw.ClawRotateMotor);
         m_rotateMotor.setRunMode(Motor.RunMode.RawPower);
@@ -51,13 +51,7 @@ public class Claw {
     public double getClawRequestedAngle(){
         return clawAngle;
     }
-    public void setClawGripAngle(double _angle){
-        double angle = _angle / 300.0;
-        m_gripAngle = _angle;
-        m_right.setPosition(angle);
-    }
-    public double getClawGripAngle(){
-        return m_gripAngle;
-    }
+
+
 
 }

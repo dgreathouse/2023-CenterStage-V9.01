@@ -22,7 +22,7 @@ public class Forearm {
         m_motor = new MotorEx(m_opMode.hardwareMap, Hw.ForearmMotor, Motor.GoBILDA.RPM_1620);
         m_motor.setRunMode(Motor.RunMode.RawPower);
         m_motor.resetEncoder();
-        m_pid = new PIDController(0.01, 0.15, 0);
+        m_pid = new PIDController(0.05, 0.15, 0);
         m_pid.setTolerance(0.1);
     }
 

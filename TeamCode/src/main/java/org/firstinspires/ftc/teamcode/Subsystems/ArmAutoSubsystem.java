@@ -12,7 +12,7 @@ import org.firstinspires.ftc.teamcode.Lib.Hw;
 import org.firstinspires.ftc.teamcode.Lib.Interpolate;
 import org.firstinspires.ftc.teamcode.Lib.k;
 
-public class ArmSubsystem extends SubsystemBase {
+public class ArmAutoSubsystem extends SubsystemBase {
     private final CommandOpMode m_opMode;
     private Claw m_claw;
     private Forearm m_forearm;
@@ -21,7 +21,7 @@ public class ArmSubsystem extends SubsystemBase {
     public ArmData m_armData;
     public double m_armAng = 0.0;
     private double m_IClawAngle = 0;
-    public ArmSubsystem(CommandOpMode _opMode) {
+    public ArmAutoSubsystem(CommandOpMode _opMode) {
         m_opMode = _opMode;
         initHardware();
     }
@@ -31,9 +31,9 @@ public class ArmSubsystem extends SubsystemBase {
      * This is called during the constructor
      */
     private void initHardware() {
-        m_armData = new ArmData();
         m_claw = new Claw(m_opMode);
         m_forearm = new Forearm(m_opMode);
+        m_armData = new ArmData();
         m_shoulder = new Shoulder(m_opMode, m_armData);
         m_distanceSensor = m_opMode.hardwareMap.get(Rev2mDistanceSensor.class, Hw.DistanceSensor);
     }
@@ -48,17 +48,13 @@ public class ArmSubsystem extends SubsystemBase {
     public void armGotoPosition() {
         // Set the shoulder
         setShoulderAngle(m_armAng);
-        //setShouldTestPower(GlobalData.ShoulderTestPower);
 
         // Set the Forearm
         setForearmPosition(getForearmPositionFromAngle());
-        //m_forearm.move(GlobalData.ForearmTestPower);
 
         // Set the Claw
         m_IClawAngle = Interpolate.getY(k.ARM.ShoulderAngles, k.ARM.ClawAngles, m_shoulder.getAngle());
         setClawAngle(m_IClawAngle);
-        //setClawTestPos(GlobalData.ClawAngTestPos);
-
     }
     private double getForearmPositionFromAngle(){
         // 0 between 0 and 35
@@ -72,17 +68,15 @@ public class ArmSubsystem extends SubsystemBase {
             return k.FOREARM.ExtendLimit/(m_armData.getArmSetAngle(ArmPos.BACKDROPUPLIMIT) - m_armData.getArmSetAngle(ArmPos.STRAIGHT)) * (sa - m_armData.getArmSetAngle(ArmPos.STRAIGHT));
         }
     }
-    private void setShoulderAngle(double _angle) {
-        m_shoulder.setAngle(_angle);
-    }
     private void setForearmPosition(double _mm) {
         m_opMode.telemetry.addData("Forearm mm", _mm);
         m_forearm.setPosition(_mm);
     }
-    public void armForearmMove(double _speed) {
-        // Limits are applied in the forearm
-        m_forearm.move(_speed);
+    private void setShoulderAngle(double _angle) {
+        m_shoulder.setAngle(_angle);
     }
+
+
     // Team Prop functions
     public double getTeamPropDistance() {
         return m_distanceSensor.getDistance(DistanceUnit.MM);
@@ -93,52 +87,15 @@ public class ArmSubsystem extends SubsystemBase {
         m_claw.setClawRotateAngle(_ang);
     }
 
-
-
-
-    public void setArmAngle(ArmPos _armPos) {
-        switch (_armPos) {
-            case STRAIGHT:
-                setArmAngle(m_armData.getArmSetAngle(ArmPos.STRAIGHT));
-                break;
-            case STACK_3:
-                setArmAngle(m_armData.getArmSetAngle(ArmPos.STACK_3));
-                break;
-            case STACK_5:
-                setArmAngle(m_armData.getArmSetAngle(ArmPos.STACK_5));
-                break;
-            case FLOOR:
-                setArmAngle(m_armData.getArmSetAngle(ArmPos.FLOOR));
-                break;
-            case BACKDROPUPLIMIT:
-                setArmAngle(m_armData.getArmSetAngle(ArmPos.BACKDROPUPLIMIT));
-            case VERTICAL:
-                setArmAngle(m_armData.getArmSetAngle(ArmPos.VERTICAL));
-            case ANGLE_BACKDROP:
-                setArmAngle(m_armData.getArmSetAngle(ArmPos.ANGLE_BACKDROP));
-            case NONE:
-                break;
-        }
-    }
-
     public void setArmAngle(double _angle) {
         m_armAng = _angle;
     }
 
-
-    // Test methods
-    public void setShouldTestPower(double _pwr) {
-        m_shoulder.setPower(_pwr);
-    }
-
-    public void setClawTestPos(double _pos) {
-        m_claw.setClawRotateAngle(_pos);
-    }
-
     @Override
     public void periodic() {
+        armGotoPosition();
         m_opMode.telemetry.addData("Team Prop Distance", "%3.3f", getTeamPropDistance());
-
+        m_opMode.telemetry.addData("Team Prop Location", GlobalData.TeamPropLocation);
         m_opMode.telemetry.addData("Shoulder Angle", "%3.3f", m_shoulder.getAngle());
         m_opMode.telemetry.addData("Shoulder Power", "%3.3f", m_shoulder.getPower());
         m_opMode.telemetry.addData("Shoulder Angle Requested", "%3.3f", m_armAng);
