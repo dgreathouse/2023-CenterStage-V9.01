@@ -55,7 +55,7 @@ public class k {
         public static final double OpenUpperAngle_22291 = 220;
         public static final double OpenAngle_22291 = 220;
 
-        public static final double CloseAngle_14623 = 119.0;
+        public static final double CloseAngle_14623 = 122.0;
         public static final double OpenLowerAngle_14623 = 101.5;
         public static final double OpenUpperAngle_14623 = 60.0;
         public static final double OpenAngle_14623 = 60.0;
