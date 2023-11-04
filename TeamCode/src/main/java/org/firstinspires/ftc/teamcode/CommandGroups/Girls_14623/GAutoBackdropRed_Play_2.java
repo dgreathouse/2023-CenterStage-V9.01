@@ -15,11 +15,11 @@ import org.firstinspires.ftc.teamcode.Commands.Drive.AutoDriveToTeamProp;
 import org.firstinspires.ftc.teamcode.Commands.Drive.AutoRotateRobot;
 import org.firstinspires.ftc.teamcode.Lib.ArmData;
 import org.firstinspires.ftc.teamcode.Lib.ArmPos;
+import org.firstinspires.ftc.teamcode.Lib.AutoFieldLocation;
 import org.firstinspires.ftc.teamcode.Lib.GlobalData;
 import org.firstinspires.ftc.teamcode.Lib.TeamColor;
 import org.firstinspires.ftc.teamcode.Lib.TeamPropLocation;
 import org.firstinspires.ftc.teamcode.Subsystems.ArmAutoSubsystem;
-import org.firstinspires.ftc.teamcode.Subsystems.ArmSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystems.ClawAutoGripSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystems.DriveSubsystem;
 
@@ -27,6 +27,7 @@ public class GAutoBackdropRed_Play_2 extends SequentialCommandGroup {
 
     public GAutoBackdropRed_Play_2(CommandOpMode _opMode, DriveSubsystem _drive, ArmAutoSubsystem _arm, ClawAutoGripSubsystem _claw)  {
         GlobalData.TeamColor = TeamColor.RED;
+        GlobalData.FieldLocation = AutoFieldLocation.BACKDROP;
         ArmData armData = new ArmData();
         addCommands(
 
