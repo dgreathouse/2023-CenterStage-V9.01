@@ -69,30 +69,31 @@ public class ArmGetTeamPropLocation extends CommandBase {
                 if (m_teamPropLocation == TeamPropLocation.CENTER) {
                     if (dis < 500) {
                         GlobalData.TeamPropLocation = TeamPropLocation.CENTER;
-                    } else if (m_teamPropLocation == TeamPropLocation.LEFT) {
-                        if (dis < 500) {
-                            GlobalData.TeamPropLocation = TeamPropLocation.LEFT;
-                        }
-                    } else if (m_teamPropLocation == TeamPropLocation.RIGHT) {
-                        if (GlobalData.TeamPropLocation == TeamPropLocation.NONE) {
-                            GlobalData.TeamPropLocation = TeamPropLocation.RIGHT;
-                        }
                     }
-                } else { //Blue
-                    if (m_teamPropLocation == TeamPropLocation.CENTER) {
-                        if (dis < 500) {
-                            GlobalData.TeamPropLocation = TeamPropLocation.CENTER;
-                        }
-                    } else if (m_teamPropLocation == TeamPropLocation.RIGHT) {
-                        if (dis < 500) {
-                            GlobalData.TeamPropLocation = TeamPropLocation.RIGHT;
-                        }
-                    } else if (m_teamPropLocation == TeamPropLocation.LEFT) {
-                        if (GlobalData.TeamPropLocation == TeamPropLocation.NONE) {
-                            GlobalData.TeamPropLocation = TeamPropLocation.LEFT;
-                        }
+                } else if (m_teamPropLocation == TeamPropLocation.LEFT) {
+                    if (dis < 500) {
+                        GlobalData.TeamPropLocation = TeamPropLocation.LEFT;
+                    }
+                } else if (m_teamPropLocation == TeamPropLocation.RIGHT) {
+                    if (GlobalData.TeamPropLocation == TeamPropLocation.NONE) {
+                        GlobalData.TeamPropLocation = TeamPropLocation.RIGHT;
                     }
                 }
+            } else { //Blue
+                if (m_teamPropLocation == TeamPropLocation.CENTER) {
+                    if (dis < 500) {
+                        GlobalData.TeamPropLocation = TeamPropLocation.CENTER;
+                    }
+                } else if (m_teamPropLocation == TeamPropLocation.RIGHT) {
+                    if (dis < 500) {
+                        GlobalData.TeamPropLocation = TeamPropLocation.RIGHT;
+                    }
+                } else if (m_teamPropLocation == TeamPropLocation.LEFT) {
+                    if (GlobalData.TeamPropLocation == TeamPropLocation.NONE) {
+                        GlobalData.TeamPropLocation = TeamPropLocation.LEFT;
+                    }
+                }
+
             }
         }
 

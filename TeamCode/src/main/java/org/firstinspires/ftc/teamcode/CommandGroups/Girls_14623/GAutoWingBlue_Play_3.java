@@ -4,6 +4,7 @@ import com.arcrobotics.ftclib.command.CommandOpMode;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 
 import org.firstinspires.ftc.teamcode.Commands.AutoStopOpModeCommand;
+import org.firstinspires.ftc.teamcode.Lib.ArmData;
 import org.firstinspires.ftc.teamcode.Lib.AutoFieldLocation;
 import org.firstinspires.ftc.teamcode.Lib.GlobalData;
 import org.firstinspires.ftc.teamcode.Lib.TeamColor;
