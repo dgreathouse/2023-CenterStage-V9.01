@@ -37,8 +37,8 @@ public class BAutoWingBlue_Play_1 extends SequentialCommandGroup {
                 new AutoRotateRobot(_opMode,_drive, -45,0.25,3000),                                  // sign
                 new ArmGetTeamPropLocation(_opMode, _arm, TeamPropLocation.RIGHT),
                 new ArmGetTeamPropLocation(_opMode, _arm, TeamPropLocation.LEFT),
-                new AutoRotateRobot(_opMode,_drive, 0,0.25,3000),
                 new ArmAutoGotoPosition(_opMode, _arm, armData.getArmSetAngle(ArmPos.STACK_3)),
+                new AutoRotateRobot(_opMode,_drive, 0,0.25,3000),
                 new AutoDriveToTeamProp(_opMode,_drive),
                 new ClawRotateFingers(_opMode, _claw, _claw.getClawReleaseLowerAngle()),
 

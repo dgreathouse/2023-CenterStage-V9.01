@@ -44,25 +44,25 @@ public class AutoDriveToTeamProp extends CommandBase {
             case NONE:
                 if (GlobalData.TeamColor == TeamColor.BLUE) {
                     m_driveAngle = 00;
-                    m_robotAngle = 0;
-                    m_timeOut = 500;
+                    m_robotAngle = 10;
+                    m_timeOut = 450;
                     m_speed = 0.32;
                 } else {
                     m_driveAngle = 00;
-                    m_robotAngle = 0;
-                    m_timeOut = 500;
+                    m_robotAngle = 10;
+                    m_timeOut = 450;
                     m_speed = 0.4;
                 }
                 break;
             case LEFT:
                 if (GlobalData.TeamColor == TeamColor.BLUE) {
                     m_driveAngle = -90;
-                    m_robotAngle = 0;
-                    m_timeOut = 850;
-                    m_speed = 0.4;
+                    m_robotAngle = 80;
+                    m_timeOut = 2000;
+                    m_speed = 0.0;
                 } else {
                     m_driveAngle = -90;
-                    m_robotAngle = 80;
+                    m_robotAngle = -80;
                     m_timeOut = 2000;
                     m_speed = 0.0;
                 }
@@ -70,17 +70,17 @@ public class AutoDriveToTeamProp extends CommandBase {
 
             case RIGHT:
                 if (GlobalData.TeamColor == TeamColor.BLUE) {
-                    m_driveAngle = -90;
+                    m_driveAngle = 90;
                     m_robotAngle = -80;
-                    m_timeOut = 2000;
-                    m_speed = 0.0;
+                    m_timeOut = 50;
+                    m_speed = 0.3;
 
                 } else {
 
-                    m_driveAngle = 90;
-                    m_robotAngle = -80;
-                    m_timeOut = 2000;
-                    m_speed = 0.0;
+                    m_driveAngle = 0;
+                    m_robotAngle = 80;
+                    m_timeOut = 200;
+                    m_speed = 0;
                 }
                 break;
 //            case CENTER:

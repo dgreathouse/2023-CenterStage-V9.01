@@ -39,7 +39,7 @@ public class BAutoBackdropBlue_Play_1 extends SequentialCommandGroup {
                 new ArmGetTeamPropLocation(_opMode, _arm, TeamPropLocation.LEFT),
                 new ArmGetTeamPropLocation(_opMode, _arm, TeamPropLocation.RIGHT),
                 new AutoRotateRobot(_opMode,_drive, 0,0.25,3000),
-                new ArmAutoGotoPosition(_opMode, _arm, armData.getArmSetAngle(ArmPos.STACK_3)),
+                new ArmAutoGotoPosition(_opMode, _arm, armData.getArmSetAngle(ArmPos.FLOOR)),
                 new AutoDriveToTeamProp(_opMode,_drive),
                 new ClawRotateFingers(_opMode, _claw, _claw.getClawReleaseLowerAngle()),
 

@@ -33,7 +33,7 @@ public class Claw {
         m_rotateMotor.encoder.setDirection(Motor.Direction.FORWARD);
         m_rotateMotor.resetEncoder();
 
-        m_pid = new PIDController(0.01,0.01,0.0);
+        m_pid = new PIDController(0.02,0.01,0.0);
         m_pid.setTolerance(1.6);
     }
     public void setClawRotateAngle(double _angle){

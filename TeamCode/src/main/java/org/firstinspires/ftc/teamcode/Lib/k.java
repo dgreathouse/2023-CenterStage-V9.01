@@ -15,7 +15,7 @@ public class k {
         public static final double InchPerCount = WheelCircumference_in / CPR;
         public static final double[] DriveDistance =       { 00.00,01.00,02.00,03.00,04.00,05.00,12.00,24.00,36.00,48.00,100.00 };
         public static final double[] DriveTime_Speed60 = { 00.00,01.00,02.00,03.00,04.00,05.00,12.00,24.00,36.00,48.00,100.00 };
-        public static final double Rot_P = 0.0075;
+        public static final double Rot_P = 0.005;
         public static final double Rot_I = 0.05;
 
     }
@@ -50,8 +50,8 @@ public class k {
         public static final double RotateDownLimit = -25;
         public static final double Motor_CountsPDeg = 288.0/360.0;
 
-        public static final double CloseAngle_22291 = 280;
-        public static final double OpenLowerAngle_22291 = 268;
+        public static final double CloseAngle_22291 = 279;
+        public static final double OpenLowerAngle_22291 = 262;
         public static final double OpenUpperAngle_22291 = 220;
         public static final double OpenAngle_22291 = 220;
 
@@ -68,7 +68,7 @@ public class k {
         public static final double AngleStraight_22291 = 35.0;
         public static final double AngleBackdrop_22291 = 60.0;
         public static final double AngleStack_5_22291 = 10.0;
-        public static final double AngleStack_3_22291 = 8.0;
+        public static final double AngleStack_3_22291 = 3.0;
         public static final double AngleFloor_22291 = 0.0;
 
         public static final double AngleVertical_14623 = 125.0;

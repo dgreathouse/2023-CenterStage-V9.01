@@ -35,7 +35,7 @@ public class Shoulder {
         m_motor.setInverted(false);
         m_motor.setZeroPowerBehavior(Motor.ZeroPowerBehavior.BRAKE);
         m_motor.resetEncoder();
-        rotPID = new PIDController(.8,0.25,0.0);
+        rotPID = new PIDController(.62,0.45,0.0);
         rotPID.setTolerance(.01);
         rotPID.setIntegrationBounds(-8,8);
         rotPID.reset();

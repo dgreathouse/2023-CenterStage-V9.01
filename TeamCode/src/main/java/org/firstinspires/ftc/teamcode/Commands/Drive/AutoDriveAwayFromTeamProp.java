@@ -45,7 +45,7 @@ public class AutoDriveAwayFromTeamProp extends CommandBase {
                 if (GlobalData.TeamColor == TeamColor.BLUE) {
                     m_driveAngle = -180;
                     m_robotAngle = 0;
-                    m_timeOut = 800;
+                    m_timeOut = 750;
                 }else {
                     m_driveAngle = -180;
                     m_robotAngle = 0;
@@ -66,11 +66,11 @@ public class AutoDriveAwayFromTeamProp extends CommandBase {
 
             case RIGHT:
                 if (GlobalData.TeamColor == TeamColor.BLUE) {
-                    m_driveAngle = 135;
+                    m_driveAngle = 180;
                     m_robotAngle = 0;
                     m_timeOut = 800;
                 }else {
-                    m_driveAngle = -135;
+                    m_driveAngle = -180;
                     m_robotAngle = 0;
                     m_timeOut = 800;
                 }
