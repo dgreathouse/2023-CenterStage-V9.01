@@ -10,6 +10,7 @@ import org.firstinspires.ftc.teamcode.CommandGroups.Boys_22291.BAutoBackdropBlue
 import org.firstinspires.ftc.teamcode.CommandGroups.Girls_14623.GAutoBackdropBlue_Play_1;
 import org.firstinspires.ftc.teamcode.CommandGroups.Girls_14623.GAutoBackdropBlue_Play_3;
 import org.firstinspires.ftc.teamcode.Commands.Arm.ArmDefaultCommand;
+import org.firstinspires.ftc.teamcode.Commands.Drive.AutoDriveDefaultCommand;
 import org.firstinspires.ftc.teamcode.Lib.GlobalData;
 import org.firstinspires.ftc.teamcode.Lib.Hw;
 import org.firstinspires.ftc.teamcode.Lib.k;
@@ -28,6 +29,7 @@ public class AutoBackdropBlueOpMode_Play_3 extends CommandOpMode {
     double m_timerCnt = 0;
     Hw hw;
     DriveSubsystem drive;
+    AutoDriveDefaultCommand driveDefaultCommand;
     ArmAutoSubsystem arm;
     ClawAutoGripSubsystem claw;
     GAutoBackdropBlue_Play_3 Gauto;
@@ -43,10 +45,9 @@ public class AutoBackdropBlueOpMode_Play_3 extends CommandOpMode {
         arm = new ArmAutoSubsystem(this);
         claw = new ClawAutoGripSubsystem(this);
 
-
-
-
         // Create Commands
+        driveDefaultCommand = new AutoDriveDefaultCommand(this,drive);
+        drive.setDefaultCommand(driveDefaultCommand);
         createCommandGroup();
         // Register subsystems
         register(drive,arm);

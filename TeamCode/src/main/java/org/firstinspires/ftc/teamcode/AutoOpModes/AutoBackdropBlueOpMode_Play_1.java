@@ -12,6 +12,7 @@ import org.firstinspires.ftc.teamcode.Commands.Arm.ArmAutoDefaultCommand;
 import org.firstinspires.ftc.teamcode.Commands.Arm.ArmDefaultCommand;
 import org.firstinspires.ftc.teamcode.Commands.ClawGrip.ClawGripAutoDefaultCommand;
 import org.firstinspires.ftc.teamcode.Commands.ClawGrip.ClawGripDefaultCommand;
+import org.firstinspires.ftc.teamcode.Commands.Drive.AutoDriveDefaultCommand;
 import org.firstinspires.ftc.teamcode.Lib.GlobalData;
 import org.firstinspires.ftc.teamcode.Lib.Hw;
 import org.firstinspires.ftc.teamcode.Lib.k;
@@ -31,6 +32,7 @@ public class AutoBackdropBlueOpMode_Play_1 extends CommandOpMode {
     double m_timerCnt = 0;
     Hw hw;
     DriveSubsystem drive;
+    AutoDriveDefaultCommand driveDefaultCommand;
     ArmAutoSubsystem arm;
     ClawAutoGripSubsystem claw;
     GAutoBackdropBlue_Play_1 Gauto;
@@ -46,10 +48,9 @@ public class AutoBackdropBlueOpMode_Play_1 extends CommandOpMode {
         arm = new ArmAutoSubsystem(this);
         claw = new ClawAutoGripSubsystem(this);
 
-
-
-
         // Create Commands
+        driveDefaultCommand = new AutoDriveDefaultCommand(this,drive);
+        drive.setDefaultCommand(driveDefaultCommand);
         createCommandGroup();
         // Register subsystems
         register(drive,arm);
@@ -58,15 +59,13 @@ public class AutoBackdropBlueOpMode_Play_1 extends CommandOpMode {
         m_timer.start();
     }
     @Override
-
     public void runOpMode() throws InterruptedException{
         initialize();
 
         waitForStart();
         // Schedule the auto play to run
         scheduleCommandGroup();
-        //schedule(armDefaultCommand);
-        //schedule(clawGripDefaultCommand);
+
         
         // run the scheduler
         while (!isStopRequested() || opModeIsActive()) {
