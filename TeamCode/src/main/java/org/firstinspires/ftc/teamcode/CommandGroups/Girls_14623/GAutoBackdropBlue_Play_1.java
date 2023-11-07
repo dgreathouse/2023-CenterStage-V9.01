@@ -52,7 +52,6 @@ public class GAutoBackdropBlue_Play_1 extends SequentialCommandGroup {
                 new ArmAutoGotoPosition(_opMode,_arm,armData.getArmSetAngle(ArmPos.FLOOR),0,0),
                 new AutoDelayCommand(_opMode,1000),
 
-
                 new AutoStopOpModeCommand(_opMode) // This must be the last line of every command list
         );
     }
