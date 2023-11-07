@@ -57,6 +57,7 @@ public class AutoDriveTimeVel extends CommandBase {
     @Override
     public boolean isFinished(){
         if(m_timer.done()){
+            m_drive.disableMotors();
             return true;
         }
         return false;

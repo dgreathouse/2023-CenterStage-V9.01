@@ -12,5 +12,5 @@ public class GlobalData {
     public static double ShoulderTestPower = 0.0;
     public static double ForearmTestPower = 0.0;
     public static double ClawAngTestPos = 0.0;
-
+    public static RobotState State = RobotState.AUTONOMOUS;
 }

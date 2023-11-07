@@ -46,12 +46,17 @@ public class GAutoWingRed_Play_3 extends SequentialCommandGroup {
 
                 new ArmAutoGotoPosition(_opMode, _arm, armData.getArmSetAngle(ArmPos.STRAIGHT),0,0),
                 new AutoDriveAwayFromTeamProp(_opMode, _drive),
-                new AutoDriveTimeVel(_opMode, _drive,-180,0.4,90,800),
-                new AutoDriveTimeVel(_opMode, _drive,-90,0.4,90,5000),
-                new AutoDriveTimeVel(_opMode, _drive,0,0.4,90,5000),
-                new ArmAutoGotoPosition(_opMode,_arm,armData.getArmSetAngle(ArmPos.FLOOR),0,0),       // Put the arm Straight
+
+                new AutoDriveTimeVel(_opMode, _drive,-180,0.4,-90,800),    //drive and rotate back to the wall
+                new AutoDriveTimeVel(_opMode, _drive,90,0.4,-90,5000),    //drive under truss
+                new AutoDriveTimeVel(_opMode, _drive,-45,0.4,-90,5000),   //drive at angle to backdrop
+                new ClawRotateFingers(_opMode, _claw, _claw.getClawReleaseUpperAngle()),
+                new AutoDriveTimeVel(_opMode, _drive,-90,0.4,-90,800),   //back away from backdrop
+                new ArmAutoGotoPosition(_opMode,_arm,armData.getArmSetAngle(ArmPos.FLOOR),0,0),        // Put the arm Straight
+                new AutoDriveTimeVel(_opMode, _drive,0,0.4,-90,800),    //drive to center
                 new AutoDelayCommand(_opMode,1000),
                 new AutoStopOpModeCommand(_opMode) // This must be the last line of every command list
+
         );
 
     }

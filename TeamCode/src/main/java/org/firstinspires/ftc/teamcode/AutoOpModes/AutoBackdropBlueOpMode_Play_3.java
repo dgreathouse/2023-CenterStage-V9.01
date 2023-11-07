@@ -46,8 +46,8 @@ public class AutoBackdropBlueOpMode_Play_3 extends CommandOpMode {
         // Create Commands
         driveDefaultCommand = new AutoDriveDefaultCommand(this,drive);
         drive.setDefaultCommand(driveDefaultCommand);
-        armDefaultCommand = new AutoArmDefaultCommand(this,arm);
-        arm.setDefaultCommand(armDefaultCommand);
+//        armDefaultCommand = new AutoArmDefaultCommand(this,arm);
+//        arm.setDefaultCommand(armDefaultCommand);
         createCommandGroup();
         // Register subsystems
         register(drive,arm,claw);
@@ -61,6 +61,7 @@ public class AutoBackdropBlueOpMode_Play_3 extends CommandOpMode {
         initialize();
 
         waitForStart();
+
         // Schedule the auto play to run
         scheduleCommandGroup();
         //schedule(armDefaultCommand);

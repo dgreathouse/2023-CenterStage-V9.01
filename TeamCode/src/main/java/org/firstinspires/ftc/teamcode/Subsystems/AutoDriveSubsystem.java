@@ -2,12 +2,14 @@ package org.firstinspires.ftc.teamcode.Subsystems;
 
 import com.arcrobotics.ftclib.command.CommandOpMode;
 import com.arcrobotics.ftclib.command.SubsystemBase;
+import com.arcrobotics.ftclib.hardware.motors.Motor;
 import com.arcrobotics.ftclib.hardware.motors.MotorEx;
 
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.YawPitchRollAngles;
 import org.firstinspires.ftc.teamcode.Lib.Hw;
 import org.firstinspires.ftc.teamcode.Lib.KiwiDrive;
+import org.firstinspires.ftc.teamcode.Lib.k;
 
 public class AutoDriveSubsystem extends SubsystemBase {
     // Declare the MotorEx and Vector2D classes for each motor
@@ -24,11 +26,35 @@ public class AutoDriveSubsystem extends SubsystemBase {
     public AutoDriveSubsystem(CommandOpMode _opMode, Hw _hw) {
         m_opMode = _opMode;
         m_hw = _hw;
-        m_hw.initDriveHardware(_opMode, m_lDrive,m_rDrive,m_bDrive);
+        initHardware();
         m_drive = new KiwiDrive(m_lDrive,m_rDrive, m_bDrive);
 
     }
+    private void initHardware(){
+        m_lDrive = new MotorEx(m_opMode.hardwareMap, Hw.DriveFrontLeft, Motor.GoBILDA.RPM_435);
+        m_lDrive.setInverted(true);
+        m_lDrive.setRunMode(Motor.RunMode.VelocityControl);
+        m_lDrive.setZeroPowerBehavior(Motor.ZeroPowerBehavior.BRAKE);
+        m_lDrive.setDistancePerPulse(k.DRIVE.InchPerCount);
+        m_lDrive.encoder.setDirection(Motor.Direction.FORWARD);
+        m_lDrive.setVeloCoefficients(1.0,0.01,0);
 
+        m_rDrive = new MotorEx(m_opMode.hardwareMap, Hw.DriveFrontRight, Motor.GoBILDA.RPM_435);
+        m_rDrive.setInverted(true);
+        m_rDrive.setRunMode(Motor.RunMode.VelocityControl);
+        m_rDrive.setZeroPowerBehavior(Motor.ZeroPowerBehavior.BRAKE);
+        m_rDrive.setDistancePerPulse(k.DRIVE.InchPerCount);
+        m_rDrive.encoder.setDirection(Motor.Direction.REVERSE);
+        m_rDrive.setVeloCoefficients(1.0,0.01,0);
+
+        m_bDrive = new MotorEx(m_opMode.hardwareMap, Hw.DriveBack, Motor.GoBILDA.RPM_435);
+        m_bDrive.setInverted(true);
+        m_bDrive.setRunMode(Motor.RunMode.VelocityControl);
+        m_bDrive.setZeroPowerBehavior(Motor.ZeroPowerBehavior.BRAKE);
+        m_bDrive.setDistancePerPulse(k.DRIVE.InchPerCount);
+        m_bDrive.encoder.setDirection(Motor.Direction.REVERSE);
+        m_bDrive.setVeloCoefficients(1.0,0.01,0);
+    }
 
     /**
      *
@@ -37,6 +63,9 @@ public class AutoDriveSubsystem extends SubsystemBase {
      * @param _zRotation The rotation speed in +/- 1 CCW/left is positive
      */
     public void driveXY(double _strafeSpeed, double _forwardSpeed, double _zRotation) {
+        m_lDrive.setRunMode(Motor.RunMode.VelocityControl);
+        m_rDrive.setRunMode(Motor.RunMode.VelocityControl);
+        m_bDrive.setRunMode(Motor.RunMode.VelocityControl);
         m_drive.driveXY(_strafeSpeed,_forwardSpeed,_zRotation,getRobotAngle());
     }
 
@@ -47,6 +76,9 @@ public class AutoDriveSubsystem extends SubsystemBase {
      * @param _rot The direction you want the robot to face in field oriented mode.
      */
     public void drivePolar(double _angle, double _speed, double _rot){
+        m_lDrive.setRunMode(Motor.RunMode.VelocityControl);
+        m_rDrive.setRunMode(Motor.RunMode.VelocityControl);
+        m_bDrive.setRunMode(Motor.RunMode.VelocityControl);
         m_drive.drivePolar(_angle,_speed,_rot,getRobotAngle());
     }
 
@@ -59,6 +91,9 @@ public class AutoDriveSubsystem extends SubsystemBase {
         return angles.getYaw(AngleUnit.DEGREES);
     }
     public void disableMotors(){
+        m_lDrive.setRunMode(Motor.RunMode.RawPower);
+        m_rDrive.setRunMode(Motor.RunMode.RawPower);
+        m_bDrive.setRunMode(Motor.RunMode.RawPower);
         m_lDrive.set(0);
         m_rDrive.set(0);
         m_bDrive.set(0);

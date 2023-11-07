@@ -43,7 +43,9 @@ import org.firstinspires.ftc.teamcode.Commands.Drive.DriveDefaultCommand;
 import org.firstinspires.ftc.teamcode.Commands.Drone.DroneDefaultCommand;
 import org.firstinspires.ftc.teamcode.Commands.Drone.DroneLaunchCommand;
 import org.firstinspires.ftc.teamcode.Lib.ArmPos;
+import org.firstinspires.ftc.teamcode.Lib.GlobalData;
 import org.firstinspires.ftc.teamcode.Lib.Hw;
+import org.firstinspires.ftc.teamcode.Lib.RobotState;
 import org.firstinspires.ftc.teamcode.Lib.k;
 import org.firstinspires.ftc.teamcode.Subsystems.ArmSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystems.ClawGripSubsystem;
@@ -143,7 +145,7 @@ public class TeleOpMode_Linear extends CommandOpMode {
         initialize();
 
         waitForStart();
-
+        GlobalData.State = RobotState.DRIVERCONTROLLED;
         // run the scheduler
         while (!isStopRequested() && opModeIsActive()) {
             run();

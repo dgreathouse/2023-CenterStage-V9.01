@@ -155,11 +155,11 @@ public class AutoDetectAprilTag extends CommandBase {
         Orientation rot = Orientation.getOrientation(detection.pose.R, AxesReference.INTRINSIC, AxesOrder.YXZ, AngleUnit.DEGREES);
 
         m_opMode.telemetry.addLine(String.format("\nDetected tag ID=%d", detection.id));
-        m_opMode.telemetry.addLine(String.format("Translation X: %.2f m", detection.pose.x));
-        m_opMode.telemetry.addLine(String.format("Translation Y: %.2f m", detection.pose.y));
-        m_opMode.telemetry.addLine(String.format("Translation Z: %.2f m", detection.pose.z));
-        m_opMode.telemetry.addLine(String.format("Rotation Yaw: %.2f degrees", rot.firstAngle));
-        m_opMode.telemetry.addLine(String.format("Rotation Pitch: %.2f degrees", rot.secondAngle));
-        m_opMode.telemetry.addLine(String.format("Rotation Roll: %.2f degrees", rot.thirdAngle));
+        m_opMode.telemetry.addLine(String.format("Translation X: %.3f m", detection.pose.x));
+        m_opMode.telemetry.addLine(String.format("Translation Y: %.3f m", detection.pose.y));
+        m_opMode.telemetry.addLine(String.format("Translation Z: %.3f m", detection.pose.z));
+        m_opMode.telemetry.addLine(String.format("Rotation Yaw: %.3f degrees", rot.firstAngle));
+        m_opMode.telemetry.addLine(String.format("Rotation Pitch: %.3f degrees", rot.secondAngle));
+        m_opMode.telemetry.addLine(String.format("Rotation Roll: %.3f degrees", rot.thirdAngle));
     }
 }

@@ -66,6 +66,7 @@ public class Shoulder {
         // Set a module level variable to allow for telemetry
         m_shoulderPower = cos + rot;
         m_motor.set(m_shoulderPower);
+
     }
 
 

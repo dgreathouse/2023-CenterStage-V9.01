@@ -55,6 +55,7 @@ public class AutoRotateRobot extends CommandBase {
     @Override
     public boolean isFinished(){
         if(m_timer.done() || rotPID.atSetPoint()){
+            m_drive.disableMotors();
             return true;
         }
         return false;

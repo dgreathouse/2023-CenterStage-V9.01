@@ -71,6 +71,7 @@ public class AutoArmSubsystem extends SubsystemBase {
 
     @Override
     public void periodic() {
+        armGotoPosition();
         m_opMode.telemetry.addData("Team Prop Distance", "%3.3f", getTeamPropDistance());
         m_opMode.telemetry.addData("Team Prop Location", GlobalData.TeamPropLocation);
 
@@ -82,6 +83,6 @@ public class AutoArmSubsystem extends SubsystemBase {
         m_opMode.telemetry.addData("Claw Requested Angle", "%3.3f", m_requestedClawAngle);
 
         m_opMode.telemetry.addData("Forearm Position", "%3.3f", m_forearm.getPosition());
-        m_opMode.telemetry.addData("Forearm Requested Position ", "%3.3f", m_forearm.getSpeed());
+        m_opMode.telemetry.addData("Forearm Requested Position ", "%3.3f", m_requestedForearmPosition);
     }
 }

@@ -38,28 +38,6 @@ public class Hw {
         s_imu = m_opMode.hardwareMap.get(BHI260IMU.class,"imu");
     }
     public void initDriveHardware(CommandOpMode _opMode, MotorEx _l, MotorEx _r, MotorEx _b) {
-        _l = new MotorEx(m_opMode.hardwareMap, Hw.DriveFrontLeft, Motor.GoBILDA.RPM_435);
-        _l.setInverted(true);
-        _l.setRunMode(Motor.RunMode.VelocityControl);
-        _l.setZeroPowerBehavior(Motor.ZeroPowerBehavior.BRAKE);
-        _l.setDistancePerPulse(k.DRIVE.InchPerCount);
-        _l.encoder.setDirection(Motor.Direction.FORWARD);
-        _l.setVeloCoefficients(1.0,0.01,0);
 
-        _r = new MotorEx(m_opMode.hardwareMap, Hw.DriveFrontRight, Motor.GoBILDA.RPM_435);
-        _r.setInverted(true);
-        _r.setRunMode(Motor.RunMode.VelocityControl);
-        _r.setZeroPowerBehavior(Motor.ZeroPowerBehavior.BRAKE);
-        _r.setDistancePerPulse(k.DRIVE.InchPerCount);
-        _r.encoder.setDirection(Motor.Direction.REVERSE);
-        _r.setVeloCoefficients(1.0,0.01,0);
-
-        _b = new MotorEx(m_opMode.hardwareMap, Hw.DriveBack, Motor.GoBILDA.RPM_435);
-        _b.setInverted(true);
-        _b.setRunMode(Motor.RunMode.VelocityControl);
-        _b.setZeroPowerBehavior(Motor.ZeroPowerBehavior.BRAKE);
-        _b.setDistancePerPulse(k.DRIVE.InchPerCount);
-        _b.encoder.setDirection(Motor.Direction.REVERSE);
-        _b.setVeloCoefficients(1.0,0.01,0);
     }
 }

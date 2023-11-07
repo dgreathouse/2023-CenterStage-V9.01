@@ -29,7 +29,12 @@ public class AutoArmDefaultCommand extends CommandBase {
     public void execute(){
         if(GlobalData.ArmAutoEnable){
             m_arm.armGotoPosition();
+
         }
+    }
+    @Override
+    public boolean isFinished(){
+        return false;
     }
     @Override
     public void end(boolean _interrupted){

@@ -21,10 +21,14 @@ public class k {
     }
     public static final class CAMERA {
         public static final double FEET_PER_METER = 3.28084;
-        public static final double fx = 1420.7594;
-        public static final double fy = 1420.9965;
-        public static final double cx = 630.8343;
-        public static final double cy = 381.3086;
+//        public static final double fx = 1420.7594;
+//        public static final double fy = 1420.9965;
+//        public static final double cx = 630.8343;
+//        public static final double cy = 381.3086;
+        public static final double fx = 1121.6864;
+        public static final double fy = 1133.7887;
+        public static final double cx = 635.2146;
+        public static final double cy = 465.3686;
         public static final double tagsize = 0.166;
         public static  int numFramesWithoutDetection = 0;
 
@@ -32,7 +36,7 @@ public class k {
         public static final float DECIMATION_LOW = 2;
         public static final float THRESHOLD_HIGH_DECIMATION_RANGE_METERS = 1.0f;
         public static final int THRESHOLD_NUM_FRAMES_NO_DETECTION_BEFORE_LOW_DECIMATION = 4;
-        public static final int ID_TAG_OF_INTEREST = 1; // Tag ID 1 from the 36h11 family
+        public static final int ID_TAG_OF_INTEREST = 5; // Tag ID 1 from the 36h11 family
     }
     public static final class ARM {
         public static final double TeamPropMinimumDistance_mm = 20;
