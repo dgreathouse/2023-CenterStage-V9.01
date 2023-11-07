@@ -3,11 +3,9 @@ package org.firstinspires.ftc.teamcode.Subsystems;
 import com.arcrobotics.ftclib.command.CommandOpMode;
 import com.arcrobotics.ftclib.command.SubsystemBase;
 import com.qualcomm.hardware.rev.Rev2mDistanceSensor;
-
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 import org.firstinspires.ftc.teamcode.Lib.ArmData;
 import org.firstinspires.ftc.teamcode.Lib.ArmPos;
-import org.firstinspires.ftc.teamcode.Lib.GlobalData;
 import org.firstinspires.ftc.teamcode.Lib.Hw;
 import org.firstinspires.ftc.teamcode.Lib.Interpolate;
 import org.firstinspires.ftc.teamcode.Lib.k;
@@ -48,16 +46,13 @@ public class ArmSubsystem extends SubsystemBase {
     public void armGotoPosition() {
         // Set the shoulder
         setShoulderAngle(m_armAng);
-        //setShouldTestPower(GlobalData.ShoulderTestPower);
 
         // Set the Forearm
         setForearmPosition(getForearmPositionFromAngle());
-        //m_forearm.move(GlobalData.ForearmTestPower);
 
         // Set the Claw
         m_IClawAngle = Interpolate.getY(k.ARM.ShoulderAngles, k.ARM.ClawAngles, m_shoulder.getAngle());
         setClawAngle(m_IClawAngle);
-        //setClawTestPos(GlobalData.ClawAngTestPos);
 
     }
     private double getForearmPositionFromAngle(){
@@ -132,17 +127,11 @@ public class ArmSubsystem extends SubsystemBase {
         m_opMode.telemetry.addData("Shoulder Angle", "%3.3f", m_shoulder.getAngle());
         m_opMode.telemetry.addData("Shoulder Requested Angle", "%3.3f", m_armAng);
 
-
         m_opMode.telemetry.addData("Claw Angle", "%3.3f", m_claw.getClawRotateAngle());
         m_opMode.telemetry.addData("Claw Requested Angle", "%3.3f", m_IClawAngle);
 
-
         m_opMode.telemetry.addData("Forearm Position", "%3.3f", m_forearm.getPosition());
         m_opMode.telemetry.addData("Forearm Requested Position ", "%3.3f", m_forearm.getSpeed());
-
-   //     m_opMode.telemetry.addData("Shoulder Test Power", GlobalData.ShoulderTestPower);
-   //     m_opMode.telemetry.addData("Forearm Test Power", GlobalData.ForearmTestPower);
-
 
     }
 }

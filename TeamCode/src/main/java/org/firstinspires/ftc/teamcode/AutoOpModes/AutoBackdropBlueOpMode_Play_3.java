@@ -39,7 +39,7 @@ public class AutoBackdropBlueOpMode_Play_3 extends CommandOpMode {
         hw.init();
 
         // Create Subsystems
-        drive = new AutoDriveSubsystem(this);
+        drive = new AutoDriveSubsystem(this,hw);
         arm = new AutoArmSubsystem(this);
         claw = new AutoClawGripSubsystem(this);
 
@@ -69,9 +69,7 @@ public class AutoBackdropBlueOpMode_Play_3 extends CommandOpMode {
         // run the scheduler
         while (!isStopRequested() || opModeIsActive()) {
             run();
-            // Calculate the run rate of this loop
-            telemetry.addData("CPU Load Auto %", 100 - m_timer.remainingTime());
-            telemetry.addData("TeamPropLocation", GlobalData.TeamPropLocation);
+
             telemetry.update();
             // wait till timer is > 50ms to try an create a stable run rate
             if(k.SYSTEM.isLoopRateLimited){while(!m_timer.done()){} m_timer.start();}

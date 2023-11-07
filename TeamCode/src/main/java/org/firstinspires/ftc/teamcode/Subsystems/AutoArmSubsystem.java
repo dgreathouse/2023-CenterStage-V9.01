@@ -3,13 +3,10 @@ package org.firstinspires.ftc.teamcode.Subsystems;
 import com.arcrobotics.ftclib.command.CommandOpMode;
 import com.arcrobotics.ftclib.command.SubsystemBase;
 import com.qualcomm.hardware.rev.Rev2mDistanceSensor;
-
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 import org.firstinspires.ftc.teamcode.Lib.ArmData;
-import org.firstinspires.ftc.teamcode.Lib.ArmPos;
 import org.firstinspires.ftc.teamcode.Lib.GlobalData;
 import org.firstinspires.ftc.teamcode.Lib.Hw;
-import org.firstinspires.ftc.teamcode.Lib.k;
 
 public class AutoArmSubsystem extends SubsystemBase {
     private final CommandOpMode m_opMode;
@@ -37,10 +34,7 @@ public class AutoArmSubsystem extends SubsystemBase {
         m_shoulder = new Shoulder(m_opMode, m_armData,m_forearm);
         m_distanceSensor = m_opMode.hardwareMap.get(Rev2mDistanceSensor.class, Hw.DistanceSensor);
     }
-
-    /** Main function for the arm.
-
-     */
+    /** Main function for the arm.*/
     public void armGotoPosition() {
         // Set the shoulder
         setShoulderAngle(m_requestedArmAng);

@@ -39,7 +39,7 @@ public class AutoBackdropRedOpMode_Play_2 extends CommandOpMode {
         hw.init();
 
         // Create Subsystems
-        drive = new AutoDriveSubsystem(this);
+        drive = new AutoDriveSubsystem(this,hw);
         arm = new AutoArmSubsystem(this);
 
         // Create Commands
@@ -68,9 +68,7 @@ public class AutoBackdropRedOpMode_Play_2 extends CommandOpMode {
         // run the scheduler
         while (!isStopRequested() || opModeIsActive()) {
             run();
-            // Calculate the run rate of this loop
-            telemetry.addData("CPU Load Auto %", 100 - m_timer.remainingTime());
-            telemetry.addData("TeamPropLocation", GlobalData.TeamPropLocation);
+
             telemetry.update();
             // wait till timer is > 50ms to try an create a stable run rate
             // TODO: Decide if timer is needed and helps with accuracy of driving and change accordingly
