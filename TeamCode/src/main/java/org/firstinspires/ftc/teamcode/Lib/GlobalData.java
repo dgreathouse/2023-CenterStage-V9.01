@@ -13,4 +13,8 @@ public class GlobalData {
     public static double ForearmTestPower = 0.0;
     public static double ClawAngTestPos = 0.0;
     public static RobotState State = RobotState.AUTONOMOUS;
+
+    public static int tagOfInterest = 20;
+    public static double tagPoseX = 0.0;
+    public static double tagPoseZ = 0.0;
 }

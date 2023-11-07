@@ -36,7 +36,8 @@ public class k {
         public static final float DECIMATION_LOW = 2;
         public static final float THRESHOLD_HIGH_DECIMATION_RANGE_METERS = 1.0f;
         public static final int THRESHOLD_NUM_FRAMES_NO_DETECTION_BEFORE_LOW_DECIMATION = 4;
-        public static final int ID_TAG_OF_INTEREST = 5; // Tag ID 1 from the 36h11 family
+        public static int ID_TAG_OF_INTEREST = 5; // Tag ID 1 from the 36h11 family
+
     }
     public static final class ARM {
         public static final double TeamPropMinimumDistance_mm = 20;

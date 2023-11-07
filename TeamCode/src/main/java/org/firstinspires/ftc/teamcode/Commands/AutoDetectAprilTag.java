@@ -10,6 +10,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
 import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 import org.firstinspires.ftc.teamcode.Lib.AprilTagDetectionPipeline;
+import org.firstinspires.ftc.teamcode.Lib.GlobalData;
 import org.firstinspires.ftc.teamcode.Lib.k;
 import org.openftc.apriltag.AprilTagDetection;
 import org.openftc.easyopencv.OpenCvCamera;
@@ -123,23 +124,21 @@ public class AutoDetectAprilTag extends CommandBase {
 
         /* Actually do something useful */
         if (tagOfInterest == null) {
-            /*
-             * Insert your autonomous code here, presumably running some default configuration
-             * since the tag was never sighted during INIT
-             */
+            // Adjust GlobalData to numbers we assume from where we think we stop.
         } else {
             /*
              * Insert your autonomous code here, probably using the tag pose to decide your configuration.
              */
-
-            // e.g.
-            if (tagOfInterest.pose.x <= 20) {
-                // do something
-            } else if (tagOfInterest.pose.x >= 20 && tagOfInterest.pose.x <= 50) {
-                // do something else
-            } else if (tagOfInterest.pose.x >= 50) {
-                // do something else
-            }
+            GlobalData.tagPoseX = tagOfInterest.pose.x;
+            GlobalData.tagPoseZ = tagOfInterest.pose.z;
+//            // e.g.
+//            if (tagOfInterest.pose.x <= 20) {
+//                // do something
+//            } else if (tagOfInterest.pose.x >= 20 && tagOfInterest.pose.x <= 50) {
+//                // do something else
+//            } else if (tagOfInterest.pose.x >= 50) {
+//                // do something else
+//            }
         }
     }
 
