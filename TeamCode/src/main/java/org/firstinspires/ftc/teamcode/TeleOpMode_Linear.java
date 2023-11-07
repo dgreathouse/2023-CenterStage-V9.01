@@ -74,7 +74,7 @@ public class TeleOpMode_Linear extends CommandOpMode {
         hw.init();
 
         // Create subsystems
-        m_drive = new DriveSubsystem(this);
+        m_drive = new DriveSubsystem(this, hw);
         m_arm = new ArmSubsystem(this);
         m_drone = new DroneSubsystem(this);
         m_clawGrip = new ClawGripSubsystem(this);

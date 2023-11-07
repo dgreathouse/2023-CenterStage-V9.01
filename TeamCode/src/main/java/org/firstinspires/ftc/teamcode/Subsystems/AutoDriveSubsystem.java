@@ -16,7 +16,7 @@ public class AutoDriveSubsystem extends SubsystemBase {
     // Declare the MotorEx and Vector2D classes for each motor
     private MotorEx m_lDrive, m_rDrive, m_bDrive;
     private KiwiDrive m_drive;
-
+    private Hw m_hw;
     // Declare a CommandOpMode variable
     private CommandOpMode m_opMode;
 
@@ -24,39 +24,14 @@ public class AutoDriveSubsystem extends SubsystemBase {
      *
      * @param _opMode The opMode used which will be teleOp or Autonomous
      */
-    public AutoDriveSubsystem(CommandOpMode _opMode) {
+    public AutoDriveSubsystem(CommandOpMode _opMode, Hw _hw) {
         m_opMode = _opMode;
-
-        initHardware();
+        m_hw = _hw;
+        m_hw.initDriveHardware(_opMode, m_lDrive,m_rDrive,m_bDrive);
         m_drive = new KiwiDrive(m_lDrive,m_rDrive, m_bDrive);
 
     }
-    public void initHardware(){
-        m_lDrive = new MotorEx(m_opMode.hardwareMap, Hw.DriveFrontLeft, Motor.GoBILDA.RPM_435);
-        m_lDrive.setInverted(true);
-        m_lDrive.setRunMode(Motor.RunMode.VelocityControl);
-        m_lDrive.setZeroPowerBehavior(Motor.ZeroPowerBehavior.BRAKE);
-        m_lDrive.setDistancePerPulse(k.DRIVE.InchPerCount);
-        m_lDrive.encoder.setDirection(Motor.Direction.FORWARD);
-        m_lDrive.setVeloCoefficients(1.0,0.01,0);
 
-        m_rDrive = new MotorEx(m_opMode.hardwareMap, Hw.DriveFrontRight, Motor.GoBILDA.RPM_435);
-        m_rDrive.setInverted(true);
-        m_rDrive.setRunMode(Motor.RunMode.VelocityControl);
-        m_rDrive.setZeroPowerBehavior(Motor.ZeroPowerBehavior.BRAKE);
-        m_rDrive.setDistancePerPulse(k.DRIVE.InchPerCount);
-        m_rDrive.encoder.setDirection(Motor.Direction.REVERSE);
-        m_rDrive.setVeloCoefficients(1.0,0.01,0);
-
-        m_bDrive = new MotorEx(m_opMode.hardwareMap, Hw.DriveBack, Motor.GoBILDA.RPM_435);
-        m_bDrive.setInverted(true);
-        m_bDrive.setRunMode(Motor.RunMode.VelocityControl);
-        m_bDrive.setZeroPowerBehavior(Motor.ZeroPowerBehavior.BRAKE);
-        m_bDrive.setDistancePerPulse(k.DRIVE.InchPerCount);
-        m_bDrive.encoder.setDirection(Motor.Direction.REVERSE);
-        m_bDrive.setVeloCoefficients(1.0,0.01,0);
-
-    }
 
     /**
      *
