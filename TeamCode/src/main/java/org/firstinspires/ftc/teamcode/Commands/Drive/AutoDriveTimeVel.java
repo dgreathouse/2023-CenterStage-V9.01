@@ -7,6 +7,7 @@ import com.arcrobotics.ftclib.util.MathUtils;
 import com.arcrobotics.ftclib.util.Timing;
 
 import org.firstinspires.ftc.teamcode.Lib.k;
+import org.firstinspires.ftc.teamcode.Subsystems.AutoDriveSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystems.DriveSubsystem;
 
 import java.util.concurrent.TimeUnit;
@@ -19,7 +20,7 @@ import java.util.concurrent.TimeUnit;
  */
 public class AutoDriveTimeVel extends CommandBase {
     CommandOpMode m_opMode;
-    DriveSubsystem m_drive;
+    AutoDriveSubsystem m_drive;
     double m_driveAngle;
     double m_robotAngle;
     int m_timeOut;
@@ -29,7 +30,7 @@ public class AutoDriveTimeVel extends CommandBase {
     Timing.Timer m_timer;
 
 
-    public AutoDriveTimeVel(CommandOpMode _opMode, DriveSubsystem _drive, double _driveAngle, double _speed, double _robotAngle, int _timeOut) {
+    public AutoDriveTimeVel(CommandOpMode _opMode, AutoDriveSubsystem _drive, double _driveAngle, double _speed, double _robotAngle, int _timeOut) {
         m_opMode = _opMode;
         m_drive = _drive;
         m_driveAngle = _driveAngle;

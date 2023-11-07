@@ -7,6 +7,7 @@ import com.arcrobotics.ftclib.util.MathUtils;
 import com.arcrobotics.ftclib.util.Timing;
 
 import org.firstinspires.ftc.teamcode.Lib.k;
+import org.firstinspires.ftc.teamcode.Subsystems.AutoDriveSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystems.DriveSubsystem;
 
 import java.util.concurrent.TimeUnit;
@@ -19,7 +20,7 @@ import java.util.concurrent.TimeUnit;
  */
 public class AutoRotateRobot extends CommandBase {
     CommandOpMode m_opMode;
-    DriveSubsystem m_drive;
+    AutoDriveSubsystem m_drive;
     double m_angle;
     int m_timeOut;
     double m_speed;
@@ -28,7 +29,7 @@ public class AutoRotateRobot extends CommandBase {
     Timing.Timer m_timer;
 
 
-    public AutoRotateRobot(CommandOpMode _opMode, DriveSubsystem _drive, double _angle, double _speed, int _timeOut) {
+    public AutoRotateRobot(CommandOpMode _opMode, AutoDriveSubsystem _drive, double _angle, double _speed, int _timeOut) {
         m_opMode = _opMode;
         m_drive = _drive;
         m_angle = _angle;

@@ -6,11 +6,13 @@ import com.arcrobotics.ftclib.controller.PIDController;
 
 import org.firstinspires.ftc.teamcode.Lib.Hw;
 import org.firstinspires.ftc.teamcode.Lib.k;
+import org.firstinspires.ftc.teamcode.Subsystems.AutoDriveSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystems.DriveSubsystem;
 
-public class AutoDriveDefaultCommand extends CommandBase {
+public class
+AutoDriveDefaultCommand extends CommandBase {
     // Declare a variable called "drive" of type "DriveSubsystem"
-    DriveSubsystem m_drive;
+    AutoDriveSubsystem m_drive;
 
     // Declare a variable called "opMode" of type "CommandOpMode"
     CommandOpMode m_opMode;
@@ -21,14 +23,11 @@ public class AutoDriveDefaultCommand extends CommandBase {
      * @param _opMode The opMode used which will be teleOp or Autonomous
      * @param _drive The DriveSubsystem instance variable
      */
-    public AutoDriveDefaultCommand(CommandOpMode _opMode, DriveSubsystem _drive) {
+    public AutoDriveDefaultCommand(CommandOpMode _opMode, AutoDriveSubsystem _drive) {
 
         m_drive = _drive;    // Set the local "m_drive" variable to the parameter "_drive"
-
-
         m_opMode = _opMode;  // Set the local "opMode" variable to the parameter "_opMode"
-        // Set the requirements for the Command. This always must be done for a "Command"
-        // The requirement is any subsystem that will be used by this command.
+
         addRequirements(m_drive);
     }
 
@@ -40,8 +39,7 @@ public class AutoDriveDefaultCommand extends CommandBase {
 
     @Override
     public void execute(){
-
-
+        m_drive.disableMotors();
     }
     @Override
     public void end(boolean _interrupted){

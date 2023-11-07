@@ -3,19 +3,17 @@ package org.firstinspires.ftc.teamcode.Commands.ClawGrip;
 import com.arcrobotics.ftclib.command.CommandBase;
 import com.arcrobotics.ftclib.command.CommandOpMode;
 
-import org.firstinspires.ftc.teamcode.Lib.GlobalData;
-import org.firstinspires.ftc.teamcode.Subsystems.ClawAutoGripSubsystem;
-import org.firstinspires.ftc.teamcode.Subsystems.ClawGripSubsystem;
+import org.firstinspires.ftc.teamcode.Subsystems.AutoClawGripSubsystem;
 
 /**
  */
 public class ClawRotateFingers extends CommandBase {
     CommandOpMode m_opMode;
     boolean isFinished = false;
-    ClawAutoGripSubsystem m_claw;
+    AutoClawGripSubsystem m_claw;
     double m_angle;
 
-    public ClawRotateFingers(CommandOpMode _opMode, ClawAutoGripSubsystem _claw, double _angle) {
+    public ClawRotateFingers(CommandOpMode _opMode, AutoClawGripSubsystem _claw, double _angle) {
         m_opMode = _opMode;
         m_claw = _claw;
         m_angle = _angle;

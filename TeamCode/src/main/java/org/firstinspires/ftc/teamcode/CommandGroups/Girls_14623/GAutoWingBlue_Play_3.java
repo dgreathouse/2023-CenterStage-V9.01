@@ -4,18 +4,16 @@ import com.arcrobotics.ftclib.command.CommandOpMode;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 
 import org.firstinspires.ftc.teamcode.Commands.AutoStopOpModeCommand;
-import org.firstinspires.ftc.teamcode.Lib.ArmData;
 import org.firstinspires.ftc.teamcode.Lib.AutoFieldLocation;
 import org.firstinspires.ftc.teamcode.Lib.GlobalData;
 import org.firstinspires.ftc.teamcode.Lib.TeamColor;
-import org.firstinspires.ftc.teamcode.Subsystems.ArmAutoSubsystem;
-import org.firstinspires.ftc.teamcode.Subsystems.ArmSubsystem;
-import org.firstinspires.ftc.teamcode.Subsystems.ClawAutoGripSubsystem;
-import org.firstinspires.ftc.teamcode.Subsystems.DriveSubsystem;
+import org.firstinspires.ftc.teamcode.Subsystems.AutoArmSubsystem;
+import org.firstinspires.ftc.teamcode.Subsystems.AutoDriveSubsystem;
+import org.firstinspires.ftc.teamcode.Subsystems.AutoClawGripSubsystem;
 
 public class GAutoWingBlue_Play_3 extends SequentialCommandGroup {
 
-    public GAutoWingBlue_Play_3(CommandOpMode _opMode, DriveSubsystem _drive, ArmAutoSubsystem _arm, ClawAutoGripSubsystem _claw)  {
+    public GAutoWingBlue_Play_3(CommandOpMode _opMode, AutoDriveSubsystem _drive, AutoArmSubsystem _arm, AutoClawGripSubsystem _claw)  {
         GlobalData.TeamColor = TeamColor.BLUE;
         GlobalData.FieldLocation = AutoFieldLocation.WING;
         addCommands(

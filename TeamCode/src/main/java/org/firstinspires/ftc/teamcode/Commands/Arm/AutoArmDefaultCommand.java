@@ -4,33 +4,32 @@ import com.arcrobotics.ftclib.command.CommandBase;
 import com.arcrobotics.ftclib.command.CommandOpMode;
 
 import org.firstinspires.ftc.teamcode.Lib.GlobalData;
-import org.firstinspires.ftc.teamcode.Subsystems.ArmSubsystem;
+import org.firstinspires.ftc.teamcode.Subsystems.AutoArmSubsystem;
 
-/**
+/** Arm Auto Default Command
+
  */
-public class ArmSetForearmPower extends CommandBase {
+public class AutoArmDefaultCommand extends CommandBase {
+    AutoArmSubsystem m_arm;
     CommandOpMode m_opMode;
-    ArmSubsystem m_arm;
-    double m_pwr;
+    int x = 0;
 
-    public ArmSetForearmPower(CommandOpMode _opMode, ArmSubsystem _arm, double _pwr) {
+    public AutoArmDefaultCommand(CommandOpMode _opMode, AutoArmSubsystem _arm){
         m_opMode = _opMode;
         m_arm = _arm;
-        m_pwr = _pwr;
+
         addRequirements(m_arm);
     }
-
     @Override
     public void initialize(){
-        GlobalData.ForearmTestPower += m_pwr;
-    }
-    @Override
-    public void execute(){
 
     }
+
     @Override
-    public boolean isFinished(){
-        return true;
+    public void execute(){
+        if(GlobalData.ArmAutoEnable){
+            m_arm.armGotoPosition();
+        }
     }
     @Override
     public void end(boolean _interrupted){

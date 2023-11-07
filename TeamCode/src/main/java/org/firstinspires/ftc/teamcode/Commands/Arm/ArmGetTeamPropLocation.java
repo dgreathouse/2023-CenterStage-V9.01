@@ -7,20 +7,19 @@ import org.firstinspires.ftc.teamcode.Lib.AutoFieldLocation;
 import org.firstinspires.ftc.teamcode.Lib.GlobalData;
 import org.firstinspires.ftc.teamcode.Lib.TeamColor;
 import org.firstinspires.ftc.teamcode.Lib.TeamPropLocation;
-import org.firstinspires.ftc.teamcode.Subsystems.ArmAutoSubsystem;
-import org.firstinspires.ftc.teamcode.Subsystems.ArmSubsystem;
+import org.firstinspires.ftc.teamcode.Subsystems.AutoArmSubsystem;
 
 /**
  *
  */
 public class ArmGetTeamPropLocation extends CommandBase {
     CommandOpMode m_opMode;
-    ArmAutoSubsystem m_arm;
+    AutoArmSubsystem m_arm;
     TeamPropLocation m_teamPropLocation;
 
     boolean isFinished = false;
 
-    public ArmGetTeamPropLocation(CommandOpMode _opMode, ArmAutoSubsystem _arm, TeamPropLocation _location) {
+    public ArmGetTeamPropLocation(CommandOpMode _opMode, AutoArmSubsystem _arm, TeamPropLocation _location) {
         m_opMode = _opMode;
         m_arm = _arm;
         m_teamPropLocation = _location;

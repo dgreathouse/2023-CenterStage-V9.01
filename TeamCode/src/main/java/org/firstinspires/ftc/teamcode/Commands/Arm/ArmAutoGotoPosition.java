@@ -3,31 +3,30 @@ package org.firstinspires.ftc.teamcode.Commands.Arm;
 import com.arcrobotics.ftclib.command.CommandBase;
 import com.arcrobotics.ftclib.command.CommandOpMode;
 
-import org.firstinspires.ftc.teamcode.Subsystems.ArmAutoSubsystem;
-import org.firstinspires.ftc.teamcode.Subsystems.ArmSubsystem;
+import org.firstinspires.ftc.teamcode.Subsystems.AutoArmSubsystem;
 
 /**
  */
 public class ArmAutoGotoPosition extends CommandBase {
     CommandOpMode m_opMode;
-    ArmAutoSubsystem m_arm;
-    double m_ang;
-
-    public ArmAutoGotoPosition(CommandOpMode _opMode, ArmAutoSubsystem _arm, double _ang) {
+    AutoArmSubsystem m_arm;
+    double m_shoulderAngle = 0.0;
+    double m_forearmPosition = 0.0;
+    double m_clawAngle = 0.0;
+    public ArmAutoGotoPosition(CommandOpMode _opMode, AutoArmSubsystem _arm, double _shoulderAngle, double _clawAngle, double _forearmPosition) {
         m_opMode = _opMode;
         m_arm = _arm;
-        m_ang = _ang;
+        m_shoulderAngle = _shoulderAngle;
+        m_forearmPosition = _forearmPosition;
+        m_clawAngle = _clawAngle;
         addRequirements(m_arm);
     }
 
     @Override
     public void initialize(){
-        m_arm.setArmAngle(m_ang);
+        m_arm.setArmData(m_shoulderAngle, m_clawAngle, m_forearmPosition);
     }
-    @Override
-    public void execute(){
 
-    }
     @Override
     public boolean isFinished(){
         return true;

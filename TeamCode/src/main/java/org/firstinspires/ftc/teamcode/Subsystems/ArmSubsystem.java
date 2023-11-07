@@ -34,7 +34,7 @@ public class ArmSubsystem extends SubsystemBase {
         m_armData = new ArmData();
         m_claw = new Claw(m_opMode);
         m_forearm = new Forearm(m_opMode);
-        m_shoulder = new Shoulder(m_opMode, m_armData);
+        m_shoulder = new Shoulder(m_opMode, m_armData, m_forearm);
         m_distanceSensor = m_opMode.hardwareMap.get(Rev2mDistanceSensor.class, Hw.DistanceSensor);
     }
 
@@ -125,32 +125,20 @@ public class ArmSubsystem extends SubsystemBase {
         m_armAng = _angle;
     }
 
-
-    // Test methods
-    public void setShouldTestPower(double _pwr) {
-        m_shoulder.setPower(_pwr);
-    }
-
-    public void setClawTestPos(double _pos) {
-        m_claw.setClawRotateAngle(_pos);
-    }
-
     @Override
     public void periodic() {
         m_opMode.telemetry.addData("Team Prop Distance", "%3.3f", getTeamPropDistance());
 
         m_opMode.telemetry.addData("Shoulder Angle", "%3.3f", m_shoulder.getAngle());
-        m_opMode.telemetry.addData("Shoulder Power", "%3.3f", m_shoulder.getPower());
-        m_opMode.telemetry.addData("Shoulder Angle Requested", "%3.3f", m_armAng);
-        m_opMode.telemetry.addData("Shoulder Up Vel Limit", "%3.3f",k.SHOULDER.RotationPID_Max);
-        m_opMode.telemetry.addData("Shoulder Down Vel Limit", "%3.3f",k.SHOULDER.RotationPID_Min);
+        m_opMode.telemetry.addData("Shoulder Requested Angle", "%3.3f", m_armAng);
+
+
         m_opMode.telemetry.addData("Claw Angle", "%3.3f", m_claw.getClawRotateAngle());
         m_opMode.telemetry.addData("Claw Requested Angle", "%3.3f", m_IClawAngle);
 
 
-        m_opMode.telemetry.addData("Forearm Distance", "%3.3f", m_forearm.getPosition());
-        m_opMode.telemetry.addData("Forearm Speed", "%3.3f", m_forearm.getSpeed());
-        m_opMode.telemetry.addData("Forearm Actual Speed", "%3.3f", m_forearm.getActualSpeed());
+        m_opMode.telemetry.addData("Forearm Position", "%3.3f", m_forearm.getPosition());
+        m_opMode.telemetry.addData("Forearm Requested Position ", "%3.3f", m_forearm.getSpeed());
 
    //     m_opMode.telemetry.addData("Shoulder Test Power", GlobalData.ShoulderTestPower);
    //     m_opMode.telemetry.addData("Forearm Test Power", GlobalData.ForearmTestPower);

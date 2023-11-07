@@ -8,6 +8,7 @@ import com.arcrobotics.ftclib.util.Timing;
 import org.firstinspires.ftc.teamcode.Lib.GlobalData;
 import org.firstinspires.ftc.teamcode.Lib.TeamColor;
 import org.firstinspires.ftc.teamcode.Lib.k;
+import org.firstinspires.ftc.teamcode.Subsystems.AutoDriveSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystems.DriveSubsystem;
 
 import java.util.concurrent.TimeUnit;
@@ -20,7 +21,7 @@ import java.util.concurrent.TimeUnit;
  */
 public class AutoDriveToTeamProp extends CommandBase {
     CommandOpMode m_opMode;
-    DriveSubsystem m_drive;
+    AutoDriveSubsystem m_drive;
     double m_driveAngle = 0;
     double m_robotAngle = 0;
     int m_timeOut = 1000;
@@ -29,7 +30,7 @@ public class AutoDriveToTeamProp extends CommandBase {
     PIDController rotPID;
     Timing.Timer m_elapsedTimer;
 
-    public AutoDriveToTeamProp(CommandOpMode _opMode, DriveSubsystem _drive) {
+    public AutoDriveToTeamProp(CommandOpMode _opMode, AutoDriveSubsystem _drive) {
         m_opMode = _opMode;
         m_drive = _drive;
     }

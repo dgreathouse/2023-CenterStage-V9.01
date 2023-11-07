@@ -10,12 +10,12 @@ import org.firstinspires.ftc.teamcode.Lib.GlobalData;
 import org.firstinspires.ftc.teamcode.Lib.Hw;
 import org.firstinspires.ftc.teamcode.Lib.k;
 
-public class ClawAutoGripSubsystem extends SubsystemBase {
+public class AutoClawGripSubsystem extends SubsystemBase {
     ServoEx m_right;
     private CommandOpMode m_opMode;
     double m_gripAngle;
     double x = 1;
-    public ClawAutoGripSubsystem(CommandOpMode _opMode){
+    public AutoClawGripSubsystem(CommandOpMode _opMode){
         m_opMode = _opMode;
         initHardware();
     }

@@ -8,19 +8,14 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
 import org.firstinspires.ftc.teamcode.CommandGroups.Boys_22291.BAutoBackdropBlue_Play_1;
 import org.firstinspires.ftc.teamcode.CommandGroups.Girls_14623.GAutoBackdropBlue_Play_1;
-import org.firstinspires.ftc.teamcode.Commands.Arm.ArmAutoDefaultCommand;
-import org.firstinspires.ftc.teamcode.Commands.Arm.ArmDefaultCommand;
-import org.firstinspires.ftc.teamcode.Commands.ClawGrip.ClawGripAutoDefaultCommand;
-import org.firstinspires.ftc.teamcode.Commands.ClawGrip.ClawGripDefaultCommand;
+import org.firstinspires.ftc.teamcode.Commands.Arm.AutoArmDefaultCommand;
 import org.firstinspires.ftc.teamcode.Commands.Drive.AutoDriveDefaultCommand;
 import org.firstinspires.ftc.teamcode.Lib.GlobalData;
 import org.firstinspires.ftc.teamcode.Lib.Hw;
 import org.firstinspires.ftc.teamcode.Lib.k;
-import org.firstinspires.ftc.teamcode.Subsystems.ArmAutoSubsystem;
-import org.firstinspires.ftc.teamcode.Subsystems.ArmSubsystem;
-import org.firstinspires.ftc.teamcode.Subsystems.ClawAutoGripSubsystem;
-import org.firstinspires.ftc.teamcode.Subsystems.ClawGripSubsystem;
-import org.firstinspires.ftc.teamcode.Subsystems.DriveSubsystem;
+import org.firstinspires.ftc.teamcode.Subsystems.AutoArmSubsystem;
+import org.firstinspires.ftc.teamcode.Subsystems.AutoDriveSubsystem;
+import org.firstinspires.ftc.teamcode.Subsystems.AutoClawGripSubsystem;
 
 import java.util.concurrent.TimeUnit;
 
@@ -31,10 +26,11 @@ public class AutoBackdropBlueOpMode_Play_1 extends CommandOpMode {
     double m_timerAvg = 0.0;
     double m_timerCnt = 0;
     Hw hw;
-    DriveSubsystem drive;
+    AutoDriveSubsystem drive;
     AutoDriveDefaultCommand driveDefaultCommand;
-    ArmAutoSubsystem arm;
-    ClawAutoGripSubsystem claw;
+    AutoArmDefaultCommand armDefaultCommand;
+    AutoArmSubsystem arm;
+    AutoClawGripSubsystem claw;
     GAutoBackdropBlue_Play_1 Gauto;
     BAutoBackdropBlue_Play_1 Bauto;
 
@@ -44,16 +40,18 @@ public class AutoBackdropBlueOpMode_Play_1 extends CommandOpMode {
         hw.init();
 
         // Create Subsystems
-        drive = new DriveSubsystem(this);
-        arm = new ArmAutoSubsystem(this);
-        claw = new ClawAutoGripSubsystem(this);
+        drive = new AutoDriveSubsystem(this);
+        arm = new AutoArmSubsystem(this);
+        claw = new AutoClawGripSubsystem(this);
 
         // Create Commands
         driveDefaultCommand = new AutoDriveDefaultCommand(this,drive);
         drive.setDefaultCommand(driveDefaultCommand);
+        armDefaultCommand = new AutoArmDefaultCommand(this,arm);
+        arm.setDefaultCommand(armDefaultCommand);
         createCommandGroup();
         // Register subsystems
-        register(drive,arm);
+        register(drive,arm,claw);
 
         m_timer = new Timing.Timer(100, TimeUnit.MILLISECONDS);
         m_timer.start();
