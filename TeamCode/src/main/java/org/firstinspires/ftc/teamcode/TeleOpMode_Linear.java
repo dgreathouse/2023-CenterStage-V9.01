@@ -102,18 +102,14 @@ public class TeleOpMode_Linear extends CommandOpMode {
         Hw.s_gpDriver.getGamepadButton(GamepadKeys.Button.B).whenPressed(new InstantCommand(() -> m_arm.setArmAngle(ArmPos.STRAIGHT), m_arm));
 
         // Set Drive PID to -45
-        Hw.s_gpDriver.getGamepadButton(GamepadKeys.Button.DPAD_UP).whenPressed(new InstantCommand(() -> m_drive.setDrivePIDAngle(-45), m_drive));
+        Hw.s_gpDriver.getGamepadButton(GamepadKeys.Button.DPAD_UP).whenPressed(new InstantCommand(() -> m_drive.setDrivePIDAngle(135), m_drive));
         // Set Drive PID to 45 for wing Red
         Hw.s_gpDriver.getGamepadButton(GamepadKeys.Button.DPAD_DOWN).whenPressed(new InstantCommand(() -> m_drive.setDrivePIDAngle(45), m_drive));
-
         // Set Drive PID to 90
         Hw.s_gpDriver.getGamepadButton(GamepadKeys.Button.DPAD_LEFT).whenPressed(new InstantCommand(() -> m_drive.setDrivePIDAngle(90), m_drive));
-
         // Set Drive PID to -90
         Hw.s_gpDriver.getGamepadButton(GamepadKeys.Button.DPAD_RIGHT).whenPressed(new InstantCommand(() -> m_drive.setDrivePIDAngle(-90), m_drive));
-
         // Set up buttons for Operator
-
         // Close the claw (left Bumper)
         Hw.s_gpOperator.getGamepadButton(GamepadKeys.Button.LEFT_BUMPER).whenPressed(new InstantCommand(()-> m_clawGrip.setClawGripAngle(m_clawGrip.getClawCloseAngle()),m_arm));
         // Close the claw (right Bumper)

@@ -50,9 +50,9 @@ public class AutoDriveToTeamProp extends CommandBase {
                     m_speed = 0.32;
                 } else {
                     m_driveAngle = 00;
-                    m_robotAngle = 10;
-                    m_timeOut = 450;
-                    m_speed = 0.4;
+                    m_robotAngle = 17.5;
+                    m_timeOut = 2000;
+                    m_speed = 00;
                 }
                 break;
             case LEFT:

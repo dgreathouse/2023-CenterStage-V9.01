@@ -40,9 +40,16 @@ public class DriveDefaultCommand extends CommandBase {
     public void execute(){
         // Get the X,Y, and Z axis values from the Driver joystick.
         // The values from the joystick are always in the range of +/- 1.0
-        m_y = -Hw.s_gpDriver.getRightY();
-        m_x = Hw.s_gpDriver.getRightX();
-        m_z = Hw.s_gpDriver.getLeftX();
+
+        if(GlobalData.TeamNumber == 14623) {
+            m_y = Hw.s_gpDriver.getLeftY();
+            m_x = Hw.s_gpDriver.getLeftX();
+            m_z = Hw.s_gpDriver.getRightX();
+        }else {
+            m_y = -Hw.s_gpDriver.getRightX();
+            m_x = Hw.s_gpDriver.getRightX();
+            m_z = Hw.s_gpDriver.getLeftX();
+        }
         // Handle rotation value
         if(Math.abs(m_z) > 0.2){ // in rotation mode
             // Scale the turning rotation down

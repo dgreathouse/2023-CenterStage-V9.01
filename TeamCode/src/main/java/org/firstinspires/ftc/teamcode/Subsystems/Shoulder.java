@@ -62,10 +62,15 @@ public class Shoulder {
         // The PID is basically the velocity the arm will rotate at.
         double rot = rotPID.calculate(CurrentAngleOffsetRad, RequestedAngleOffsetRad);
         // Clamp the value of rotation to a minimum to slow the down speed and positive up value to raise the arm with more power.
-        rot = MathUtils.clamp(rot,k.SHOULDER.RotationPID_Min, k.SHOULDER.RotationPID_Max);
+        rot = MathUtils.clamp(rot,k.SHOULDER.RotationPID_Min,2.5);
         // Set a module level variable to allow for telemetry
         m_shoulderPower = cos + rot;
-        m_motor.set(m_shoulderPower);
+        if(getAngle() < 5 && _ang < 1.0){
+            m_motor.set(0.0);
+        }else {
+            m_motor.set(m_shoulderPower);
+        }
+
 
     }
 
