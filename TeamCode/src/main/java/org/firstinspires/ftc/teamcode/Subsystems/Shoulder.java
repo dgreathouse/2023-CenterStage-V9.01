@@ -58,7 +58,7 @@ public class Shoulder {
 
         double cos = Math.cos(CurrentAngleOffsetRad) * kfa;
         // Add a scale based on the actual forearm position
-        cos = cos + m_forearm.getPosition() * m_kfaScale;
+        cos = cos + m_forearm.getPosition() * Math.signum(cos) * m_kfaScale;
         // The PID is basically the velocity the arm will rotate at.
         double rot = rotPID.calculate(CurrentAngleOffsetRad, RequestedAngleOffsetRad);
         // Clamp the value of rotation to a minimum to slow the down speed and positive up value to raise the arm with more power.

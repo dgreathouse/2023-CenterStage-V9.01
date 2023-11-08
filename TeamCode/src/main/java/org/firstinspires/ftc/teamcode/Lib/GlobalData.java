@@ -15,6 +15,6 @@ public class GlobalData {
     public static RobotState State = RobotState.AUTONOMOUS;
 
     public static int tagOfInterest = 20;
-    public static double tagPoseX = 0.0;
-    public static double tagPoseZ = 0.0;
+    public static double tagPoseX = 1.0;
+    public static double tagPoseZ = 1.0;
 }

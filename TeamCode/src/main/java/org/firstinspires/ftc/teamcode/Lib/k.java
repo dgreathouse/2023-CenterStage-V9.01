@@ -29,7 +29,7 @@ public class k {
         public static final double fy = 1133.7887;
         public static final double cx = 635.2146;
         public static final double cy = 465.3686;
-        public static final double tagsize = 0.166;
+        public static final double tagsize = 0.0508;
         public static  int numFramesWithoutDetection = 0;
 
         public static final float DECIMATION_HIGH = 3;

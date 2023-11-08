@@ -38,28 +38,34 @@ public class ArmGetTeamPropLocation extends CommandBase {
                 if (m_teamPropLocation == TeamPropLocation.CENTER) {
                     if (dis < 500) {
                         GlobalData.TeamPropLocation = TeamPropLocation.CENTER;
+                        GlobalData.tagOfInterest = 5;
                     }
                 } else if (m_teamPropLocation == TeamPropLocation.RIGHT) {
                     if (dis < 500) {
                         GlobalData.TeamPropLocation = TeamPropLocation.RIGHT;
+                        GlobalData.tagOfInterest = 6;
                     }
                 } else if (m_teamPropLocation == TeamPropLocation.LEFT) {
                     if (GlobalData.TeamPropLocation == TeamPropLocation.NONE) {
                         GlobalData.TeamPropLocation = TeamPropLocation.LEFT;
+                        GlobalData.tagOfInterest = 4;
                     }
                 }
             } else { //Blue
                 if (m_teamPropLocation == TeamPropLocation.CENTER) {
                     if (dis < 500) {
                         GlobalData.TeamPropLocation = TeamPropLocation.CENTER;
+                        GlobalData.tagOfInterest = 2;
                     }
                 } else if (m_teamPropLocation == TeamPropLocation.LEFT) {
                     if (dis < 500) {
                         GlobalData.TeamPropLocation = TeamPropLocation.LEFT;
+                        GlobalData.tagOfInterest = 1;
                     }
                 } else if (m_teamPropLocation == TeamPropLocation.RIGHT) {
                     if (GlobalData.TeamPropLocation == TeamPropLocation.NONE) {
                         GlobalData.TeamPropLocation = TeamPropLocation.RIGHT;
+                        GlobalData.tagOfInterest = 3;
                     }
                 }
             }
@@ -68,28 +74,34 @@ public class ArmGetTeamPropLocation extends CommandBase {
                 if (m_teamPropLocation == TeamPropLocation.CENTER) {
                     if (dis < 500) {
                         GlobalData.TeamPropLocation = TeamPropLocation.CENTER;
+                        GlobalData.tagOfInterest = 5;
                     }
                 } else if (m_teamPropLocation == TeamPropLocation.LEFT) {
                     if (dis < 500) {
                         GlobalData.TeamPropLocation = TeamPropLocation.LEFT;
+                        GlobalData.tagOfInterest = 4;
                     }
                 } else if (m_teamPropLocation == TeamPropLocation.RIGHT) {
                     if (GlobalData.TeamPropLocation == TeamPropLocation.NONE) {
                         GlobalData.TeamPropLocation = TeamPropLocation.RIGHT;
+                        GlobalData.tagOfInterest = 6;
                     }
                 }
             } else { //Blue
                 if (m_teamPropLocation == TeamPropLocation.CENTER) {
                     if (dis < 500) {
                         GlobalData.TeamPropLocation = TeamPropLocation.CENTER;
+                        GlobalData.tagOfInterest = 2;
                     }
                 } else if (m_teamPropLocation == TeamPropLocation.RIGHT) {
                     if (dis < 500) {
                         GlobalData.TeamPropLocation = TeamPropLocation.RIGHT;
+                        GlobalData.tagOfInterest = 3;
                     }
                 } else if (m_teamPropLocation == TeamPropLocation.LEFT) {
                     if (GlobalData.TeamPropLocation == TeamPropLocation.NONE) {
                         GlobalData.TeamPropLocation = TeamPropLocation.LEFT;
+                        GlobalData.tagOfInterest = 1;
                     }
                 }
 
