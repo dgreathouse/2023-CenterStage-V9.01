@@ -35,7 +35,7 @@ public class AutoDriveToBackdropAprilTag extends CommandBase {
     double m_robotAngle = 0;
     int m_timeOut = 1000;
     double m_speed = 0.4;
-
+    double m_ZTimeScale = 100; // Scale factor for distance of Z travel as timeOut.
     PIDController rotPID;
     Timing.Timer m_elapsedTimer;
 
@@ -51,7 +51,7 @@ public class AutoDriveToBackdropAprilTag extends CommandBase {
         // Convert the angle to match the direction of the x for +/-
         // Not needed the asin function handles a negative number
 
-        m_timeOut = (int)(GlobalData.tagPoseZ * 100);
+        m_timeOut = (int)(GlobalData.tagPoseZ * m_ZTimeScale);
 
         rotPID = new PIDController(k.DRIVE.Rot_P,k.DRIVE.Rot_I,0);
         rotPID.reset();
@@ -69,7 +69,8 @@ public class AutoDriveToBackdropAprilTag extends CommandBase {
     }
     @Override
     public void execute(){
-
+        m_opMode.telemetry.addData("AprilTag Drive Angle", m_driveAngle);
+        m_opMode.telemetry.addData("AprilTag Drive Time", m_timeOut);
         double rot = -rotPID.calculate(m_drive.getRobotAngle(), m_robotAngle);
         m_drive.drivePolar(m_driveAngle, m_speed, rot);
 

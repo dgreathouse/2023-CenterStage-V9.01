@@ -70,7 +70,7 @@ public class AutoDetectAprilTag extends CommandBase {
             boolean tagFound = false;
 
             for (AprilTagDetection tag : currentDetections) {
-                if (tag.id == k.CAMERA.ID_TAG_OF_INTEREST) {
+                if (tag.id == GlobalData.tagOfInterest) {
                     tagOfInterest = tag;
                     tagFound = true;
                     break;
@@ -144,7 +144,7 @@ public class AutoDetectAprilTag extends CommandBase {
 
     @Override
     public boolean isFinished() {
-        if (m_elapsedTimer.seconds() > m_timeOut) {
+        if (tagOfInterest != null || m_elapsedTimer.seconds() > m_timeOut) {
             return true;
         }
         return false;
@@ -155,10 +155,10 @@ public class AutoDetectAprilTag extends CommandBase {
 
         m_opMode.telemetry.addLine(String.format("\nDetected tag ID=%d", detection.id));
         m_opMode.telemetry.addLine(String.format("Translation X: %.3f m", detection.pose.x));
-        m_opMode.telemetry.addLine(String.format("Translation Y: %.3f m", detection.pose.y));
+       // m_opMode.telemetry.addLine(String.format("Translation Y: %.3f m", detection.pose.y));
         m_opMode.telemetry.addLine(String.format("Translation Z: %.3f m", detection.pose.z));
-        m_opMode.telemetry.addLine(String.format("Rotation Yaw: %.3f degrees", rot.firstAngle));
-        m_opMode.telemetry.addLine(String.format("Rotation Pitch: %.3f degrees", rot.secondAngle));
-        m_opMode.telemetry.addLine(String.format("Rotation Roll: %.3f degrees", rot.thirdAngle));
+//        m_opMode.telemetry.addLine(String.format("Rotation Yaw: %.3f degrees", rot.firstAngle));
+//        m_opMode.telemetry.addLine(String.format("Rotation Pitch: %.3f degrees", rot.secondAngle));
+//        m_opMode.telemetry.addLine(String.format("Rotation Roll: %.3f degrees", rot.thirdAngle));
     }
 }
