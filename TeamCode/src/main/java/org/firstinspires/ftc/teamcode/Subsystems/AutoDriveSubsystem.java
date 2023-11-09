@@ -7,6 +7,7 @@ import com.arcrobotics.ftclib.hardware.motors.MotorEx;
 
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.YawPitchRollAngles;
+import org.firstinspires.ftc.teamcode.Lib.GlobalData;
 import org.firstinspires.ftc.teamcode.Lib.Hw;
 import org.firstinspires.ftc.teamcode.Lib.KiwiDrive;
 import org.firstinspires.ftc.teamcode.Lib.k;
@@ -105,5 +106,10 @@ public class AutoDriveSubsystem extends SubsystemBase {
     public void periodic(){
         m_opMode.telemetry.addData("Robot Angle", "%3.3f",getRobotAngle());
         m_opMode.telemetry.addData("Drive Angle", "%3.3f", m_drive.getDriveAngle());
+        m_opMode.telemetry.addLine(String.format("tagPose X: %.4f m", GlobalData.tagPoseX));
+        m_opMode.telemetry.addLine(String.format("tagPose Y: %.4f m", GlobalData.tagPoseY));
+        m_opMode.telemetry.addLine(String.format("tagPose Z: %.4f m", GlobalData.tagPoseZ));
+        m_opMode.telemetry.addData("Apriltag Drive Angle", "%3.3f", GlobalData.aprilTagAngle);
+        m_opMode.telemetry.addData("Apriltag Time", "%3.3f", GlobalData.aprilTagTime);
     }
 }

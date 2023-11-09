@@ -23,6 +23,9 @@ public class Shoulder {
     private double vel = 0.01;
     private double kfa, kfaMax;
     private double m_shoulderPower = 0;
+    private double motor_v = 0.0;
+    private double kMaxVel = 300;
+    private double gravatiyBoost = 0;
     double m_kfaScale = (kfaMax - kfa) / (k.FOREARM.ExtendLimit - k.FOREARM.RetractLimit);
     public Shoulder(CommandOpMode _opMode, ArmData _arm, Forearm _forearm) {
         m_opMode = _opMode;
@@ -37,13 +40,13 @@ public class Shoulder {
         m_motor.setInverted(false);
         m_motor.setZeroPowerBehavior(Motor.ZeroPowerBehavior.BRAKE);
         m_motor.resetEncoder();
-        rotPID = new PIDController(.62,0.45,0.0);
+        rotPID = new PIDController(.62,0.15,0.0);
         rotPID.setTolerance(.01);
-        rotPID.setIntegrationBounds(-8,8);
+        rotPID.setIntegrationBounds(-2,2);
         rotPID.reset();
 
         ks = 0.0;
-        kv = 0.0;
+        kv = 0.002;
         kCos = 0.2;
         vel = 0.0;
         kfa = kCos; // Forearm Constant multiplier for arm extension.
@@ -55,17 +58,24 @@ public class Shoulder {
         // Convert the angle to radians for Cos function
         double CurrentAngleOffsetRad = Math.toRadians(getAngle() - m_arm.getArmSetAngle(ArmPos.STRAIGHT));
         double RequestedAngleOffsetRad = Math.toRadians(_ang - m_arm.getArmSetAngle(ArmPos.STRAIGHT));
-
+        motor_v = m_motor.getCorrectedVelocity();
+        motor_v = MathUtils.clamp(motor_v, 0, kMaxVel);
         double cos = Math.cos(CurrentAngleOffsetRad) * kfa;
         // Add a scale based on the actual forearm position
         cos = cos + m_forearm.getPosition() * Math.signum(cos) * m_kfaScale;
+        double error_p = RequestedAngleOffsetRad - CurrentAngleOffsetRad;
         // The PID is basically the velocity the arm will rotate at.
         double rot = rotPID.calculate(CurrentAngleOffsetRad, RequestedAngleOffsetRad);
         // Clamp the value of rotation to a minimum to slow the down speed and positive up value to raise the arm with more power.
         rot = MathUtils.clamp(rot,k.SHOULDER.RotationPID_Min,2.5);
+
+        if(rot > 0) { // rot is positive when trying to raise the arm
+            gravatiyBoost = (kMaxVel - motor_v) * kv * error_p;
+            rot = rot + gravatiyBoost;
+        }
         // Set a module level variable to allow for telemetry
         m_shoulderPower = cos + rot;
-        if(getAngle() < 5 && _ang < 1.0){
+        if(getAngle() < 10 && _ang < 1.0){
             m_motor.set(0.0);
         }else {
             m_motor.set(m_shoulderPower);
@@ -73,8 +83,12 @@ public class Shoulder {
 
 
     }
-
-
+    public double getGravityBoost(){
+        return gravatiyBoost;
+    }
+    public double getVelocity(){
+       return m_motor.getCorrectedVelocity();
+    }
     public double getAngle(){
        return  m_motor.getCurrentPosition() / k.SHOULDER.Motor_CountsPDeg;
     }

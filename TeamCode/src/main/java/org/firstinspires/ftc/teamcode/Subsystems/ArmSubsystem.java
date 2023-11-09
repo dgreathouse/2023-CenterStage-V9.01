@@ -19,6 +19,7 @@ public class ArmSubsystem extends SubsystemBase {
     public ArmData m_armData;
     public double m_armAng = 0.0;
     private double m_IClawAngle = 0;
+
     public ArmSubsystem(CommandOpMode _opMode) {
         m_opMode = _opMode;
         initHardware();
@@ -115,7 +116,9 @@ public class ArmSubsystem extends SubsystemBase {
                 break;
         }
     }
-
+    public double getShoulderVel(){
+        return m_shoulder.getVelocity();
+    }
     public void setArmAngle(double _angle) {
         m_armAng = _angle;
     }
@@ -126,12 +129,16 @@ public class ArmSubsystem extends SubsystemBase {
 
         m_opMode.telemetry.addData("Shoulder Angle", "%3.3f", m_shoulder.getAngle());
         m_opMode.telemetry.addData("Shoulder Requested Angle", "%3.3f", m_armAng);
+        m_opMode.telemetry.addData("Shoulder Velocity", "%3.3f", getShoulderVel());
+        m_opMode.telemetry.addData("Shoulder GravityBoost", "%3.3f", m_shoulder.getGravityBoost());
+        m_opMode.telemetry.addData("Shoulder Power", "%3.3f", m_shoulder.getPower());
 
         m_opMode.telemetry.addData("Claw Angle", "%3.3f", m_claw.getClawRotateAngle());
         m_opMode.telemetry.addData("Claw Requested Angle", "%3.3f", m_IClawAngle);
 
         m_opMode.telemetry.addData("Forearm Position", "%3.3f", m_forearm.getPosition());
         m_opMode.telemetry.addData("Forearm Requested Position ", "%3.3f", m_forearm.getSpeed());
+
 
     }
 }

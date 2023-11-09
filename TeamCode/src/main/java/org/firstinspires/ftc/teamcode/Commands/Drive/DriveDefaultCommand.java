@@ -46,7 +46,7 @@ public class DriveDefaultCommand extends CommandBase {
             m_x = Hw.s_gpDriver.getLeftX();
             m_z = Hw.s_gpDriver.getRightX();
         }else {
-            m_y = -Hw.s_gpDriver.getRightX();
+            m_y = -Hw.s_gpDriver.getRightY();
             m_x = Hw.s_gpDriver.getRightX();
             m_z = Hw.s_gpDriver.getLeftX();
         }

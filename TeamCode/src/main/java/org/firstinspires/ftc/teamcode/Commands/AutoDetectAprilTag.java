@@ -43,7 +43,7 @@ public class AutoDetectAprilTag extends CommandBase {
         camera.openCameraDeviceAsync(new OpenCvCamera.AsyncCameraOpenListener() {
             @Override
             public void onOpened() {
-                camera.startStreaming(1280, 720, OpenCvCameraRotation.UPRIGHT);
+                camera.startStreaming(640, 480, OpenCvCameraRotation.UPRIGHT);
             }
 
             @Override
@@ -78,7 +78,7 @@ public class AutoDetectAprilTag extends CommandBase {
             }
 
             if (tagFound) {
-                m_opMode.telemetry.addLine("Tag of interest is in sight!\n\nLocation data:");
+                m_opMode.telemetry.addLine("Tag of interest is in sight!Location data:");
                 tagToTelemetry(tagOfInterest);
             } else {
                 m_opMode.telemetry.addLine("Don't see tag of interest :(");
@@ -86,7 +86,7 @@ public class AutoDetectAprilTag extends CommandBase {
                 if (tagOfInterest == null) {
                     m_opMode.telemetry.addLine("(The tag has never been seen)");
                 } else {
-                    m_opMode.telemetry.addLine("\nBut we HAVE seen the tag before; last seen at:");
+                    m_opMode.telemetry.addLine("But we HAVE seen the tag before; last seen at:");
                     tagToTelemetry(tagOfInterest);
                 }
             }
@@ -97,13 +97,13 @@ public class AutoDetectAprilTag extends CommandBase {
             if (tagOfInterest == null) {
                 m_opMode.telemetry.addLine("(The tag has never been seen)");
             } else {
-                m_opMode.telemetry.addLine("\nBut we HAVE seen the tag before; last seen at:");
+                m_opMode.telemetry.addLine("But we HAVE seen the tag before; last seen at:");
                 tagToTelemetry(tagOfInterest);
             }
 
         }
 
-        m_opMode.telemetry.update();
+       // m_opMode.telemetry.update();
         m_opMode.sleep(20);
 
 
@@ -130,6 +130,7 @@ public class AutoDetectAprilTag extends CommandBase {
              * Insert your autonomous code here, probably using the tag pose to decide your configuration.
              */
             GlobalData.tagPoseX = tagOfInterest.pose.x;
+            GlobalData.tagPoseY = tagOfInterest.pose.y;
             GlobalData.tagPoseZ = tagOfInterest.pose.z;
 //            // e.g.
 //            if (tagOfInterest.pose.x <= 20) {
@@ -144,7 +145,8 @@ public class AutoDetectAprilTag extends CommandBase {
 
     @Override
     public boolean isFinished() {
-        if (tagOfInterest != null || m_elapsedTimer.seconds() > m_timeOut) {
+ //       if (tagOfInterest != null || m_elapsedTimer.seconds() > m_timeOut) {
+        if (m_elapsedTimer.seconds() > m_timeOut) {
             return true;
         }
         return false;
@@ -153,10 +155,10 @@ public class AutoDetectAprilTag extends CommandBase {
     void tagToTelemetry(AprilTagDetection detection) {
         Orientation rot = Orientation.getOrientation(detection.pose.R, AxesReference.INTRINSIC, AxesOrder.YXZ, AngleUnit.DEGREES);
 
-        m_opMode.telemetry.addLine(String.format("\nDetected tag ID=%d", detection.id));
-        m_opMode.telemetry.addLine(String.format("Translation X: %.3f m", detection.pose.x));
-       // m_opMode.telemetry.addLine(String.format("Translation Y: %.3f m", detection.pose.y));
-        m_opMode.telemetry.addLine(String.format("Translation Z: %.3f m", detection.pose.z));
+        m_opMode.telemetry.addLine(String.format("Detected tag ID=%d", detection.id));
+//        m_opMode.telemetry.addLine(String.format("Translation X: %.4f m", detection.pose.x));
+//        m_opMode.telemetry.addLine(String.format("Translation Y: %.4f m", detection.pose.y));
+//        m_opMode.telemetry.addLine(String.format("Translation Z: %.4f m", detection.pose.z));
 //        m_opMode.telemetry.addLine(String.format("Rotation Yaw: %.3f degrees", rot.firstAngle));
 //        m_opMode.telemetry.addLine(String.format("Rotation Pitch: %.3f degrees", rot.secondAngle));
 //        m_opMode.telemetry.addLine(String.format("Rotation Roll: %.3f degrees", rot.thirdAngle));

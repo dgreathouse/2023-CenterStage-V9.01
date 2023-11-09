@@ -20,11 +20,11 @@ import java.util.concurrent.TimeUnit;
  * Z = the hyp of the angle, X = the distance left or right from the tag
  *         X
  *        -------
- *             /
- *            /
- *           /  Z
- *          /
- *         /
+ *        |
+ *        |
+ *        |  Z
+ *        |
+ *        |
  *      Robot
  *  Z is used in the timeOut
  */
@@ -35,7 +35,7 @@ public class AutoDriveToBackdropAprilTag extends CommandBase {
     double m_robotAngle = 0;
     int m_timeOut = 1000;
     double m_speed = 0.4;
-    double m_ZTimeScale = 100; // Scale factor for distance of Z travel as timeOut.
+    double m_ZTimeScale = 2000; // Scale factor for distance of Z travel as timeOut.
     PIDController rotPID;
     Timing.Timer m_elapsedTimer;
 
@@ -46,13 +46,37 @@ public class AutoDriveToBackdropAprilTag extends CommandBase {
 
     @Override
     public void initialize(){
+//        // Calculate the angle from the
+//        m_driveAngle = -Math.toDegrees(Math.atan(GlobalData.tagPoseX / GlobalData.tagPoseZ));
+//        // Convert the angle to match the direction of the x for +/-
+//        // Not needed the asin function handles a negative number
+//        double hyp = Math.sqrt(GlobalData.tagPoseZ * GlobalData.tagPoseZ + GlobalData.tagPoseX * GlobalData.tagPoseX);
+//        m_timeOut = (int)(hyp * m_ZTimeScale);
+//        GlobalData.aprilTagTime = m_timeOut;
+//        rotPID = new PIDController(k.DRIVE.Rot_P,k.DRIVE.Rot_I,0);
+//        rotPID.reset();
+//
+//        if (GlobalData.TeamColor == TeamColor.BLUE) {
+//            m_driveAngle -= 90;
+//            m_robotAngle = 90;
+//        }else {  // Red
+//            m_driveAngle = m_driveAngle + 90;
+//            GlobalData.aprilTagAngle = m_driveAngle;
+//            m_robotAngle = -90;
+//        }
+
+        m_elapsedTimer =  new Timing.Timer(m_timeOut, TimeUnit.MILLISECONDS);
+        m_elapsedTimer.start();
+    }
+    @Override
+    public void execute(){
         // Calculate the angle from the
-        m_driveAngle = Math.toDegrees(Math.asin(GlobalData.tagPoseX / GlobalData.tagPoseZ));
+        m_driveAngle = -Math.toDegrees(Math.atan(GlobalData.tagPoseX / GlobalData.tagPoseZ));
         // Convert the angle to match the direction of the x for +/-
         // Not needed the asin function handles a negative number
-
-        m_timeOut = (int)(GlobalData.tagPoseZ * m_ZTimeScale);
-
+        double hyp = Math.sqrt(GlobalData.tagPoseZ * GlobalData.tagPoseZ + GlobalData.tagPoseX * GlobalData.tagPoseX);
+        m_timeOut = (int)(hyp * m_ZTimeScale);
+        GlobalData.aprilTagTime = m_timeOut;
         rotPID = new PIDController(k.DRIVE.Rot_P,k.DRIVE.Rot_I,0);
         rotPID.reset();
 
@@ -60,19 +84,12 @@ public class AutoDriveToBackdropAprilTag extends CommandBase {
             m_driveAngle -= 90;
             m_robotAngle = 90;
         }else {  // Red
-            m_driveAngle += 90;
+            m_driveAngle = m_driveAngle + 90;
+            GlobalData.aprilTagAngle = m_driveAngle;
             m_robotAngle = -90;
         }
-
-        m_elapsedTimer =  new Timing.Timer(m_timeOut, TimeUnit.MILLISECONDS);
-        m_elapsedTimer.start();
-    }
-    @Override
-    public void execute(){
-        m_opMode.telemetry.addData("AprilTag Drive Angle", m_driveAngle);
-        m_opMode.telemetry.addData("AprilTag Drive Time", m_timeOut);
-        double rot = -rotPID.calculate(m_drive.getRobotAngle(), m_robotAngle);
-        m_drive.drivePolar(m_driveAngle, m_speed, rot);
+       // double rot = -rotPID.calculate(m_drive.getRobotAngle(), m_robotAngle);
+        //m_drive.drivePolar(m_driveAngle, m_speed, rot);
 
     }
     @Override
