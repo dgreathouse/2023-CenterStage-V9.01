@@ -48,8 +48,11 @@ public class GAutoWingBlue_Play_1 extends SequentialCommandGroup {
                 new AutoRotateRobot(_opMode,_drive, 0,0.25,3000),                                     // Rotate robot straight
                 new AutoDriveTimeVel(_opMode, _drive,-180,0.4,0,1300),                                // Drive backwards to a the wall
                 new AutoRotateRobot(_opMode,_drive, -90,0.25,3000),                                   // Rotate so back is towards the backdrop
-                new AutoDriveTimeVel(_opMode, _drive,-90,0.4,-90,5000),                               // Drive to parking area
-                new ArmAutoGotoPosition(_opMode,_arm,armData.getArmSetAngle(ArmPos.FLOOR),0,0),       // Put the arm to the floor
+                new AutoDriveTimeVel(_opMode, _drive,-90,0.4,-90,3000),                                 // Drive to parking area
+                new AutoDriveTimeVel(_opMode, _drive,-90,0.4,90,2000),                                //
+                new ArmAutoGotoPosition(_opMode,_arm,armData.getArmSetAngle(ArmPos.FLOOR),0,0),// Put the arm to the floor
+                new ClawRotateFingers(_opMode, _claw, _claw.getClawOpenAngle()),                     // Open claw to grab pixels
+                new AutoDriveTimeVel(_opMode, _drive,90,0.3,90,550),                                  // Drive backwards away from backdrop
                 new AutoDelayCommand(_opMode,1000),                                                   // Delay for arm to reach floor
                 new AutoStopOpModeCommand(_opMode)                                                    // Stop the opMode
         );

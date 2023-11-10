@@ -55,7 +55,7 @@ public class AutoDriveToBackdrop extends CommandBase {
                 break;
             case LEFT:
                 if (GlobalData.TeamColor == TeamColor.BLUE) {
-                    m_driveAngle = -65;
+                    m_driveAngle = -60;
                     m_robotAngle = 90;
                     m_timeOut = 2600;
                 } else {  // RED
