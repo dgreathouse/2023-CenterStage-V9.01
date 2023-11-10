@@ -41,6 +41,7 @@ public class AutoBackdropRedOpMode_Play_2 extends CommandOpMode {
         // Create Subsystems
         drive = new AutoDriveSubsystem(this,hw);
         arm = new AutoArmSubsystem(this);
+        claw = new AutoClawGripSubsystem(this);
 
         // Create Commands
         driveDefaultCommand = new AutoDriveDefaultCommand(this,drive);

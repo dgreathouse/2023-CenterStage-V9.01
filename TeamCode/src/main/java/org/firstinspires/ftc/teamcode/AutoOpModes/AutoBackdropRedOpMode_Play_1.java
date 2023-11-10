@@ -29,6 +29,7 @@ public class AutoBackdropRedOpMode_Play_1 extends CommandOpMode {
     AutoArmDefaultCommand armDefaultCommand;
     AutoArmSubsystem arm;
     AutoClawGripSubsystem claw;
+
     GAutoBackdropRed_Play_1 Gauto;
     BAutoBackdropRed_Play_1 Bauto;
 

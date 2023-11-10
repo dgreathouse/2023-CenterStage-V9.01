@@ -117,7 +117,7 @@ public class TeleOpMode_Linear extends CommandOpMode {
         // Lower Arm to floor (Button X(ps)/A(xbox))
         Hw.s_gpOperator.getGamepadButton(GamepadKeys.Button.A).whenPressed(new InstantCommand(() -> m_arm.setArmAngle(ArmPos.FLOOR), m_arm));
         // Set arm to get pixels from top of stack of 5 (Button Triangle(ps)/Y(xbox))
-        Hw.s_gpOperator.getGamepadButton(GamepadKeys.Button.Y).whenPressed(new InstantCommand(() -> m_arm.setArmAngle(ArmPos.STACK_5), m_arm));
+        Hw.s_gpOperator.getGamepadButton(GamepadKeys.Button.Y).whenPressed(new InstantCommand(() -> m_arm.setArmAngle(60), m_arm));
         // Set arm to Straight (Button Circle(ps)/B(xbox))
         Hw.s_gpOperator.getGamepadButton(GamepadKeys.Button.B).whenPressed(new InstantCommand(() -> m_arm.setArmAngle(ArmPos.STRAIGHT), m_arm));
         // Set arm to Backdrop angle (Button Square(ps)/X(xbox))

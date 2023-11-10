@@ -62,7 +62,7 @@ public class k {
 
         public static final double CloseAngle_14623 = 122.0;
         public static final double OpenLowerAngle_14623 = 101.5;
-        public static final double OpenUpperAngle_14623 = 60.0;
+        public static final double OpenUpperAngle_14623 = 85.0;
         public static final double OpenAngle_14623 = 60.0;
 
     }
@@ -80,7 +80,7 @@ public class k {
         public static final double AngleBackdropUpLimit_14623 = 85;
         public static final double AngleStraight_14623 = 35.0;
         public static final double AngleBackdrop_14623 = 60.0;
-        public static final double AngleStack_5_14623 = 10.0;
+        public static final double AngleStack_5_14623 = 11.0;
         public static final double AngleStack_3_14623 = 8.0;
         public static final double AngleFloor_14623 = 0.0;
 

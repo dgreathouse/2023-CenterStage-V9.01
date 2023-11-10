@@ -35,22 +35,29 @@ public class GAutoBackdropBlue_Play_1 extends SequentialCommandGroup {
                 new ArmAutoGotoPosition(_opMode, _arm, armData.getArmSetAngle(ArmPos.STRAIGHT),0,0),
                 new AutoDriveTimeVel(_opMode, _drive,0,0.4,0,1400),
                 new ArmGetTeamPropLocation(_opMode, _arm, TeamPropLocation.CENTER),
-                new AutoRotateRobot(_opMode,_drive, 45,0.25,3000),                                  // sign
+                new AutoRotateRobot(_opMode,_drive, 50,0.25,3000),                                  // sign
                 new ArmGetTeamPropLocation(_opMode, _arm, TeamPropLocation.LEFT),
                 new ArmGetTeamPropLocation(_opMode, _arm, TeamPropLocation.RIGHT),
                 new AutoRotateRobot(_opMode,_drive, 0,0.25,3000),
-                new ArmAutoGotoPosition(_opMode, _arm, armData.getArmSetAngle(ArmPos.STACK_3),0,0),
+                new ArmAutoGotoPosition(_opMode, _arm, armData.getArmSetAngle(ArmPos.STACK_5),0,0),
                 new AutoDriveToTeamProp(_opMode,_drive),
+                new ArmAutoGotoPosition(_opMode, _arm, armData.getArmSetAngle(ArmPos.STACK_5),0,100),
+                new AutoDelayCommand(_opMode,1250),//put arm in position
                 new ClawRotateFingers(_opMode, _claw, _claw.getClawReleaseLowerAngle()),
 
                 new ArmAutoGotoPosition(_opMode, _arm, armData.getArmSetAngle(ArmPos.STRAIGHT),0,0),
-                new AutoDriveAwayFromTeamProp(_opMode, _drive),
-                new AutoDriveToBackdrop(_opMode,_drive),
-                new ClawRotateFingers(_opMode,_claw, _claw.getClawOpenAngle()),
-                new AutoDriveTimeVel(_opMode, _drive,90,0.3,90,550),                                // sign
-                new AutoDriveTimeVel(_opMode, _drive,0,0.3,90,1700),                                // sign
-                new ArmAutoGotoPosition(_opMode,_arm,armData.getArmSetAngle(ArmPos.FLOOR),0,0),
-                new AutoDelayCommand(_opMode,1000),
+                new AutoDelayCommand(_opMode,250),//put arm in position//
+                new AutoRotateRobot(_opMode,_drive, 0,0.25,3000),
+                new AutoDriveTimeVel(_opMode, _drive,-180,0.4,0,800),
+
+//                new AutoDriveAwayFromTeamProp(_opMode, _drive),
+//                new AutoDriveToBackdrop(_opMode,_drive),
+//                new ClawRotateFingers(_opMode,_claw, _claw.getClawOpenAngle()),
+//                new AutoDriveTimeVel(_opMode, _drive,90,0.3,90,550),
+//
+//                //new AutoDriveTimeVel(_opMode, _drive,0,0.3,90,1700),                                // sign
+//                new ArmAutoGotoPosition(_opMode,_arm,armData.getArmSetAngle(ArmPos.FLOOR),0,0),
+                new AutoDelayCommand(_opMode,6000),
 
                 new AutoStopOpModeCommand(_opMode) // This must be the last line of every command list
         );

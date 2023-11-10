@@ -45,7 +45,7 @@ public class AutoDriveToPark extends CommandBase {
             }else {
                 m_driveAngle = -180;
             }
-        }else {
+        }else { // RED
             m_robotAngle = -90;
             if(m_direction == Direction.RIGHT){
                 m_driveAngle = -180;
@@ -57,24 +57,24 @@ public class AutoDriveToPark extends CommandBase {
             case CENTER:
             case NONE:
                 if (GlobalData.TeamColor == TeamColor.BLUE) {
-                    m_timeOut = 2000;
+                    m_timeOut = (m_direction == Direction.RIGHT) ? 1200 : 1201;
                 } else {  // RED
-                    m_timeOut = 2700;
+                    m_timeOut = (m_direction == Direction.RIGHT) ? 1201 : 1200;
                 }
                 break;
             case LEFT:
                 if (GlobalData.TeamColor == TeamColor.BLUE) {
-                    m_timeOut = 2600;
+                    m_timeOut = (m_direction == Direction.RIGHT) ? 1500 : 1000;
                 } else {  // RED
-                    m_timeOut = 2400;
+                    m_timeOut = (m_direction == Direction.RIGHT) ? 1500 : 1000;
                 }
                 break;
 
             case RIGHT:
                 if (GlobalData.TeamColor == TeamColor.BLUE) {
-                    m_timeOut = 2600;
+                    m_timeOut = (m_direction == Direction.RIGHT) ? 1000 : 2000;
                 } else {  // RED
-                    m_timeOut = 2500;
+                    m_timeOut = (m_direction == Direction.RIGHT) ? 1000 : 1500;
                 }
                 break;
         }
