@@ -25,11 +25,7 @@ public class GAutoBackdropRed_Play_3 extends SequentialCommandGroup {
         GlobalData.FieldLocation = AutoFieldLocation.BACKDROP;
         addCommands(
                 new ClawRotateFingers(_opMode, _claw, _claw.getClawCloseAngle()),
-            //    new ArmAutoGotoPosition(_opMode, _arm, 40,6,0),
-            //    new AutoDriveTimeVel(_opMode, _drive,55,0.4,-90,2200),
-                new AutoDetectAprilTag(_opMode,20),
-             //   new AutoDriveToBackdropAprilTag(_opMode,_drive),
-                new AutoDelayCommand(_opMode,1000),
+
                 new AutoStopOpModeCommand(_opMode) // This must be the last line of every command list
                 // new AutoDelayCommand(_opMode,1000),
 

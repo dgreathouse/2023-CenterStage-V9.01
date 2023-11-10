@@ -19,8 +19,8 @@ import org.firstinspires.ftc.teamcode.Lib.GlobalData;
 import org.firstinspires.ftc.teamcode.Lib.TeamColor;
 import org.firstinspires.ftc.teamcode.Lib.TeamPropLocation;
 import org.firstinspires.ftc.teamcode.Subsystems.AutoArmSubsystem;
-import org.firstinspires.ftc.teamcode.Subsystems.AutoDriveSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystems.AutoClawGripSubsystem;
+import org.firstinspires.ftc.teamcode.Subsystems.AutoDriveSubsystem;
 
 public class GAutoWingBlue_Play_2 extends SequentialCommandGroup {
 
@@ -30,28 +30,9 @@ public class GAutoWingBlue_Play_2 extends SequentialCommandGroup {
         ArmData armData = new ArmData();
         addCommands(
                 new ClawRotateFingers(_opMode, _claw, _claw.getClawCloseAngle()),
-                new AutoDelayCommand(_opMode,1000),
-                new ArmAutoGotoPosition(_opMode, _arm, armData.getArmSetAngle(ArmPos.STRAIGHT),0,0),
-                new AutoDriveTimeVel(_opMode, _drive,0,0.4,0,1400),
-                new ArmGetTeamPropLocation(_opMode, _arm, TeamPropLocation.CENTER),
-                new AutoRotateRobot(_opMode,_drive, 45,0.25,3000),
-                new ArmGetTeamPropLocation(_opMode, _arm, TeamPropLocation.LEFT),
-                new ArmGetTeamPropLocation(_opMode, _arm, TeamPropLocation.RIGHT),
-                new AutoRotateRobot(_opMode,_drive, 0,0.25,3000),
-                new ArmAutoGotoPosition(_opMode, _arm, armData.getArmSetAngle(ArmPos.STACK_3),0,0),
-                new AutoDriveToTeamProp(_opMode,_drive),
-                new ClawRotateFingers(_opMode, _claw, _claw.getClawReleaseLowerAngle()),
-                new ArmAutoGotoPosition(_opMode, _arm, armData.getArmSetAngle(ArmPos.STRAIGHT),0,0),
-                new AutoDriveAwayFromTeamProp(_opMode, _drive),
 
-                new AutoDriveTimeVel(_opMode, _drive,-180,0.4,-90,800),
-                new AutoDriveTimeVel(_opMode, _drive,-90,0.4,-90,5000),
-                new ArmAutoGotoPosition(_opMode,_arm,armData.getArmSetAngle(ArmPos.FLOOR),0,0),        // Put the arm Straight
-                new AutoDelayCommand(_opMode,1000),
 
                 new AutoStopOpModeCommand(_opMode) // This must be the last line of every command list
-
-
         );
 
     }
