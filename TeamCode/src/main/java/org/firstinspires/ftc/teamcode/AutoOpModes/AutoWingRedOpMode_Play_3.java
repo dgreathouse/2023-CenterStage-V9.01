@@ -72,7 +72,6 @@ public class AutoWingRedOpMode_Play_3 extends CommandOpMode {
 
             telemetry.update();
             // wait till timer is > 50ms to try an create a stable run rate
-            // TODO: Decide if timer is needed and helps with accuracy of driving and change accordingly
             if(k.SYSTEM.isLoopRateLimited){while(!m_timer.done()){} m_timer.start();}
 
 
