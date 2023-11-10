@@ -43,9 +43,9 @@ public class AutoDriveToBackdropFromWing extends CommandBase {
             case CENTER:
             case NONE:
                 if (GlobalData.TeamColor == TeamColor.BLUE) {
-                    m_driveAngle = -90;
+                    m_driveAngle = -70;
                     m_robotAngle = 90;
-                    m_timeOut = 2000;
+                    m_timeOut = 2600;
                 } else {  // RED
                     m_driveAngle = 70;
                     m_robotAngle = -90;
@@ -54,7 +54,7 @@ public class AutoDriveToBackdropFromWing extends CommandBase {
                 break;
             case LEFT:
                 if (GlobalData.TeamColor == TeamColor.BLUE) {
-                    m_driveAngle = -80;
+                    m_driveAngle = -65;
                     m_robotAngle = 90;
                     m_timeOut = 2600;
                 } else {  // RED
@@ -66,9 +66,9 @@ public class AutoDriveToBackdropFromWing extends CommandBase {
 
             case RIGHT:
                 if (GlobalData.TeamColor == TeamColor.BLUE) {
-                    m_driveAngle = -75;
+                    m_driveAngle = -79;
                     m_robotAngle = 90;
-                    m_timeOut = 2600;
+                    m_timeOut = 2500;
                 } else {  // RED
                     m_driveAngle = 79;
                     m_robotAngle = -90;
