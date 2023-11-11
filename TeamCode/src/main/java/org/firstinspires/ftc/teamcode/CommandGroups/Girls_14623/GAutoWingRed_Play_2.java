@@ -49,9 +49,9 @@ public class GAutoWingRed_Play_2 extends SequentialCommandGroup {
                 new ArmAutoGotoPosition(_opMode, _arm, armData.getArmSetAngle(ArmPos.STRAIGHT),20,0), // Raise arm and tilt the claw and retract the forearm
                 new AutoDelayCommand(_opMode,250),                                                    // Delay for arm to go straight so the rotation does not hit the team prop
                 new AutoRotateRobot(_opMode,_drive, 0,0.25,3000),                                     // Rotate robot straight
-                new AutoDriveTimeVel(_opMode, _drive,-180,0.4,0,1300),                                // Drive backwards to a the wall
+                new AutoDriveTimeVel(_opMode, _drive,-180,0.4,0,1230),                                // Drive backwards to a the wall
                 new AutoRotateRobot(_opMode,_drive, 90,0.25,3000),                                    // Rotate so back is towards the backdrop
-                new AutoDriveTimeVel(_opMode, _drive,90,0.4,90,2500),                                 // Drive under truss
+                new AutoDriveTimeVel(_opMode, _drive,90,0.4,90,3000),                                 // Drive under truss
                 new AutoDelayCommand(_opMode,100),                                                    // Delay to let other robot move out of the way. Adjust for other robot
                 new AutoDriveToBackdropFromWing(_opMode,_drive),                                      // Drive the correct position on the backdrop
                 new ClawRotateFingers(_opMode, _claw, _claw.getClawReleaseUpperAngle()),              // Release the upper pixel

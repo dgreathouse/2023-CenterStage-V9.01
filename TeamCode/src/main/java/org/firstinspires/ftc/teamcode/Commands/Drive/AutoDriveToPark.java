@@ -72,7 +72,7 @@ public class AutoDriveToPark extends CommandBase {
 
             case RIGHT:
                 if (GlobalData.TeamColor == TeamColor.BLUE) {
-                    m_timeOut = (m_direction == Direction.RIGHT) ? 1000 : 2000;
+                    m_timeOut = (m_direction == Direction.RIGHT) ? 1000 : 1700;
                 } else {  // RED
                     m_timeOut = (m_direction == Direction.RIGHT) ? 1000 : 1500;
                 }

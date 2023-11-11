@@ -58,7 +58,7 @@ public class AutoDriveToTeamProp extends CommandBase {
             case LEFT:
                 if (GlobalData.TeamColor == TeamColor.BLUE) {
                     m_driveAngle = -90;
-                    m_robotAngle = 40;
+                    m_robotAngle = 45;
                     m_timeOut = 2000;
                     m_speed = 0.0;
                 } else {

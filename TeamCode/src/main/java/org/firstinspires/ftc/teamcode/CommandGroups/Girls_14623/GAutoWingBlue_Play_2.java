@@ -9,7 +9,6 @@ import org.firstinspires.ftc.teamcode.Commands.Arm.ArmGetTeamPropLocation;
 import org.firstinspires.ftc.teamcode.Commands.AutoDelayCommand;
 import org.firstinspires.ftc.teamcode.Commands.AutoStopOpModeCommand;
 import org.firstinspires.ftc.teamcode.Commands.ClawGrip.ClawRotateFingers;
-import org.firstinspires.ftc.teamcode.Commands.Drive.AutoDriveAwayFromTeamProp;
 import org.firstinspires.ftc.teamcode.Commands.Drive.AutoDriveTimeVel;
 import org.firstinspires.ftc.teamcode.Commands.Drive.AutoDriveToBackdropFromWing;
 import org.firstinspires.ftc.teamcode.Commands.Drive.AutoDriveToPark;
@@ -38,8 +37,8 @@ public class GAutoWingBlue_Play_2 extends SequentialCommandGroup {
                 new AutoDriveTimeVel(_opMode, _drive,0,0.4,0,1400),                                   // Drive up to team prop
                 new ArmGetTeamPropLocation(_opMode, _arm, TeamPropLocation.CENTER),                   // Read team prop location (center)//read team prop location (center)
                 new AutoRotateRobot(_opMode,_drive, -50,0.25,3000),                                    // Rotate to other team prop location//rotate right
-                new ArmGetTeamPropLocation(_opMode, _arm, TeamPropLocation.LEFT),                     // Read team prop location (left)
-                new ArmGetTeamPropLocation(_opMode, _arm, TeamPropLocation.RIGHT),                    // Read team prop location (right), just calculates the final position
+                new ArmGetTeamPropLocation(_opMode, _arm, TeamPropLocation.RIGHT),                     // Read team prop location (left)
+                new ArmGetTeamPropLocation(_opMode, _arm, TeamPropLocation.LEFT),                    // Read team prop location (right), just calculates the final position
                 new AutoRotateRobot(_opMode,_drive, 0,0.25,3000),                                     // Rotate robot straight
                 new ArmAutoGotoPosition(_opMode, _arm, armData.getArmSetAngle(ArmPos.STACK_5),0,0),   // Put arm in position to drop pixel
                 new AutoDriveToTeamProp(_opMode,_drive),                                              // Drive to team prop method that just rotates to a location
@@ -50,9 +49,9 @@ public class GAutoWingBlue_Play_2 extends SequentialCommandGroup {
                 new ArmAutoGotoPosition(_opMode, _arm, armData.getArmSetAngle(ArmPos.STRAIGHT),20,0), // Raise arm and tilt the claw and retract the forearm
                 new AutoDelayCommand(_opMode,250),                                                    // Delay for arm to go straight so the rotation does not hit the team prop
                 new AutoRotateRobot(_opMode,_drive, 0,0.25,3000),                                     // Rotate robot straight
-                new AutoDriveTimeVel(_opMode, _drive,-180,0.4,0,1300),                                // Drive backwards to a the wall
-                new AutoRotateRobot(_opMode,_drive, -90,0.25,3000),                                    // Rotate so back is towards the backdrop
-                new AutoDriveTimeVel(_opMode, _drive,-90,0.4,-90,2500),                                 // Drive under truss
+                new AutoDriveTimeVel(_opMode, _drive,-180,0.4,0,1150),                                // Drive backwards to a the wall
+                new AutoRotateRobot(_opMode,_drive, -90,0.25,3500),                                    // Rotate so back is towards the backdrop
+                new AutoDriveTimeVel(_opMode, _drive,-90,0.4,-90,2800),                                 // Drive under truss
                 new AutoDelayCommand(_opMode,100),                                                    // Delay to let other robot move out of the way. Adjust for other robot
                 new AutoDriveToBackdropFromWing(_opMode,_drive),                                      // Drive the correct position on the backdrop
                 new ClawRotateFingers(_opMode, _claw, _claw.getClawReleaseUpperAngle()),              // Release the upper pixel

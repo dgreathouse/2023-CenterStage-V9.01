@@ -13,7 +13,7 @@ public class DroneLaunchCommand extends CommandBase {
     CommandOpMode m_opMode;
     DroneSubsystem m_drone;
     Timing.Timer m_timer;
-    double m_speed = -1.0;
+    double m_speed = 1.0;
     public DroneLaunchCommand(CommandOpMode _opMode, DroneSubsystem _drone){
         m_opMode = _opMode;
         m_drone = _drone;
