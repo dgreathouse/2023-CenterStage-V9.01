@@ -83,6 +83,9 @@ public class DriveSubsystem extends SubsystemBase {
         YawPitchRollAngles angles = Hw.s_imu.getRobotYawPitchRollAngles();
         return angles.getYaw(AngleUnit.DEGREES);
     }
+    public void setDriveSpeedScale(double _scale){
+        k.DRIVE.DriveSpeedScale = _scale;
+    }
     public void setDrivePIDAngle(double _angle){
         drivePIDAngle = _angle;
     }
