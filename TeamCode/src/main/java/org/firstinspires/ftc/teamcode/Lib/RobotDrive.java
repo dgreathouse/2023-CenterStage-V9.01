@@ -29,7 +29,13 @@ public abstract class RobotDrive {
     }
     public abstract void stop();
 
+    /** <b>Normalize the speeds to 1 and scale them from 0.0 to 1.0</b>
+     *
+     * @param wheelSpeeds The array of wheel speeds
+     * @param magnitude The magnitude to multiply the speeds by after normalizing.
+     */
     protected void normalize(double[] wheelSpeeds, double magnitude) {
+        // Find the maximum speed
         double maxMagnitude = Math.abs(wheelSpeeds[0]);
         for (int i = 1; i < wheelSpeeds.length; i++) {
             double temp = Math.abs(wheelSpeeds[i]);
@@ -37,6 +43,13 @@ public abstract class RobotDrive {
                 maxMagnitude = temp;
             }
         }
+        // If greater than 1 or max speed, normalize to a max of 1.
+        if (maxMagnitude > 1) {
+            for (int i = 0; i < wheelSpeeds.length; i++) {
+                wheelSpeeds[i] = (wheelSpeeds[i] / maxMagnitude);
+            }
+        }
+        // Scale all values based on the requested magnitude
         for (int i = 0; i < wheelSpeeds.length; i++) {
             wheelSpeeds[i] = (wheelSpeeds[i] / maxMagnitude) * magnitude;
         }

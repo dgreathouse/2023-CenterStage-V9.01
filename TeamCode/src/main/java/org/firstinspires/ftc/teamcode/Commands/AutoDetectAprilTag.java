@@ -40,127 +40,71 @@ public class AutoDetectAprilTag extends CommandBase {
         aprilTagDetectionPipeline = new AprilTagDetectionPipeline(k.CAMERA.tagsize, k.CAMERA.fx, k.CAMERA.fy, k.CAMERA.cx, k.CAMERA.cy);
 
         camera.setPipeline(aprilTagDetectionPipeline);
+        // NOTE: this must be called *before* you call startStreaming(...)
+        //camera.setViewportRenderer(OpenCvCamera.ViewportRenderer.NATIVE_VIEW);
         camera.openCameraDeviceAsync(new OpenCvCamera.AsyncCameraOpenListener() {
             @Override
             public void onOpened() {
-                camera.startStreaming(640, 480, OpenCvCameraRotation.UPRIGHT);
+                camera.startStreaming(1280, 720, OpenCvCameraRotation.UPRIGHT);
             }
-
             @Override
             public void onError(int errorCode) {
 
             }
         });
         m_elapsedTimer.reset();
-        m_opMode.telemetry.setMsTransmissionInterval(50);
     }
 
     @Override
     public void execute() {
-        // Calling getDetectionsUpdate() will only return an object if there was a new frame
-        // processed since the last time we called it. Otherwise, it will return null. This
-        // enables us to only run logic when there has been a new frame, as opposed to the
-        // getLatestDetections() method which will always return an object.
-
-        ArrayList<AprilTagDetection> detections = aprilTagDetectionPipeline.getDetectionsUpdate();
-
+//        ArrayList<AprilTagDetection> detections = aprilTagDetectionPipeline.getDetectionsUpdate();
         ArrayList<AprilTagDetection> currentDetections = aprilTagDetectionPipeline.getLatestDetections();
-
         if (currentDetections.size() != 0) {
-            boolean tagFound = false;
-
             for (AprilTagDetection tag : currentDetections) {
                 if (tag.id == GlobalData.tagOfInterest) {
                     tagOfInterest = tag;
-                    tagFound = true;
                     break;
                 }
             }
-
-            if (tagFound) {
-                m_opMode.telemetry.addLine("Tag of interest is in sight!Location data:");
-                tagToTelemetry(tagOfInterest);
-            } else {
-                m_opMode.telemetry.addLine("Don't see tag of interest :(");
-
-                if (tagOfInterest == null) {
-                    m_opMode.telemetry.addLine("(The tag has never been seen)");
-                } else {
-                    m_opMode.telemetry.addLine("But we HAVE seen the tag before; last seen at:");
-                    tagToTelemetry(tagOfInterest);
-                }
-            }
-
-        } else {
-            m_opMode.telemetry.addLine("Don't see tag of interest :(");
-
-            if (tagOfInterest == null) {
-                m_opMode.telemetry.addLine("(The tag has never been seen)");
-            } else {
-                m_opMode.telemetry.addLine("But we HAVE seen the tag before; last seen at:");
-                tagToTelemetry(tagOfInterest);
-            }
-
         }
-
-       // m_opMode.telemetry.update();
         m_opMode.sleep(20);
 
+        if (tagOfInterest != null) { // We found a tag so set the GlobalVariables
+            // Set the global variable numbers
+            GlobalData.tagPoseX = tagOfInterest.pose.x * 1000;
+            GlobalData.tagPoseY = tagOfInterest.pose.y * 1000;
+            GlobalData.tagPoseZ = tagOfInterest.pose.z * 1.25 * 1000;
+            //GlobalData.tagPoseZ = tagOfInterest.pose.z;
+            GlobalData.aprilTagAngle = Math.toDegrees(Math.atan(GlobalData.tagPoseX / GlobalData.tagPoseZ));
+            GlobalData.aprilTagDistance = Math.sqrt(GlobalData.tagPoseZ * GlobalData.tagPoseZ + GlobalData.tagPoseX * GlobalData.tagPoseX);
 
-        /*
-         * The START command just came in: now work off the latest snapshot acquired
-         * during the init loop.
-         */
-
-        /* Update the telemetry */
-        if (tagOfInterest != null) {
-            m_opMode.telemetry.addLine("Tag snapshot:\n");
-            tagToTelemetry(tagOfInterest);
-            m_opMode.telemetry.update();
-        } else {
-            m_opMode.telemetry.addLine("No tag snapshot available, it was never sighted during the init loop :(");
-            m_opMode.telemetry.update();
-        }
-
-        /* Actually do something useful */
-        if (tagOfInterest == null) {
-            // Adjust GlobalData to numbers we assume from where we think we stop.
-        } else {
-            /*
-             * Insert your autonomous code here, probably using the tag pose to decide your configuration.
-             */
-            GlobalData.tagPoseX = tagOfInterest.pose.x;
-            GlobalData.tagPoseY = tagOfInterest.pose.y;
-            GlobalData.tagPoseZ = tagOfInterest.pose.z;
-//            // e.g.
-//            if (tagOfInterest.pose.x <= 20) {
-//                // do something
-//            } else if (tagOfInterest.pose.x >= 20 && tagOfInterest.pose.x <= 50) {
-//                // do something else
-//            } else if (tagOfInterest.pose.x >= 50) {
-//                // do something else
-//            }
+        } else { // Did not find the tag so add some default data.
+            GlobalData.tagPoseX = 0;
+            GlobalData.tagPoseY = 0;
+            GlobalData.tagPoseZ = 0;
+            GlobalData.aprilTagAngle = 5;
+            GlobalData.aprilTagDistance = .15;
         }
     }
-
     @Override
     public boolean isFinished() {
- //       if (tagOfInterest != null || m_elapsedTimer.seconds() > m_timeOut) {
-        if (m_elapsedTimer.seconds() > m_timeOut) {
+        if (tagOfInterest != null && m_elapsedTimer.seconds() > m_timeOut) {
             return true;
         }
         return false;
     }
-
-    void tagToTelemetry(AprilTagDetection detection) {
-        Orientation rot = Orientation.getOrientation(detection.pose.R, AxesReference.INTRINSIC, AxesOrder.YXZ, AngleUnit.DEGREES);
-
-        m_opMode.telemetry.addLine(String.format("Detected tag ID=%d", detection.id));
-//        m_opMode.telemetry.addLine(String.format("Translation X: %.4f m", detection.pose.x));
-//        m_opMode.telemetry.addLine(String.format("Translation Y: %.4f m", detection.pose.y));
-//        m_opMode.telemetry.addLine(String.format("Translation Z: %.4f m", detection.pose.z));
-//        m_opMode.telemetry.addLine(String.format("Rotation Yaw: %.3f degrees", rot.firstAngle));
-//        m_opMode.telemetry.addLine(String.format("Rotation Pitch: %.3f degrees", rot.secondAngle));
-//        m_opMode.telemetry.addLine(String.format("Rotation Roll: %.3f degrees", rot.thirdAngle));
+    private double calcWallTagToStackAngle(double _x, double _z){
+        switch(GlobalData.TeamColor){
+            case RED:
+                break;
+            case BLUE:
+                break;
+            default:
+                break;
+        }
+        return 0;
+    }
+    private double calcWallTagToStackDistance(double _x, double _z){
+        return 0;
     }
 }

@@ -5,8 +5,16 @@ import com.arcrobotics.ftclib.hardware.motors.Motor;
 import java.util.ArrayList;
 
 public class k {
+    public static final class FIELD{
+        public static final double aprilTagWalltoStackDistanceX_mm = 140;
+        public static final double PixelLength_mm = 76.2;
+    }
     public static final class SYSTEM{
         public static final boolean isLoopRateLimited = false;
+        public static final double CameraToStack5_z = 0;
+        public static final double CameraToStack3_z = 0;
+        public static final double CameraToCenter_x = 0;
+
     }
     public static final class DRIVE {
         public static final double CPR = Motor.GoBILDA.RPM_435.getCPR();
@@ -18,6 +26,7 @@ public class k {
         public static final double Rot_P = 0.005;
         public static final double Rot_I = 0.05;
         public static double DriveSpeedScale = 1.0;
+        public static boolean AutoDriveRampEnabled = true;
 
     }
     public static final class CAMERA {
@@ -30,14 +39,16 @@ public class k {
         public static final double fy = 1133.7887;
         public static final double cx = 635.2146;
         public static final double cy = 465.3686;
-        public static final double tagsize = 0.0508;
+        //public static final double tagsize = 0.0508;  // 2 inch
+        public static final double tagsize = 0.127;  // 5 inch
+        //public static final double tagsize = 0.1524;  // 6 inch
         public static  int numFramesWithoutDetection = 0;
 
         public static final float DECIMATION_HIGH = 3;
         public static final float DECIMATION_LOW = 2;
         public static final float THRESHOLD_HIGH_DECIMATION_RANGE_METERS = 1.0f;
         public static final int THRESHOLD_NUM_FRAMES_NO_DETECTION_BEFORE_LOW_DECIMATION = 4;
-        public static int ID_TAG_OF_INTEREST = 5; // Tag ID 1 from the 36h11 family
+
 
     }
     public static final class ARM {

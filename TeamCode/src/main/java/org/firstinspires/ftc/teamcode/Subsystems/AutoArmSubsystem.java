@@ -71,7 +71,7 @@ public class AutoArmSubsystem extends SubsystemBase {
 
     @Override
     public void periodic() {
-        armGotoPosition();
+        //armGotoPosition();
         m_opMode.telemetry.addData("Team Prop Distance", "%3.3f", getTeamPropDistance());
         m_opMode.telemetry.addData("Team Prop Location", GlobalData.TeamPropLocation);
 

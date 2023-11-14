@@ -47,10 +47,10 @@ public class AutoDriveToBackdropAprilTag extends CommandBase {
     @Override
     public void initialize(){
 //        // Calculate the angle from the
-//        m_driveAngle = -Math.toDegrees(Math.atan(GlobalData.tagPoseX / GlobalData.tagPoseZ));
+        m_driveAngle = -Math.toDegrees(Math.atan(GlobalData.tagPoseX / GlobalData.tagPoseZ));
 //        // Convert the angle to match the direction of the x for +/-
 //        // Not needed the asin function handles a negative number
-//        double hyp = Math.sqrt(GlobalData.tagPoseZ * GlobalData.tagPoseZ + GlobalData.tagPoseX * GlobalData.tagPoseX);
+        double hyp = Math.sqrt(GlobalData.tagPoseZ * GlobalData.tagPoseZ + GlobalData.tagPoseX * GlobalData.tagPoseX);
 //        m_timeOut = (int)(hyp * m_ZTimeScale);
 //        GlobalData.aprilTagTime = m_timeOut;
 //        rotPID = new PIDController(k.DRIVE.Rot_P,k.DRIVE.Rot_I,0);
@@ -76,7 +76,7 @@ public class AutoDriveToBackdropAprilTag extends CommandBase {
         // Not needed the asin function handles a negative number
         double hyp = Math.sqrt(GlobalData.tagPoseZ * GlobalData.tagPoseZ + GlobalData.tagPoseX * GlobalData.tagPoseX);
         m_timeOut = (int)(hyp * m_ZTimeScale);
-        GlobalData.aprilTagTime = m_timeOut;
+        GlobalData.aprilTagDistance = m_timeOut;
         rotPID = new PIDController(k.DRIVE.Rot_P,k.DRIVE.Rot_I,0);
         rotPID.reset();
 

@@ -25,6 +25,8 @@ public class AutoDriveTimeVel extends CommandBase {
     double m_robotAngle;
     int m_timeOut;
     double m_speed;
+    double m_currentSpeed = 0;
+
 
     PIDController rotPID = new PIDController(k.DRIVE.Rot_P,k.DRIVE.Rot_I,0);
     Timing.Timer m_timer;
@@ -37,6 +39,7 @@ public class AutoDriveTimeVel extends CommandBase {
         m_speed = _speed;
         m_robotAngle = _robotAngle;
         m_timeOut = _timeOut;
+        m_currentSpeed = m_speed;
     }
 
     @Override
@@ -50,8 +53,12 @@ public class AutoDriveTimeVel extends CommandBase {
     @Override
     public void execute(){
         double rot = -rotPID.calculate(m_drive.getRobotAngle(), m_robotAngle);
+        // Try to gently ramp the speed up from 0 to m_speed in 250ms
+        if(k.DRIVE.AutoDriveRampEnabled) {
+            m_currentSpeed = m_timer.elapsedTime() < 250 ? m_speed * 4 * (double) m_timer.elapsedTime() / 1000.0 : m_speed;
+        }
         rot = MathUtils.clamp(rot,-m_speed,m_speed);
-        m_drive.drivePolar(m_driveAngle, m_speed, rot);
+        m_drive.drivePolar(m_driveAngle, m_currentSpeed, rot);
     }
 
     @Override
