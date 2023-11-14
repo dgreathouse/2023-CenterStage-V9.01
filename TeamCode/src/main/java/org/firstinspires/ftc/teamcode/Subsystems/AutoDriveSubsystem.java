@@ -106,10 +106,10 @@ public class AutoDriveSubsystem extends SubsystemBase {
     public void periodic(){
         m_opMode.telemetry.addData("Robot Angle", "%3.3f",getRobotAngle());
         m_opMode.telemetry.addData("Drive Angle", "%3.3f", m_drive.getDriveAngle());
-        m_opMode.telemetry.addLine(String.format("AprilTag X: %.4f m", GlobalData.tagPoseX));
-        m_opMode.telemetry.addLine(String.format("AprilTag Y: %.4f m", GlobalData.tagPoseY));
-        m_opMode.telemetry.addLine(String.format("AprilTag Z: %.4f m", GlobalData.tagPoseZ));
-       m_opMode.telemetry.addData("AprilTag Angle", "%3.4f", GlobalData.aprilTagAngle);
-        m_opMode.telemetry.addData("AprilTag Distance", "%3.4f", GlobalData.aprilTagDistance);
+        m_opMode.telemetry.addLine(String.format("AprilTag X: %.4f m", GlobalData.AprilTag_X));
+        m_opMode.telemetry.addLine(String.format("AprilTag Y: %.4f m", GlobalData.AprilTag_Y));
+        m_opMode.telemetry.addLine(String.format("AprilTag Z: %.4f m", GlobalData.AprilTag_Z));
+       m_opMode.telemetry.addData("AprilTag Angle", "%3.4f", GlobalData.AprilTagBearing);
+        m_opMode.telemetry.addData("AprilTag Distance", "%3.4f", GlobalData.AprilTagRange);
     }
 }

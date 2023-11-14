@@ -5,10 +5,6 @@ import com.arcrobotics.ftclib.command.CommandOpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
-import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
-import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
-import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
-import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 import org.firstinspires.ftc.teamcode.Lib.AprilTagDetectionPipeline;
 import org.firstinspires.ftc.teamcode.Lib.GlobalData;
 import org.firstinspires.ftc.teamcode.Lib.k;
@@ -71,19 +67,19 @@ public class AutoDetectAprilTag extends CommandBase {
 
         if (tagOfInterest != null) { // We found a tag so set the GlobalVariables
             // Set the global variable numbers
-            GlobalData.tagPoseX = tagOfInterest.pose.x * 1000;
-            GlobalData.tagPoseY = tagOfInterest.pose.y * 1000;
-            GlobalData.tagPoseZ = tagOfInterest.pose.z * 1.25 * 1000;
+            GlobalData.AprilTag_X = tagOfInterest.pose.x * 1000;
+            GlobalData.AprilTag_Y = tagOfInterest.pose.y * 1000;
+            GlobalData.AprilTag_Z = tagOfInterest.pose.z * 1000 * 1.25;
             //GlobalData.tagPoseZ = tagOfInterest.pose.z;
-            GlobalData.aprilTagAngle = Math.toDegrees(Math.atan(GlobalData.tagPoseX / GlobalData.tagPoseZ));
-            GlobalData.aprilTagDistance = Math.sqrt(GlobalData.tagPoseZ * GlobalData.tagPoseZ + GlobalData.tagPoseX * GlobalData.tagPoseX);
+            GlobalData.AprilTagBearing = Math.toDegrees(Math.atan(GlobalData.AprilTag_X / GlobalData.AprilTag_Z));
+            GlobalData.AprilTagRange = Math.sqrt(GlobalData.AprilTag_Z * GlobalData.AprilTag_Z + GlobalData.AprilTag_X * GlobalData.AprilTag_X);
 
         } else { // Did not find the tag so add some default data.
-            GlobalData.tagPoseX = 0;
-            GlobalData.tagPoseY = 0;
-            GlobalData.tagPoseZ = 0;
-            GlobalData.aprilTagAngle = 5;
-            GlobalData.aprilTagDistance = .15;
+            GlobalData.AprilTag_X = 0;
+            GlobalData.AprilTag_Y = 0;
+            GlobalData.AprilTag_Z = 0;
+            GlobalData.AprilTagBearing = 5;
+            GlobalData.AprilTagRange = 150;
         }
     }
     @Override
