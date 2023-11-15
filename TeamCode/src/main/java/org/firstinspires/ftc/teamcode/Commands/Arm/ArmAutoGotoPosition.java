@@ -10,9 +10,9 @@ import org.firstinspires.ftc.teamcode.Subsystems.AutoArmSubsystem;
 public class ArmAutoGotoPosition extends CommandBase {
     CommandOpMode m_opMode;
     AutoArmSubsystem m_arm;
-    double m_shoulderAngle = 0.0;
-    double m_forearmPosition = 0.0;
-    double m_clawAngle = 0.0;
+    double m_shoulderAngle;
+    double m_forearmPosition;
+    double m_clawAngle;
     public ArmAutoGotoPosition(CommandOpMode _opMode, AutoArmSubsystem _arm, double _shoulderAngle, double _clawAngle, double _forearmPosition) {
         m_opMode = _opMode;
         m_arm = _arm;

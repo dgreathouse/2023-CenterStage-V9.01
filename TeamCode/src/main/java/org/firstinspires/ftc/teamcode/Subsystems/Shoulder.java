@@ -2,7 +2,6 @@ package org.firstinspires.ftc.teamcode.Subsystems;
 
 import com.arcrobotics.ftclib.command.CommandOpMode;
 import com.arcrobotics.ftclib.controller.PIDController;
-import com.arcrobotics.ftclib.controller.wpilibcontroller.ArmFeedforward;
 import com.arcrobotics.ftclib.hardware.motors.Motor;
 import com.arcrobotics.ftclib.hardware.motors.MotorEx;
 import com.arcrobotics.ftclib.util.MathUtils;
@@ -25,7 +24,7 @@ public class Shoulder {
     private double m_shoulderPower = 0;
     private double motor_v = 0.0;
     private double kMaxVel = 300;
-    private double gravatiyBoost = 0;
+    private double GravityBoost = 0;
     double m_kfaScale = (kfaMax - kfa) / (k.FOREARM.ExtendLimit - k.FOREARM.RetractLimit);
     public Shoulder(CommandOpMode _opMode, ArmData _arm, Forearm _forearm) {
         m_opMode = _opMode;
@@ -70,8 +69,8 @@ public class Shoulder {
         rot = MathUtils.clamp(rot,k.SHOULDER.RotationPID_Min,2.5);
 
         if(rot > 0) { // rot is positive when trying to raise the arm
-            gravatiyBoost = (kMaxVel - motor_v) * kv * error_p;
-            rot = rot + gravatiyBoost;
+            GravityBoost = (kMaxVel - motor_v) * kv * error_p;
+            rot = rot + GravityBoost;
         }
         // Set a module level variable to allow for telemetry
         m_shoulderPower = cos + rot;
@@ -84,7 +83,7 @@ public class Shoulder {
 
     }
     public double getGravityBoost(){
-        return gravatiyBoost;
+        return GravityBoost;
     }
     public double getVelocity(){
        return m_motor.getCorrectedVelocity();

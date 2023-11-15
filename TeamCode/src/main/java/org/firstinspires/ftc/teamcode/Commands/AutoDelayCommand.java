@@ -9,7 +9,7 @@ import java.util.concurrent.TimeUnit;
 public class AutoDelayCommand extends CommandBase {
     CommandOpMode m_opMode;
     boolean m_isFinished = false;
-    int m_delay_ms = 0;
+    int m_delay_ms;
     Timing.Timer m_timer;
     public AutoDelayCommand(CommandOpMode _opMode, int _time_ms){
         m_opMode = _opMode;

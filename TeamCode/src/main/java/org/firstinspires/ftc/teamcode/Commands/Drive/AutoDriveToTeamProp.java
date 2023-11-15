@@ -9,7 +9,6 @@ import org.firstinspires.ftc.teamcode.Lib.GlobalData;
 import org.firstinspires.ftc.teamcode.Lib.TeamColor;
 import org.firstinspires.ftc.teamcode.Lib.k;
 import org.firstinspires.ftc.teamcode.Subsystems.AutoDriveSubsystem;
-import org.firstinspires.ftc.teamcode.Subsystems.DriveSubsystem;
 
 import java.util.concurrent.TimeUnit;
 
@@ -40,10 +39,10 @@ public class AutoDriveToTeamProp extends CommandBase {
         rotPID = new PIDController(k.DRIVE.Rot_P, k.DRIVE.Rot_I, 0);
         rotPID.reset();
 
-        switch (GlobalData.TeamPropLocation) {
+        switch (GlobalData.MATCH.TeamPropLocation) {
             case CENTER:
             case NONE:
-                if (GlobalData.TeamColor == TeamColor.BLUE) {
+                if (GlobalData.MATCH.TeamColor == TeamColor.BLUE) {
                     m_driveAngle = 0;
                     m_robotAngle = -17.5;
                     m_timeOut = 450;
@@ -56,7 +55,7 @@ public class AutoDriveToTeamProp extends CommandBase {
                 }
                 break;
             case LEFT:
-                if (GlobalData.TeamColor == TeamColor.BLUE) {
+                if (GlobalData.MATCH.TeamColor == TeamColor.BLUE) {
                     m_driveAngle = -90;
                     m_robotAngle = 45;
                     m_timeOut = 2000;
@@ -70,7 +69,7 @@ public class AutoDriveToTeamProp extends CommandBase {
                 break;
 
             case RIGHT:
-                if (GlobalData.TeamColor == TeamColor.BLUE) {
+                if (GlobalData.MATCH.TeamColor == TeamColor.BLUE) {
                     m_driveAngle = 90;
                     m_robotAngle = -45;
                     m_timeOut = 1500;
@@ -84,42 +83,6 @@ public class AutoDriveToTeamProp extends CommandBase {
                     m_speed = 0.0;
                 }
                 break;
-//            case CENTER:
-//            case NONE:
-//                if(GlobalData.TeamColor == TeamColor.BLUE){
-//                    m_driveAngle = 0;
-//                    m_robotAngle = 0;
-//                    m_timeOut = 700;
-//                }else {  // RED
-//                    m_driveAngle = 0;
-//                    m_robotAngle = 0;
-//                    m_timeOut = 700;
-//                }
-//                break;
-//            case LEFT:
-//                if(GlobalData.TeamColor == TeamColor.BLUE){
-//                    m_driveAngle = -90;
-//                    m_robotAngle = 0;
-//                    m_timeOut = 500;
-//                }else {  // RED
-//                    m_driveAngle = -45;
-//                    m_robotAngle = 45;
-//                    m_timeOut = 500;
-//                }
-//                break;
-//
-//            case RIGHT:
-//                if(GlobalData.TeamColor == TeamColor.BLUE){
-//                    m_driveAngle = 45;
-//                    m_robotAngle = -45;
-//                    m_timeOut = 1000;
-//                }else {  // RED
-//                    m_driveAngle = 90;
-//                    m_robotAngle = 0;
-//                    m_timeOut = 500;
-//                }
-//                break;
-
         }
 
         m_elapsedTimer = new Timing.Timer(m_timeOut, TimeUnit.MILLISECONDS);

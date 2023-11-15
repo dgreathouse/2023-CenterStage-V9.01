@@ -9,7 +9,6 @@ import org.firstinspires.ftc.teamcode.Lib.GlobalData;
 import org.firstinspires.ftc.teamcode.Lib.TeamColor;
 import org.firstinspires.ftc.teamcode.Lib.k;
 import org.firstinspires.ftc.teamcode.Subsystems.AutoDriveSubsystem;
-import org.firstinspires.ftc.teamcode.Subsystems.DriveSubsystem;
 
 import java.util.concurrent.TimeUnit;
 
@@ -40,40 +39,37 @@ public class AutoDriveToBackdrop extends CommandBase {
         rotPID = new PIDController(k.DRIVE.Rot_P,k.DRIVE.Rot_I,0);
         rotPID.reset();
 
-        switch (GlobalData.TeamPropLocation) {
+        switch (GlobalData.MATCH.TeamPropLocation) {
             case CENTER:
             case NONE:
-                if (GlobalData.TeamColor == TeamColor.BLUE) {
+                m_timeOut = 2600;
+                if (GlobalData.MATCH.TeamColor == TeamColor.BLUE) {
                     m_driveAngle = -70;
                     m_robotAngle = 90;
-                    m_timeOut = 2600;
                 } else {  // RED
                     m_driveAngle = 70;
                     m_robotAngle = -90;
-                    m_timeOut = 2600;
                 }
                 break;
             case LEFT:
-                if (GlobalData.TeamColor == TeamColor.BLUE) {
+                m_timeOut = 2600;
+                if (GlobalData.MATCH.TeamColor == TeamColor.BLUE) {
                     m_driveAngle = -60;
                     m_robotAngle = 90;
-                    m_timeOut = 2600;
                 } else {  // RED
                     m_driveAngle = 65;
                     m_robotAngle = -90;
-                    m_timeOut = 2600;
                 }
                 break;
 
             case RIGHT:
-                if (GlobalData.TeamColor == TeamColor.BLUE) {
+                m_timeOut = 2500;
+                if (GlobalData.MATCH.TeamColor == TeamColor.BLUE) {
                     m_driveAngle = -79;
                     m_robotAngle = 90;
-                    m_timeOut = 2500;
                 } else {  // RED
                     m_driveAngle = 79;
                     m_robotAngle = -90;
-                    m_timeOut = 2500;
                 }
                 break;
         }

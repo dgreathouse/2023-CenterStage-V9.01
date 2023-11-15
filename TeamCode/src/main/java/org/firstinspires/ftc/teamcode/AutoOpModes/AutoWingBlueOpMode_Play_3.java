@@ -9,13 +9,14 @@ import org.firstinspires.ftc.teamcode.CommandGroups.Boys_22291.BAutoWingBlue_Pla
 import org.firstinspires.ftc.teamcode.CommandGroups.Girls_14623.GAutoWingBlue_Play_3;
 import org.firstinspires.ftc.teamcode.Commands.Arm.AutoArmDefaultCommand;
 import org.firstinspires.ftc.teamcode.Commands.Drive.AutoDriveDefaultCommand;
+import org.firstinspires.ftc.teamcode.Lib.AutoFieldLocation;
 import org.firstinspires.ftc.teamcode.Lib.GlobalData;
 import org.firstinspires.ftc.teamcode.Lib.Hw;
-import org.firstinspires.ftc.teamcode.Lib.TeamPropLocation;
+import org.firstinspires.ftc.teamcode.Lib.TeamColor;
 import org.firstinspires.ftc.teamcode.Lib.k;
 import org.firstinspires.ftc.teamcode.Subsystems.AutoArmSubsystem;
-import org.firstinspires.ftc.teamcode.Subsystems.AutoDriveSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystems.AutoClawGripSubsystem;
+import org.firstinspires.ftc.teamcode.Subsystems.AutoDriveSubsystem;
 
 import java.util.concurrent.TimeUnit;
 
@@ -54,7 +55,8 @@ public class AutoWingBlueOpMode_Play_3 extends CommandOpMode {
 
         m_timer = new Timing.Timer(100, TimeUnit.MILLISECONDS);
         m_timer.start();
-        GlobalData.TeamPropLocation = TeamPropLocation.NONE;
+        GlobalData.MATCH.TeamColor = TeamColor.BLUE;
+        GlobalData.MATCH.FieldLocation = AutoFieldLocation.WING;
     }
     @Override
     public void runOpMode() throws InterruptedException{

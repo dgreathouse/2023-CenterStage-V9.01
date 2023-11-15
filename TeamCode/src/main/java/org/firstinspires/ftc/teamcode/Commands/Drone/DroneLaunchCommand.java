@@ -2,7 +2,6 @@ package org.firstinspires.ftc.teamcode.Commands.Drone;
 
 import com.arcrobotics.ftclib.command.CommandBase;
 import com.arcrobotics.ftclib.command.CommandOpMode;
-import com.arcrobotics.ftclib.util.MathUtils;
 import com.arcrobotics.ftclib.util.Timing;
 
 import org.firstinspires.ftc.teamcode.Subsystems.DroneSubsystem;
@@ -26,8 +25,6 @@ public class DroneLaunchCommand extends CommandBase {
     }
     @Override
     public void execute(){
-//        m_speed += 0.1;
-//        m_speed = MathUtils.clamp(m_speed, 0,1);
         m_drone.spin(m_speed);
     }
     @Override

@@ -8,7 +8,6 @@ import com.arcrobotics.ftclib.util.Timing;
 
 import org.firstinspires.ftc.teamcode.Lib.k;
 import org.firstinspires.ftc.teamcode.Subsystems.AutoDriveSubsystem;
-import org.firstinspires.ftc.teamcode.Subsystems.DriveSubsystem;
 
 import java.util.concurrent.TimeUnit;
 
@@ -25,10 +24,10 @@ public class AutoDriveTimeVel extends CommandBase {
     double m_robotAngle;
     int m_timeOut;
     double m_speed;
-    double m_currentSpeed = 0;
+    double m_currentSpeed;
 
 
-    PIDController rotPID = new PIDController(k.DRIVE.Rot_P,k.DRIVE.Rot_I,0);
+    PIDController rotPID = new PIDController(.025,0,0);
     Timing.Timer m_timer;
 
 
@@ -53,12 +52,14 @@ public class AutoDriveTimeVel extends CommandBase {
     @Override
     public void execute(){
         double rot = -rotPID.calculate(m_drive.getRobotAngle(), m_robotAngle);
-        // Try to gently ramp the speed up from 0 to m_speed in 250ms
+        // Try to gently ramp the speed up from 0 to m_speed
         if(k.DRIVE.AutoDriveRampEnabled) {
-            m_currentSpeed = m_timer.elapsedTime() < 250 ? m_speed * 4 * (double) m_timer.elapsedTime() / 1000.0 : m_speed;
+            m_currentSpeed = m_timer.elapsedTime() < 1000 ? m_speed * 1 * (double) m_timer.elapsedTime() / 1000.0 : m_speed;  // 1 Second
+           // m_currentSpeed = m_timer.elapsedTime() < 400 ? m_speed * 8 * (double) m_timer.elapsedTime() / 1000.0 : m_speed; // .25Sec Ramp
         }
         rot = MathUtils.clamp(rot,-m_speed,m_speed);
         m_drive.drivePolar(m_driveAngle, m_currentSpeed, rot);
+        m_opMode.telemetry.addData("CurrentSpeed", m_currentSpeed);
     }
 
     @Override

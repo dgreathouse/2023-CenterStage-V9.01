@@ -13,9 +13,6 @@ import org.firstinspires.ftc.teamcode.Commands.Drive.AutoDriveToTeamProp;
 import org.firstinspires.ftc.teamcode.Commands.Drive.AutoRotateRobot;
 import org.firstinspires.ftc.teamcode.Lib.ArmData;
 import org.firstinspires.ftc.teamcode.Lib.ArmPos;
-import org.firstinspires.ftc.teamcode.Lib.AutoFieldLocation;
-import org.firstinspires.ftc.teamcode.Lib.GlobalData;
-import org.firstinspires.ftc.teamcode.Lib.TeamColor;
 import org.firstinspires.ftc.teamcode.Lib.TeamPropLocation;
 import org.firstinspires.ftc.teamcode.Subsystems.AutoArmSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystems.AutoClawGripSubsystem;
@@ -24,8 +21,7 @@ import org.firstinspires.ftc.teamcode.Subsystems.AutoDriveSubsystem;
 public class GAutoWingRed_Play_1 extends SequentialCommandGroup {
 
     public GAutoWingRed_Play_1(CommandOpMode _opMode, AutoDriveSubsystem _drive, AutoArmSubsystem _arm, AutoClawGripSubsystem _claw)  {
-        GlobalData.TeamColor = TeamColor.RED;
-        GlobalData.FieldLocation = AutoFieldLocation.WING;
+
         ArmData armData = new ArmData();
         addCommands(
                 new ClawRotateFingers(_opMode, _claw, _claw.getClawCloseAngle()),                     // Close claw to grab pixels

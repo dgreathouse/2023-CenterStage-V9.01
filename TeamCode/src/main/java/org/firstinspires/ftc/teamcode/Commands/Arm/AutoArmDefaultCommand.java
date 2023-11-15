@@ -12,7 +12,6 @@ import org.firstinspires.ftc.teamcode.Subsystems.AutoArmSubsystem;
 public class AutoArmDefaultCommand extends CommandBase {
     AutoArmSubsystem m_arm;
     CommandOpMode m_opMode;
-    int x = 0;
 
     public AutoArmDefaultCommand(CommandOpMode _opMode, AutoArmSubsystem _arm){
         m_opMode = _opMode;

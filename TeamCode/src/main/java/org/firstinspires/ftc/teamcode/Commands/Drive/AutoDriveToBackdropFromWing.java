@@ -39,10 +39,10 @@ public class AutoDriveToBackdropFromWing extends CommandBase {
         rotPID = new PIDController(k.DRIVE.Rot_P,k.DRIVE.Rot_I,0);
         rotPID.reset();
 
-        switch (GlobalData.TeamPropLocation) {
+        switch (GlobalData.MATCH.TeamPropLocation) {
             case CENTER:
             case NONE:
-                if (GlobalData.TeamColor == TeamColor.BLUE) {
+                if (GlobalData.MATCH.TeamColor == TeamColor.BLUE) {
                     m_driveAngle = -57;
                     m_robotAngle = 90;
                     m_timeOut = 2600;
@@ -53,19 +53,18 @@ public class AutoDriveToBackdropFromWing extends CommandBase {
                 }
                 break;
             case LEFT:
-                if (GlobalData.TeamColor == TeamColor.BLUE) {
+                m_timeOut = 2600;
+                if (GlobalData.MATCH.TeamColor == TeamColor.BLUE) {
                     m_driveAngle = -64;
                     m_robotAngle = 90;
-                    m_timeOut = 2600;
                 } else {  // RED
                     m_driveAngle = 50;
                     m_robotAngle = -90;
-                    m_timeOut = 2600;
                 }
                 break;
 
             case RIGHT:
-                if (GlobalData.TeamColor == TeamColor.BLUE) {
+                if (GlobalData.MATCH.TeamColor == TeamColor.BLUE) {
                     m_driveAngle = -50;
                     m_robotAngle = 90;
                     m_timeOut = 2600;

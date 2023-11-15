@@ -40,6 +40,7 @@ public class KiwiDrive extends RobotDrive{
         m_left.set(m_speeds[0] + _rotate);
         m_right.set(m_speeds[1] + _rotate);
         m_back.set(m_speeds[2] + _rotate);
+
     }
     public void drivePolar(double _angle, double _speed, double _rot, double _heading){
         double x = Math.sin(Math.toRadians(_angle)) * _speed;

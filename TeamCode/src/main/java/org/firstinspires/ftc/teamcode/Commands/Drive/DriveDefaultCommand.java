@@ -6,7 +6,6 @@ import com.arcrobotics.ftclib.controller.PIDController;
 
 import org.firstinspires.ftc.teamcode.Lib.GlobalData;
 import org.firstinspires.ftc.teamcode.Lib.Hw;
-import org.firstinspires.ftc.teamcode.Lib.RobotState;
 import org.firstinspires.ftc.teamcode.Lib.k;
 import org.firstinspires.ftc.teamcode.Subsystems.DriveSubsystem;
 
@@ -16,11 +15,11 @@ public class DriveDefaultCommand extends CommandBase {
     // Declare a variable called "opMode" of type "CommandOpMode"
     CommandOpMode m_opMode;
     // Create local variables of type double to store the stick X,Y,Z values and Angle of robot.
-    double m_x, m_y, m_z, m_ang;
+    double m_x, m_y, m_z;
     PIDController rotPID;// = new PIDController(k.DRIVE.Rot_P,k.DRIVE.Rot_I,0);
     /** Constructor of class
      *
-     * @param _opMode The opMode used which will be teleOp or Autonomous
+     * @param _opMode The opMode used which will be Driver Controlled or Autonomous
      * @param _drive The DriveSubsystem instance variable
      */
     public DriveDefaultCommand(CommandOpMode _opMode, DriveSubsystem _drive) {
@@ -58,7 +57,7 @@ public class DriveDefaultCommand extends CommandBase {
             m_drive.setDrivePIDAngle(361);
         }else if(Math.abs(m_drive.getDrivePIDAngle()) < 360){ // In PID rotation
             m_z = -rotPID.calculate(m_drive.getRobotAngle(), m_drive.getDrivePIDAngle());
-        }else { // Not PID and lower than the deadband
+        }else { // Not PID and lower than the DeadBand
             m_z = 0.0;
         }
         m_drive.driveXY(m_x,m_y, m_z);

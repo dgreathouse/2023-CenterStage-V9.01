@@ -20,7 +20,7 @@ public class AutoDriveToPark extends CommandBase {
     AutoDriveSubsystem m_drive;
     double m_driveAngle = 0;
     double m_robotAngle = 0;
-    Direction m_direction = Direction.RIGHT;
+    Direction m_direction;
     int m_timeOut = 1000;
     double m_speed = 0.4;
 
@@ -37,7 +37,7 @@ public class AutoDriveToPark extends CommandBase {
     public void initialize(){
         rotPID = new PIDController(k.DRIVE.Rot_P,k.DRIVE.Rot_I,0);
         rotPID.reset();
-        if(GlobalData.TeamColor == TeamColor.BLUE){
+        if(GlobalData.MATCH.TeamColor == TeamColor.BLUE){
             m_robotAngle = 90;
             if(m_direction == Direction.RIGHT){
                 m_driveAngle = 0;
@@ -53,17 +53,17 @@ public class AutoDriveToPark extends CommandBase {
                 m_driveAngle = 0;
             }
         }
-        switch (GlobalData.TeamPropLocation) {
+        switch (GlobalData.MATCH.TeamPropLocation) {
             case CENTER:
             case NONE:
-                if (GlobalData.TeamColor == TeamColor.BLUE) {
+                if (GlobalData.MATCH.TeamColor == TeamColor.BLUE) {
                     m_timeOut = (m_direction == Direction.RIGHT) ? 1200 : 1201;
                 } else {  // RED
                     m_timeOut = (m_direction == Direction.RIGHT) ? 1201 : 1200;
                 }
                 break;
             case LEFT:
-                if (GlobalData.TeamColor == TeamColor.BLUE) {
+                if (GlobalData.MATCH.TeamColor == TeamColor.BLUE) {
                     m_timeOut = (m_direction == Direction.RIGHT) ? 1500 : 1500;
                 } else {  // RED
                     m_timeOut = (m_direction == Direction.RIGHT) ? 1500 : 1000;
@@ -71,7 +71,7 @@ public class AutoDriveToPark extends CommandBase {
                 break;
 
             case RIGHT:
-                if (GlobalData.TeamColor == TeamColor.BLUE) {
+                if (GlobalData.MATCH.TeamColor == TeamColor.BLUE) {
                     m_timeOut = (m_direction == Direction.RIGHT) ? 1000 : 1700;
                 } else {  // RED
                     m_timeOut = (m_direction == Direction.RIGHT) ? 1000 : 1500;

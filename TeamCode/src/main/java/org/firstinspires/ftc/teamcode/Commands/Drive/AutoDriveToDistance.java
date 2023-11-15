@@ -46,7 +46,7 @@ public class AutoDriveToDistance extends CommandBase
     }
     @Override
     public boolean isFinished(){
-        return m_isFinished == true ? true : false;
+        return m_isFinished;
     }
     @Override
     public void end(boolean _interrupted){

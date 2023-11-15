@@ -84,23 +84,20 @@ public class AutoDetectAprilTag extends CommandBase {
     }
     @Override
     public boolean isFinished() {
-        if (tagOfInterest != null && m_elapsedTimer.seconds() > m_timeOut) {
-            return true;
-        }
-        return false;
+        return tagOfInterest != null && m_elapsedTimer.seconds() > m_timeOut;
     }
-    private double calcWallTagToStackAngle(double _x, double _z){
-        switch(GlobalData.TeamColor){
-            case RED:
-                break;
-            case BLUE:
-                break;
-            default:
-                break;
-        }
-        return 0;
-    }
-    private double calcWallTagToStackDistance(double _x, double _z){
-        return 0;
-    }
+//    private double calcWallTagToStackAngle(double _x, double _z){
+//        switch(GlobalData.MATCH.TeamColor){
+//            case RED:
+//                break;
+//            case BLUE:
+//                break;
+//            default:
+//                break;
+//        }
+//        return 0;
+//    }
+//    private double calcWallTagToStackDistance(double _x, double _z){
+//        return 0;
+//    }
 }

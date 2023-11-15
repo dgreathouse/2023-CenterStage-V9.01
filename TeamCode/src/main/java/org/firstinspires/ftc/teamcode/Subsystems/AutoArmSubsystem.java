@@ -14,7 +14,6 @@ public class AutoArmSubsystem extends SubsystemBase {
     private Forearm m_forearm;
     private Shoulder m_shoulder;
     private Rev2mDistanceSensor m_distanceSensor;
-    private ArmData m_armData;
     private double m_requestedArmAng = 0.0;
     private double m_requestedForearmPosition = 0.0;
     private double m_requestedClawAngle = 0;
@@ -30,7 +29,7 @@ public class AutoArmSubsystem extends SubsystemBase {
     private void initHardware() {
         m_claw = new Claw(m_opMode);
         m_forearm = new Forearm(m_opMode);
-        m_armData = new ArmData();
+        ArmData m_armData = new ArmData();
         m_shoulder = new Shoulder(m_opMode, m_armData,m_forearm);
         m_distanceSensor = m_opMode.hardwareMap.get(Rev2mDistanceSensor.class, Hw.DistanceSensor);
     }
@@ -71,9 +70,9 @@ public class AutoArmSubsystem extends SubsystemBase {
 
     @Override
     public void periodic() {
-        //armGotoPosition();
+        armGotoPosition();
         m_opMode.telemetry.addData("Team Prop Distance", "%3.3f", getTeamPropDistance());
-        m_opMode.telemetry.addData("Team Prop Location", GlobalData.TeamPropLocation);
+        m_opMode.telemetry.addData("Team Prop Location", GlobalData.MATCH.TeamPropLocation);
 
 //        m_opMode.telemetry.addData("Shoulder Angle", "%3.3f", m_shoulder.getAngle());
 //        m_opMode.telemetry.addData("Shoulder Power", "%3.3f", m_shoulder.getPower());

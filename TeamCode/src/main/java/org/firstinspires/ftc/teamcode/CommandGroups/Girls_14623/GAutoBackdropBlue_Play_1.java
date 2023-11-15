@@ -2,26 +2,12 @@ package org.firstinspires.ftc.teamcode.CommandGroups.Girls_14623;
 
 import com.arcrobotics.ftclib.command.CommandOpMode;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
-import com.arcrobotics.ftclib.util.Direction;
 
-import org.firstinspires.ftc.teamcode.Commands.Arm.ArmAutoGotoPosition;
-import org.firstinspires.ftc.teamcode.Commands.Arm.ArmGetTeamPropLocation;
 import org.firstinspires.ftc.teamcode.Commands.AutoDelayCommand;
-import org.firstinspires.ftc.teamcode.Commands.AutoDetectAprilTag;
 import org.firstinspires.ftc.teamcode.Commands.AutoStopOpModeCommand;
 import org.firstinspires.ftc.teamcode.Commands.ClawGrip.ClawRotateFingers;
 import org.firstinspires.ftc.teamcode.Commands.Drive.AutoDriveTimeVel;
-import org.firstinspires.ftc.teamcode.Commands.Drive.AutoDriveToBackdrop;
-import org.firstinspires.ftc.teamcode.Commands.Drive.AutoDriveToBackdropAprilTag;
-import org.firstinspires.ftc.teamcode.Commands.Drive.AutoDriveToPark;
-import org.firstinspires.ftc.teamcode.Commands.Drive.AutoDriveToTeamProp;
-import org.firstinspires.ftc.teamcode.Commands.Drive.AutoRotateRobot;
 import org.firstinspires.ftc.teamcode.Lib.ArmData;
-import org.firstinspires.ftc.teamcode.Lib.ArmPos;
-import org.firstinspires.ftc.teamcode.Lib.AutoFieldLocation;
-import org.firstinspires.ftc.teamcode.Lib.GlobalData;
-import org.firstinspires.ftc.teamcode.Lib.TeamColor;
-import org.firstinspires.ftc.teamcode.Lib.TeamPropLocation;
 import org.firstinspires.ftc.teamcode.Subsystems.AutoArmSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystems.AutoClawGripSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystems.AutoDriveSubsystem;
@@ -29,12 +15,14 @@ import org.firstinspires.ftc.teamcode.Subsystems.AutoDriveSubsystem;
 public class GAutoBackdropBlue_Play_1 extends SequentialCommandGroup {
 
     public GAutoBackdropBlue_Play_1(CommandOpMode _opMode, AutoDriveSubsystem _drive, AutoArmSubsystem _arm, AutoClawGripSubsystem _claw) {
-        GlobalData.TeamColor = TeamColor.BLUE;
-        GlobalData.FieldLocation = AutoFieldLocation.BACKDROP;
+
         ArmData armData = new ArmData();
         addCommands(
                 new ClawRotateFingers(_opMode, _claw, _claw.getClawCloseAngle()),                     // Close claw to grab pixels
-                new AutoDetectAprilTag(_opMode,30),
+             //   new ArmAutoGotoPosition(_opMode, _arm, armData.getArmSetAngle(ArmPos.STRAIGHT),0,0),  // Raise arm straight so distance sensor can see team prop
+                new AutoDelayCommand(_opMode,500),
+                new AutoDriveTimeVel(_opMode, _drive,0,1.0,0,10000),                                   // Drive up to team prop
+//                new AutoDetectAprilTag(_opMode,30),
 //                new AutoDelayCommand(_opMode,30000),
 //                new ClawRotateFingers(_opMode, _claw, _claw.getClawCloseAngle()),                     // Close claw to grab pixels
 //                new AutoDelayCommand(_opMode,1000),                                                   // Delay to let claw close on the pixels

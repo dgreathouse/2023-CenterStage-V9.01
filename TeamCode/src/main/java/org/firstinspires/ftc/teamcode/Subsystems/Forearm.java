@@ -42,7 +42,7 @@ public class Forearm {
     }
 
     /**
-     * This is used during climbing to give the motor raw power from the thumbstick.
+     * This is used during climbing to give the motor raw power from the ThumbStick.
      * Limits are applied here
      * @param _speed The speed to move the motor.
      */

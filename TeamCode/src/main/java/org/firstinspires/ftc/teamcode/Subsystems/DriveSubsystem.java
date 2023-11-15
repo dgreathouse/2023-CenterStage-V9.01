@@ -24,7 +24,7 @@ public class DriveSubsystem extends SubsystemBase {
 
     /** Class Constructor
      *
-     * @param _opMode The opMode used which will be teleOp or Autonomous
+     * @param _opMode The opMode used which will be Driver Controlled or Autonomous
      */
     public DriveSubsystem(CommandOpMode _opMode, Hw _hw) {
         m_opMode = _opMode;
@@ -113,6 +113,18 @@ public class DriveSubsystem extends SubsystemBase {
         m_lDrive.set(0);
         m_rDrive.set(0);
         m_bDrive.set(0);
+    }
+    public void toggleVeocityMode(){
+        GlobalData.DRIVE.IsVelocityModeEnabled = !GlobalData.DRIVE.IsVelocityModeEnabled;
+        if(GlobalData.DRIVE.IsVelocityModeEnabled){
+            m_lDrive.setRunMode(Motor.RunMode.VelocityControl);
+            m_rDrive.setRunMode(Motor.RunMode.VelocityControl);
+            m_bDrive.setRunMode(Motor.RunMode.VelocityControl);
+        }else {
+            m_lDrive.setRunMode(Motor.RunMode.RawPower);
+            m_rDrive.setRunMode(Motor.RunMode.RawPower);
+            m_bDrive.setRunMode(Motor.RunMode.RawPower);
+        }
     }
     public void setIsFieldOriented(boolean _val){
         m_drive.setIsFieldOriented(_val);

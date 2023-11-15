@@ -4,14 +4,14 @@ import com.arcrobotics.ftclib.command.CommandOpMode;
 import com.arcrobotics.ftclib.command.CommandScheduler;
 import com.arcrobotics.ftclib.util.Timing;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-
-
 import org.firstinspires.ftc.teamcode.CommandGroups.Boys_22291.BAutoBackdropBlue_Play_1;
 import org.firstinspires.ftc.teamcode.CommandGroups.Girls_14623.GAutoBackdropBlue_Play_1;
 import org.firstinspires.ftc.teamcode.Commands.Arm.AutoArmDefaultCommand;
 import org.firstinspires.ftc.teamcode.Commands.Drive.AutoDriveDefaultCommand;
+import org.firstinspires.ftc.teamcode.Lib.AutoFieldLocation;
 import org.firstinspires.ftc.teamcode.Lib.GlobalData;
 import org.firstinspires.ftc.teamcode.Lib.Hw;
+import org.firstinspires.ftc.teamcode.Lib.TeamColor;
 import org.firstinspires.ftc.teamcode.Lib.k;
 import org.firstinspires.ftc.teamcode.Subsystems.AutoArmSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystems.AutoDriveSubsystem;
@@ -23,8 +23,6 @@ import java.util.concurrent.TimeUnit;
 public class AutoBackdropBlueOpMode_Play_1 extends CommandOpMode {
     Timing.Timer m_timer;
 
-    double m_timerAvg = 0.0;
-    double m_timerCnt = 0;
     Hw hw;
     AutoDriveSubsystem drive;
     AutoDriveDefaultCommand driveDefaultCommand;
@@ -55,6 +53,8 @@ public class AutoBackdropBlueOpMode_Play_1 extends CommandOpMode {
 
         m_timer = new Timing.Timer(100, TimeUnit.MILLISECONDS);
         m_timer.start();
+        GlobalData.MATCH.TeamColor = TeamColor.BLUE;
+        GlobalData.MATCH.FieldLocation = AutoFieldLocation.BACKDROP;
     }
     @Override
     public void runOpMode() throws InterruptedException{

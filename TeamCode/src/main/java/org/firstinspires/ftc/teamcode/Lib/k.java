@@ -27,6 +27,7 @@ public class k {
         public static final double Rot_I = 0.05;
         public static double DriveSpeedScale = 1.0;
         public static boolean AutoDriveRampEnabled = true;
+        public static double ACHIEVABLE_MAX_TICKS_PER_SECOND = 2781.1;
 
     }
     public static final class CAMERA {

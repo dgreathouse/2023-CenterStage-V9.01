@@ -36,8 +36,6 @@ import com.arcrobotics.ftclib.util.Timing;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.Commands.Arm.ArmDefaultCommand;
-import org.firstinspires.ftc.teamcode.Commands.Arm.ArmIncreaseShouldDownVelocity;
-import org.firstinspires.ftc.teamcode.Commands.Arm.ArmIncreaseShouldUpVelocity;
 import org.firstinspires.ftc.teamcode.Commands.ClawGrip.ClawGripDefaultCommand;
 import org.firstinspires.ftc.teamcode.Commands.Drive.DriveDefaultCommand;
 import org.firstinspires.ftc.teamcode.Commands.Drone.DroneDefaultCommand;
@@ -104,6 +102,8 @@ public class TeleOpMode_Linear extends CommandOpMode {
         Hw.s_gpDriver.getGamepadButton(GamepadKeys.Button.A).whenPressed(new InstantCommand(() -> m_drive.setDriveSpeedScale(0.5), m_arm));
         //  (Button Triangle(ps)/Y(xbox))
         Hw.s_gpDriver.getGamepadButton(GamepadKeys.Button.Y).whenPressed(new InstantCommand(() -> m_drive.setDriveSpeedScale(1.0), m_arm));
+        // (Button Square(ps)/X(xbox))
+        Hw.s_gpDriver.getGamepadButton(GamepadKeys.Button.X).whenPressed(new InstantCommand(() -> m_drive.toggleVeocityMode(), m_drive));
         // Set Drive PID to -45
         Hw.s_gpDriver.getGamepadButton(GamepadKeys.Button.DPAD_UP).whenPressed(new InstantCommand(() -> m_drive.setDrivePIDAngle(135), m_drive));
         // Set Drive PID to 45 for wing Red
@@ -130,14 +130,14 @@ public class TeleOpMode_Linear extends CommandOpMode {
         // Launch Drone (Button Left DPAD)
         Hw.s_gpOperator.getGamepadButton(GamepadKeys.Button.DPAD_LEFT).whenPressed(new DroneLaunchCommand(this,m_drone));
 
-        Hw.s_gpOperator.getGamepadButton(GamepadKeys.Button.DPAD_UP).whenPressed(new ArmIncreaseShouldUpVelocity(this,m_arm,0.01));
-        Hw.s_gpOperator.getGamepadButton(GamepadKeys.Button.DPAD_DOWN).whenPressed(new ArmIncreaseShouldDownVelocity(this,m_arm,-0.01));
+//        Hw.s_gpOperator.getGamepadButton(GamepadKeys.Button.DPAD_UP).whenPressed(new ArmIncreaseShouldUpVelocity(this,m_arm,0.01));
+//        Hw.s_gpOperator.getGamepadButton(GamepadKeys.Button.DPAD_DOWN).whenPressed(new ArmIncreaseShouldDownVelocity(this,m_arm,-0.01));
         // Right DPAD is used in the ArmDefaultCommand to disable the arm movement so the forearm can be moved for climbing.
        // Hw.s_gpOperator.getGamepadButton(GamepadKeys.Button.DPAD_RIGHT).whenPressed(new));
 
 
         m_timer = new Timing.Timer(100, TimeUnit.MILLISECONDS);
-        m_timer.start();
+
     }
 
     @Override
@@ -146,15 +146,19 @@ public class TeleOpMode_Linear extends CommandOpMode {
 
         waitForStart();
         GlobalData.State = RobotState.DRIVERCONTROLLED;
+        m_timer.start();
         // run the scheduler
         while (!isStopRequested() && opModeIsActive()) {
             run();
             // Calculate the run rate of this loop
 
             telemetry.update();
-            telemetry.addData("CPU Load TeleOp %", 100 - m_timer.remainingTime());
+            telemetry.addData("Math Time", m_timer.elapsedTime());
             // wait till timer is > 100ms to try an create a stable run rate
-            if(k.SYSTEM.isLoopRateLimited){while(!m_timer.done()){} m_timer.start();}
+            if(k.SYSTEM.isLoopRateLimited){
+                while(!m_timer.done()){} m_timer.start();
+                telemetry.addData("CPU Load TeleOp %", 100 - m_timer.remainingTime());
+            }
         }
         reset();
     }

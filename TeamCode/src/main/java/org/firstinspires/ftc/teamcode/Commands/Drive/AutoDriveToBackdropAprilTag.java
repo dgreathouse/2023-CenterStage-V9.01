@@ -13,7 +13,7 @@ import org.firstinspires.ftc.teamcode.Subsystems.AutoDriveSubsystem;
 import java.util.concurrent.TimeUnit;
 
 /** Drive to backdrop using april tags
- * Robot must be stopped in front of the backdrop to read the Apriltags
+ * Robot must be stopped in front of the backdrop to read the AprilTags
  * GlobalData.tagOfInterest holds the 1-6 number of the april tag of interest from when we detected.
  * GlobalData.tagPosX,Z contain the location.
  * We need to calculate a drive angle and timeout to get the robot to go to the position.
@@ -49,7 +49,7 @@ public class AutoDriveToBackdropAprilTag extends CommandBase {
 //        // Calculate the angle from the
         m_driveAngle = -Math.toDegrees(Math.atan(GlobalData.AprilTag_X / GlobalData.AprilTag_Z));
 //        // Convert the angle to match the direction of the x for +/-
-//        // Not needed the asin function handles a negative number
+//        // Not needed the aSin function handles a negative number
         double hyp = Math.sqrt(GlobalData.AprilTag_Z * GlobalData.AprilTag_Z + GlobalData.AprilTag_X * GlobalData.AprilTag_X);
 //        m_timeOut = (int)(hyp * m_ZTimeScale);
 //        GlobalData.aprilTagTime = m_timeOut;
@@ -73,14 +73,14 @@ public class AutoDriveToBackdropAprilTag extends CommandBase {
         // Calculate the angle from the
         m_driveAngle = -Math.toDegrees(Math.atan(GlobalData.AprilTag_X / GlobalData.AprilTag_Z));
         // Convert the angle to match the direction of the x for +/-
-        // Not needed the asin function handles a negative number
+        // Not needed the aSin function handles a negative number
         double hyp = Math.sqrt(GlobalData.AprilTag_Z * GlobalData.AprilTag_Z + GlobalData.AprilTag_X * GlobalData.AprilTag_X);
         m_timeOut = (int)(hyp * m_ZTimeScale);
         GlobalData.AprilTagRange = m_timeOut;
         rotPID = new PIDController(k.DRIVE.Rot_P,k.DRIVE.Rot_I,0);
         rotPID.reset();
 
-        if (GlobalData.TeamColor == TeamColor.BLUE) {
+        if (GlobalData.MATCH.TeamColor == TeamColor.BLUE) {
             m_driveAngle -= 90;
             m_robotAngle = 90;
         }else {  // Red

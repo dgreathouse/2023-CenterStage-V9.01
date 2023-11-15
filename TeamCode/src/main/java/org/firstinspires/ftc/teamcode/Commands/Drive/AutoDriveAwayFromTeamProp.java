@@ -9,7 +9,6 @@ import org.firstinspires.ftc.teamcode.Lib.GlobalData;
 import org.firstinspires.ftc.teamcode.Lib.TeamColor;
 import org.firstinspires.ftc.teamcode.Lib.k;
 import org.firstinspires.ftc.teamcode.Subsystems.AutoDriveSubsystem;
-import org.firstinspires.ftc.teamcode.Subsystems.DriveSubsystem;
 
 import java.util.concurrent.TimeUnit;
 
@@ -40,10 +39,10 @@ public class AutoDriveAwayFromTeamProp extends CommandBase {
         rotPID = new PIDController(k.DRIVE.Rot_P, k.DRIVE.Rot_I, 0);
         rotPID.reset();
 
-        switch (GlobalData.TeamPropLocation) {
+        switch (GlobalData.MATCH.TeamPropLocation) {
             case CENTER:
             case NONE:
-                if (GlobalData.TeamColor == TeamColor.BLUE) {
+                if (GlobalData.MATCH.TeamColor == TeamColor.BLUE) {
                     m_driveAngle = -180;
                     m_robotAngle = 0;
                     m_timeOut = 750;
@@ -54,31 +53,25 @@ public class AutoDriveAwayFromTeamProp extends CommandBase {
                 }
                 break;
             case LEFT:
-                if (GlobalData.TeamColor == TeamColor.BLUE) {
+                m_robotAngle = 0;
+                m_timeOut = 800;
+                if (GlobalData.MATCH.TeamColor == TeamColor.BLUE) {
                     m_driveAngle = -135;
-                    m_robotAngle = 0;
-                    m_timeOut = 500;
                 }else {
                     m_driveAngle = 135;
-                    m_robotAngle = 0;
-                    m_timeOut = 500;
                 }
                 break;
 
             case RIGHT:
-                if (GlobalData.TeamColor == TeamColor.BLUE) {
+                m_robotAngle = 0;
+                m_timeOut = 800;
+
+                if (GlobalData.MATCH.TeamColor == TeamColor.BLUE) {
                     m_driveAngle = 180;
-                    m_robotAngle = 0;
-                    m_timeOut = 800;
                 }else {
                     m_driveAngle = -180;
-                    m_robotAngle = 0;
-                    m_timeOut = 800;
                 }
-
-
                 break;
-
         }
 
         m_elapsedTimer = new Timing.Timer(m_timeOut, TimeUnit.MILLISECONDS);

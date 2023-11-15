@@ -40,10 +40,10 @@ public class AutoRotateToTeamProp extends CommandBase {
         rotPID.setTolerance(1.0);
         rotPID.reset();
 
-        switch (GlobalData.TeamPropLocation) {
+        switch (GlobalData.MATCH.TeamPropLocation) {
             case CENTER:
             case NONE:
-                m_robotAngle = GlobalData.TeamColor == TeamColor.BLUE ? 17.5 : -17.5;
+                m_robotAngle = GlobalData.MATCH.TeamColor == TeamColor.BLUE ? 17.5 : -17.5;
                 break;
             case LEFT:
                 m_robotAngle = 45;

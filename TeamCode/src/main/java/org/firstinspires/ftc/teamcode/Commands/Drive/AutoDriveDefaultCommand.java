@@ -13,7 +13,7 @@ AutoDriveDefaultCommand extends CommandBase {
     // Create local variables of type double to store the stick X,Y,Z values and Angle of robot.
     /** Constructor of class
      *
-     * @param _opMode The opMode used which will be teleOp or Autonomous
+     * @param _opMode The opMode used which will be Driver Controlled or Autonomous
      * @param _drive The DriveSubsystem instance variable
      */
     public AutoDriveDefaultCommand(CommandOpMode _opMode, AutoDriveSubsystem _drive) {
