@@ -6,7 +6,6 @@ import com.arcrobotics.ftclib.controller.PIDController;
 import com.arcrobotics.ftclib.util.MathUtils;
 import com.arcrobotics.ftclib.util.Timing;
 
-import org.firstinspires.ftc.teamcode.Lib.k;
 import org.firstinspires.ftc.teamcode.Subsystems.AutoDriveSubsystem;
 
 import java.util.concurrent.TimeUnit;
@@ -25,13 +24,13 @@ public class AutoDriveTimeVel extends CommandBase {
     int m_timeOut;
     double m_speed;
     double m_currentSpeed;
-
+    boolean m_rampEnabled;
 
     PIDController rotPID = new PIDController(.025,0,0);
     Timing.Timer m_timer;
 
 
-    public AutoDriveTimeVel(CommandOpMode _opMode, AutoDriveSubsystem _drive, double _driveAngle, double _speed, double _robotAngle, int _timeOut) {
+    public AutoDriveTimeVel(CommandOpMode _opMode, AutoDriveSubsystem _drive, double _driveAngle, double _speed, double _robotAngle, int _timeOut, boolean _rampEnabled) {
         m_opMode = _opMode;
         m_drive = _drive;
         m_driveAngle = _driveAngle;
@@ -39,6 +38,7 @@ public class AutoDriveTimeVel extends CommandBase {
         m_robotAngle = _robotAngle;
         m_timeOut = _timeOut;
         m_currentSpeed = m_speed;
+        m_rampEnabled = _rampEnabled;
     }
 
     @Override
@@ -53,7 +53,7 @@ public class AutoDriveTimeVel extends CommandBase {
     public void execute(){
         double rot = -rotPID.calculate(m_drive.getRobotAngle(), m_robotAngle);
         // Try to gently ramp the speed up from 0 to m_speed
-        if(k.DRIVE.AutoDriveRampEnabled) {
+        if(m_rampEnabled) {
             m_currentSpeed = m_timer.elapsedTime() < 1000 ? m_speed * 1 * (double) m_timer.elapsedTime() / 1000.0 : m_speed;  // 1 Second
            // m_currentSpeed = m_timer.elapsedTime() < 400 ? m_speed * 8 * (double) m_timer.elapsedTime() / 1000.0 : m_speed; // .25Sec Ramp
         }

@@ -30,7 +30,7 @@ public class GAutoBackdropRed_Play_3 extends SequentialCommandGroup {
                 new ClawRotateFingers(_opMode, _claw, _claw.getClawCloseAngle()),                                           // Close claw to grab pixels
                 new AutoDelayCommand(_opMode,1000),                                                                 // Delay to let claw close on the pixels
                 new ArmAutoGotoPosition(_opMode, _arm, armData.getArmSetAngle(ArmPos.STRAIGHT),0,0), // Raise arm straight so distance sensor can see team prop
-                new AutoDriveTimeVel(_opMode, _drive,0,0.4,0,1400),                      // Drive up to team prop
+                new AutoDriveTimeVel(_opMode, _drive,0,0.4,0,1400,true),                      // Drive up to team prop
                 new ArmGetTeamPropLocation(_opMode, _arm, TeamPropLocation.CENTER),                                          // Read team prop location (center)
                 new AutoRotateRobot(_opMode,_drive, -50,0.25,3000),                                    // Rotate to other team prop location
                 new ArmGetTeamPropLocation(_opMode, _arm, TeamPropLocation.RIGHT),                                           // Read team prop location (right)
@@ -44,19 +44,19 @@ public class GAutoBackdropRed_Play_3 extends SequentialCommandGroup {
                 new ArmAutoGotoPosition(_opMode, _arm, armData.getArmSetAngle(ArmPos.STRAIGHT),20,0), // Raise arm and tilt the claw
                 new AutoDelayCommand(_opMode,250),                                                                  // Delay for pixel to drop out of the claw
                 new AutoRotateRobot(_opMode,_drive, 0,0.25,3000),                                     // Rotate robot straight
-                new AutoDriveTimeVel(_opMode, _drive,-180,0.4,0,800),                   // Drive backwards to a known point
+                new AutoDriveTimeVel(_opMode, _drive,-180,0.4,0,800,true),                   // Drive backwards to a known point
                 new AutoDriveToBackdrop(_opMode,_drive),                                                                    // Drive to backdrop method
                 new ClawRotateFingers(_opMode,_claw, _claw.getClawOpenAngle()),                                             // At the back drop now so drop the upper pixel
-                new AutoDriveTimeVel(_opMode, _drive,-90,0.3,-90,550),                   // Drive backwards away from backdrop
+                new AutoDriveTimeVel(_opMode, _drive,-90,0.3,-90,550,true),                   // Drive backwards away from backdrop
                 new AutoDriveToPark(_opMode, _drive, Direction.RIGHT),                                                      // Drive to the left and park
-                new AutoDriveTimeVel(_opMode, _drive,-90,0.3,-90,3000),                  // Drive to stack of pixels backwards
+                new AutoDriveTimeVel(_opMode, _drive,-90,0.3,-90,3000,true),                  // Drive to stack of pixels backwards
                 new ArmAutoGotoPosition(_opMode, _arm, armData.getArmSetAngle(ArmPos.STACK_5),-6,0), // Lower arm and tilt the claw for top two pixels
-                new AutoDriveTimeVel(_opMode, _drive,-90,0.3,90,3000),                   // Drive to stack of pixels forwards
+                new AutoDriveTimeVel(_opMode, _drive,-90,0.3,90,3000,true),                   // Drive to stack of pixels forwards
                 new ClawRotateFingers(_opMode,_claw, _claw.getClawCloseAngle()),                                             // Grab the pixels
                 new AutoDelayCommand(_opMode,1250),                                                                  // Delay for claw to grab
                 new ArmAutoGotoPosition(_opMode, _arm, armData.getArmSetAngle(ArmPos.STRAIGHT),20,0), // Raise arm and tilt the claw
-                new AutoDriveTimeVel(_opMode, _drive,90,0.3,90,3000),                    // Drive to backdrop backwards
-                new AutoDriveTimeVel(_opMode, _drive,90,0.3,-90,3000),                   // Drive to backdrop forwards
+                new AutoDriveTimeVel(_opMode, _drive,90,0.3,90,3000,true),                    // Drive to backdrop backwards
+                new AutoDriveTimeVel(_opMode, _drive,90,0.3,-90,3000,false),                   // Drive to backdrop forwards
                 new ClawRotateFingers(_opMode,_claw, _claw.getClawOpenAngle()),                                              // release the pixels
                 new ArmAutoGotoPosition(_opMode,_arm,armData.getArmSetAngle(ArmPos.FLOOR),0,0),      // Put the arm to the floor
                 new AutoDelayCommand(_opMode,1000),                                                                 // Delay a second to allow arm to goto the floor before ending and turning off power

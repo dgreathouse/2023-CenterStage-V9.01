@@ -30,7 +30,7 @@ public class BAutoBackdropRed_Play_2 extends SequentialCommandGroup {
                 new ClawRotateFingers(_opMode, _claw, _claw.getClawCloseAngle()),
                 new AutoDelayCommand(_opMode,1000),
                 new ArmAutoGotoPosition(_opMode, _arm, armData.getArmSetAngle(ArmPos.STRAIGHT),0,0),
-                new AutoDriveTimeVel(_opMode, _drive,0,0.4,0,1400),
+                new AutoDriveTimeVel(_opMode, _drive,0,0.4,0,1400,true),
                 new ArmGetTeamPropLocation(_opMode, _arm, TeamPropLocation.CENTER),
                 new AutoRotateRobot(_opMode,_drive, -45,0.25,3000),
                 new ArmGetTeamPropLocation(_opMode, _arm, TeamPropLocation.RIGHT),
@@ -44,8 +44,8 @@ public class BAutoBackdropRed_Play_2 extends SequentialCommandGroup {
                 new AutoDriveAwayFromTeamProp(_opMode, _drive),
                 new AutoDriveToBackdrop(_opMode,_drive),
                 new ClawRotateFingers(_opMode,_claw, _claw.getClawOpenAngle()),
-                new AutoDriveTimeVel(_opMode, _drive,-90,0.3,-90,550),
-                new AutoDriveTimeVel(_opMode, _drive,-180,0.3,-90,1700),                       // Drive to the left and park
+                new AutoDriveTimeVel(_opMode, _drive,-90,0.3,-90,550,true),
+                new AutoDriveTimeVel(_opMode, _drive,-180,0.3,-90,1700,false),                       // Drive to the left and park
                 new ArmAutoGotoPosition(_opMode,_arm,armData.getArmSetAngle(ArmPos.FLOOR),0,0),        // Put the arm Straight
                 new AutoDelayCommand(_opMode,1000),
                 new AutoStopOpModeCommand(_opMode) // This must be the last line of every command list

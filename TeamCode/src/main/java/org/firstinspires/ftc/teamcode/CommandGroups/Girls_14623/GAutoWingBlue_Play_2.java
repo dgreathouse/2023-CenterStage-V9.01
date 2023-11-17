@@ -30,7 +30,7 @@ public class GAutoWingBlue_Play_2 extends SequentialCommandGroup {
                 new ClawRotateFingers(_opMode, _claw, _claw.getClawCloseAngle()),                     // Close claw to grab pixels
                 new AutoDelayCommand(_opMode,1000),                                                   // Delay to let claw close on the pixels//delay
                 new ArmAutoGotoPosition(_opMode, _arm, armData.getArmSetAngle(ArmPos.STRAIGHT),0,0),  // Raise arm straight so distance sensor can see team prop
-                new AutoDriveTimeVel(_opMode, _drive,0,0.4,0,1400),                                   // Drive up to team prop
+                new AutoDriveTimeVel(_opMode, _drive,0,0.4,0,1400,true),                                   // Drive up to team prop
                 new ArmGetTeamPropLocation(_opMode, _arm, TeamPropLocation.CENTER),                   // Read team prop location (center)//read team prop location (center)
                 new AutoRotateRobot(_opMode,_drive, -50,0.25,3000),                                    // Rotate to other team prop location//rotate right
                 new ArmGetTeamPropLocation(_opMode, _arm, TeamPropLocation.RIGHT),                     // Read team prop location (left)
@@ -45,13 +45,13 @@ public class GAutoWingBlue_Play_2 extends SequentialCommandGroup {
                 new ArmAutoGotoPosition(_opMode, _arm, armData.getArmSetAngle(ArmPos.STRAIGHT),20,0), // Raise arm and tilt the claw and retract the forearm
                 new AutoDelayCommand(_opMode,250),                                                    // Delay for arm to go straight so the rotation does not hit the team prop
                 new AutoRotateRobot(_opMode,_drive, 0,0.25,3000),                                     // Rotate robot straight
-                new AutoDriveTimeVel(_opMode, _drive,-180,0.4,0,1150),                                // Drive backwards to a the wall
+                new AutoDriveTimeVel(_opMode, _drive,-180,0.4,0,1150,true),                                // Drive backwards to a the wall
                 new AutoRotateRobot(_opMode,_drive, -90,0.25,3500),                                    // Rotate so back is towards the backdrop
-                new AutoDriveTimeVel(_opMode, _drive,-90,0.4,-90,2800),                                 // Drive under truss
+                new AutoDriveTimeVel(_opMode, _drive,-90,0.4,-90,2800,true),                                 // Drive under truss
                 new AutoDelayCommand(_opMode,100),                                                    // Delay to let other robot move out of the way. Adjust for other robot
                 new AutoDriveToBackdropFromWing(_opMode,_drive),                                      // Drive the correct position on the backdrop
                 new ClawRotateFingers(_opMode, _claw, _claw.getClawReleaseUpperAngle()),              // Release the upper pixel
-                new AutoDriveTimeVel(_opMode, _drive,90,0.3,90,550),                                // Drive backwards away from backdrop
+                new AutoDriveTimeVel(_opMode, _drive,90,0.3,90,550,true),                                // Drive backwards away from backdrop
                 new AutoDriveToPark(_opMode, _drive, Direction.LEFT),                                 // Drive to the left and park
                 new ArmAutoGotoPosition(_opMode,_arm,armData.getArmSetAngle(ArmPos.FLOOR),0,0),       // Put the arm to the floor
                 new AutoDelayCommand(_opMode,1000),                                                   // Delay for arm to reach floor
