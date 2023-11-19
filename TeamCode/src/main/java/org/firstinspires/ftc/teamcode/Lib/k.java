@@ -68,9 +68,9 @@ public class k {
         public static final double RotateDownLimit = -25;
         public static final double Motor_CountsPDeg = 288.0/360.0;
 
-        public static final double CloseAngle_22291 = 279;
+        public static final double CloseAngle_22291 = 281;
         public static final double OpenLowerAngle_22291 = 262;
-        public static final double OpenUpperAngle_22291 = 220;
+        public static final double OpenUpperAngle_22291 = 240;
         public static final double OpenAngle_22291 = 220;
 
         public static final double CloseAngle_14623 = 122.0;

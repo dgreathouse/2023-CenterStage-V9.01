@@ -74,9 +74,9 @@ public class AutoArmSubsystem extends SubsystemBase {
         m_opMode.telemetry.addData("Team Prop Distance", "%3.3f", getTeamPropDistance());
         m_opMode.telemetry.addData("Team Prop Location", GlobalData.MATCH.TeamPropLocation);
 
-//        m_opMode.telemetry.addData("Shoulder Angle", "%3.3f", m_shoulder.getAngle());
-//        m_opMode.telemetry.addData("Shoulder Power", "%3.3f", m_shoulder.getPower());
-//        m_opMode.telemetry.addData("Shoulder Requested Angle", "%3.3f", m_requestedArmAng);
+        m_opMode.telemetry.addData("Shoulder Angle", "%3.3f", m_shoulder.getAngle());
+        m_opMode.telemetry.addData("Shoulder Power", "%3.3f", m_shoulder.getPower());
+        m_opMode.telemetry.addData("Shoulder Requested Angle", "%3.3f", m_requestedArmAng);
 //
 //        m_opMode.telemetry.addData("Claw Angle", "%3.3f", m_claw.getClawRotateAngle());
 //        m_opMode.telemetry.addData("Claw Requested Angle", "%3.3f", m_requestedClawAngle);

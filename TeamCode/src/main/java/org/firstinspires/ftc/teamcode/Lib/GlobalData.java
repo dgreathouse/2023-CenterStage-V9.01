@@ -10,7 +10,7 @@ public class GlobalData {
         public static TeamColor TeamColor = org.firstinspires.ftc.teamcode.Lib.TeamColor.RED;
     }
 
-    public static int TeamNumber = 14623;
+    public static int TeamNumber = 22291;
 
     public static boolean ArmAutoEnable = true;
 

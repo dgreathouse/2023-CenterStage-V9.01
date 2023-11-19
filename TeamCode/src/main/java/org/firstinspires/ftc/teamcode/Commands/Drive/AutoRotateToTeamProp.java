@@ -43,13 +43,13 @@ public class AutoRotateToTeamProp extends CommandBase {
         switch (GlobalData.MATCH.TeamPropLocation) {
             case CENTER:
             case NONE:
-                m_robotAngle = GlobalData.MATCH.TeamColor == TeamColor.BLUE ? 17.5 : -17.5;
+                m_robotAngle = GlobalData.MATCH.TeamColor == TeamColor.BLUE ? 15 : -15;
                 break;
             case LEFT:
                 m_robotAngle = 45;
                 break;
             case RIGHT:
-                m_robotAngle = -45;
+                m_robotAngle = -40;
                 break;
 
         }
@@ -62,7 +62,7 @@ public class AutoRotateToTeamProp extends CommandBase {
     public void execute() {
 
         double rot = -rotPID.calculate(m_drive.getRobotAngle(), m_robotAngle);
-        m_drive.drivePolar(0, m_speed, rot);
+        m_drive.drivePolar(0, 0, rot);
 
     }
 
