@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.Commands.Arm;
 import com.arcrobotics.ftclib.command.CommandBase;
 import com.arcrobotics.ftclib.command.CommandOpMode;
 
+import org.firstinspires.ftc.teamcode.Lib.ArmPos;
 import org.firstinspires.ftc.teamcode.Lib.GlobalData;
 import org.firstinspires.ftc.teamcode.Subsystems.AutoArmSubsystem;
 
@@ -26,14 +27,14 @@ public class ArmAutoGotoTeamProp extends CommandBase {
             case CENTER:
             case NONE:
                 m_shoulderAngle = 35;
-                m_clawAngle = -6;
-                m_forearmPosition = 150;
+                m_clawAngle = -10;
+                m_forearmPosition = 100;
                 break;
             case LEFT:
             case RIGHT:
                 m_shoulderAngle = 35;
-                m_clawAngle = -6;
-                m_forearmPosition = 50;
+                m_clawAngle = -10;
+                m_forearmPosition = 150;
                 break;
 
         }
