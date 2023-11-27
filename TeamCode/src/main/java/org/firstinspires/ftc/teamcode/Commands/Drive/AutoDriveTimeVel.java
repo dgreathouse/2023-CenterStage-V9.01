@@ -25,8 +25,9 @@ public class AutoDriveTimeVel extends CommandBase {
     double m_speed;
     double m_currentSpeed;
     boolean m_rampEnabled;
-
-    PIDController rotPID = new PIDController(.025,0,0);
+    double m_rotSpeed = 0.3;
+    double m_rampTime = 0.5; //Seconds
+    PIDController rotPID = new PIDController(.025,0.005,0);
     Timing.Timer m_timer;
 
 
@@ -54,10 +55,9 @@ public class AutoDriveTimeVel extends CommandBase {
         double rot = -rotPID.calculate(m_drive.getRobotAngle(), m_robotAngle);
         // Try to gently ramp the speed up from 0 to m_speed
         if(m_rampEnabled) {
-            m_currentSpeed = m_timer.elapsedTime() < 1000 ? m_speed * 1 * (double) m_timer.elapsedTime() / 1000.0 : m_speed;  // 1 Second
-           // m_currentSpeed = m_timer.elapsedTime() < 400 ? m_speed * 8 * (double) m_timer.elapsedTime() / 1000.0 : m_speed; // .25Sec Ramp
+            m_currentSpeed = m_timer.elapsedTime() < m_rampTime * 1000.0 ? m_speed * (double) m_timer.elapsedTime() / 1000.0 / m_rampTime : m_speed;
         }
-        rot = MathUtils.clamp(rot,-m_speed,m_speed);
+        rot = MathUtils.clamp(rot,-m_rotSpeed,m_rotSpeed);
         m_drive.drivePolar(m_driveAngle, m_currentSpeed, rot);
         m_opMode.telemetry.addData("CurrentSpeed", m_currentSpeed);
     }
