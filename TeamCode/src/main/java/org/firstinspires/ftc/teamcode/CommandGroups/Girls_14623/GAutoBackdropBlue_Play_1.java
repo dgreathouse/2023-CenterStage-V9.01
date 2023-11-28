@@ -20,8 +20,8 @@ public class GAutoBackdropBlue_Play_1 extends SequentialCommandGroup {
         addCommands(
                 new ClawRotateFingers(_opMode, _claw, _claw.getClawCloseAngle()),                     // Close claw to grab pixels
              //   new ArmAutoGotoPosition(_opMode, _arm, armData.getArmSetAngle(ArmPos.STRAIGHT),0,0),  // Raise arm straight so distance sensor can see team prop
-                new AutoDelayCommand(_opMode,500),
-                new AutoDriveTimeVel(_opMode, _drive,0,1.0,0,10000,true),                                   // Drive up to team prop
+                new AutoDelayCommand(_opMode,0.5),
+                new AutoDriveTimeVel(_opMode, _drive,0,1.0,0,4,1.0,1.0),                                   // Drive up to team prop
 //                new AutoDetectAprilTag(_opMode,30),
 //                new AutoDelayCommand(_opMode,30000),
 //                new ClawRotateFingers(_opMode, _claw, _claw.getClawCloseAngle()),                     // Close claw to grab pixels

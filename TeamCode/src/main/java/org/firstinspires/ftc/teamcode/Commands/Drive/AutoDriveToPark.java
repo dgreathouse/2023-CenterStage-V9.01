@@ -21,7 +21,7 @@ public class AutoDriveToPark extends CommandBase {
     double m_driveAngle = 0;
     double m_robotAngle = 0;
     Direction m_direction;
-    int m_timeOut = 1000;
+    double m_timeOut_sec = 1000;
     double m_speed = 0.4;
 
     PIDController rotPID;
@@ -57,29 +57,29 @@ public class AutoDriveToPark extends CommandBase {
             case CENTER:
             case NONE:
                 if (GlobalData.MATCH.TeamColor == TeamColor.BLUE) {
-                    m_timeOut = (m_direction == Direction.RIGHT) ? 1200 : 1201;
+                    m_timeOut_sec = (m_direction == Direction.RIGHT) ? 1.2 : 1.201;
                 } else {  // RED
-                    m_timeOut = (m_direction == Direction.RIGHT) ? 1201 : 1200;
+                    m_timeOut_sec = (m_direction == Direction.RIGHT) ? 1.201 : 1.2;
                 }
                 break;
             case LEFT:
                 if (GlobalData.MATCH.TeamColor == TeamColor.BLUE) {
-                    m_timeOut = (m_direction == Direction.RIGHT) ? 1500 : 1500;
+                    m_timeOut_sec = (m_direction == Direction.RIGHT) ? 1.5 : 1.5;
                 } else {  // RED
-                    m_timeOut = (m_direction == Direction.RIGHT) ? 1500 : 1000;
+                    m_timeOut_sec = (m_direction == Direction.RIGHT) ? 1.5 : 1.0;
                 }
                 break;
 
             case RIGHT:
                 if (GlobalData.MATCH.TeamColor == TeamColor.BLUE) {
-                    m_timeOut = (m_direction == Direction.RIGHT) ? 1000 : 1700;
+                    m_timeOut_sec = (m_direction == Direction.RIGHT) ? 1.0 : 1.7;
                 } else {  // RED
-                    m_timeOut = (m_direction == Direction.RIGHT) ? 1000 : 1500;
+                    m_timeOut_sec = (m_direction == Direction.RIGHT) ? 1.0 : 1.5;
                 }
                 break;
         }
 
-        m_elapsedTimer =  new Timing.Timer(m_timeOut, TimeUnit.MILLISECONDS);
+        m_elapsedTimer =  new Timing.Timer((long)(m_timeOut_sec*1000), TimeUnit.MILLISECONDS);
         m_elapsedTimer.start();
     }
     @Override

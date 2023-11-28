@@ -23,7 +23,7 @@ public class AutoRotateToTeamProp extends CommandBase {
     AutoDriveSubsystem m_drive;
 
     double m_robotAngle = 0;
-    int m_timeOut = 2000;
+    int m_timeOut = 3000;
     double m_speed = 0.4;
 
     PIDController rotPID;
@@ -37,7 +37,7 @@ public class AutoRotateToTeamProp extends CommandBase {
     @Override
     public void initialize() {
         rotPID = new PIDController(k.DRIVE.Rot_P, k.DRIVE.Rot_I, 0);
-        rotPID.setTolerance(1.0);
+        rotPID.setTolerance(1.0,1.0);
         rotPID.reset();
 
         switch (GlobalData.MATCH.TeamPropLocation) {

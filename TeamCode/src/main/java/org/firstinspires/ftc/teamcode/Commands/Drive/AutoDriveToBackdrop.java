@@ -23,7 +23,7 @@ public class AutoDriveToBackdrop extends CommandBase {
     AutoDriveSubsystem m_drive;
     double m_driveAngle = 0;
     double m_robotAngle = 0;
-    int m_timeOut = 1000;
+    double m_timeOut_sec = 1.0;
     double m_speed = 0.4;
 
     PIDController rotPID;
@@ -42,7 +42,7 @@ public class AutoDriveToBackdrop extends CommandBase {
         switch (GlobalData.MATCH.TeamPropLocation) {
             case CENTER:
             case NONE:
-                m_timeOut = 2600;
+                m_timeOut_sec = 2.6;
                 if (GlobalData.MATCH.TeamColor == TeamColor.BLUE) {
                     m_driveAngle = -70;
                     m_robotAngle = 90;
@@ -52,7 +52,7 @@ public class AutoDriveToBackdrop extends CommandBase {
                 }
                 break;
             case LEFT:
-                m_timeOut = 2600;
+                m_timeOut_sec = 2.6;
                 if (GlobalData.MATCH.TeamColor == TeamColor.BLUE) {
                     m_driveAngle = -60;
                     m_robotAngle = 90;
@@ -63,7 +63,7 @@ public class AutoDriveToBackdrop extends CommandBase {
                 break;
 
             case RIGHT:
-                m_timeOut = 2500;
+                m_timeOut_sec = 2.5;
                 if (GlobalData.MATCH.TeamColor == TeamColor.BLUE) {
                     m_driveAngle = -79;
                     m_robotAngle = 90;
@@ -74,7 +74,7 @@ public class AutoDriveToBackdrop extends CommandBase {
                 break;
         }
 
-        m_elapsedTimer =  new Timing.Timer(m_timeOut, TimeUnit.MILLISECONDS);
+        m_elapsedTimer =  new Timing.Timer((long)(m_timeOut_sec*1000.0), TimeUnit.MILLISECONDS);
         m_elapsedTimer.start();
     }
     @Override

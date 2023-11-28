@@ -23,7 +23,7 @@ public class AutoDriveToBackdropFromWing extends CommandBase {
     AutoDriveSubsystem m_drive;
     double m_driveAngle = 0;
     double m_robotAngle = 0;
-    int m_timeOut = 1000;
+    double m_timeOut_sec = 1.0;
     double m_speed = 0.4;
 
     PIDController rotPID;
@@ -45,15 +45,15 @@ public class AutoDriveToBackdropFromWing extends CommandBase {
                 if (GlobalData.MATCH.TeamColor == TeamColor.BLUE) {
                     m_driveAngle = -57;
                     m_robotAngle = 90;
-                    m_timeOut = 2600;
+                    m_timeOut_sec = 2.6;
                 } else {  // RED
                     m_driveAngle = 57;
                     m_robotAngle = -90;
-                    m_timeOut = 2500;
+                    m_timeOut_sec = 2.5;
                 }
                 break;
             case LEFT:
-                m_timeOut = 2600;
+                m_timeOut_sec = 2.6;
                 if (GlobalData.MATCH.TeamColor == TeamColor.BLUE) {
                     m_driveAngle = -64;
                     m_robotAngle = 90;
@@ -67,16 +67,16 @@ public class AutoDriveToBackdropFromWing extends CommandBase {
                 if (GlobalData.MATCH.TeamColor == TeamColor.BLUE) {
                     m_driveAngle = -50;
                     m_robotAngle = 90;
-                    m_timeOut = 2600;
+                    m_timeOut_sec = 2.6;
                 } else {  // RED
                     m_driveAngle = 64;
                     m_robotAngle = -90;
-                    m_timeOut = 2500;
+                    m_timeOut_sec = 2.5;
                 }
                 break;
         }
 
-        m_elapsedTimer =  new Timing.Timer(m_timeOut, TimeUnit.MILLISECONDS);
+        m_elapsedTimer =  new Timing.Timer((long)(m_timeOut_sec*1000.0), TimeUnit.MILLISECONDS);
         m_elapsedTimer.start();
     }
     @Override

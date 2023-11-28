@@ -21,26 +21,26 @@ public class AutoRotateRobot extends CommandBase {
     CommandOpMode m_opMode;
     AutoDriveSubsystem m_drive;
     double m_angle;
-    int m_timeOut;
+    double m_timeOut_sec;
     double m_speed;
 
     PIDController rotPID = new PIDController(k.DRIVE.Rot_P,k.DRIVE.Rot_I,0);
     Timing.Timer m_timer;
 
 
-    public AutoRotateRobot(CommandOpMode _opMode, AutoDriveSubsystem _drive, double _angle, double _speed, int _timeOut) {
+    public AutoRotateRobot(CommandOpMode _opMode, AutoDriveSubsystem _drive, double _angle, double _speed, double _timeOut_sec) {
         m_opMode = _opMode;
         m_drive = _drive;
         m_angle = _angle;
         m_speed = _speed;
-        m_timeOut = _timeOut;
+        m_timeOut_sec = _timeOut_sec;
     }
 
     @Override
     public void initialize(){
         rotPID.reset();
-        rotPID.setTolerance(1.0);
-        m_timer = new Timing.Timer(m_timeOut, TimeUnit.MILLISECONDS);
+        rotPID.setTolerance(1.0, 1.0);
+        m_timer = new Timing.Timer((long)(m_timeOut_sec*1000.0), TimeUnit.MILLISECONDS);
         m_timer.start();
     }
 

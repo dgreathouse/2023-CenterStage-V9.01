@@ -14,7 +14,6 @@ public class ClawGripSubsystem extends SubsystemBase {
     ServoEx m_right;
     private CommandOpMode m_opMode;
     double m_gripAngle = getClawCloseAngle();
-    double x = 1;
     public ClawGripSubsystem(CommandOpMode _opMode){
         m_opMode = _opMode;
         initHardware();

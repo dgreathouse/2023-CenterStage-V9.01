@@ -9,15 +9,15 @@ import java.util.concurrent.TimeUnit;
 public class AutoDelayCommand extends CommandBase {
     CommandOpMode m_opMode;
     boolean m_isFinished = false;
-    int m_delay_ms;
+    double m_delay_sec;
     Timing.Timer m_timer;
-    public AutoDelayCommand(CommandOpMode _opMode, int _time_ms){
+    public AutoDelayCommand(CommandOpMode _opMode, double _time_sec){
         m_opMode = _opMode;
-        m_delay_ms = _time_ms;
+        m_delay_sec = _time_sec;
     }
     @Override
     public void initialize(){
-        m_timer = new Timing.Timer(m_delay_ms, TimeUnit.MILLISECONDS);
+        m_timer = new Timing.Timer((long)(m_delay_sec*1000.0), TimeUnit.MILLISECONDS);
         m_timer.start();
     }
     @Override
