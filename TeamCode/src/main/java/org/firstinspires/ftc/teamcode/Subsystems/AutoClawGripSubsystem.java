@@ -13,7 +13,7 @@ import org.firstinspires.ftc.teamcode.Lib.k;
 public class AutoClawGripSubsystem extends SubsystemBase {
     ServoEx m_right;
     private CommandOpMode m_opMode;
-    double m_gripAngle;
+    double m_gripAngle = getClawCloseAngle();
     double x = 1;
     public AutoClawGripSubsystem(CommandOpMode _opMode){
         m_opMode = _opMode;
