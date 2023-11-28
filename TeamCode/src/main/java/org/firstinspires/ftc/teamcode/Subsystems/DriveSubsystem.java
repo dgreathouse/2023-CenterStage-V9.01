@@ -41,7 +41,7 @@ public class DriveSubsystem extends SubsystemBase {
         m_lDrive.setZeroPowerBehavior(Motor.ZeroPowerBehavior.BRAKE);
         m_lDrive.setDistancePerPulse(k.DRIVE.InchPerCount);
         m_lDrive.encoder.setDirection(Motor.Direction.FORWARD);
-        m_lDrive.setVeloCoefficients(1.0,0.01,0);
+        m_lDrive.setVeloCoefficients(k.DRIVE.Drive_P,k.DRIVE.Drive_I,0);
 
         m_rDrive = new MotorEx(m_opMode.hardwareMap, Hw.DriveFrontRight, Motor.GoBILDA.RPM_435);
         m_rDrive.setInverted(true);
@@ -49,7 +49,7 @@ public class DriveSubsystem extends SubsystemBase {
         m_rDrive.setZeroPowerBehavior(Motor.ZeroPowerBehavior.BRAKE);
         m_rDrive.setDistancePerPulse(k.DRIVE.InchPerCount);
         m_rDrive.encoder.setDirection(Motor.Direction.REVERSE);
-        m_rDrive.setVeloCoefficients(1.0,0.01,0);
+        m_rDrive.setVeloCoefficients(k.DRIVE.Drive_P,k.DRIVE.Drive_I,0);
 
         m_bDrive = new MotorEx(m_opMode.hardwareMap, Hw.DriveBack, Motor.GoBILDA.RPM_435);
         m_bDrive.setInverted(true);
@@ -57,7 +57,7 @@ public class DriveSubsystem extends SubsystemBase {
         m_bDrive.setZeroPowerBehavior(Motor.ZeroPowerBehavior.BRAKE);
         m_bDrive.setDistancePerPulse(k.DRIVE.InchPerCount);
         m_bDrive.encoder.setDirection(Motor.Direction.REVERSE);
-        m_bDrive.setVeloCoefficients(1.0,0.01,0);
+        m_bDrive.setVeloCoefficients(k.DRIVE.Drive_P,k.DRIVE.Drive_I,0);
     }
     /**
      *

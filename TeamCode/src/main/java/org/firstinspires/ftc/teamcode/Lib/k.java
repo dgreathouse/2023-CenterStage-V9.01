@@ -25,6 +25,8 @@ public class k {
         public static final double[] DriveTime_Speed60 = { 00.00,01.00,02.00,03.00,04.00,05.00,12.00,24.00,36.00,48.00,100.00 };
         public static final double Rot_P = 0.005;
         public static final double Rot_I = 0.05;
+        public static final double Drive_P = 1.0;
+        public static final double Drive_I = 0.01;
         public static double DriveSpeedScale = 1.0;
         public static boolean AutoDriveRampEnabled = true;
         public static double ACHIEVABLE_MAX_TICKS_PER_SECOND = 2781.1;
