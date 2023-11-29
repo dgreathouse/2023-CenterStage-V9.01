@@ -42,7 +42,24 @@ public class AutoDriveTimeVel extends CommandBase {
         m_robotAngle = _robotAngle;
         m_timeOut_sec = _timeOut_sec;
         m_currentSpeed = m_speed;
-
+        m_rampDownTime_sec = _rampDownTime_sec;
+        m_rampUpTime_sec = _rampUpTime_sec;
+    }
+    public AutoDriveTimeVel(CommandOpMode _opMode, AutoDriveSubsystem _drive, double _driveAngle, double _speed, double _robotAngle, double _timeOut_sec) {
+        m_opMode = _opMode;
+        m_drive = _drive;
+        m_driveAngle = _driveAngle;
+        m_speed = _speed;
+        m_robotAngle = _robotAngle;
+        m_timeOut_sec = _timeOut_sec;
+        if(_timeOut_sec >= 2.0){
+            m_rampUpTime_sec = 1.0;
+            m_rampDownTime_sec = 1.0;
+        }else {
+            m_rampUpTime_sec = _timeOut_sec * 0.70;
+            m_rampUpTime_sec = MathUtils.clamp(m_rampUpTime_sec, 0,1.0);
+            m_rampDownTime_sec = _timeOut_sec * 0.30;
+        }
     }
 
     @Override
