@@ -4,23 +4,24 @@ import com.arcrobotics.ftclib.command.CommandOpMode;
 import com.arcrobotics.ftclib.command.CommandScheduler;
 import com.arcrobotics.ftclib.util.Timing;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import org.firstinspires.ftc.teamcode.CommandGroups.Boys_22291.BAutoBackdropBlue_Play_2;
-import org.firstinspires.ftc.teamcode.CommandGroups.Girls_14623.GAutoBackdropBlue_Play_2;
+import org.firstinspires.ftc.teamcode.CommandGroups.Boys_22291.BAutoBackdropRed_Play_3;
+import org.firstinspires.ftc.teamcode.CommandGroups.Girls_14623.GAutoBackdropRedParkMiddle;
+import org.firstinspires.ftc.teamcode.CommandGroups.Girls_14623.GAutoBackdropRedParkMiddleGetTwo;
 import org.firstinspires.ftc.teamcode.Commands.Arm.AutoArmDefaultCommand;
 import org.firstinspires.ftc.teamcode.Commands.Drive.AutoDriveDefaultCommand;
-import org.firstinspires.ftc.teamcode.Lib.AutoFieldLocation;
+import org.firstinspires.ftc.teamcode.Lib.AutoFieldLocation_enum;
 import org.firstinspires.ftc.teamcode.Lib.GlobalData;
 import org.firstinspires.ftc.teamcode.Lib.Hw;
+import org.firstinspires.ftc.teamcode.Lib.ParkDirection;
 import org.firstinspires.ftc.teamcode.Lib.TeamColor;
 import org.firstinspires.ftc.teamcode.Lib.k;
 import org.firstinspires.ftc.teamcode.Subsystems.AutoArmSubsystem;
-import org.firstinspires.ftc.teamcode.Subsystems.AutoDriveSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystems.AutoClawGripSubsystem;
-
+import org.firstinspires.ftc.teamcode.Subsystems.AutoDriveSubsystem;
 import java.util.concurrent.TimeUnit;
 
-@Autonomous(name = "Backdrop Blue Play 2", group = "Auto Backdrop Blue")
-public class AutoBackdropBlueOpMode_Play_2 extends CommandOpMode {
+@Autonomous(name = "Backdrop Red Park Middle Get 2", group = "Auto Backdrop Red")
+public class BackdropRedParkMiddleGetTwoOpMode extends CommandOpMode {
     Timing.Timer m_timer;
 
     Hw hw;
@@ -29,8 +30,8 @@ public class AutoBackdropBlueOpMode_Play_2 extends CommandOpMode {
     AutoArmDefaultCommand armDefaultCommand;
     AutoArmSubsystem arm;
     AutoClawGripSubsystem claw;
-    GAutoBackdropBlue_Play_2 Gauto;
-    BAutoBackdropBlue_Play_2 Bauto;
+    GAutoBackdropRedParkMiddleGetTwo Gauto;
+    BAutoBackdropRed_Play_3 Bauto;
 
     @Override
     public void initialize() {
@@ -47,26 +48,28 @@ public class AutoBackdropBlueOpMode_Play_2 extends CommandOpMode {
         drive.setDefaultCommand(driveDefaultCommand);
         armDefaultCommand = new AutoArmDefaultCommand(this,arm);
         arm.setDefaultCommand(armDefaultCommand);
-
         createCommandGroup();
         // Register subsystems
         register(drive,arm,claw);
 
+
         m_timer = new Timing.Timer(100, TimeUnit.MILLISECONDS);
         m_timer.start();
-        GlobalData.MATCH.TeamColor = TeamColor.BLUE;
-        GlobalData.MATCH.FieldLocation = AutoFieldLocation.BACKDROP;
+
+        GlobalData.MATCH.AutoTeamColor = TeamColor.RED;
+        GlobalData.MATCH.AutoFieldLocation = AutoFieldLocation_enum.BACKDROP;
+        GlobalData.MATCH.AutoPixelCount = 2;
+        GlobalData.MATCH.AutoParkDirection = ParkDirection.MIDDLE;
+
     }
     @Override
-
     public void runOpMode() throws InterruptedException{
         initialize();
 
         waitForStart();
         // Schedule the auto play to run
         scheduleCommandGroup();
-        //schedule(armDefaultCommand);
-        //schedule(clawGripDefaultCommand);
+
 
         // run the scheduler
         while (!isStopRequested() || opModeIsActive()) {
@@ -76,14 +79,15 @@ public class AutoBackdropBlueOpMode_Play_2 extends CommandOpMode {
             // wait till timer is > 50ms to try an create a stable run rate
             if(k.SYSTEM.isLoopRateLimited){while(!m_timer.done()){} m_timer.start();}
 
+
         }
         reset();
     }
     private void createCommandGroup() {
         if(GlobalData.TeamNumber == 22291) {
-            Bauto = new BAutoBackdropBlue_Play_2(this, drive,arm,claw);
+            Bauto = new BAutoBackdropRed_Play_3(this, drive,arm,claw);
         }else {
-            Gauto = new GAutoBackdropBlue_Play_2(this, drive,arm,claw);
+            Gauto = new GAutoBackdropRedParkMiddleGetTwo(this, drive,arm,claw);
         }
 
     }

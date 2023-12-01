@@ -80,7 +80,7 @@ public class AutoDriveToBackdropAprilTag extends CommandBase {
         rotPID = new PIDController(k.DRIVE.Rot_P,k.DRIVE.Rot_I,0);
         rotPID.reset();
 
-        if (GlobalData.MATCH.TeamColor == TeamColor.BLUE) {
+        if (GlobalData.MATCH.AutoTeamColor == TeamColor.BLUE) {
             m_driveAngle -= 90;
             m_robotAngle = 90;
         }else {  // Red

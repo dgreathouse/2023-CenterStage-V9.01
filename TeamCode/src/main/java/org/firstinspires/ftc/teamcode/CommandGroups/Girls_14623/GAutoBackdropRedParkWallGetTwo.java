@@ -21,9 +21,9 @@ import org.firstinspires.ftc.teamcode.Subsystems.AutoArmSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystems.AutoClawGripSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystems.AutoDriveSubsystem;
 
-public class GAutoBackdropRed_Play_3 extends SequentialCommandGroup {
+public class GAutoBackdropRedParkWallGetTwo extends SequentialCommandGroup {
 
-    public GAutoBackdropRed_Play_3(CommandOpMode _opMode, AutoDriveSubsystem _drive, AutoArmSubsystem _arm, AutoClawGripSubsystem _claw)  {
+    public GAutoBackdropRedParkWallGetTwo(CommandOpMode _opMode, AutoDriveSubsystem _drive, AutoArmSubsystem _arm, AutoClawGripSubsystem _claw)  {
 
         ArmData armData = new ArmData();
         addCommands(

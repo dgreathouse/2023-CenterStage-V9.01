@@ -3,7 +3,7 @@ package org.firstinspires.ftc.teamcode.Commands.Arm;
 import com.arcrobotics.ftclib.command.CommandBase;
 import com.arcrobotics.ftclib.command.CommandOpMode;
 
-import org.firstinspires.ftc.teamcode.Lib.AutoFieldLocation;
+import org.firstinspires.ftc.teamcode.Lib.AutoFieldLocation_enum;
 import org.firstinspires.ftc.teamcode.Lib.GlobalData;
 import org.firstinspires.ftc.teamcode.Lib.TeamColor;
 import org.firstinspires.ftc.teamcode.Lib.TeamPropLocation;
@@ -33,8 +33,8 @@ public class ArmGetTeamPropLocation extends CommandBase {
             dis += m_arm.getTeamPropDistance();
         }
         dis = dis / 5.0;
-        if (GlobalData.MATCH.FieldLocation == AutoFieldLocation.BACKDROP) {
-            if (GlobalData.MATCH.TeamColor == TeamColor.RED) {
+        if (GlobalData.MATCH.AutoFieldLocation == AutoFieldLocation_enum.BACKDROP) {
+            if (GlobalData.MATCH.AutoTeamColor == TeamColor.RED) {
                 if (m_teamPropLocation == TeamPropLocation.CENTER) {
                     if (dis < 500) {
                         GlobalData.MATCH.TeamPropLocation = TeamPropLocation.CENTER;
@@ -70,7 +70,7 @@ public class ArmGetTeamPropLocation extends CommandBase {
                 }
             }
         } else { // WING
-            if (GlobalData.MATCH.TeamColor == TeamColor.RED) {
+            if (GlobalData.MATCH.AutoTeamColor == TeamColor.RED) {
                 if (m_teamPropLocation == TeamPropLocation.CENTER) {
                     if (dis < 500) {
                         GlobalData.MATCH.TeamPropLocation = TeamPropLocation.CENTER;

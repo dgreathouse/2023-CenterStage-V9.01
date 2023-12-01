@@ -43,7 +43,7 @@ public class AutoDriveToBackdrop extends CommandBase {
             case CENTER:
             case NONE:
                 m_timeOut_sec = 2.6;
-                if (GlobalData.MATCH.TeamColor == TeamColor.BLUE) {
+                if (GlobalData.MATCH.AutoTeamColor == TeamColor.BLUE) {
                     m_driveAngle = -70;
                     m_robotAngle = 90;
                 } else {  // RED
@@ -53,7 +53,7 @@ public class AutoDriveToBackdrop extends CommandBase {
                 break;
             case LEFT:
                 m_timeOut_sec = 2.6;
-                if (GlobalData.MATCH.TeamColor == TeamColor.BLUE) {
+                if (GlobalData.MATCH.AutoTeamColor == TeamColor.BLUE) {
                     m_driveAngle = -60;
                     m_robotAngle = 90;
                 } else {  // RED
@@ -64,7 +64,7 @@ public class AutoDriveToBackdrop extends CommandBase {
 
             case RIGHT:
                 m_timeOut_sec = 2.5;
-                if (GlobalData.MATCH.TeamColor == TeamColor.BLUE) {
+                if (GlobalData.MATCH.AutoTeamColor == TeamColor.BLUE) {
                     m_driveAngle = -79;
                     m_robotAngle = 90;
                 } else {  // RED

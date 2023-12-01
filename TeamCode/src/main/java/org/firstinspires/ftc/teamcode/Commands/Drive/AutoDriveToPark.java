@@ -37,7 +37,7 @@ public class AutoDriveToPark extends CommandBase {
     public void initialize(){
         rotPID = new PIDController(k.DRIVE.Rot_P,k.DRIVE.Rot_I,0);
         rotPID.reset();
-        if(GlobalData.MATCH.TeamColor == TeamColor.BLUE){
+        if(GlobalData.MATCH.AutoTeamColor == TeamColor.BLUE){
             m_robotAngle = 90;
             if(m_direction == Direction.RIGHT){
                 m_driveAngle = 0;
@@ -56,14 +56,14 @@ public class AutoDriveToPark extends CommandBase {
         switch (GlobalData.MATCH.TeamPropLocation) {
             case CENTER:
             case NONE:
-                if (GlobalData.MATCH.TeamColor == TeamColor.BLUE) {
+                if (GlobalData.MATCH.AutoTeamColor == TeamColor.BLUE) {
                     m_timeOut_sec = (m_direction == Direction.RIGHT) ? 1.2 : 1.201;
                 } else {  // RED
                     m_timeOut_sec = (m_direction == Direction.RIGHT) ? 1.201 : 1.2;
                 }
                 break;
             case LEFT:
-                if (GlobalData.MATCH.TeamColor == TeamColor.BLUE) {
+                if (GlobalData.MATCH.AutoTeamColor == TeamColor.BLUE) {
                     m_timeOut_sec = (m_direction == Direction.RIGHT) ? 1.5 : 1.5;
                 } else {  // RED
                     m_timeOut_sec = (m_direction == Direction.RIGHT) ? 1.5 : 1.0;
@@ -71,7 +71,7 @@ public class AutoDriveToPark extends CommandBase {
                 break;
 
             case RIGHT:
-                if (GlobalData.MATCH.TeamColor == TeamColor.BLUE) {
+                if (GlobalData.MATCH.AutoTeamColor == TeamColor.BLUE) {
                     m_timeOut_sec = (m_direction == Direction.RIGHT) ? 1.0 : 1.7;
                 } else {  // RED
                     m_timeOut_sec = (m_direction == Direction.RIGHT) ? 1.0 : 1.5;

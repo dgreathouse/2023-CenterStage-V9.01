@@ -42,7 +42,7 @@ public class AutoDriveToBackdropFromWing extends CommandBase {
         switch (GlobalData.MATCH.TeamPropLocation) {
             case CENTER:
             case NONE:
-                if (GlobalData.MATCH.TeamColor == TeamColor.BLUE) {
+                if (GlobalData.MATCH.AutoTeamColor == TeamColor.BLUE) {
                     m_driveAngle = -57;
                     m_robotAngle = 90;
                     m_timeOut_sec = 2.6;
@@ -54,7 +54,7 @@ public class AutoDriveToBackdropFromWing extends CommandBase {
                 break;
             case LEFT:
                 m_timeOut_sec = 2.6;
-                if (GlobalData.MATCH.TeamColor == TeamColor.BLUE) {
+                if (GlobalData.MATCH.AutoTeamColor == TeamColor.BLUE) {
                     m_driveAngle = -64;
                     m_robotAngle = 90;
                 } else {  // RED
@@ -64,7 +64,7 @@ public class AutoDriveToBackdropFromWing extends CommandBase {
                 break;
 
             case RIGHT:
-                if (GlobalData.MATCH.TeamColor == TeamColor.BLUE) {
+                if (GlobalData.MATCH.AutoTeamColor == TeamColor.BLUE) {
                     m_driveAngle = -50;
                     m_robotAngle = 90;
                     m_timeOut_sec = 2.6;

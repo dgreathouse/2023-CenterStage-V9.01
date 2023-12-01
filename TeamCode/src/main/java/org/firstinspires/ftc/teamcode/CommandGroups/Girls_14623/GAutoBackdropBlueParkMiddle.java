@@ -10,9 +10,9 @@ import org.firstinspires.ftc.teamcode.Subsystems.AutoArmSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystems.AutoClawGripSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystems.AutoDriveSubsystem;
 
-public class GAutoBackdropBlue_Play_3 extends SequentialCommandGroup {
+public class GAutoBackdropBlueParkMiddle extends SequentialCommandGroup {
 
-    public GAutoBackdropBlue_Play_3(CommandOpMode _opMode, AutoDriveSubsystem _drive, AutoArmSubsystem _arm, AutoClawGripSubsystem _claw) {
+    public GAutoBackdropBlueParkMiddle(CommandOpMode _opMode, AutoDriveSubsystem _drive, AutoArmSubsystem _arm, AutoClawGripSubsystem _claw) {
 
         ArmData armData = new ArmData();
         addCommands(

@@ -42,7 +42,7 @@ public class AutoDriveToTeamProp extends CommandBase {
         switch (GlobalData.MATCH.TeamPropLocation) {
             case CENTER:
             case NONE:
-                if (GlobalData.MATCH.TeamColor == TeamColor.BLUE) {
+                if (GlobalData.MATCH.AutoTeamColor == TeamColor.BLUE) {
                     m_driveAngle = 0;
                     m_robotAngle = -17.5;
                     m_timeOut = 450;
@@ -55,7 +55,7 @@ public class AutoDriveToTeamProp extends CommandBase {
                 }
                 break;
             case LEFT:
-                if (GlobalData.MATCH.TeamColor == TeamColor.BLUE) {
+                if (GlobalData.MATCH.AutoTeamColor == TeamColor.BLUE) {
                     m_driveAngle = -90;
                     m_robotAngle = 45;
                     m_timeOut = 2000;
@@ -69,7 +69,7 @@ public class AutoDriveToTeamProp extends CommandBase {
                 break;
 
             case RIGHT:
-                if (GlobalData.MATCH.TeamColor == TeamColor.BLUE) {
+                if (GlobalData.MATCH.AutoTeamColor == TeamColor.BLUE) {
                     m_driveAngle = 90;
                     m_robotAngle = -45;
                     m_timeOut = 1500;

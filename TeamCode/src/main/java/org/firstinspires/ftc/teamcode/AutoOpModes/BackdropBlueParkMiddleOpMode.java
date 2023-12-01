@@ -5,10 +5,10 @@ import com.arcrobotics.ftclib.command.CommandScheduler;
 import com.arcrobotics.ftclib.util.Timing;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import org.firstinspires.ftc.teamcode.CommandGroups.Boys_22291.BAutoBackdropBlue_Play_1;
-import org.firstinspires.ftc.teamcode.CommandGroups.Girls_14623.GAutoBackdropBlue_Play_1;
+import org.firstinspires.ftc.teamcode.CommandGroups.Girls_14623.GAutoBackdropBlueParkWall;
 import org.firstinspires.ftc.teamcode.Commands.Arm.AutoArmDefaultCommand;
 import org.firstinspires.ftc.teamcode.Commands.Drive.AutoDriveDefaultCommand;
-import org.firstinspires.ftc.teamcode.Lib.AutoFieldLocation;
+import org.firstinspires.ftc.teamcode.Lib.AutoFieldLocation_enum;
 import org.firstinspires.ftc.teamcode.Lib.GlobalData;
 import org.firstinspires.ftc.teamcode.Lib.Hw;
 import org.firstinspires.ftc.teamcode.Lib.TeamColor;
@@ -19,8 +19,8 @@ import org.firstinspires.ftc.teamcode.Subsystems.AutoClawGripSubsystem;
 
 import java.util.concurrent.TimeUnit;
 
-@Autonomous(name = "Backdrop Blue Play 1", group = "Auto Backdrop Blue")
-public class AutoBackdropBlueOpMode_Play_1 extends CommandOpMode {
+@Autonomous(name = "Backdrop Blue Park Middle", group = "Auto Backdrop Blue")
+public class BackdropBlueParkMiddleOpMode extends CommandOpMode {
     Timing.Timer m_timer;
 
     Hw hw;
@@ -29,7 +29,7 @@ public class AutoBackdropBlueOpMode_Play_1 extends CommandOpMode {
     AutoArmDefaultCommand armDefaultCommand;
     AutoArmSubsystem arm;
     AutoClawGripSubsystem claw;
-    GAutoBackdropBlue_Play_1 Gauto;
+    GAutoBackdropBlueParkWall Gauto;
     BAutoBackdropBlue_Play_1 Bauto;
 
     @Override
@@ -53,8 +53,8 @@ public class AutoBackdropBlueOpMode_Play_1 extends CommandOpMode {
 
         m_timer = new Timing.Timer(100, TimeUnit.MILLISECONDS);
         m_timer.start();
-        GlobalData.MATCH.TeamColor = TeamColor.BLUE;
-        GlobalData.MATCH.FieldLocation = AutoFieldLocation.BACKDROP;
+        GlobalData.MATCH.AutoTeamColor = TeamColor.BLUE;
+        GlobalData.MATCH.AutoFieldLocation = AutoFieldLocation_enum.BACKDROP;
     }
     @Override
     public void runOpMode() throws InterruptedException{
@@ -80,7 +80,7 @@ public class AutoBackdropBlueOpMode_Play_1 extends CommandOpMode {
         if(GlobalData.TeamNumber == 22291) {
         	Bauto = new BAutoBackdropBlue_Play_1(this, drive,arm,claw);
         }else {
-        	Gauto = new GAutoBackdropBlue_Play_1(this, drive,arm,claw);
+        	Gauto = new GAutoBackdropBlueParkWall(this, drive,arm,claw);
         }
 
     }

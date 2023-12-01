@@ -1,6 +1,6 @@
 package org.firstinspires.ftc.teamcode.Lib;
 
-public enum AutoFieldLocation {
+public enum AutoFieldLocation_enum {
     WING,
     BACKDROP
 }
