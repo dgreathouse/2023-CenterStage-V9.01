@@ -55,7 +55,7 @@ public class k {
 
     }
     public static final class ARM {
-        public static final double TeamPropMinimumDistance_mm = 20;
+        public static final double TeamPropMinimumDistance_mm = 700;
         public static TeamPropLocation TeamPropLoc = TeamPropLocation.CENTER;
         public static final double[] ShoulderAngles = {0,8,10,35,60,85};
         public static final double[] ClawAngles = {0,-4,10,35,0,-6};

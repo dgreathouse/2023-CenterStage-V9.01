@@ -29,7 +29,12 @@ public class GAutoBackdropRedParkMiddle extends SequentialCommandGroup {
         addCommands(
                 new AutoDelayCommand(_opMode, 0.5),                                                         // Wait for claw to close
                 new ArmAutoGotoPosition(_opMode,_arm,35.0,-10.0, 0.0),          // Raise the arm
-                new AutoDelayCommand(_opMode, 0.5),                                                         // Wait for arm to raise before driving
+                new AutoDelayCommand(_opMode, 0.25),                                                        // Wait for arm to raise before driving
+                new AutoDriveTimeVel(_opMode, _drive, 0, 0.5, 0, 1.2),       // Drive out closer to the Team Prop
+                new ArmGetTeamPropLocation(_opMode, _arm, TeamPropLocation.CENTER),
+                new AutoRotateRobot(_opMode,_drive, 30.0,0.3, 2.0),
+                new ArmGetTeamPropLocation(_opMode,_arm, TeamPropLocation.RIGHT),
+                new ArmGetTeamPropLocation(_opMode,_arm, TeamPropLocation.LEFT),
 
                 new AutoStopOpModeCommand(_opMode)                                                                  // Stop the opMode
         );
