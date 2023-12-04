@@ -11,12 +11,7 @@ import org.firstinspires.ftc.teamcode.Subsystems.AutoDriveSubsystem;
 
 import java.util.concurrent.TimeUnit;
 
-/** Drive the robot at a speed, angle for a certain time. Also rotate the robot to an angle while driving
-   Since the robot drives at a velocity the only changing variable to get a consistent distance is
-   the battery which changes the time it takes to go from stop to full velocity. We hope this change
-   will not affect the accuracy to much. There is no PID on distance and the coast time will need
-   to be considered.
- */
+
 public class AutoRotateRobot extends CommandBase {
     CommandOpMode m_opMode;
     AutoDriveSubsystem m_drive;

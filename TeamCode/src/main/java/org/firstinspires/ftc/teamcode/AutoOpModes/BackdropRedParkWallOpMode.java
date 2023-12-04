@@ -4,8 +4,8 @@ import com.arcrobotics.ftclib.command.CommandOpMode;
 import com.arcrobotics.ftclib.command.CommandScheduler;
 import com.arcrobotics.ftclib.util.Timing;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import org.firstinspires.ftc.teamcode.CommandGroups.Boys_22291.BAutoBackdropRed_Play_2;
-import org.firstinspires.ftc.teamcode.CommandGroups.Girls_14623.GAutoBackdropRedParkWall;
+import org.firstinspires.ftc.teamcode.CommandGroups.Boys_22291.BBackdropRedParkWall;
+import org.firstinspires.ftc.teamcode.CommandGroups.Girls_14623.GBackdropRedParkWall;
 import org.firstinspires.ftc.teamcode.Commands.Arm.AutoArmDefaultCommand;
 import org.firstinspires.ftc.teamcode.Commands.Drive.AutoDriveDefaultCommand;
 import org.firstinspires.ftc.teamcode.Lib.AutoFieldLocation_enum;
@@ -20,7 +20,7 @@ import org.firstinspires.ftc.teamcode.Subsystems.AutoDriveSubsystem;
 
 import java.util.concurrent.TimeUnit;
 
-@Autonomous(name = "Backdrop Red Park Wall", group = "Auto Backdrop Red")
+@Autonomous(name = "Backdrop Red Park Wall", group = "Backdrop Red")
 public class BackdropRedParkWallOpMode extends CommandOpMode {
     Timing.Timer m_timer;
 
@@ -31,8 +31,8 @@ public class BackdropRedParkWallOpMode extends CommandOpMode {
     AutoArmSubsystem arm;
     AutoClawGripSubsystem claw;
 
-    GAutoBackdropRedParkWall Gauto;
-    BAutoBackdropRed_Play_2 Bauto;
+    GBackdropRedParkWall Gauto;
+    BBackdropRedParkWall Bauto;
 
     @Override
     public void initialize() {
@@ -86,9 +86,9 @@ public class BackdropRedParkWallOpMode extends CommandOpMode {
     }
     private void createCommandGroup() {
         if(GlobalData.TeamNumber == 22291) {
-            Bauto = new BAutoBackdropRed_Play_2(this, drive,arm,claw);
+            Bauto = new BBackdropRedParkWall(this, drive,arm,claw);
         }else {
-            Gauto = new GAutoBackdropRedParkWall(this, drive,arm,claw);
+            Gauto = new GBackdropRedParkWall(this, drive,arm,claw);
         }
 
     }

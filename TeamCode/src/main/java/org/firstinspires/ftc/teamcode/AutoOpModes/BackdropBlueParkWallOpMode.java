@@ -4,8 +4,8 @@ import com.arcrobotics.ftclib.command.CommandOpMode;
 import com.arcrobotics.ftclib.command.CommandScheduler;
 import com.arcrobotics.ftclib.util.Timing;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import org.firstinspires.ftc.teamcode.CommandGroups.Boys_22291.BAutoBackdropBlue_Play_2;
-import org.firstinspires.ftc.teamcode.CommandGroups.Girls_14623.GAutoBackdropBlueParkMiddleGetTwo;
+import org.firstinspires.ftc.teamcode.CommandGroups.Boys_22291.BBackdropBlueParkMiddleGetTwo;
+import org.firstinspires.ftc.teamcode.CommandGroups.Girls_14623.GBackdropBlueParkMiddleGetTwo;
 import org.firstinspires.ftc.teamcode.Commands.Arm.AutoArmDefaultCommand;
 import org.firstinspires.ftc.teamcode.Commands.Drive.AutoDriveDefaultCommand;
 import org.firstinspires.ftc.teamcode.Lib.AutoFieldLocation_enum;
@@ -19,7 +19,7 @@ import org.firstinspires.ftc.teamcode.Subsystems.AutoClawGripSubsystem;
 
 import java.util.concurrent.TimeUnit;
 
-@Autonomous(name = "Backdrop Blue Park Wall", group = "Auto Backdrop Blue")
+@Autonomous(name = "Backdrop Blue Park Wall", group = "Backdrop Blue")
 public class BackdropBlueParkWallOpMode extends CommandOpMode {
     Timing.Timer m_timer;
 
@@ -29,8 +29,8 @@ public class BackdropBlueParkWallOpMode extends CommandOpMode {
     AutoArmDefaultCommand armDefaultCommand;
     AutoArmSubsystem arm;
     AutoClawGripSubsystem claw;
-    GAutoBackdropBlueParkMiddleGetTwo Gauto;
-    BAutoBackdropBlue_Play_2 Bauto;
+    GBackdropBlueParkMiddleGetTwo Gauto;
+    BBackdropBlueParkMiddleGetTwo Bauto;
 
     @Override
     public void initialize() {
@@ -81,9 +81,9 @@ public class BackdropBlueParkWallOpMode extends CommandOpMode {
     }
     private void createCommandGroup() {
         if(GlobalData.TeamNumber == 22291) {
-            Bauto = new BAutoBackdropBlue_Play_2(this, drive,arm,claw);
+            Bauto = new BBackdropBlueParkMiddleGetTwo(this, drive,arm,claw);
         }else {
-            Gauto = new GAutoBackdropBlueParkMiddleGetTwo(this, drive,arm,claw);
+            Gauto = new GBackdropBlueParkMiddleGetTwo(this, drive,arm,claw);
         }
 
     }

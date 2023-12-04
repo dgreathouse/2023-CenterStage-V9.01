@@ -5,8 +5,8 @@ import com.arcrobotics.ftclib.command.CommandScheduler;
 import com.arcrobotics.ftclib.util.Timing;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
-import org.firstinspires.ftc.teamcode.CommandGroups.Boys_22291.BAutoBackdropBlue_Play_3;
-import org.firstinspires.ftc.teamcode.CommandGroups.Girls_14623.GAutoBackdropBlueParkMiddle;
+import org.firstinspires.ftc.teamcode.CommandGroups.Boys_22291.BBackdropBlueParkMiddle;
+import org.firstinspires.ftc.teamcode.CommandGroups.Girls_14623.GBackdropBlueParkMiddle;
 import org.firstinspires.ftc.teamcode.Commands.Arm.AutoArmDefaultCommand;
 import org.firstinspires.ftc.teamcode.Commands.Drive.AutoDriveDefaultCommand;
 import org.firstinspires.ftc.teamcode.Lib.AutoFieldLocation_enum;
@@ -20,7 +20,7 @@ import org.firstinspires.ftc.teamcode.Subsystems.AutoDriveSubsystem;
 
 import java.util.concurrent.TimeUnit;
 
-@Autonomous(name = "Baakdrop Blue Park Wall Get 2", group = "Auto Backdrop Blue")
+@Autonomous(name = "Baakdrop Blue Park Wall Get 2", group = "Backdrop Blue")
 public class BackdropBlueParkWallGetTwoOpMode extends CommandOpMode {
     Timing.Timer m_timer;
 
@@ -30,8 +30,8 @@ public class BackdropBlueParkWallGetTwoOpMode extends CommandOpMode {
     AutoArmDefaultCommand armDefaultCommand;
     AutoArmSubsystem arm;
     AutoClawGripSubsystem claw;
-    GAutoBackdropBlueParkMiddle Gauto;
-    BAutoBackdropBlue_Play_3 Bauto;
+    GBackdropBlueParkMiddle Gauto;
+    BBackdropBlueParkMiddle Bauto;
 
     @Override
     public void initialize() {
@@ -82,9 +82,9 @@ public class BackdropBlueParkWallGetTwoOpMode extends CommandOpMode {
     }
     private void createCommandGroup() {
         if(GlobalData.TeamNumber == 22291) {
-            Bauto = new BAutoBackdropBlue_Play_3(this, drive,arm,claw);
+            Bauto = new BBackdropBlueParkMiddle(this, drive,arm,claw);
         }else {
-            Gauto = new GAutoBackdropBlueParkMiddle(this, drive,arm,claw);
+            Gauto = new GBackdropBlueParkMiddle(this, drive,arm,claw);
         }
 
     }

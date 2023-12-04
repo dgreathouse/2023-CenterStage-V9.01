@@ -4,9 +4,8 @@ import com.arcrobotics.ftclib.command.CommandOpMode;
 import com.arcrobotics.ftclib.command.CommandScheduler;
 import com.arcrobotics.ftclib.util.Timing;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import org.firstinspires.ftc.teamcode.CommandGroups.Boys_22291.BAutoBackdropRed_Play_3;
-import org.firstinspires.ftc.teamcode.CommandGroups.Girls_14623.GAutoBackdropRedParkMiddle;
-import org.firstinspires.ftc.teamcode.CommandGroups.Girls_14623.GAutoBackdropRedParkMiddleGetTwo;
+import org.firstinspires.ftc.teamcode.CommandGroups.Boys_22291.BBackdropRedParkWallGetTwo;
+import org.firstinspires.ftc.teamcode.CommandGroups.Girls_14623.GBackdropRedParkMiddleGetTwo;
 import org.firstinspires.ftc.teamcode.Commands.Arm.AutoArmDefaultCommand;
 import org.firstinspires.ftc.teamcode.Commands.Drive.AutoDriveDefaultCommand;
 import org.firstinspires.ftc.teamcode.Lib.AutoFieldLocation_enum;
@@ -20,7 +19,7 @@ import org.firstinspires.ftc.teamcode.Subsystems.AutoClawGripSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystems.AutoDriveSubsystem;
 import java.util.concurrent.TimeUnit;
 
-@Autonomous(name = "Backdrop Red Park Middle Get 2", group = "Auto Backdrop Red")
+@Autonomous(name = "Backdrop Red Park Middle Get 2", group = "Backdrop Red")
 public class BackdropRedParkMiddleGetTwoOpMode extends CommandOpMode {
     Timing.Timer m_timer;
 
@@ -30,8 +29,8 @@ public class BackdropRedParkMiddleGetTwoOpMode extends CommandOpMode {
     AutoArmDefaultCommand armDefaultCommand;
     AutoArmSubsystem arm;
     AutoClawGripSubsystem claw;
-    GAutoBackdropRedParkMiddleGetTwo Gauto;
-    BAutoBackdropRed_Play_3 Bauto;
+    GBackdropRedParkMiddleGetTwo Gauto;
+    BBackdropRedParkWallGetTwo Bauto;
 
     @Override
     public void initialize() {
@@ -85,9 +84,9 @@ public class BackdropRedParkMiddleGetTwoOpMode extends CommandOpMode {
     }
     private void createCommandGroup() {
         if(GlobalData.TeamNumber == 22291) {
-            Bauto = new BAutoBackdropRed_Play_3(this, drive,arm,claw);
+            Bauto = new BBackdropRedParkWallGetTwo(this, drive,arm,claw);
         }else {
-            Gauto = new GAutoBackdropRedParkMiddleGetTwo(this, drive,arm,claw);
+            Gauto = new GBackdropRedParkMiddleGetTwo(this, drive,arm,claw);
         }
 
     }

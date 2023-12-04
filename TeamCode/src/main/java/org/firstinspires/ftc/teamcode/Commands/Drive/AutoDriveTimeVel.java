@@ -46,6 +46,7 @@ public class AutoDriveTimeVel extends CommandBase {
         m_rampDownTime_sec = _rampDownTime_sec;
         m_rampUpTime_sec = _rampUpTime_sec;
     }
+
     public AutoDriveTimeVel(CommandOpMode _opMode, AutoDriveSubsystem _drive, double _driveAngle, double _speed, double _robotAngle, double _timeOut_sec) {
         m_opMode = _opMode;
         m_drive = _drive;
@@ -53,14 +54,14 @@ public class AutoDriveTimeVel extends CommandBase {
         m_speed = _speed;
         m_robotAngle = _robotAngle;
         m_timeOut_sec = _timeOut_sec;
-        if(_timeOut_sec >= 2.0){
+        if (m_timeOut_sec >= 2.0) {
             m_rampUpTime_sec = 0.75;
             m_rampDownTime_sec = 0.75;
-        }else {
-            m_rampUpTime_sec = _timeOut_sec * 0.50;
-            m_rampUpTime_sec = MathUtils.clamp(m_rampUpTime_sec, 0,0.75);
-            m_rampDownTime_sec = _timeOut_sec * 0.50;
-            m_rampDownTime_sec = MathUtils.clamp(m_rampDownTime_sec, 0,0.75);
+        } else {
+            m_rampUpTime_sec = m_timeOut_sec * 0.50;
+            m_rampUpTime_sec = MathUtils.clamp(m_rampUpTime_sec, 0, 0.75);
+            m_rampDownTime_sec = m_timeOut_sec * 0.50;
+            m_rampDownTime_sec = MathUtils.clamp(m_rampDownTime_sec, 0, 0.75);
         }
     }
 
@@ -69,20 +70,16 @@ public class AutoDriveTimeVel extends CommandBase {
         rotPID.reset();
         rotPID.setTolerance(0.05);
         rotPID.setIntegrationBounds(-0.2, 0.2);
-        m_timer = new Timing.Timer((long)(m_timeOut_sec*1000.0), TimeUnit.MILLISECONDS);
+        m_timer = new Timing.Timer((long) (m_timeOut_sec * 1000.0), TimeUnit.MILLISECONDS);
         m_timer.start();
-       // m_drive.setZeroPowerMode(Motor.ZeroPowerBehavior.FLOAT);
     }
 
     @Override
     public void execute() {
-
-  //      m_drive.driveForwared(m_speed);
         double rot = -rotPID.calculate(m_drive.getRobotAngle(), m_robotAngle);
         double currentTime_sec = m_timer.elapsedTime() / 1000.0;
 
         // Try to gently ramp the speed up from 0 to m_speed
-
         if (currentTime_sec < m_timeOut_sec && currentTime_sec > m_timeOut_sec - m_rampDownTime_sec) { // In the ramp down time
             m_currentSpeed = m_speed * (m_timeOut_sec - currentTime_sec) / m_rampDownTime_sec;
         } else if (currentTime_sec < m_rampUpTime_sec) {// In the ramp up time

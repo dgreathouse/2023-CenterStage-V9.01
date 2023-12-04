@@ -54,7 +54,6 @@ public class AutoDriveSubsystem extends SubsystemBase {
         m_bDrive.setDistancePerPulse(k.DRIVE.InchPerCount);
         m_bDrive.encoder.setDirection(Motor.Direction.REVERSE);
         m_bDrive.setVeloCoefficients(k.DRIVE.Drive_P,k.DRIVE.Drive_I,0);
-        resetYaw();
     }
 
     /**
@@ -70,7 +69,7 @@ public class AutoDriveSubsystem extends SubsystemBase {
         m_drive.driveXY(_strafeSpeed,_forwardSpeed,_zRotation,getRobotAngle());
     }
 
-    /**
+     /**
      *
      * @param _angle The angle to drive at.
      * @param _speed The speed from +/- 1.0 to drive at
@@ -83,7 +82,7 @@ public class AutoDriveSubsystem extends SubsystemBase {
 
         m_drive.drivePolar(_angle,_speed,_rot,getRobotAngle());
     }
-    public void driveForwared(double _speed){
+    private void driveForwared(double _speed){
         m_drive.driveForward(_speed);
     }
     public void setZeroPowerMode(Motor.ZeroPowerBehavior _mode){

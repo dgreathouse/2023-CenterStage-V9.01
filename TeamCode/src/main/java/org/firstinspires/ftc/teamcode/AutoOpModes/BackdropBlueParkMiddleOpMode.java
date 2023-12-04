@@ -4,9 +4,8 @@ import com.arcrobotics.ftclib.command.CommandOpMode;
 import com.arcrobotics.ftclib.command.CommandScheduler;
 import com.arcrobotics.ftclib.util.Timing;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import org.firstinspires.ftc.teamcode.CommandGroups.Boys_22291.BAutoBackdropBlue_Play_1;
-import org.firstinspires.ftc.teamcode.CommandGroups.Girls_14623.GAutoBackdropBlueParkMiddle;
-import org.firstinspires.ftc.teamcode.CommandGroups.Girls_14623.GAutoBackdropBlueParkWall;
+import org.firstinspires.ftc.teamcode.CommandGroups.Boys_22291.BBackdropBlueParkWall;
+import org.firstinspires.ftc.teamcode.CommandGroups.Girls_14623.GBackdropBlueParkMiddle;
 import org.firstinspires.ftc.teamcode.Commands.Arm.AutoArmDefaultCommand;
 import org.firstinspires.ftc.teamcode.Commands.Drive.AutoDriveDefaultCommand;
 import org.firstinspires.ftc.teamcode.Lib.AutoFieldLocation_enum;
@@ -21,7 +20,7 @@ import org.firstinspires.ftc.teamcode.Subsystems.AutoClawGripSubsystem;
 
 import java.util.concurrent.TimeUnit;
 
-@Autonomous(name = "Backdrop Blue Park Middle", group = "Auto Backdrop Blue")
+@Autonomous(name = "Backdrop Blue Park Middle", group = "Backdrop Blue")
 public class BackdropBlueParkMiddleOpMode extends CommandOpMode {
     Timing.Timer m_timer;
 
@@ -31,8 +30,8 @@ public class BackdropBlueParkMiddleOpMode extends CommandOpMode {
     AutoArmDefaultCommand armDefaultCommand;
     AutoArmSubsystem arm;
     AutoClawGripSubsystem claw;
-    GAutoBackdropBlueParkMiddle Gauto;
-    BAutoBackdropBlue_Play_1 Bauto;
+    GBackdropBlueParkMiddle Gauto;
+    BBackdropBlueParkWall Bauto;
 
     @Override
     public void initialize() {
@@ -82,9 +81,9 @@ public class BackdropBlueParkMiddleOpMode extends CommandOpMode {
     }
     private void createCommandGroup() {
         if(GlobalData.TeamNumber == 22291) {
-        	Bauto = new BAutoBackdropBlue_Play_1(this, drive,arm,claw);
+        	Bauto = new BBackdropBlueParkWall(this, drive,arm,claw);
         }else {
-        	Gauto = new GAutoBackdropBlueParkMiddle(this, drive,arm,claw);
+        	Gauto = new GBackdropBlueParkMiddle(this, drive,arm,claw);
         }
 
     }

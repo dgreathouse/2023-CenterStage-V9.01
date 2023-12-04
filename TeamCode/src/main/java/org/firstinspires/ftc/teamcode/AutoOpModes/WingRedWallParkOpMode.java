@@ -5,14 +5,13 @@ import com.arcrobotics.ftclib.command.CommandScheduler;
 import com.arcrobotics.ftclib.util.Timing;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
-import org.firstinspires.ftc.teamcode.CommandGroups.Boys_22291.BBackdropRedParkWallGetTwo;
-import org.firstinspires.ftc.teamcode.CommandGroups.Girls_14623.GBackdropRedParkWallGetTwo;
+import org.firstinspires.ftc.teamcode.CommandGroups.Boys_22291.BWingRedWallPark;
+import org.firstinspires.ftc.teamcode.CommandGroups.Girls_14623.GWingRedWallPark;
 import org.firstinspires.ftc.teamcode.Commands.Arm.AutoArmDefaultCommand;
 import org.firstinspires.ftc.teamcode.Commands.Drive.AutoDriveDefaultCommand;
 import org.firstinspires.ftc.teamcode.Lib.AutoFieldLocation_enum;
 import org.firstinspires.ftc.teamcode.Lib.GlobalData;
 import org.firstinspires.ftc.teamcode.Lib.Hw;
-import org.firstinspires.ftc.teamcode.Lib.ParkDirection;
 import org.firstinspires.ftc.teamcode.Lib.TeamColor;
 import org.firstinspires.ftc.teamcode.Lib.k;
 import org.firstinspires.ftc.teamcode.Subsystems.AutoArmSubsystem;
@@ -21,8 +20,8 @@ import org.firstinspires.ftc.teamcode.Subsystems.AutoDriveSubsystem;
 
 import java.util.concurrent.TimeUnit;
 
-@Autonomous(name = "Backdrop Red Park Wall Get 2", group = "Backdrop Red")
-public class BackdropRedParkWallGetTwoOpMode extends CommandOpMode {
+@Autonomous(name = "Wing Red Wall Park", group = "Wing Red")
+public class WingRedWallParkOpMode extends CommandOpMode {
     Timing.Timer m_timer;
 
     Hw hw;
@@ -31,8 +30,8 @@ public class BackdropRedParkWallGetTwoOpMode extends CommandOpMode {
     AutoArmDefaultCommand armDefaultCommand;
     AutoArmSubsystem arm;
     AutoClawGripSubsystem claw;
-    GBackdropRedParkWallGetTwo Gauto;
-    BBackdropRedParkWallGetTwo Bauto;
+    GWingRedWallPark Gauto;
+    BWingRedWallPark Bauto;
 
     @Override
     public void initialize() {
@@ -57,11 +56,7 @@ public class BackdropRedParkWallGetTwoOpMode extends CommandOpMode {
         m_timer = new Timing.Timer(100, TimeUnit.MILLISECONDS);
         m_timer.start();
         GlobalData.MATCH.AutoTeamColor = TeamColor.RED;
-        GlobalData.MATCH.AutoFieldLocation = AutoFieldLocation_enum.BACKDROP;
-        GlobalData.MATCH.AutoPixelCount = 2;
-        GlobalData.MATCH.AutoParkDirection = ParkDirection.WALL;
-
-    }
+        GlobalData.MATCH.AutoFieldLocation = AutoFieldLocation_enum.WING;    }
     @Override
     public void runOpMode() throws InterruptedException{
         initialize();
@@ -85,9 +80,9 @@ public class BackdropRedParkWallGetTwoOpMode extends CommandOpMode {
     }
     private void createCommandGroup() {
         if(GlobalData.TeamNumber == 22291) {
-            Bauto = new BBackdropRedParkWallGetTwo(this, drive,arm,claw);
+            Bauto = new BWingRedWallPark(this, drive,arm,claw);
         }else {
-            Gauto = new GBackdropRedParkWallGetTwo(this, drive,arm,claw);
+            Gauto = new GWingRedWallPark(this, drive,arm,claw);
         }
 
     }
