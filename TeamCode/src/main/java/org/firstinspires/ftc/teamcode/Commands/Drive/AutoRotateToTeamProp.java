@@ -24,7 +24,7 @@ public class AutoRotateToTeamProp extends CommandBase {
 
     double m_robotAngle = 0;
     int m_timeOut = 3000;
-    double m_speed = 0.4;
+    double m_speed = 0.3;
 
     PIDController rotPID;
     Timing.Timer m_timer;
@@ -36,20 +36,20 @@ public class AutoRotateToTeamProp extends CommandBase {
 
     @Override
     public void initialize() {
-        rotPID = new PIDController(k.DRIVE.Rot_P, k.DRIVE.Rot_I, 0);
-        rotPID.setTolerance(1.0,1.0);
+        rotPID = new PIDController(.015, .001, 0);
+        rotPID.setTolerance(1.0);
         rotPID.reset();
 
         switch (GlobalData.MATCH.TeamPropLocation) {
             case CENTER:
             case NONE:
-                m_robotAngle = GlobalData.MATCH.AutoTeamColor == TeamColor.BLUE ? 15 : -15;
+                m_robotAngle = GlobalData.MATCH.AutoTeamColor == TeamColor.BLUE ? 23 : -23;
                 break;
             case LEFT:
-                m_robotAngle = 45;
+                m_robotAngle = 90;
                 break;
             case RIGHT:
-                m_robotAngle = -40;
+                m_robotAngle = -90;
                 break;
 
         }

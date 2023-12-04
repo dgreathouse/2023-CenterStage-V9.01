@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.Commands.Drive;
 import com.arcrobotics.ftclib.command.CommandBase;
 import com.arcrobotics.ftclib.command.CommandOpMode;
 import com.arcrobotics.ftclib.controller.PIDController;
+import com.arcrobotics.ftclib.hardware.motors.Motor;
 import com.arcrobotics.ftclib.util.MathUtils;
 import com.arcrobotics.ftclib.util.Timing;
 
@@ -30,7 +31,7 @@ public class AutoDriveTimeVel extends CommandBase {
     double m_rampUpTime_sec = 1.0; //Seconds
     double m_rampDownTime_sec = 0.5;
 
-    PIDController rotPID = new PIDController(.025, 0.005, 0);
+    PIDController rotPID = new PIDController(0.005, 0.001, 0);
     Timing.Timer m_timer;
 
 
@@ -53,25 +54,30 @@ public class AutoDriveTimeVel extends CommandBase {
         m_robotAngle = _robotAngle;
         m_timeOut_sec = _timeOut_sec;
         if(_timeOut_sec >= 2.0){
-            m_rampUpTime_sec = 1.0;
-            m_rampDownTime_sec = 1.0;
+            m_rampUpTime_sec = 0.75;
+            m_rampDownTime_sec = 0.75;
         }else {
-            m_rampUpTime_sec = _timeOut_sec * 0.70;
-            m_rampUpTime_sec = MathUtils.clamp(m_rampUpTime_sec, 0,1.0);
-            m_rampDownTime_sec = _timeOut_sec * 0.30;
+            m_rampUpTime_sec = _timeOut_sec * 0.50;
+            m_rampUpTime_sec = MathUtils.clamp(m_rampUpTime_sec, 0,0.75);
+            m_rampDownTime_sec = _timeOut_sec * 0.50;
+            m_rampDownTime_sec = MathUtils.clamp(m_rampDownTime_sec, 0,0.75);
         }
     }
 
     @Override
     public void initialize() {
         rotPID.reset();
-        rotPID.setTolerance(1.0);
+        rotPID.setTolerance(0.05);
+        rotPID.setIntegrationBounds(-0.2, 0.2);
         m_timer = new Timing.Timer((long)(m_timeOut_sec*1000.0), TimeUnit.MILLISECONDS);
         m_timer.start();
+       // m_drive.setZeroPowerMode(Motor.ZeroPowerBehavior.FLOAT);
     }
 
     @Override
     public void execute() {
+
+  //      m_drive.driveForwared(m_speed);
         double rot = -rotPID.calculate(m_drive.getRobotAngle(), m_robotAngle);
         double currentTime_sec = m_timer.elapsedTime() / 1000.0;
 
@@ -81,6 +87,7 @@ public class AutoDriveTimeVel extends CommandBase {
             m_currentSpeed = m_speed * (m_timeOut_sec - currentTime_sec) / m_rampDownTime_sec;
         } else if (currentTime_sec < m_rampUpTime_sec) {// In the ramp up time
             m_currentSpeed = m_speed * currentTime_sec / m_rampUpTime_sec;
+            //m_currentSpeed = Math.pow(m_currentSpeed,2);
         } else { // past the ramp up time and not in ramp down time
             m_currentSpeed = m_speed;
         }

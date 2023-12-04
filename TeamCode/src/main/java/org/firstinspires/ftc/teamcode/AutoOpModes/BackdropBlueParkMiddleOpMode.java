@@ -5,12 +5,14 @@ import com.arcrobotics.ftclib.command.CommandScheduler;
 import com.arcrobotics.ftclib.util.Timing;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import org.firstinspires.ftc.teamcode.CommandGroups.Boys_22291.BAutoBackdropBlue_Play_1;
+import org.firstinspires.ftc.teamcode.CommandGroups.Girls_14623.GAutoBackdropBlueParkMiddle;
 import org.firstinspires.ftc.teamcode.CommandGroups.Girls_14623.GAutoBackdropBlueParkWall;
 import org.firstinspires.ftc.teamcode.Commands.Arm.AutoArmDefaultCommand;
 import org.firstinspires.ftc.teamcode.Commands.Drive.AutoDriveDefaultCommand;
 import org.firstinspires.ftc.teamcode.Lib.AutoFieldLocation_enum;
 import org.firstinspires.ftc.teamcode.Lib.GlobalData;
 import org.firstinspires.ftc.teamcode.Lib.Hw;
+import org.firstinspires.ftc.teamcode.Lib.ParkDirection;
 import org.firstinspires.ftc.teamcode.Lib.TeamColor;
 import org.firstinspires.ftc.teamcode.Lib.k;
 import org.firstinspires.ftc.teamcode.Subsystems.AutoArmSubsystem;
@@ -29,7 +31,7 @@ public class BackdropBlueParkMiddleOpMode extends CommandOpMode {
     AutoArmDefaultCommand armDefaultCommand;
     AutoArmSubsystem arm;
     AutoClawGripSubsystem claw;
-    GAutoBackdropBlueParkWall Gauto;
+    GAutoBackdropBlueParkMiddle Gauto;
     BAutoBackdropBlue_Play_1 Bauto;
 
     @Override
@@ -55,6 +57,8 @@ public class BackdropBlueParkMiddleOpMode extends CommandOpMode {
         m_timer.start();
         GlobalData.MATCH.AutoTeamColor = TeamColor.BLUE;
         GlobalData.MATCH.AutoFieldLocation = AutoFieldLocation_enum.BACKDROP;
+        GlobalData.MATCH.AutoPixelCount = 0;
+        GlobalData.MATCH.AutoParkDirection = ParkDirection.MIDDLE;
     }
     @Override
     public void runOpMode() throws InterruptedException{
@@ -80,7 +84,7 @@ public class BackdropBlueParkMiddleOpMode extends CommandOpMode {
         if(GlobalData.TeamNumber == 22291) {
         	Bauto = new BAutoBackdropBlue_Play_1(this, drive,arm,claw);
         }else {
-        	Gauto = new GAutoBackdropBlueParkWall(this, drive,arm,claw);
+        	Gauto = new GAutoBackdropBlueParkMiddle(this, drive,arm,claw);
         }
 
     }

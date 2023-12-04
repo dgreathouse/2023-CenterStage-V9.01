@@ -18,8 +18,8 @@ import org.firstinspires.ftc.teamcode.Subsystems.ClawGripSubsystem;
 public class ClawGripDefaultCommand extends CommandBase {
     ClawGripSubsystem m_claw;
     CommandOpMode m_opMode;
+    TriggerReader clawClose;
     TriggerReader lowerPixelRelease;
-    TriggerReader upperPixelRelease;
 
     public ClawGripDefaultCommand(CommandOpMode _opMode, ClawGripSubsystem _claw){
         m_opMode = _opMode;
@@ -29,8 +29,8 @@ public class ClawGripDefaultCommand extends CommandBase {
     }
     @Override
     public void initialize(){
-        lowerPixelRelease = new TriggerReader(Hw.s_gpOperator,GamepadKeys.Trigger.LEFT_TRIGGER);
-        upperPixelRelease = new TriggerReader(Hw.s_gpOperator,GamepadKeys.Trigger.RIGHT_TRIGGER);
+        clawClose = new TriggerReader(Hw.s_gpOperator,GamepadKeys.Trigger.LEFT_TRIGGER);
+        lowerPixelRelease = new TriggerReader(Hw.s_gpOperator,GamepadKeys.Trigger.RIGHT_TRIGGER);
     }
 
     @Override
@@ -38,13 +38,13 @@ public class ClawGripDefaultCommand extends CommandBase {
 
         m_claw.setClawGripAngle(m_claw.getClawGripAngle());
         // Manage the Claw
+        clawClose.readValue();
+        if(clawClose.isDown()){
+            m_claw.setClawGripAngle(m_claw.getClawCloseAngle());
+        }
         lowerPixelRelease.readValue();
         if(lowerPixelRelease.isDown()){
             m_claw.setClawGripAngle(m_claw.getClawReleaseLowerAngle());
-        }
-        upperPixelRelease.readValue();
-        if(upperPixelRelease.isDown()){
-            m_claw.setClawGripAngle(m_claw.getClawReleaseUpperAngle());
         }
 
     }

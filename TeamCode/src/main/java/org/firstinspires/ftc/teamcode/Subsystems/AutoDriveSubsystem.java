@@ -19,6 +19,7 @@ public class AutoDriveSubsystem extends SubsystemBase {
     // Declare a CommandOpMode variable
     private CommandOpMode m_opMode;
 
+
     /** Class Constructor
      *
      * @param _opMode The opMode used which will be Driver Controlled or Autonomous
@@ -53,6 +54,7 @@ public class AutoDriveSubsystem extends SubsystemBase {
         m_bDrive.setDistancePerPulse(k.DRIVE.InchPerCount);
         m_bDrive.encoder.setDirection(Motor.Direction.REVERSE);
         m_bDrive.setVeloCoefficients(k.DRIVE.Drive_P,k.DRIVE.Drive_I,0);
+        resetYaw();
     }
 
     /**
@@ -81,7 +83,14 @@ public class AutoDriveSubsystem extends SubsystemBase {
 
         m_drive.drivePolar(_angle,_speed,_rot,getRobotAngle());
     }
-
+    public void driveForwared(double _speed){
+        m_drive.driveForward(_speed);
+    }
+    public void setZeroPowerMode(Motor.ZeroPowerBehavior _mode){
+        m_lDrive.setZeroPowerBehavior(_mode);
+        m_rDrive.setZeroPowerBehavior(_mode);
+        m_bDrive.setZeroPowerBehavior(_mode);
+    }
     /**
      *
      * @return The robot angle in degrees with CCW as positive
@@ -89,6 +98,9 @@ public class AutoDriveSubsystem extends SubsystemBase {
     public double getRobotAngle(){
         YawPitchRollAngles angles = Hw.s_imu.getRobotYawPitchRollAngles();
         return angles.getYaw(AngleUnit.DEGREES);
+    }
+    public void resetYaw(){
+        Hw.s_imu.resetYaw();
     }
     public void disableMotors(){
         m_lDrive.setRunMode(Motor.RunMode.RawPower);
@@ -105,14 +117,22 @@ public class AutoDriveSubsystem extends SubsystemBase {
     public void periodic(){
         m_opMode.telemetry.addData("Robot Angle", "%3.3f",getRobotAngle());
         m_opMode.telemetry.addData("Drive Angle", "%3.3f", m_drive.getDriveAngle());
-//        m_opMode.telemetry.addLine(String.format("AprilTag X: %.4f m", GlobalData.AprilTag_X));
+        m_opMode.telemetry.addData("Drive Strafe", "%3.3f", m_drive.getStrafe());
+        m_opMode.telemetry.addData("Drive Forward", "%3.3f", m_drive.getForward());
+
+        m_opMode.telemetry.addData("TPS_Left", m_lDrive.getCorrectedVelocity());
+        m_opMode.telemetry.addData("TPS_Right", m_rDrive.getCorrectedVelocity());
+        m_opMode.telemetry.addData("TPS_Back", m_bDrive.getCorrectedVelocity());
+
+        m_opMode.telemetry.addData("Pos_Left", m_lDrive.getCurrentPosition());
+        m_opMode.telemetry.addData("Pos_Right", m_rDrive.getCurrentPosition());
+
+
+        //        m_opMode.telemetry.addLine(String.format("AprilTag X: %.4f m", GlobalData.AprilTag_X));
 //        m_opMode.telemetry.addLine(String.format("AprilTag Y: %.4f m", GlobalData.AprilTag_Y));
 //        m_opMode.telemetry.addLine(String.format("AprilTag Z: %.4f m", GlobalData.AprilTag_Z));
 //       m_opMode.telemetry.addData("AprilTag Angle", "%3.4f", GlobalData.AprilTagBearing);
 //        m_opMode.telemetry.addData("AprilTag Distance", "%3.4f", GlobalData.AprilTagRange);
-//        m_opMode.telemetry.addData("TPS_Left", m_lDrive.getCorrectedVelocity());
-//        m_opMode.telemetry.addData("TPS_Right", m_rDrive.getCorrectedVelocity());
-//        m_opMode.telemetry.addData("TPS_Back", m_bDrive.getCorrectedVelocity());
 
     }
 }

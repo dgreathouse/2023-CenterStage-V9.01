@@ -24,7 +24,7 @@ public class AutoRotateRobot extends CommandBase {
     double m_timeOut_sec;
     double m_speed;
 
-    PIDController rotPID = new PIDController(k.DRIVE.Rot_P,k.DRIVE.Rot_I,0);
+    PIDController rotPID = new PIDController(0.015, 0.001, 0);
     Timing.Timer m_timer;
 
 
@@ -39,7 +39,7 @@ public class AutoRotateRobot extends CommandBase {
     @Override
     public void initialize(){
         rotPID.reset();
-        rotPID.setTolerance(1.0, 1.0);
+        rotPID.setTolerance(0.5);
         m_timer = new Timing.Timer((long)(m_timeOut_sec*1000.0), TimeUnit.MILLISECONDS);
         m_timer.start();
     }

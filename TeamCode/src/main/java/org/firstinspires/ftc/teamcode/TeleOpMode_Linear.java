@@ -115,9 +115,9 @@ public class TeleOpMode_Linear extends CommandOpMode {
 
         // Set up buttons for Operator
         // Close the claw (left Bumper)
-        Hw.s_gpOperator.getGamepadButton(GamepadKeys.Button.LEFT_BUMPER).whenPressed(new InstantCommand(()-> m_clawGrip.setClawGripAngle(m_clawGrip.getClawCloseAngle()),m_arm));
+        Hw.s_gpOperator.getGamepadButton(GamepadKeys.Button.LEFT_BUMPER).whenPressed(new InstantCommand(()-> m_clawGrip.setClawGripAngle(m_clawGrip.getClawOpenAngle()),m_arm));
         // Close the claw (right Bumper)
-        Hw.s_gpOperator.getGamepadButton(GamepadKeys.Button.RIGHT_BUMPER).whenPressed(new InstantCommand(()-> m_clawGrip.setClawGripAngle(m_clawGrip.getClawOpenAngle()),m_arm));
+        Hw.s_gpOperator.getGamepadButton(GamepadKeys.Button.RIGHT_BUMPER).whenPressed(new InstantCommand(()-> m_clawGrip.setClawGripAngle(m_clawGrip.getClawReleaseUpperAngle()),m_arm));
         // Lower Arm to floor (Button X(ps)/A(xbox))
         Hw.s_gpOperator.getGamepadButton(GamepadKeys.Button.A).whenPressed(new InstantCommand(() -> m_arm.setArmAngle(ArmPos.FLOOR), m_arm));
         // Set arm to get pixels from top of stack of 5 (Button Triangle(ps)/Y(xbox))

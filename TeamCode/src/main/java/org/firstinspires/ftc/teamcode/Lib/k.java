@@ -26,7 +26,7 @@ public class k {
         public static final double Rot_P = 0.005;
         public static final double Rot_I = 0.05;
         public static final double Drive_P = 1.0;
-        public static final double Drive_I = 0.01;
+        public static final double Drive_I = 0.1;
         public static double DriveSpeedScale = 1.0;
         public static boolean AutoDriveRampEnabled = true;
         public static double ACHIEVABLE_MAX_TICKS_PER_SECOND = 2781.1;
@@ -60,9 +60,6 @@ public class k {
         public static final double[] ShoulderAngles = {0,8,10,35,60,85};
         public static final double[] ClawAngles = {0,-4,10,35,0,-6};
 
-
-
-
     }
     public static final class CLAW {
 
@@ -75,10 +72,10 @@ public class k {
         public static final double OpenUpperAngle_22291 = 240;
         public static final double OpenAngle_22291 = 220;
 
-        public static final double CloseAngle_14623 = 122.0;
-        public static final double OpenLowerAngle_14623 = 101.5;
-        public static final double OpenUpperAngle_14623 = 85.0;
-        public static final double OpenAngle_14623 = 60.0;
+        public static final double CloseAngle_14623 = 130.50;  // Left Trigger
+        public static final double OpenLowerAngle_14623 = 121.0; // Right Trigger
+        public static final double OpenUpperAngle_14623 = 110.0; // Right Bumper
+        public static final double OpenAngle_14623 = 70.0; // Left Bumper
 
     }
     public static final class SHOULDER {
@@ -111,7 +108,7 @@ public class k {
     }
     public static final class FOREARM {
         public static final double RetractLimit = 0;
-        public static final double ExtendLimit = 230; // mm
+        public static final double ExtendLimit = 210; // mm
         // 8mm lead screw means 8mm per rotation.
         // Gears are 36:60, Counts/Rev of motor = 103.8 for 1620 RPM Motor
         public static final double Motor_CountsPmm = 21.625;
