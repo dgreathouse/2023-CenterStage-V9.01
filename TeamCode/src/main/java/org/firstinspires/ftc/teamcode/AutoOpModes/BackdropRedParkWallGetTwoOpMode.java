@@ -6,7 +6,7 @@ import com.arcrobotics.ftclib.util.Timing;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
 import org.firstinspires.ftc.teamcode.CommandGroups.Boys_22291.BBackdropRedParkWallGetTwo;
-import org.firstinspires.ftc.teamcode.CommandGroups.Girls_14623.GBackdropRedParkWallGetTwo;
+import org.firstinspires.ftc.teamcode.CommandGroups.Girls_14623.GBackdropRedWallGetTwo;
 import org.firstinspires.ftc.teamcode.Commands.Arm.AutoArmDefaultCommand;
 import org.firstinspires.ftc.teamcode.Commands.Drive.AutoDriveDefaultCommand;
 import org.firstinspires.ftc.teamcode.Lib.AutoFieldLocation_enum;
@@ -31,7 +31,7 @@ public class BackdropRedParkWallGetTwoOpMode extends CommandOpMode {
     AutoArmDefaultCommand armDefaultCommand;
     AutoArmSubsystem arm;
     AutoClawGripSubsystem claw;
-    GBackdropRedParkWallGetTwo Gauto;
+    GBackdropRedWallGetTwo Gauto;
     BBackdropRedParkWallGetTwo Bauto;
 
     @Override
@@ -87,7 +87,7 @@ public class BackdropRedParkWallGetTwoOpMode extends CommandOpMode {
         if(GlobalData.TeamNumber == 22291) {
             Bauto = new BBackdropRedParkWallGetTwo(this, drive,arm,claw);
         }else {
-            Gauto = new GBackdropRedParkWallGetTwo(this, drive,arm,claw);
+            Gauto = new GBackdropRedWallGetTwo(this, drive,arm,claw);
         }
 
     }

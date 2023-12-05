@@ -11,9 +11,9 @@ import org.firstinspires.ftc.teamcode.Subsystems.AutoArmSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystems.AutoClawGripSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystems.AutoDriveSubsystem;
 
-public class GBackdropBlueParkMiddleGetTwo extends SequentialCommandGroup {
+public class GBackdropRedWallGetTwo extends SequentialCommandGroup {
 
-    public GBackdropBlueParkMiddleGetTwo(CommandOpMode _opMode, AutoDriveSubsystem _drive, AutoArmSubsystem _arm, AutoClawGripSubsystem _claw) {
+    public GBackdropRedWallGetTwo(CommandOpMode _opMode, AutoDriveSubsystem _drive, AutoArmSubsystem _arm, AutoClawGripSubsystem _claw)  {
 
         ArmData armData = new ArmData();
         addCommands(
@@ -22,6 +22,7 @@ public class GBackdropBlueParkMiddleGetTwo extends SequentialCommandGroup {
 
 
                 new AutoStopOpModeCommand(_opMode)                                                      // This must be the last line of every command list
+
         );
 
     }

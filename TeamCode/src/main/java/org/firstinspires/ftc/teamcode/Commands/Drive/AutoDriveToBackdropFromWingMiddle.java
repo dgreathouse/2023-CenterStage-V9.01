@@ -18,7 +18,7 @@ import java.util.concurrent.TimeUnit;
    will not affect the accuracy to much. There is no PID on distance and the coast time will need
    to be considered.
  */
-public class AutoDriveToBackdropFromWing extends CommandBase {
+public class AutoDriveToBackdropFromWingMiddle extends CommandBase {
     CommandOpMode m_opMode;
     AutoDriveSubsystem m_drive;
     double m_driveAngle = 0;
@@ -29,7 +29,7 @@ public class AutoDriveToBackdropFromWing extends CommandBase {
     PIDController rotPID;
     Timing.Timer m_elapsedTimer;
 
-    public AutoDriveToBackdropFromWing(CommandOpMode _opMode, AutoDriveSubsystem _drive) {
+    public AutoDriveToBackdropFromWingMiddle(CommandOpMode _opMode, AutoDriveSubsystem _drive) {
         m_opMode = _opMode;
         m_drive = _drive;
     }
@@ -43,11 +43,11 @@ public class AutoDriveToBackdropFromWing extends CommandBase {
             case CENTER:
             case NONE:
                 if (GlobalData.MATCH.AutoTeamColor == TeamColor.BLUE) {
-                    m_driveAngle = -61;
+                    m_driveAngle = -57;
                     m_robotAngle = 90;
                     m_timeOut_sec = 2.6;
                 } else {  // RED
-                    m_driveAngle = 59;
+                    m_driveAngle = 113;
                     m_robotAngle = -90;
                     m_timeOut_sec = 2.5;
                 }
@@ -58,7 +58,7 @@ public class AutoDriveToBackdropFromWing extends CommandBase {
                     m_driveAngle = -64;
                     m_robotAngle = 90;
                 } else {  // RED
-                    m_driveAngle = 47;
+                    m_driveAngle = 110;
                     m_robotAngle = -90;
                 }
                 break;
@@ -69,7 +69,7 @@ public class AutoDriveToBackdropFromWing extends CommandBase {
                     m_robotAngle = 90;
                     m_timeOut_sec = 2.6;
                 } else {  // RED
-                    m_driveAngle = 64;
+                    m_driveAngle = 116;
                     m_robotAngle = -90;
                     m_timeOut_sec = 2.5;
                 }

@@ -5,7 +5,7 @@ import com.arcrobotics.ftclib.command.CommandScheduler;
 import com.arcrobotics.ftclib.util.Timing;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import org.firstinspires.ftc.teamcode.CommandGroups.Boys_22291.BBackdropBlueParkMiddleGetTwo;
-import org.firstinspires.ftc.teamcode.CommandGroups.Girls_14623.GBackdropBlueParkMiddleGetTwo;
+import org.firstinspires.ftc.teamcode.CommandGroups.Girls_14623.GBackdropBlueMiddleGetTwo;
 import org.firstinspires.ftc.teamcode.Commands.Arm.AutoArmDefaultCommand;
 import org.firstinspires.ftc.teamcode.Commands.Drive.AutoDriveDefaultCommand;
 import org.firstinspires.ftc.teamcode.Lib.AutoFieldLocation_enum;
@@ -29,7 +29,7 @@ public class BackdropBlueParkWallOpMode extends CommandOpMode {
     AutoArmDefaultCommand armDefaultCommand;
     AutoArmSubsystem arm;
     AutoClawGripSubsystem claw;
-    GBackdropBlueParkMiddleGetTwo Gauto;
+    GBackdropBlueMiddleGetTwo Gauto;
     BBackdropBlueParkMiddleGetTwo Bauto;
 
     @Override
@@ -83,7 +83,7 @@ public class BackdropBlueParkWallOpMode extends CommandOpMode {
         if(GlobalData.TeamNumber == 22291) {
             Bauto = new BBackdropBlueParkMiddleGetTwo(this, drive,arm,claw);
         }else {
-            Gauto = new GBackdropBlueParkMiddleGetTwo(this, drive,arm,claw);
+            Gauto = new GBackdropBlueMiddleGetTwo(this, drive,arm,claw);
         }
 
     }
