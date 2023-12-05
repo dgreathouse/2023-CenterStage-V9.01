@@ -5,23 +5,22 @@ import com.arcrobotics.ftclib.command.CommandScheduler;
 import com.arcrobotics.ftclib.util.Timing;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
-import org.firstinspires.ftc.teamcode.CommandGroups.Boys_22291.BWingRedWallToBackdrop;
-import org.firstinspires.ftc.teamcode.CommandGroups.Girls_14623.GWingRedWallToBackdrop;
+import org.firstinspires.ftc.teamcode.CommandGroups.Boys_22291.BWingRedWallPark;
+import org.firstinspires.ftc.teamcode.CommandGroups.Girls_14623.GWingRedWallPark;
 import org.firstinspires.ftc.teamcode.Commands.Arm.AutoArmDefaultCommand;
 import org.firstinspires.ftc.teamcode.Commands.Drive.AutoDriveDefaultCommand;
 import org.firstinspires.ftc.teamcode.Lib.AutoFieldLocation_enum;
 import org.firstinspires.ftc.teamcode.Lib.GlobalData;
 import org.firstinspires.ftc.teamcode.Lib.Hw;
 import org.firstinspires.ftc.teamcode.Lib.TeamColor;
-import org.firstinspires.ftc.teamcode.Lib.k;
 import org.firstinspires.ftc.teamcode.Subsystems.AutoArmSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystems.AutoClawGripSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystems.AutoDriveSubsystem;
 
 import java.util.concurrent.TimeUnit;
 
-@Autonomous(name = "Wing Red Wall To Backdrop", group = "Wing Red")
-public class WingRedWallToBackdropOpMode extends CommandOpMode {
+@Autonomous(name = "Wing Red Wall Park", group = "Wing Red")
+public class WingRedWallPark_OpMode extends CommandOpMode {
     Timing.Timer m_timer;
 
     Hw hw;
@@ -30,8 +29,8 @@ public class WingRedWallToBackdropOpMode extends CommandOpMode {
     AutoArmDefaultCommand armDefaultCommand;
     AutoArmSubsystem arm;
     AutoClawGripSubsystem claw;
-    GWingRedWallToBackdrop Gauto;
-    BWingRedWallToBackdrop Bauto;
+    GWingRedWallPark Gauto;
+    BWingRedWallPark Bauto;
 
     @Override
     public void initialize() {
@@ -56,8 +55,7 @@ public class WingRedWallToBackdropOpMode extends CommandOpMode {
         m_timer = new Timing.Timer(100, TimeUnit.MILLISECONDS);
         m_timer.start();
         GlobalData.MATCH.AutoTeamColor = TeamColor.RED;
-        GlobalData.MATCH.AutoFieldLocation = AutoFieldLocation_enum.WING;
-    }
+        GlobalData.MATCH.AutoFieldLocation = AutoFieldLocation_enum.WING;    }
     @Override
     public void runOpMode() throws InterruptedException{
         initialize();
@@ -73,7 +71,7 @@ public class WingRedWallToBackdropOpMode extends CommandOpMode {
 
             telemetry.update();
             // wait till timer is > 50ms to try an create a stable run rate
-            if(k.SYSTEM.isLoopRateLimited){while(!m_timer.done()){} m_timer.start();}
+           // if(k.SYSTEM.isLoopRateLimited){while(!m_timer.done()){} m_timer.start();}
 
 
         }
@@ -81,9 +79,9 @@ public class WingRedWallToBackdropOpMode extends CommandOpMode {
     }
     private void createCommandGroup() {
         if(GlobalData.TeamNumber == 22291) {
-            Bauto = new BWingRedWallToBackdrop(this, drive,arm,claw);
+            Bauto = new BWingRedWallPark(this, drive,arm,claw);
         }else {
-            Gauto = new GWingRedWallToBackdrop(this, drive,arm,claw);
+            Gauto = new GWingRedWallPark(this, drive,arm,claw);
         }
 
     }

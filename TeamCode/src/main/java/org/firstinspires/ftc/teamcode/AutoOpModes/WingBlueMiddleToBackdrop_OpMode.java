@@ -13,7 +13,6 @@ import org.firstinspires.ftc.teamcode.Lib.AutoFieldLocation_enum;
 import org.firstinspires.ftc.teamcode.Lib.GlobalData;
 import org.firstinspires.ftc.teamcode.Lib.Hw;
 import org.firstinspires.ftc.teamcode.Lib.TeamColor;
-import org.firstinspires.ftc.teamcode.Lib.k;
 import org.firstinspires.ftc.teamcode.Subsystems.AutoArmSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystems.AutoClawGripSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystems.AutoDriveSubsystem;
@@ -21,7 +20,7 @@ import org.firstinspires.ftc.teamcode.Subsystems.AutoDriveSubsystem;
 import java.util.concurrent.TimeUnit;
 
 @Autonomous(name = "Wing Blue Middle To Backdrop", group = "Wing Blue")
-public class WingBlueMiddleToBackdropOpMode extends CommandOpMode {
+public class WingBlueMiddleToBackdrop_OpMode extends CommandOpMode {
     Timing.Timer m_timer;
 
     Hw hw;
@@ -73,7 +72,7 @@ public class WingBlueMiddleToBackdropOpMode extends CommandOpMode {
 
             telemetry.update();
             // wait till timer is > 50ms to try an create a stable run rate
-            if(k.SYSTEM.isLoopRateLimited){while(!m_timer.done()){} m_timer.start();}
+            //if(k.SYSTEM.isLoopRateLimited){while(!m_timer.done()){} m_timer.start();}
 
 
         }
