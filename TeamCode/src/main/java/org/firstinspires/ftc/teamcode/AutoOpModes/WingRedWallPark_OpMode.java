@@ -55,7 +55,8 @@ public class WingRedWallPark_OpMode extends CommandOpMode {
         m_timer = new Timing.Timer(100, TimeUnit.MILLISECONDS);
         m_timer.start();
         GlobalData.MATCH.AutoTeamColor = TeamColor.RED;
-        GlobalData.MATCH.AutoFieldLocation = AutoFieldLocation_enum.WING;    }
+        GlobalData.MATCH.AutoFieldLocation = AutoFieldLocation_enum.WING;
+    }
     @Override
     public void runOpMode() throws InterruptedException{
         initialize();

@@ -20,7 +20,7 @@ import org.firstinspires.ftc.teamcode.Subsystems.AutoDriveSubsystem;
 
 import java.util.concurrent.TimeUnit;
 
-@Autonomous(name = "Backdrop Red Park Wall Get 2", group = "Backdrop Red")
+@Autonomous(name = "Backdrop Red Wall Get 2", group = "Backdrop Red")
 public class BackdropRedWallGetTwo_OpMode extends CommandOpMode {
     Timing.Timer m_timer;
 

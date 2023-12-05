@@ -36,7 +36,7 @@ public class KiwiDrive extends RobotDrive{
         m_speeds[1] = m_vector.scalarProject(m_rVector);
         m_speeds[2] = m_vector.scalarProject(m_bVector);
         // Normalize the speeds which means to scale them by the maximum
-        normalize(m_speeds);
+        normalize(m_speeds, k.DRIVE.DriveSpeedScale);
         // Set the speeds of the actual motors with the rotation value.
 
         m_left.set(m_speeds[0] + _rotate);

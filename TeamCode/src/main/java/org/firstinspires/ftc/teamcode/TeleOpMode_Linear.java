@@ -96,7 +96,7 @@ public class TeleOpMode_Linear extends CommandOpMode {
         Hw.s_gpDriver.getGamepadButton(GamepadKeys.Button.LEFT_BUMPER).whenPressed(new InstantCommand(() -> m_drive.resetGyro(), m_drive));
         // Toggle is Field Oriented Mode
         Hw.s_gpDriver.getGamepadButton(GamepadKeys.Button.RIGHT_BUMPER).whenPressed(new InstantCommand(() -> m_drive.toggleIsFieldOriented(), m_drive));
-
+        //(Button Circle(ps)/B(xbox))
         Hw.s_gpDriver.getGamepadButton(GamepadKeys.Button.B).whenPressed(new InstantCommand(() -> m_arm.setArmAngle(ArmPos.STRAIGHT), m_arm));
         //  (Button X(ps)/A(xbox))
         Hw.s_gpDriver.getGamepadButton(GamepadKeys.Button.A).whenPressed(new InstantCommand(() -> m_drive.setDriveSpeedScale(0.5), m_arm));
@@ -121,11 +121,11 @@ public class TeleOpMode_Linear extends CommandOpMode {
         // Lower Arm to floor (Button X(ps)/A(xbox))
         Hw.s_gpOperator.getGamepadButton(GamepadKeys.Button.A).whenPressed(new InstantCommand(() -> m_arm.setArmAngle(ArmPos.FLOOR), m_arm));
         // Set arm to get pixels from top of stack of 5 (Button Triangle(ps)/Y(xbox))
-        Hw.s_gpOperator.getGamepadButton(GamepadKeys.Button.Y).whenPressed(new InstantCommand(() -> m_arm.setArmAngle(60), m_arm));
+        Hw.s_gpOperator.getGamepadButton(GamepadKeys.Button.Y).whenPressed(new InstantCommand(() -> m_arm.setArmAngle(ArmPos.ANGLE_BACKDROP), m_arm));
         // Set arm to Straight (Button Circle(ps)/B(xbox))
         Hw.s_gpOperator.getGamepadButton(GamepadKeys.Button.B).whenPressed(new InstantCommand(() -> m_arm.setArmAngle(ArmPos.STRAIGHT), m_arm));
         // Set arm to Backdrop angle (Button Square(ps)/X(xbox))
-        Hw.s_gpOperator.getGamepadButton(GamepadKeys.Button.X).whenPressed(new InstantCommand(() -> m_arm.setArmAngle(ArmPos.ANGLE_BACKDROP), m_arm));
+        Hw.s_gpOperator.getGamepadButton(GamepadKeys.Button.X).whenPressed(new InstantCommand(() -> m_arm.setArmAngle(ArmPos.STACK_5), m_arm));
 
         // Launch Drone (Button Left DPAD)
         Hw.s_gpOperator.getGamepadButton(GamepadKeys.Button.DPAD_LEFT).whenPressed(new DroneLaunchCommand(this,m_drone));

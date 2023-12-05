@@ -18,7 +18,7 @@ import org.firstinspires.ftc.teamcode.Subsystems.AutoClawGripSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystems.AutoDriveSubsystem;
 import java.util.concurrent.TimeUnit;
 
-@Autonomous(name = "Backdrop Red Park Middle Get 2", group = "Backdrop Red")
+@Autonomous(name = "Backdrop Red Middle Get 2", group = "Backdrop Red")
 public class BackdropRedMiddleGetTwo_OpMode extends CommandOpMode {
     Timing.Timer m_timer;
 
