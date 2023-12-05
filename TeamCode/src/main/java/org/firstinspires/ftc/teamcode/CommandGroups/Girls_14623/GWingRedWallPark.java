@@ -51,6 +51,7 @@ public class GWingRedWallPark extends SequentialCommandGroup {
                 new ClawRotateFingers(_opMode, _claw, _claw.getClawOpenAngle()),
                 new AutoDriveTimeVel(_opMode, _drive, -90, 0.4, -90,.6),
                 new ArmAutoGotoPosition(_opMode, _arm, 35, 0, 0),
+                new AutoDelayCommand(_opMode, 1),
                 new AutoStopOpModeCommand(_opMode)                                                      // This must be the last line of every command list
         );
 

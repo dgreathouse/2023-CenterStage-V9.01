@@ -49,12 +49,12 @@ public class GWingRedMiddleToBackdrop extends SequentialCommandGroup {
                 new AutoRotateRobot(_opMode,_drive, 90,0.25,3),
                 new AutoDriveTimeVel(_opMode, _drive, 90, 0.8, 90,2.05),
                 new ArmAutoGotoPosition(_opMode, _arm, 42, 30, 0),
-                new AutoDriveToBackdrop(_opMode,_drive),
+                new AutoDriveToBackdropFromWingMiddle(_opMode,_drive),
                 new ClawRotateFingers(_opMode, _claw, _claw.getClawReleaseUpperAngle()),
                 new AutoDriveTimeVel(_opMode, _drive, -90, 0.5, -90,0.6),
                 new AutoDriveToPark(_opMode, _drive, Direction.RIGHT),
                 new ArmAutoGotoPosition(_opMode, _arm, 0, 0, 0),
-                new AutoDelayCommand(_opMode, 10),
+                new AutoDelayCommand(_opMode, 1),
                 new AutoStopOpModeCommand(_opMode)
 
         );

@@ -52,7 +52,7 @@ public class GWingRedWallToBackdrop extends SequentialCommandGroup {
                 new AutoDriveTimeVel(_opMode, _drive, -90, 0.5, -90,0.6),
                 new AutoDriveToPark(_opMode, _drive, Direction.RIGHT),
                 new ArmAutoGotoPosition(_opMode, _arm, 0, 0, 0),
-                new AutoDelayCommand(_opMode, 10),
+                new AutoDelayCommand(_opMode, 1),
                 new AutoStopOpModeCommand(_opMode)                                                          // This must be the last line of every command list
         );
 
