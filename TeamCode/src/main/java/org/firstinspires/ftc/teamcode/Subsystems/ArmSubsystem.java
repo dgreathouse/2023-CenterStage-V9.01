@@ -19,7 +19,8 @@ public class ArmSubsystem extends SubsystemBase {
     public ArmData m_armData;
     public double m_armAng = 0.0;
     private double m_IClawAngle = 0;
-
+    private boolean m_overrideClawFlag = false;
+    private double m_overrideClawAngle = -6;
     public ArmSubsystem(CommandOpMode _opMode) {
         m_opMode = _opMode;
         initHardware();
@@ -53,7 +54,12 @@ public class ArmSubsystem extends SubsystemBase {
 
         // Set the Claw
         m_IClawAngle = Interpolate.getY(k.ARM.ShoulderAngles, k.ARM.ClawAngles, m_shoulder.getAngle());
-        setClawAngle(m_IClawAngle);
+        if(m_overrideClawFlag){
+            setClawAngle(m_overrideClawAngle);
+        }else {
+            setClawAngle(m_IClawAngle);
+        }
+
 
     }
     private double getForearmPositionFromAngle(){
@@ -122,7 +128,10 @@ public class ArmSubsystem extends SubsystemBase {
     public void setArmAngle(double _angle) {
         m_armAng = _angle;
     }
-
+    public void lowerClaw(double _angle){
+        m_overrideClawAngle = _angle;
+        m_overrideClawFlag |= m_overrideClawFlag;
+    }
     @Override
     public void periodic() {
         m_opMode.telemetry.addData("Team Prop Distance", "%3.3f", getTeamPropDistance());

@@ -52,7 +52,7 @@ public class GWingRedMiddleToBackdrop extends SequentialCommandGroup {
                 new AutoDriveToBackdropFromWingMiddle(_opMode,_drive),
                 new ClawRotateFingers(_opMode, _claw, _claw.getClawReleaseUpperAngle()),
                 new AutoDriveTimeVel(_opMode, _drive, -90, 0.5, -90,0.6),
-                new AutoDriveToPark(_opMode, _drive, Direction.RIGHT),
+                new AutoDriveToPark(_opMode, _drive, Direction.LEFT),
                 new ArmAutoGotoPosition(_opMode, _arm, 0, 0, 0),
                 new AutoDelayCommand(_opMode, 1),
                 new AutoStopOpModeCommand(_opMode)
