@@ -19,7 +19,7 @@ public class AutoRotateRobot extends CommandBase {
     double m_timeOut_sec;
     double m_speed;
 
-    PIDController rotPID = new PIDController(0.015, 0.001, 0);
+    PIDController rotPID = new PIDController(0.015, 0.0075, 0);
     Timing.Timer m_timer;
 
 

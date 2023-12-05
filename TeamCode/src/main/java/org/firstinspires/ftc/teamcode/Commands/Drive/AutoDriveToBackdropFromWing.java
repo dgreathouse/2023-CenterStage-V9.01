@@ -47,7 +47,7 @@ public class AutoDriveToBackdropFromWing extends CommandBase {
                     m_robotAngle = 90;
                     m_timeOut_sec = 2.6;
                 } else {  // RED
-                    m_driveAngle = 57;
+                    m_driveAngle = 59;
                     m_robotAngle = -90;
                     m_timeOut_sec = 2.5;
                 }
@@ -58,7 +58,7 @@ public class AutoDriveToBackdropFromWing extends CommandBase {
                     m_driveAngle = -64;
                     m_robotAngle = 90;
                 } else {  // RED
-                    m_driveAngle = 50;
+                    m_driveAngle = 47;
                     m_robotAngle = -90;
                 }
                 break;

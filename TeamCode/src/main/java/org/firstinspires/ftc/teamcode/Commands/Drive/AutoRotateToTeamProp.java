@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.Commands.Drive;
 import com.arcrobotics.ftclib.command.CommandBase;
 import com.arcrobotics.ftclib.command.CommandOpMode;
 import com.arcrobotics.ftclib.controller.PIDController;
+import com.arcrobotics.ftclib.util.MathUtils;
 import com.arcrobotics.ftclib.util.Timing;
 
 import org.firstinspires.ftc.teamcode.Lib.GlobalData;
@@ -24,7 +25,7 @@ public class AutoRotateToTeamProp extends CommandBase {
 
     double m_robotAngle = 0;
     int m_timeOut = 3000;
-    double m_speed = 0.3;
+    double m_speed = 0.25;
 
     PIDController rotPID;
     Timing.Timer m_timer;
@@ -36,20 +37,20 @@ public class AutoRotateToTeamProp extends CommandBase {
 
     @Override
     public void initialize() {
-        rotPID = new PIDController(.015, .001, 0);
-        rotPID.setTolerance(1.0);
+        rotPID = new PIDController(.008, .003, 0);
+        rotPID.setTolerance(2.0);
         rotPID.reset();
 
         switch (GlobalData.MATCH.TeamPropLocation) {
             case CENTER:
             case NONE:
-                m_robotAngle = GlobalData.MATCH.AutoTeamColor == TeamColor.BLUE ? 23 : -23;
+                m_robotAngle = GlobalData.MATCH.AutoTeamColor == TeamColor.BLUE ? 30 : -30;
                 break;
             case LEFT:
-                m_robotAngle = 90;
+                m_robotAngle = 85;
                 break;
             case RIGHT:
-                m_robotAngle = -90;
+                m_robotAngle = -85;
                 break;
 
         }
@@ -62,6 +63,7 @@ public class AutoRotateToTeamProp extends CommandBase {
     public void execute() {
 
         double rot = -rotPID.calculate(m_drive.getRobotAngle(), m_robotAngle);
+        rot = MathUtils.clamp(rot,-m_speed,m_speed);
         m_drive.drivePolar(0, 0, rot);
 
     }
