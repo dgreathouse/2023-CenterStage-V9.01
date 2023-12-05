@@ -10,8 +10,6 @@ import org.firstinspires.ftc.teamcode.Commands.AutoDelayCommand;
 import org.firstinspires.ftc.teamcode.Commands.AutoStopOpModeCommand;
 import org.firstinspires.ftc.teamcode.Commands.ClawGrip.ClawRotateFingers;
 import org.firstinspires.ftc.teamcode.Commands.Drive.AutoDriveTimeVel;
-import org.firstinspires.ftc.teamcode.Commands.Drive.AutoDriveToBackdrop;
-import org.firstinspires.ftc.teamcode.Commands.Drive.AutoDriveToBackdropFromWing;
 import org.firstinspires.ftc.teamcode.Commands.Drive.AutoDriveToBackdropFromWingMiddle;
 import org.firstinspires.ftc.teamcode.Commands.Drive.AutoDriveToPark;
 import org.firstinspires.ftc.teamcode.Commands.Drive.AutoResetGyroCommand;
@@ -45,7 +43,9 @@ public class GWingRedMiddleToBackdrop extends SequentialCommandGroup {
                 new ClawRotateFingers(_opMode, _claw, _claw.getClawCloseAngle()),
                 new ArmAutoGotoPosition(_opMode, _arm, 35, -10, 0),
                 new AutoRotateRobot(_opMode,_drive, 0,0.25,3),
-                new AutoDriveTimeVel(_opMode, _drive, 180, 0.6, 0,1.65),
+                new AutoDriveTimeVel(_opMode, _drive, 180, 0.6, 0,1),
+                new AutoDriveTimeVel(_opMode, _drive, -90, 0.6, 0,1.5),
+                new AutoDriveTimeVel(_opMode, _drive, 0, 0.6, 0,2.5),
                 new AutoRotateRobot(_opMode,_drive, 90,0.25,3),
                 new AutoDriveTimeVel(_opMode, _drive, 90, 0.8, 90,2.05),
                 new ArmAutoGotoPosition(_opMode, _arm, 42, 30, 0),
@@ -56,7 +56,6 @@ public class GWingRedMiddleToBackdrop extends SequentialCommandGroup {
                 new ArmAutoGotoPosition(_opMode, _arm, 0, 0, 0),
                 new AutoDelayCommand(_opMode, 1),
                 new AutoStopOpModeCommand(_opMode)
-
         );
 
     }

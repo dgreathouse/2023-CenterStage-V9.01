@@ -8,9 +8,9 @@ import org.firstinspires.ftc.teamcode.Subsystems.AutoArmSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystems.AutoClawGripSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystems.AutoDriveSubsystem;
 
-public class BBackdropRedParkWallGetTwo extends SequentialCommandGroup {
+public class BBackdropRedWallGetTwo extends SequentialCommandGroup {
 
-    public BBackdropRedParkWallGetTwo(CommandOpMode _opMode, AutoDriveSubsystem _drive, AutoArmSubsystem _arm, AutoClawGripSubsystem _claw) {
+    public BBackdropRedWallGetTwo(CommandOpMode _opMode, AutoDriveSubsystem _drive, AutoArmSubsystem _arm, AutoClawGripSubsystem _claw) {
 
         addCommands(
 

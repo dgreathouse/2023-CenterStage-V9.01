@@ -5,8 +5,8 @@ import com.arcrobotics.ftclib.command.CommandScheduler;
 import com.arcrobotics.ftclib.util.Timing;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
-import org.firstinspires.ftc.teamcode.CommandGroups.Boys_22291.BBackdropBlueParkMiddle;
-import org.firstinspires.ftc.teamcode.CommandGroups.Girls_14623.GBackdropBlueParkMiddle;
+import org.firstinspires.ftc.teamcode.CommandGroups.Boys_22291.BBackdropBlueWallGetTwo;
+import org.firstinspires.ftc.teamcode.CommandGroups.Girls_14623.GBackdropBlueWallGetTwo;
 import org.firstinspires.ftc.teamcode.Commands.Arm.AutoArmDefaultCommand;
 import org.firstinspires.ftc.teamcode.Commands.Drive.AutoDriveDefaultCommand;
 import org.firstinspires.ftc.teamcode.Lib.AutoFieldLocation_enum;
@@ -29,8 +29,8 @@ public class BackdropBlueWallGetTwo_OpMode extends CommandOpMode {
     AutoArmDefaultCommand armDefaultCommand;
     AutoArmSubsystem arm;
     AutoClawGripSubsystem claw;
-    GBackdropBlueParkMiddle Gauto;
-    BBackdropBlueParkMiddle Bauto;
+    GBackdropBlueWallGetTwo Gauto;
+    BBackdropBlueWallGetTwo Bauto;
 
     @Override
     public void initialize() {
@@ -81,9 +81,9 @@ public class BackdropBlueWallGetTwo_OpMode extends CommandOpMode {
     }
     private void createCommandGroup() {
         if(GlobalData.TeamNumber == 22291) {
-            Bauto = new BBackdropBlueParkMiddle(this, drive,arm,claw);
+            Bauto = new BBackdropBlueWallGetTwo(this, drive,arm,claw);
         }else {
-            Gauto = new GBackdropBlueParkMiddle(this, drive,arm,claw);
+            Gauto = new GBackdropBlueWallGetTwo(this, drive,arm,claw);
         }
 
     }

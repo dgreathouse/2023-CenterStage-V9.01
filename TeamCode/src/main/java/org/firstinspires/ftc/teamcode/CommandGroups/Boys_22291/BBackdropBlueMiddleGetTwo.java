@@ -10,9 +10,9 @@ import org.firstinspires.ftc.teamcode.Subsystems.AutoArmSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystems.AutoClawGripSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystems.AutoDriveSubsystem;
 
-public class BBackdropBlueParkMiddleGetTwo extends SequentialCommandGroup {
+public class BBackdropBlueMiddleGetTwo extends SequentialCommandGroup {
 
-    public BBackdropBlueParkMiddleGetTwo(CommandOpMode _opMode, AutoDriveSubsystem _drive, AutoArmSubsystem _arm, AutoClawGripSubsystem _claw) {
+    public BBackdropBlueMiddleGetTwo(CommandOpMode _opMode, AutoDriveSubsystem _drive, AutoArmSubsystem _arm, AutoClawGripSubsystem _claw) {
 
         ArmData armData = new ArmData();
         addCommands(

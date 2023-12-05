@@ -4,7 +4,8 @@ import com.arcrobotics.ftclib.command.CommandOpMode;
 import com.arcrobotics.ftclib.command.CommandScheduler;
 import com.arcrobotics.ftclib.util.Timing;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import org.firstinspires.ftc.teamcode.CommandGroups.Boys_22291.BBackdropRedParkWallGetTwo;
+
+import org.firstinspires.ftc.teamcode.CommandGroups.Boys_22291.BBackdropRedMiddleGetTwo;
 import org.firstinspires.ftc.teamcode.CommandGroups.Girls_14623.GBackdropRedMiddleGetTwo;
 import org.firstinspires.ftc.teamcode.Commands.Arm.AutoArmDefaultCommand;
 import org.firstinspires.ftc.teamcode.Commands.Drive.AutoDriveDefaultCommand;
@@ -16,6 +17,7 @@ import org.firstinspires.ftc.teamcode.Lib.TeamColor;
 import org.firstinspires.ftc.teamcode.Subsystems.AutoArmSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystems.AutoClawGripSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystems.AutoDriveSubsystem;
+
 import java.util.concurrent.TimeUnit;
 
 @Autonomous(name = "Backdrop Red Middle Get 2", group = "Backdrop Red")
@@ -29,7 +31,7 @@ public class BackdropRedMiddleGetTwo_OpMode extends CommandOpMode {
     AutoArmSubsystem arm;
     AutoClawGripSubsystem claw;
     GBackdropRedMiddleGetTwo Gauto;
-    BBackdropRedParkWallGetTwo Bauto;
+    BBackdropRedMiddleGetTwo Bauto;
 
     @Override
     public void initialize() {
@@ -83,7 +85,7 @@ public class BackdropRedMiddleGetTwo_OpMode extends CommandOpMode {
     }
     private void createCommandGroup() {
         if(GlobalData.TeamNumber == 22291) {
-            Bauto = new BBackdropRedParkWallGetTwo(this, drive,arm,claw);
+            Bauto = new BBackdropRedMiddleGetTwo(this, drive,arm,claw);
         }else {
             Gauto = new GBackdropRedMiddleGetTwo(this, drive,arm,claw);
         }
