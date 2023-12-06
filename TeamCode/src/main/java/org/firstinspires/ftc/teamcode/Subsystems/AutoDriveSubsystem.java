@@ -4,8 +4,10 @@ import com.arcrobotics.ftclib.command.CommandOpMode;
 import com.arcrobotics.ftclib.command.SubsystemBase;
 import com.arcrobotics.ftclib.hardware.motors.Motor;
 import com.arcrobotics.ftclib.hardware.motors.MotorEx;
+import com.qualcomm.hardware.rev.Rev2mDistanceSensor;
 
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
+import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.YawPitchRollAngles;
 import org.firstinspires.ftc.teamcode.Lib.GlobalData;
 import org.firstinspires.ftc.teamcode.Lib.Hw;
@@ -18,7 +20,7 @@ public class AutoDriveSubsystem extends SubsystemBase {
     private KiwiDrive m_drive;
     // Declare a CommandOpMode variable
     private CommandOpMode m_opMode;
-
+    public Rev2mDistanceSensor m_distanceSensor;
 
     /** Class Constructor
      *
@@ -54,6 +56,8 @@ public class AutoDriveSubsystem extends SubsystemBase {
         m_bDrive.setDistancePerPulse(k.DRIVE.InchPerCount);
         m_bDrive.encoder.setDirection(Motor.Direction.REVERSE);
         m_bDrive.setVeloCoefficients(k.DRIVE.Drive_P,k.DRIVE.Drive_I,0);
+
+        m_distanceSensor = m_opMode.hardwareMap.get(Rev2mDistanceSensor.class, Hw.DistanceSensor);
     }
 
     /**
@@ -97,6 +101,9 @@ public class AutoDriveSubsystem extends SubsystemBase {
     public double getRobotAngle(){
         YawPitchRollAngles angles = Hw.s_imu.getRobotYawPitchRollAngles();
         return angles.getYaw(AngleUnit.DEGREES);
+    }
+    public double getDistanceSensorValue(){
+        return m_distanceSensor.getDistance(DistanceUnit.MM);
     }
     public void resetYaw(){
         Hw.s_imu.resetYaw();
