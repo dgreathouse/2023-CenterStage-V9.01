@@ -118,13 +118,13 @@ public class AutoDriveSubsystem extends SubsystemBase {
         m_opMode.telemetry.addData("Drive Angle", "%3.3f", m_drive.getDriveAngle());
         m_opMode.telemetry.addData("Drive Strafe", "%3.3f", m_drive.getStrafe());
         m_opMode.telemetry.addData("Drive Forward", "%3.3f", m_drive.getForward());
+//
+//        m_opMode.telemetry.addData("TPS_Left", m_lDrive.getCorrectedVelocity());
+//        m_opMode.telemetry.addData("TPS_Right", m_rDrive.getCorrectedVelocity());
+//        m_opMode.telemetry.addData("TPS_Back", m_bDrive.getCorrectedVelocity());
 
-        m_opMode.telemetry.addData("TPS_Left", m_lDrive.getCorrectedVelocity());
-        m_opMode.telemetry.addData("TPS_Right", m_rDrive.getCorrectedVelocity());
-        m_opMode.telemetry.addData("TPS_Back", m_bDrive.getCorrectedVelocity());
-
-        m_opMode.telemetry.addData("Pos_Left", m_lDrive.getCurrentPosition());
-        m_opMode.telemetry.addData("Pos_Right", m_rDrive.getCurrentPosition());
+//        m_opMode.telemetry.addData("Pos_Left", m_lDrive.getCurrentPosition());
+//        m_opMode.telemetry.addData("Pos_Right", m_rDrive.getCurrentPosition());
 
 
         //        m_opMode.telemetry.addLine(String.format("AprilTag X: %.4f m", GlobalData.AprilTag_X));

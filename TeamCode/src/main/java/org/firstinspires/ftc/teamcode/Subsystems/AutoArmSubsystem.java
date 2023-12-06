@@ -77,9 +77,9 @@ public class AutoArmSubsystem extends SubsystemBase {
         m_opMode.telemetry.addData("Shoulder Angle", "%3.3f", m_shoulder.getAngle());
         m_opMode.telemetry.addData("Shoulder Power", "%3.3f", m_shoulder.getPower());
         m_opMode.telemetry.addData("Shoulder Requested Angle", "%3.3f", m_requestedArmAng);
-//
-//        m_opMode.telemetry.addData("Claw Angle", "%3.3f", m_claw.getClawRotateAngle());
-//        m_opMode.telemetry.addData("Claw Requested Angle", "%3.3f", m_requestedClawAngle);
+
+        m_opMode.telemetry.addData("Claw Angle", "%3.3f", m_claw.getClawRotateAngle());
+        m_opMode.telemetry.addData("Claw Requested Angle", "%3.3f", m_requestedClawAngle);
 //
 //        m_opMode.telemetry.addData("Forearm Position", "%3.3f", m_forearm.getPosition());
 //        m_opMode.telemetry.addData("Forearm Requested Position ", "%3.3f", m_requestedForearmPosition);

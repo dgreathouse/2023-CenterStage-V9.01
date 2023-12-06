@@ -138,6 +138,7 @@ public class DriveSubsystem extends SubsystemBase {
         m_opMode.telemetry.addData("Strafe", "%3.3f", m_drive.getStrafe());
         m_opMode.telemetry.addData("Forward", "%3.3f",m_drive.getForward());
         m_opMode.telemetry.addData("FieldOriented", m_drive.getIsFieldOriented());
+        m_opMode.telemetry.addData("Drive Speed Scale", "%1.1f", k.DRIVE.DriveSpeedScale);
         m_opMode.telemetry.addLine("------------------------------------");
 
     }

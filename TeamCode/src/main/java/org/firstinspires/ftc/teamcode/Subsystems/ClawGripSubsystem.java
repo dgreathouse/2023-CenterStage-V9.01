@@ -58,6 +58,6 @@ public class ClawGripSubsystem extends SubsystemBase {
     }
     @Override
     public void periodic() {
-        m_opMode.telemetry.addData("Claw Grip Angle", "%3.3f", getClawGripAngle());
+        //m_opMode.telemetry.addData("Claw Grip Angle", "%3.3f", getClawGripAngle());
     }
 }
