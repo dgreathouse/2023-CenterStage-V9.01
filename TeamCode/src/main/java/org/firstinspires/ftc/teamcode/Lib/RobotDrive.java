@@ -51,7 +51,7 @@ public abstract class RobotDrive {
         }
         // Scale all values based on the requested magnitude
         for (int i = 0; i < wheelSpeeds.length; i++) {
-            wheelSpeeds[i] = (wheelSpeeds[i] / maxMagnitude) * magnitude;
+            wheelSpeeds[i] = (wheelSpeeds[i]) * magnitude;
         }
     }
     protected void normalize(double[] wheelSpeeds) {
