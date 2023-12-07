@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.Commands.Drive;
 import com.arcrobotics.ftclib.command.CommandBase;
 import com.arcrobotics.ftclib.command.CommandOpMode;
 import com.arcrobotics.ftclib.controller.PIDController;
+import com.arcrobotics.ftclib.util.MathUtils;
 import com.arcrobotics.ftclib.util.Timing;
 
 import org.firstinspires.ftc.teamcode.Lib.GlobalData;
@@ -25,9 +26,9 @@ public class AutoDriveToBackdropFromWingMiddle extends CommandBase {
     double m_robotAngle = 0;
     double m_timeOut_sec = 1.0;
     double m_speed = 0.4;
-
+    double m_rotSpeed = 0.3;
     PIDController rotPID;
-    Timing.Timer m_elapsedTimer;
+    Timing.Timer m_timer;
 
     public AutoDriveToBackdropFromWingMiddle(CommandOpMode _opMode, AutoDriveSubsystem _drive) {
         m_opMode = _opMode;
@@ -76,19 +77,21 @@ public class AutoDriveToBackdropFromWingMiddle extends CommandBase {
                 break;
         }
 
-        m_elapsedTimer =  new Timing.Timer((long)(m_timeOut_sec*1000.0), TimeUnit.MILLISECONDS);
-        m_elapsedTimer.start();
+        m_timer =  new Timing.Timer((long)(m_timeOut_sec*1000.0), TimeUnit.MILLISECONDS);
+        m_timer.start();
     }
     @Override
     public void execute(){
 
         double rot = -rotPID.calculate(m_drive.getRobotAngle(), m_robotAngle);
-        m_drive.drivePolar(m_driveAngle, m_speed, rot);
+        rot = MathUtils.clamp(rot, -m_rotSpeed, m_rotSpeed);
+        double currentSpeed = m_drive.getRampSpeed(m_speed,m_timeOut_sec, m_timer.elapsedTime() / 1000.0, 0.75, 0.75);
+        m_drive.drivePolar(m_driveAngle, currentSpeed, rot);
 
     }
     @Override
     public boolean isFinished(){
-        if(m_elapsedTimer.done()){
+        if(m_timer.done()){
             m_drive.disableMotors();
             return true;
         }

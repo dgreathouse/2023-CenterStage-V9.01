@@ -19,7 +19,7 @@ import java.util.concurrent.TimeUnit;
    will not affect the accuracy to much. There is no PID on distance and the coast time will need
    to be considered.
  */
-public class AutoDriveToBackdropFromWing extends CommandBase {
+public class AutoDriveToMiddleFromBackdrop extends CommandBase {
     CommandOpMode m_opMode;
     AutoDriveSubsystem m_drive;
     double m_driveAngle = 0;
@@ -30,7 +30,7 @@ public class AutoDriveToBackdropFromWing extends CommandBase {
     PIDController rotPID;
     Timing.Timer m_timer;
 
-    public AutoDriveToBackdropFromWing(CommandOpMode _opMode, AutoDriveSubsystem _drive) {
+    public AutoDriveToMiddleFromBackdrop(CommandOpMode _opMode, AutoDriveSubsystem _drive) {
         m_opMode = _opMode;
         m_drive = _drive;
     }

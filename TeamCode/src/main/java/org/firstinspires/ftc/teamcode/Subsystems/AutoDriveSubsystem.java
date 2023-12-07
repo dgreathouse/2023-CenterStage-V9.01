@@ -116,6 +116,17 @@ public class AutoDriveSubsystem extends SubsystemBase {
         m_rDrive.set(0);
         m_bDrive.set(0);
     }
+    public double getRampSpeed(double _speed, double _timeOut, double _currentTime, double _rampUpTime, double _rampDownTime){
+        double currentSpeed = 0;
+        if (_currentTime < _timeOut && _currentTime > _timeOut - _rampDownTime) { // In the ramp down time
+            currentSpeed = _speed * (_timeOut - _currentTime) / _rampDownTime;
+        } else if (_currentTime < _rampUpTime) {// In the ramp up time
+            currentSpeed = _speed * _currentTime / _rampUpTime;
+        } else { // past the ramp up time and not in ramp down time
+            currentSpeed = _speed;
+        }
+        return currentSpeed;
+    }
     public void setIsFieldOriented(boolean _val){
         m_drive.setIsFieldOriented(_val);
     }

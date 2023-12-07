@@ -40,6 +40,7 @@ public class AutoDriveTimeVel extends CommandBase {
         m_drive = _drive;
         m_driveAngle = _driveAngle;
         m_speed = _speed;
+
         m_robotAngle = _robotAngle;
         m_timeOut_sec = _timeOut_sec;
         m_currentSpeed = m_speed;
@@ -78,16 +79,8 @@ public class AutoDriveTimeVel extends CommandBase {
     public void execute() {
         double rot = -rotPID.calculate(m_drive.getRobotAngle(), m_robotAngle);
         double currentTime_sec = m_timer.elapsedTime() / 1000.0;
+        m_currentSpeed = m_drive.getRampSpeed(m_speed, m_timeOut_sec, currentTime_sec,m_rampUpTime_sec,m_rampDownTime_sec);
 
-        // Try to gently ramp the speed up from 0 to m_speed
-        if (currentTime_sec < m_timeOut_sec && currentTime_sec > m_timeOut_sec - m_rampDownTime_sec) { // In the ramp down time
-            m_currentSpeed = m_speed * (m_timeOut_sec - currentTime_sec) / m_rampDownTime_sec;
-        } else if (currentTime_sec < m_rampUpTime_sec) {// In the ramp up time
-            m_currentSpeed = m_speed * currentTime_sec / m_rampUpTime_sec;
-            //m_currentSpeed = Math.pow(m_currentSpeed,2);
-        } else { // past the ramp up time and not in ramp down time
-            m_currentSpeed = m_speed;
-        }
 
         rot = MathUtils.clamp(rot, -m_rotSpeed, m_rotSpeed);
         m_drive.drivePolar(m_driveAngle, m_currentSpeed, rot);

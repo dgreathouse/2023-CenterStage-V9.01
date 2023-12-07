@@ -12,6 +12,7 @@ import org.firstinspires.ftc.teamcode.Commands.ClawGrip.ClawRotateFingers;
 import org.firstinspires.ftc.teamcode.Commands.Drive.AutoDriveTimeVel;
 import org.firstinspires.ftc.teamcode.Commands.Drive.AutoDriveToBackdrop;
 import org.firstinspires.ftc.teamcode.Commands.Drive.AutoDriveToBackdropFromWingMiddle;
+import org.firstinspires.ftc.teamcode.Commands.Drive.AutoDriveToMiddleFromBackdrop;
 import org.firstinspires.ftc.teamcode.Commands.Drive.AutoDriveToPark;
 import org.firstinspires.ftc.teamcode.Commands.Drive.AutoDriveWithDistanceSensor;
 import org.firstinspires.ftc.teamcode.Commands.Drive.AutoResetGyroCommand;
@@ -32,7 +33,7 @@ public class GBackdropRedMiddleGetTwo extends SequentialCommandGroup {
                 new AutoResetGyroCommand(_opMode, _drive),                                      // Reset the gyro
                 new AutoDelayCommand(_opMode, .75),                                             // Wait for claw to close
                 new ArmAutoGotoPosition(_opMode, _arm, 35, -10, 0),                             // Raise Arm and lower claw
-                new AutoDriveTimeVel(_opMode, _drive, 0, 0.6, 0,1.75),                          // Drive to team prop
+                new AutoDriveTimeVel(_opMode, _drive, 0, 0.5, 0,1.75, .5, .5),                  // Drive to team prop
                 new ArmGetTeamPropLocation(_opMode, _arm, TeamPropLocation.CENTER),             // Check the center
                 new AutoRotateRobot(_opMode,_drive, -75,0.25,3),                                // Rotate to the right
                 new ArmGetTeamPropLocation(_opMode, _arm, TeamPropLocation.RIGHT),              // Check the Right
@@ -48,12 +49,10 @@ public class GBackdropRedMiddleGetTwo extends SequentialCommandGroup {
                 new AutoDriveToBackdrop(_opMode,_drive),                                        // Drive to the backdrop
                 new ClawRotateFingers(_opMode, _claw, _claw.getClawReleaseUpperAngle()),        // Release the upper pixel
                 new AutoDelayCommand(_opMode, .75),                                             // Delay so the pixel can drop
-                new AutoDriveTimeVel(_opMode, _drive, -90, 0.5, -90,0.6),                       // Drive backwards away from backdrop so it can move
-                new AutoDriveToPark(_opMode, _drive, Direction.LEFT),                           // Park on the left
+                new AutoDriveToMiddleFromBackdrop(_opMode,_drive),                              // Drive to the middle of the field facing the audience
                 new ClawRotateFingers(_opMode, _claw, _claw.getClawOpenAngle()),                // Open the claw to be ready to grab them
                 new ArmAutoGotoPosition(_opMode, _arm, 35, -6, 0),                              // Raise the arm and set claw angle lower to get a pixel
                 new AutoDriveTimeVel(_opMode, _drive, -90, 0.7, -90,2.5),                       // Drive under truss
-                new AutoRotateRobot(_opMode,_drive, 90,0.25,3),                                 // Rotate robot
                 new AutoDriveWithDistanceSensor(_opMode,_drive, -90, 0.27, 90, 200, 3),         // Drive to the stack of pixels
                 new ArmAutoGotoPosition(_opMode, _arm, 6, -6, 0),                               // Lower arm to grab pixels
                 new AutoDelayCommand(_opMode, 1),                                               // Delay to let the arm lower
