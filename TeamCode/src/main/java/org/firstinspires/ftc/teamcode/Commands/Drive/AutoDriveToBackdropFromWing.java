@@ -29,7 +29,8 @@ public class AutoDriveToBackdropFromWing extends CommandBase {
     double m_rotSpeed = 0.3;
     PIDController rotPID;
     Timing.Timer m_timer;
-
+    double m_rampUpTime_sec = 0.750;
+    double m_rampDownTime_sec = 0.750;
     public AutoDriveToBackdropFromWing(CommandOpMode _opMode, AutoDriveSubsystem _drive) {
         m_opMode = _opMode;
         m_drive = _drive;
@@ -44,9 +45,9 @@ public class AutoDriveToBackdropFromWing extends CommandBase {
             case CENTER:
             case NONE:
                 if (GlobalData.MATCH.AutoTeamColor == TeamColor.BLUE) {
-                    m_driveAngle = -61;
+                    m_driveAngle = -59;
                     m_robotAngle = 90;
-                    m_timeOut_sec = 2.6;
+                    m_timeOut_sec = 2.5;
                 } else {  // RED
                     m_driveAngle = 59;
                     m_robotAngle = -90;
@@ -76,7 +77,15 @@ public class AutoDriveToBackdropFromWing extends CommandBase {
                 }
                 break;
         }
-
+        if (m_timeOut_sec >= 2.0) {
+            m_rampUpTime_sec = 0.75;
+            m_rampDownTime_sec = 0.75;
+        } else {
+            m_rampUpTime_sec = m_timeOut_sec * 0.50;
+            m_rampUpTime_sec = MathUtils.clamp(m_rampUpTime_sec, 0, 0.75);
+            m_rampDownTime_sec = m_timeOut_sec * 0.50;
+            m_rampDownTime_sec = MathUtils.clamp(m_rampDownTime_sec, 0, 0.75);
+        }
         m_timer =  new Timing.Timer((long)(m_timeOut_sec*1000.0), TimeUnit.MILLISECONDS);
         m_timer.start();
     }
@@ -85,7 +94,7 @@ public class AutoDriveToBackdropFromWing extends CommandBase {
 
         double rot = -rotPID.calculate(m_drive.getRobotAngle(), m_robotAngle);
         rot = MathUtils.clamp(rot, -m_rotSpeed, m_rotSpeed);
-        double currentSpeed = m_drive.getRampSpeed(m_speed,m_timeOut_sec, m_timer.elapsedTime() / 1000.0, 0.75, 0.75);
+        double currentSpeed = m_drive.getRampSpeed(m_speed,m_timeOut_sec, m_timer.elapsedTime() / 1000.0, m_rampUpTime_sec, m_rampDownTime_sec);
         m_drive.drivePolar(m_driveAngle, currentSpeed, rot);
 
     }
