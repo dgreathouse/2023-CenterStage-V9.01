@@ -25,8 +25,10 @@ public class AutoDriveToMiddleFromBackdrop extends CommandBase {
     double m_driveAngle = 0;
     double m_robotAngle = 0;
     double m_timeOut_sec = 1.0;
-    double m_speed = 0.4;
-    double m_rotSpeed = 0.3;
+    double m_speed = 0.7;
+    double m_rotSpeed = 0.35;
+    double m_rampUpTime_sec = 0.750;
+    double m_rampDownTime_sec = 0.750;
     PIDController rotPID;
     Timing.Timer m_timer;
 
@@ -48,9 +50,9 @@ public class AutoDriveToMiddleFromBackdrop extends CommandBase {
                     m_robotAngle = 90;
                     m_timeOut_sec = 2.6;
                 } else {  // RED
-                    m_driveAngle = 59;
-                    m_robotAngle = -90;
-                    m_timeOut_sec = 2.5;
+                    m_driveAngle = -40;
+                    m_robotAngle = 90;
+                    m_timeOut_sec = 1.7;
                 }
                 break;
             case LEFT:
@@ -70,13 +72,21 @@ public class AutoDriveToMiddleFromBackdrop extends CommandBase {
                     m_robotAngle = 90;
                     m_timeOut_sec = 2.6;
                 } else {  // RED
-                    m_driveAngle = 64;
-                    m_robotAngle = -90;
+                    m_driveAngle = -30;
+                    m_robotAngle = 90;
                     m_timeOut_sec = 2.5;
                 }
                 break;
         }
-
+        if (m_timeOut_sec >= 2.0) {
+            m_rampUpTime_sec = 0.75;
+            m_rampDownTime_sec = 0.75;
+        } else {
+            m_rampUpTime_sec = m_timeOut_sec * 0.50;
+            m_rampUpTime_sec = MathUtils.clamp(m_rampUpTime_sec, 0, 0.75);
+            m_rampDownTime_sec = m_timeOut_sec * 0.50;
+            m_rampDownTime_sec = MathUtils.clamp(m_rampDownTime_sec, 0, 0.75);
+        }
         m_timer =  new Timing.Timer((long)(m_timeOut_sec*1000.0), TimeUnit.MILLISECONDS);
         m_timer.start();
     }
@@ -85,7 +95,7 @@ public class AutoDriveToMiddleFromBackdrop extends CommandBase {
 
         double rot = -rotPID.calculate(m_drive.getRobotAngle(), m_robotAngle);
         rot = MathUtils.clamp(rot, -m_rotSpeed, m_rotSpeed);
-        double currentSpeed = m_drive.getRampSpeed(m_speed,m_timeOut_sec, m_timer.elapsedTime() / 1000.0, 0.75, 0.75);
+        double currentSpeed = m_drive.getRampSpeed(m_speed,m_timeOut_sec, m_timer.elapsedTime() / 1000.0, m_rampUpTime_sec, m_rampUpTime_sec);
         m_drive.drivePolar(m_driveAngle, currentSpeed, rot);
 
     }

@@ -27,43 +27,47 @@ public class GBackdropRedWallGetTwo extends SequentialCommandGroup {
 
         ArmData armData = new ArmData();
         addCommands(
-                new AutoResetGyroCommand(_opMode, _drive),                                              // Reset the gyro
-                new AutoDelayCommand(_opMode, .75),                                            // Wait for claw to close
-                new ArmAutoGotoPosition(_opMode, _arm, 35, -10, 0),
-                new AutoDriveTimeVel(_opMode, _drive, 0, 0.6, 0,1.75),
-                new ArmGetTeamPropLocation(_opMode, _arm, TeamPropLocation.CENTER),
-                new AutoRotateRobot(_opMode,_drive, 55,0.25,3),
+                new AutoResetGyroCommand(_opMode, _drive),                                      // Reset the gyro
+                new AutoDelayCommand(_opMode, .75),                                             // Wait for claw to close
+                new ArmAutoGotoPosition(_opMode, _arm, 35, -10, 0),                             // Raise Arm and lower claw
+                new AutoDriveTimeVel(_opMode, _drive, 0, 0.5, 0,1.65, 0.5, 0.5),                  // Drive to team prop
+                new ArmGetTeamPropLocation(_opMode, _arm, TeamPropLocation.CENTER),             // Check the center
+                new AutoRotateRobot(_opMode,_drive, -75,0.25,3),                                // Rotate to the right
+                new ArmGetTeamPropLocation(_opMode, _arm, TeamPropLocation.RIGHT),              // Check the Right
+                new ArmGetTeamPropLocation(_opMode, _arm, TeamPropLocation.LEFT),               // Check the Left
+                new AutoRotateToTeamProp(_opMode,_drive),                                       // Rotate to the team prop
+                new ArmAutoGotoPosition(_opMode, _arm, 20, -12, 0),                             // Lower arm to drop the pixel
+                new ClawRotateFingers(_opMode, _claw, _claw.getClawReleaseLowerAngle()),        // Drop the lower pixel
+                new AutoDelayCommand(_opMode, 1),                                               // Delay so the pixel can drop
+                new ClawRotateFingers(_opMode, _claw, _claw.getClawCloseAngle()),               // Close the claw so it does not come out
+                new ArmAutoGotoPosition(_opMode, _arm, 35, 20, 0),                              // Raise the arm and set claw angle to backdrop
+                new AutoRotateRobot(_opMode,_drive, 0,0.25,3),                                  // Rotate robot back to center
+                new AutoDriveTimeVel(_opMode, _drive, 180, 0.6, 0,1.55),                        // Drive back away from team prop
+                new AutoDriveToBackdrop(_opMode,_drive),                                        // Drive to the backdrop
+                new ClawRotateFingers(_opMode, _claw, _claw.getClawReleaseUpperAngle()),        // Release the upper pixel
                 new AutoDelayCommand(_opMode, .75),
-                new ArmGetTeamPropLocation(_opMode, _arm, TeamPropLocation.LEFT),
-                new ArmGetTeamPropLocation(_opMode, _arm, TeamPropLocation.RIGHT),
-                new AutoRotateToTeamProp(_opMode,_drive),
-                new ArmAutoGotoPosition(_opMode, _arm, 20, -12, 0),
-                new ClawRotateFingers(_opMode, _claw, _claw.getClawReleaseLowerAngle()),
+                new AutoDriveTimeVel(_opMode, _drive, -90, 0.5, -90,.75),                       // Delay so the pixel can drop
+                new AutoDriveToPark(_opMode, _drive, Direction.RIGHT),
+                new ArmAutoGotoPosition(_opMode, _arm, 35, -6, 0),                              // Raise the arm and set claw angle to backdrop
+                new ClawRotateFingers(_opMode, _claw, _claw.getClawOpenAngle()),                // Release the upper pixel
+                new AutoDriveTimeVel(_opMode, _drive, -90, 0.7, -90,3.35),                        // Drive back away from team prop
+                new AutoRotateRobot(_opMode,_drive, 90,0.25,3),                                  // Rotate robot back to center
+                new ArmAutoGotoPosition(_opMode, _arm, 8, -6, 0),                              // Raise the arm and set claw angle to backdrop
+                new AutoDriveTimeVel(_opMode, _drive, 0, 0.7, 90,1.68),                        // Drive back away from team prop
+                new AutoDriveTimeVel(_opMode, _drive, -90, 0.25, 90,.55,0,0),                        // Drive back away from team prop
+                new ClawRotateFingers(_opMode, _claw, _claw.getClawCloseAngle()),                // Release the upper pixel
+                new AutoDelayCommand(_opMode, .75),
+                new AutoDriveTimeVel(_opMode, _drive, 90, 0.25, 90,.3,0,0),
+                new AutoDriveTimeVel(_opMode, _drive, 180, 0.7, 90,1.68),                        // Drive back away from team prop
+                new AutoDriveTimeVel(_opMode, _drive, 90, 0.7, 90,1,.75,0),
+                new ArmAutoGotoPosition(_opMode, _arm,35, -6, 0),
+                new AutoDriveTimeVel(_opMode, _drive, 90, 0.7, 90,1.2,0,0),                        // Drive back away from team prop
+                new AutoDriveTimeVel(_opMode, _drive, 90, 0.5, -90,1.4,0,.5),                        // Drive back away from team prop
+
+                new ClawRotateFingers(_opMode, _claw, _claw.getClawOpenAngle()),                // Release the upper pixel
+                new ArmAutoGotoPosition(_opMode, _arm, 0, 0, 0),                              // Raise the arm and set claw angle to backdrop
                 new AutoDelayCommand(_opMode, 1),
-                new ClawRotateFingers(_opMode, _claw, _claw.getClawCloseAngle()),
-                new ArmAutoGotoPosition(_opMode, _arm, 35, -10, 0),
-                new AutoRotateRobot(_opMode,_drive, 0,0.25,3),
-                new AutoDriveTimeVel(_opMode, _drive, 180, 0.6, 0,1.65),
-                new ArmAutoGotoPosition(_opMode, _arm, 42, 30, 0),
-                new AutoDriveToBackdrop(_opMode,_drive),
-                new ClawRotateFingers(_opMode, _claw, _claw.getClawReleaseUpperAngle()),
-                new AutoDriveTimeVel(_opMode, _drive, -90, 0.5, -90,0.6),
-                new AutoDriveToPark(_opMode, _drive, Direction.LEFT),
-                new ArmAutoGotoPosition(_opMode, _arm, 35, -10, 0),
-                new AutoDriveTimeVel(_opMode, _drive, -90, 0.8, -90,2.6),
-//                new ArmAutoGotoPosition(_opMode, _arm, 10, -6, 0),
-//                new ClawRotateFingers(_opMode, _claw, _claw.getClawOpenAngle()),
-//                new AutoRotateRobot(_opMode,_drive, 90,0.25,3),
-//                new AutoDriveTimeVel(_opMode, _drive, -90, 0.8, 90,1.0),
-//                new ClawRotateFingers(_opMode, _claw, _claw.getClawCloseAngle()),
-//                new AutoDelayCommand(_opMode, .75),
-//                new AutoDriveTimeVel(_opMode, _drive, 90, 0.8, 90,1.0,.75,0),
-//                new ArmAutoGotoPosition(_opMode, _arm, 35, -6, 0),
-//                new AutoDriveTimeVel(_opMode, _drive, 90, 0.8, 90,2.6,0,.75),
-//                new ArmAutoGotoPosition(_opMode, _arm, 0, 0, 0),
-//                new ClawRotateFingers(_opMode, _claw, _claw.getClawOpenAngle()),
-//                new AutoDriveTimeVel(_opMode, _drive, -90, 0.8, 90,.5),
-                new AutoStopOpModeCommand(_opMode)                                                          // This must be the last line of every command list
+                new AutoStopOpModeCommand(_opMode)                                              // This must be the last line of every command list
 
         );
 

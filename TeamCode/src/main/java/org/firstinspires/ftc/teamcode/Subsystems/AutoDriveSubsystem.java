@@ -116,6 +116,7 @@ public class AutoDriveSubsystem extends SubsystemBase {
         m_rDrive.set(0);
         m_bDrive.set(0);
     }
+
     public double getRampSpeed(double _speed, double _timeOut, double _currentTime, double _rampUpTime, double _rampDownTime){
         double currentSpeed = 0;
         if (_currentTime < _timeOut && _currentTime > _timeOut - _rampDownTime) { // In the ramp down time
