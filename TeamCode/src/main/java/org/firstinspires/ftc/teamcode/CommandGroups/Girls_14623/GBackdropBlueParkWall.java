@@ -47,7 +47,7 @@ public class GBackdropBlueParkWall extends SequentialCommandGroup {
                 new ClawRotateFingers(_opMode, _claw, _claw.getClawReleaseUpperAngle()),        // Release the upper pixel
                 new AutoDelayCommand(_opMode, .75),                                             // Delay to let the pixel drop
                 new AutoDriveTimeVel(_opMode, _drive, -90, 0.5, -90,.75),                       // Back up a little
-                new AutoDriveToPark(_opMode, _drive, Direction.RIGHT),                          // Park to the right
+                new AutoDriveToPark(_opMode, _drive, Direction.LEFT),                           // Park to the left
                 new ArmAutoGotoPosition(_opMode, _arm, 0, 0, 0),                                // Lower the arm
                 new AutoDelayCommand(_opMode, 2),                                               // Delay to let the arm lower
                 new AutoStopOpModeCommand(_opMode)                                              // This must be the last line of every command list

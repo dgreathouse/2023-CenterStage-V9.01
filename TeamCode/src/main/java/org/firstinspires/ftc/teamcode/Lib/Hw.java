@@ -13,14 +13,14 @@ public class Hw {
     public static String DriveFrontLeft = "l"; // Drive Left Motor
     public static String DriveFrontRight = "r"; // Drive Right Motor
     public static String DriveBack = "b";  // Drive Back Motor
-    public static String ForearmMotor = "d";
+    public static String DroneMotor = "d";
 
     public static String DistanceSensor = "dis";
 
     // Expansion hub
     public static String ClawServoRotate = "cs";
     public static String ClawRotateMotor = "cm";
-    public static String DroneMotor = "f";
+    public static String ForearmMotor = "f";
     public static String ShoulderMotor = "s"; // Shoulder Motor
 
     public static GamepadEx s_gpOperator;

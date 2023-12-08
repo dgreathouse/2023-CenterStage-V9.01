@@ -32,7 +32,7 @@ public class GBackdropBlueParkMiddle extends SequentialCommandGroup {
                 new ArmAutoGotoPosition(_opMode, _arm, 35, -10, 0),                             // Raise Arm and lower claw
                 new AutoDriveTimeVel(_opMode, _drive, 0, 0.5, 0,1.65, 0.5, 0.5),                // Drive to team prop
                 new ArmGetTeamPropLocation(_opMode, _arm, TeamPropLocation.CENTER),             // Check the center
-                new AutoRotateRobot(_opMode,_drive, 75,0.25,3),                                // Rotate to the right
+                new AutoRotateRobot(_opMode,_drive, 75,0.25,3),                                 // Rotate to the right
                 new ArmGetTeamPropLocation(_opMode, _arm, TeamPropLocation.LEFT),               // Check the Right
                 new ArmGetTeamPropLocation(_opMode, _arm, TeamPropLocation.RIGHT),              // Check the Left
                 new AutoRotateToTeamProp(_opMode,_drive),                                       // Rotate to the team prop
