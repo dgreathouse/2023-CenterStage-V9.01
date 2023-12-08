@@ -33,7 +33,7 @@ public class GBackdropRedMiddleGetTwo extends SequentialCommandGroup {
                 new AutoResetGyroCommand(_opMode, _drive),                                      // Reset the gyro
                 new AutoDelayCommand(_opMode, .75),                                             // Wait for claw to close
                 new ArmAutoGotoPosition(_opMode, _arm, 35, -10, 0),                             // Raise Arm and lower claw
-                new AutoDriveTimeVel(_opMode, _drive, 0, 0.5, 0,1.65, 0.5, 0.5),                  // Drive to team prop
+                new AutoDriveTimeVel(_opMode, _drive, 0, 0.5, 0,1.65, 0.5, 0.5),                // Drive to team prop
                 new ArmGetTeamPropLocation(_opMode, _arm, TeamPropLocation.CENTER),             // Check the center
                 new AutoRotateRobot(_opMode,_drive, -75,0.25,3),                                // Rotate to the right
                 new ArmGetTeamPropLocation(_opMode, _arm, TeamPropLocation.RIGHT),              // Check the Right
@@ -48,22 +48,22 @@ public class GBackdropRedMiddleGetTwo extends SequentialCommandGroup {
                 new AutoDriveTimeVel(_opMode, _drive, 180, 0.6, 0,1.55),                        // Drive back away from team prop
                 new AutoDriveToBackdrop(_opMode,_drive),                                        // Drive to the backdrop
                 new ClawRotateFingers(_opMode, _claw, _claw.getClawReleaseUpperAngle()),        // Release the upper pixel
-                new AutoDelayCommand(_opMode, .75),
-                new AutoDriveTimeVel(_opMode, _drive, -90, 0.5, -90,.5),                       // Delay so the pixel can drop
+                new AutoDelayCommand(_opMode, .75),                                             // Delay so the pixel can drop
+                new AutoDriveTimeVel(_opMode, _drive, -90, 0.5, -90,.5),                        // Drive back a little
                 new AutoDriveToMiddleFromBackdrop(_opMode,_drive),                              // Drive to the middle of the field facing the audience
                 new ClawRotateFingers(_opMode, _claw, _claw.getClawOpenAngle()),                // Open the claw to be ready to grab them
                 new ArmAutoGotoPosition(_opMode, _arm, 35, -6, 0),                              // Raise the arm and set claw angle lower to get a pixel
-                new AutoDriveTimeVel(_opMode, _drive, -90, 0.7, 90,2.75,.75,.75),                       // Drive under truss
+                new AutoDriveTimeVel(_opMode, _drive, -90, 0.7, 90,2.75,.75,.75),               // Drive under truss
                 new ArmAutoGotoPosition(_opMode, _arm, 7, -6, 0),                               // Lower arm to grab pixels
-                new AutoDriveTimeVel(_opMode, _drive, -90, 0.25, 90,1.20, 0, 0.75),                       // Drive to pixel
+                new AutoDriveTimeVel(_opMode, _drive, -90, 0.25, 90,1.20, 0, 0.75),             // Drive to pixel
                 new ClawRotateFingers(_opMode, _claw, _claw.getClawCloseAngle()),               // Grab the pixels
-                new AutoDriveTimeVel(_opMode, _drive, 90, 0.7, 90,1, 1, 0),                   // Drive back a little
+                new AutoDriveTimeVel(_opMode, _drive, 90, 0.7, 90,1, 1, 0),                     // Drive back a little
                 new ArmAutoGotoPosition(_opMode, _arm, 35, -6, 0),                              // Raise the arm
-                new AutoDriveTimeVel(_opMode, _drive, 90, 0.7, 90,1.50, 0, 0),                 // Drive under truss
-                new ArmAutoGotoPosition(_opMode, _arm, 5, -6, 0),                              // Set arm to backdrop
-                new AutoDriveTimeVel(_opMode, _drive, 90, 0.5, -90,1.8, 0, 1),
+                new AutoDriveTimeVel(_opMode, _drive, 90, 0.7, 90,1.50, 0, 0),                  // Drive under truss
+                new ArmAutoGotoPosition(_opMode, _arm, 5, -6, 0),                               // Set arm to floor
+                new AutoDriveTimeVel(_opMode, _drive, 90, 0.5, -90,1.8, 0, 1),                  // Drive to backstage
                 new ArmAutoGotoPosition(_opMode, _arm, 0, 0, 0),                                // Lower the arm to the floor
-                new ClawRotateFingers(_opMode, _claw, _claw.getClawOpenAngle()),        // Release upper, hopefully two will fall out nicely if we slowly backup
+                new ClawRotateFingers(_opMode, _claw, _claw.getClawOpenAngle()),                // Open claw
                 new AutoDelayCommand(_opMode, 2),                                               // Delay to let the arm lower
                 new AutoStopOpModeCommand(_opMode)                                              // This must be the last line of every command list
 
