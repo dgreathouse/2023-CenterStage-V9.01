@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.CommandGroups.Girls_14623;
 
 import com.arcrobotics.ftclib.command.CommandOpMode;
+import com.arcrobotics.ftclib.command.InstantCommand;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.arcrobotics.ftclib.util.Direction;
 
@@ -25,32 +26,32 @@ public class GBackdropBlueParkMiddle extends SequentialCommandGroup {
 
     public GBackdropBlueParkMiddle(CommandOpMode _opMode, AutoDriveSubsystem _drive, AutoArmSubsystem _arm, AutoClawGripSubsystem _claw) {
 
-        ArmData armData = new ArmData();
+        //ArmData armData = new ArmData();
         addCommands(
-                new AutoResetGyroCommand(_opMode, _drive),                                      // Reset the gyro
+                new InstantCommand(_drive::resetYaw),                                           // Reset the gyro
                 new AutoDelayCommand(_opMode, .75),                                             // Wait for claw to close
-                new ArmAutoGotoPosition(_opMode, _arm, 35, -10, 0),                             // Raise Arm and lower claw
+                new InstantCommand(() -> _arm.setArmData(35,-10,0)),                            // Raise Arm and lower claw
                 new AutoDriveTimeVel(_opMode, _drive, 0, 0.5, 0,1.65, 0.5, 0.5),                // Drive to team prop
-                new ArmGetTeamPropLocation(_opMode, _arm, TeamPropLocation.CENTER),             // Check the center
+                new InstantCommand(()-> _arm.checkTeamPropLocation(TeamPropLocation.CENTER)),   // Check the center
                 new AutoRotateRobot(_opMode,_drive, 75,0.25,3),                                 // Rotate to the right
-                new ArmGetTeamPropLocation(_opMode, _arm, TeamPropLocation.LEFT),               // Check the Right
-                new ArmGetTeamPropLocation(_opMode, _arm, TeamPropLocation.RIGHT),              // Check the Left
+                new InstantCommand(()-> _arm.checkTeamPropLocation(TeamPropLocation.LEFT)),     // Check the Right
+                new InstantCommand(()-> _arm.checkTeamPropLocation(TeamPropLocation.RIGHT)),    // Check the Left
                 new AutoRotateToTeamProp(_opMode,_drive),                                       // Rotate to the team prop
-                new ArmAutoGotoPosition(_opMode, _arm, 20, -12, 0),                             // Lower arm to drop the pixel
-                new ClawRotateFingers(_opMode, _claw, _claw.getClawReleaseLowerAngle()),        // Drop the lower pixel
+                new InstantCommand(() -> _arm.setArmData(20,-12,0)),                            // Lower arm to drop the pixel
+                new InstantCommand(_claw::setClawReleaseLowerAngle),                            // Drop the lower pixel
                 new AutoDelayCommand(_opMode, 1),                                               // Delay so the pixel can drop
-                new ClawRotateFingers(_opMode, _claw, _claw.getClawCloseAngle()),               // Close the claw so it does not come out
-                new ArmAutoGotoPosition(_opMode, _arm, 35, 20, 0),                              // Raise the arm and set claw angle to backdrop
+                new InstantCommand(_claw::setClawCloseAngle),                                   // Close the claw so it does not come out
+                new InstantCommand(() -> _arm.setArmData(35,20,0)),                             // Raise the arm and set claw angle to backdrop
                 new AutoRotateRobot(_opMode,_drive, 0,0.25,3),                                  // Rotate robot back to center
                 new AutoDriveTimeVel(_opMode, _drive, 180, 0.6, 0,1.55),                        // Drive back away from team prop
                 new AutoDriveToBackdrop(_opMode,_drive),                                        // Drive to the backdrop
-                new ClawRotateFingers(_opMode, _claw, _claw.getClawReleaseUpperAngle()),        // Release the upper pixel
+                new InstantCommand(_claw::setClawReleaseUpperAngle),                            // Release the upper pixel
                 new AutoDelayCommand(_opMode, .75),                                             // Delay to let the pixel drop
                 new AutoDriveTimeVel(_opMode, _drive, -90, 0.5, -90,.75),                       // Back up a little
-                new AutoDriveToPark(_opMode, _drive, Direction.RIGHT),                           // Park to the left or middle
-                new ArmAutoGotoPosition(_opMode, _arm, 0, 0, 0),                                // Lower the arm
+                new AutoDriveToPark(_opMode, _drive, Direction.RIGHT),                          // Park to the left or middle
+                new InstantCommand(() -> _arm.setArmData(0,0,0)),                               // Lower the arm
                 new AutoDelayCommand(_opMode, 2),                                               // Delay to let the arm lower
-                new AutoStopOpModeCommand(_opMode)                                              // This must be the last line of every command list
+                new InstantCommand(_opMode::requestOpModeStop)                                  // This must be the last line of every command list
         );
 
     }

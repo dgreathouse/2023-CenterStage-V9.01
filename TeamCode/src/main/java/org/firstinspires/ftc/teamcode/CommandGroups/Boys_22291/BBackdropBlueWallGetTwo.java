@@ -17,11 +17,7 @@ public class BBackdropBlueWallGetTwo extends SequentialCommandGroup {
 
         ArmData armData = new ArmData();
         addCommands(
-                new AutoResetGyroCommand(_opMode, _drive),                                              // Reset the gyro
-                new AutoDelayCommand(_opMode, 1.0),                                            // Wait for claw to close
 
-
-                new AutoStopOpModeCommand(_opMode)                                                      // This must be the last line of every command list
         );
 
     }

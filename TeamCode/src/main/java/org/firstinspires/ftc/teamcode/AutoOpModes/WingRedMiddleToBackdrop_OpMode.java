@@ -49,15 +49,13 @@ public class WingRedMiddleToBackdrop_OpMode extends CommandOpMode {
         drive.setDefaultCommand(driveDefaultCommand);
         armDefaultCommand = new AutoArmDefaultCommand(this,arm);
         arm.setDefaultCommand(armDefaultCommand);
+        GlobalData.MATCH.AutoTeamColor = TeamColor.RED;
+        GlobalData.MATCH.AutoFieldLocation = AutoFieldLocation_enum.WING;
         createCommandGroup();
         // Register subsystems
         register(drive,arm,claw);
 
 
-        m_timer = new Timing.Timer(100, TimeUnit.MILLISECONDS);
-        m_timer.start();
-        GlobalData.MATCH.AutoTeamColor = TeamColor.RED;
-        GlobalData.MATCH.AutoFieldLocation = AutoFieldLocation_enum.WING;
     }
     @Override
     public void runOpMode() throws InterruptedException{

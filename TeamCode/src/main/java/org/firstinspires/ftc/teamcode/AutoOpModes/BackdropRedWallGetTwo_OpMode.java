@@ -48,18 +48,12 @@ public class BackdropRedWallGetTwo_OpMode extends CommandOpMode {
         drive.setDefaultCommand(driveDefaultCommand);
         armDefaultCommand = new AutoArmDefaultCommand(this,arm);
         arm.setDefaultCommand(armDefaultCommand);
+        GlobalData.MATCH.AutoTeamColor = TeamColor.RED;
+        GlobalData.MATCH.AutoFieldLocation = AutoFieldLocation_enum.BACKDROP;
+
         createCommandGroup();
         // Register subsystems
         register(drive,arm,claw);
-
-
-        m_timer = new Timing.Timer(100, TimeUnit.MILLISECONDS);
-        m_timer.start();
-        GlobalData.MATCH.AutoTeamColor = TeamColor.RED;
-        GlobalData.MATCH.AutoFieldLocation = AutoFieldLocation_enum.BACKDROP;
-        GlobalData.MATCH.AutoPixelCount = 2;
-        GlobalData.MATCH.AutoParkDirection = ParkDirection.WALL;
-
     }
     @Override
     public void runOpMode() throws InterruptedException{
@@ -75,10 +69,6 @@ public class BackdropRedWallGetTwo_OpMode extends CommandOpMode {
             run();
 
             telemetry.update();
-            // wait till timer is > 50ms to try an create a stable run rate
-            //if(k.SYSTEM.isLoopRateLimited){while(!m_timer.done()){} m_timer.start();}
-
-
         }
         reset();
     }

@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.CommandGroups.Girls_14623;
 
 import com.arcrobotics.ftclib.command.CommandOpMode;
+import com.arcrobotics.ftclib.command.InstantCommand;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.arcrobotics.ftclib.util.Direction;
 
@@ -27,7 +28,7 @@ public class GBackdropBlueWallGetTwo extends SequentialCommandGroup {
 
         ArmData armData = new ArmData();
         addCommands(
-                new AutoResetGyroCommand(_opMode, _drive),                                      // Reset the gyro
+                new InstantCommand(_drive::resetYaw),                                     // Reset the gyro
                 new AutoDelayCommand(_opMode, .75),                                             // Wait for claw to close
                 new ArmAutoGotoPosition(_opMode, _arm, 35, -10, 0),                             // Raise Arm and lower claw
                 new AutoDriveTimeVel(_opMode, _drive, 0, 0.5, 0,1.65, 0.5, 0.5),                // Drive to team prop

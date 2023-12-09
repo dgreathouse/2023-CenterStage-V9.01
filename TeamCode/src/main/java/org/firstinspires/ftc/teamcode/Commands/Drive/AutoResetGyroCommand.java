@@ -9,16 +9,13 @@ import org.firstinspires.ftc.teamcode.Subsystems.AutoDriveSubsystem;
 import java.util.concurrent.TimeUnit;
 
 public class AutoResetGyroCommand extends CommandBase {
-    CommandOpMode m_opMode;
     AutoDriveSubsystem m_drive;
     boolean m_isFinished = false;
     double m_delay_sec;
     Timing.Timer m_timer;
-    public AutoResetGyroCommand(CommandOpMode _opMode, AutoDriveSubsystem _drive){
-        m_opMode = _opMode;
+    public AutoResetGyroCommand(AutoDriveSubsystem _drive){
         m_drive = _drive;
         m_delay_sec = 0.05; // Same delay that is in the Reset Yaw method.
-
     }
     @Override
     public void initialize(){

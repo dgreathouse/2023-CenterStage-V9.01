@@ -14,8 +14,6 @@ public class BBackdropBlueParkMiddle extends SequentialCommandGroup {
 
         addCommands(
 
-                new AutoStopOpModeCommand(_opMode) // This must be the last line of every command list
-
 
         );
 

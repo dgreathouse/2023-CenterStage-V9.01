@@ -47,15 +47,13 @@ public class BackdropBlueParkWall_OpMode extends CommandOpMode {
         drive.setDefaultCommand(driveDefaultCommand);
         armDefaultCommand = new AutoArmDefaultCommand(this,arm);
         arm.setDefaultCommand(armDefaultCommand);
-
+        GlobalData.MATCH.AutoTeamColor = TeamColor.BLUE;
+        GlobalData.MATCH.AutoFieldLocation = AutoFieldLocation_enum.BACKDROP;
         createCommandGroup();
         // Register subsystems
         register(drive,arm,claw);
 
-        m_timer = new Timing.Timer(100, TimeUnit.MILLISECONDS);
-        m_timer.start();
-        GlobalData.MATCH.AutoTeamColor = TeamColor.BLUE;
-        GlobalData.MATCH.AutoFieldLocation = AutoFieldLocation_enum.BACKDROP;
+
     }
     @Override
 

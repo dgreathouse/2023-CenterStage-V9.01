@@ -5,8 +5,12 @@ import com.arcrobotics.ftclib.command.SubsystemBase;
 import com.qualcomm.hardware.rev.Rev2mDistanceSensor;
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 import org.firstinspires.ftc.teamcode.Lib.ArmData;
+import org.firstinspires.ftc.teamcode.Lib.AutoFieldLocation_enum;
 import org.firstinspires.ftc.teamcode.Lib.GlobalData;
 import org.firstinspires.ftc.teamcode.Lib.Hw;
+import org.firstinspires.ftc.teamcode.Lib.TeamColor;
+import org.firstinspires.ftc.teamcode.Lib.TeamPropLocation;
+import org.firstinspires.ftc.teamcode.Lib.k;
 
 public class AutoArmSubsystem extends SubsystemBase {
     private final CommandOpMode m_opMode;
@@ -67,7 +71,87 @@ public class AutoArmSubsystem extends SubsystemBase {
         m_requestedForearmPosition = _forearmPosition;
         m_requestedClawAngle = _clawAngle;
     }
+    public void checkTeamPropLocation(TeamPropLocation _location){
+        double dis = getTeamPropDistance();
+        for (int i = 0; i < 4; i++) {
+            dis += getTeamPropDistance();
+        }
+        dis = dis / 5.0;
+        if (GlobalData.MATCH.AutoFieldLocation == AutoFieldLocation_enum.BACKDROP) { // Backdrop
+            if (GlobalData.MATCH.AutoTeamColor == TeamColor.RED) { //Red
+                if (_location == TeamPropLocation.CENTER) {
+                    if (dis < k.ARM.TeamPropMinimumDistance_mm) {
+                        GlobalData.MATCH.TeamPropLocation = TeamPropLocation.CENTER;
+                        GlobalData.tagOfInterest = 5;
+                    }
+                } else if (_location == TeamPropLocation.RIGHT) {
+                    if (dis <  k.ARM.TeamPropMinimumDistance_mm) {
+                        GlobalData.MATCH.TeamPropLocation = TeamPropLocation.RIGHT;
+                        GlobalData.tagOfInterest = 6;
+                    }
+                } else if (_location == TeamPropLocation.LEFT) {
+                    if (GlobalData.MATCH.TeamPropLocation == TeamPropLocation.NONE) {
+                        GlobalData.MATCH.TeamPropLocation = TeamPropLocation.LEFT;
+                        GlobalData.tagOfInterest = 4;
+                    }
+                }
+            } else { //Blue
+                if (_location == TeamPropLocation.CENTER) {
+                    if (dis <  k.ARM.TeamPropMinimumDistance_mm) {
+                        GlobalData.MATCH.TeamPropLocation = TeamPropLocation.CENTER;
+                        GlobalData.tagOfInterest = 2;
+                    }
+                } else if (_location == TeamPropLocation.LEFT) {
+                    if (dis <  k.ARM.TeamPropMinimumDistance_mm) {
+                        GlobalData.MATCH.TeamPropLocation = TeamPropLocation.LEFT;
+                        GlobalData.tagOfInterest = 1;
+                    }
+                } else if (_location == TeamPropLocation.RIGHT) {
+                    if (GlobalData.MATCH.TeamPropLocation == TeamPropLocation.NONE) {
+                        GlobalData.MATCH.TeamPropLocation = TeamPropLocation.RIGHT;
+                        GlobalData.tagOfInterest = 3;
+                    }
+                }
+            }
+        } else { // WING
+            if (GlobalData.MATCH.AutoTeamColor == TeamColor.RED) { //Red
+                if (_location == TeamPropLocation.CENTER) {
+                    if (dis <  k.ARM.TeamPropMinimumDistance_mm) {
+                        GlobalData.MATCH.TeamPropLocation = TeamPropLocation.CENTER;
+                        GlobalData.tagOfInterest = 5;
+                    }
+                } else if (_location == TeamPropLocation.LEFT) {
+                    if (dis <  k.ARM.TeamPropMinimumDistance_mm) {
+                        GlobalData.MATCH.TeamPropLocation = TeamPropLocation.LEFT;
+                        GlobalData.tagOfInterest = 4;
+                    }
+                } else if (_location == TeamPropLocation.RIGHT) {
+                    if (GlobalData.MATCH.TeamPropLocation == TeamPropLocation.NONE) {
+                        GlobalData.MATCH.TeamPropLocation = TeamPropLocation.RIGHT;
+                        GlobalData.tagOfInterest = 6;
+                    }
+                }
+            } else { //Blue
+                if (_location == TeamPropLocation.CENTER) {
+                    if (dis <  k.ARM.TeamPropMinimumDistance_mm) {
+                        GlobalData.MATCH.TeamPropLocation = TeamPropLocation.CENTER;
+                        GlobalData.tagOfInterest = 2;
+                    }
+                } else if (_location == TeamPropLocation.RIGHT) {
+                    if (dis <  k.ARM.TeamPropMinimumDistance_mm) {
+                        GlobalData.MATCH.TeamPropLocation = TeamPropLocation.RIGHT;
+                        GlobalData.tagOfInterest = 3;
+                    }
+                } else if (_location == TeamPropLocation.LEFT) {
+                    if (GlobalData.MATCH.TeamPropLocation == TeamPropLocation.NONE) {
+                        GlobalData.MATCH.TeamPropLocation = TeamPropLocation.LEFT;
+                        GlobalData.tagOfInterest = 1;
+                    }
+                }
 
+            }
+        }
+    }
     @Override
     public void periodic() {
         armGotoPosition();

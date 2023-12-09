@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.CommandGroups.Girls_14623;
 
 import com.arcrobotics.ftclib.command.CommandOpMode;
+import com.arcrobotics.ftclib.command.InstantCommand;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.arcrobotics.ftclib.util.Direction;
 import org.firstinspires.ftc.teamcode.Commands.Arm.ArmAutoGotoPosition;
@@ -27,7 +28,7 @@ public class GWingBlueMiddleToBackdrop extends SequentialCommandGroup {
 
         ArmData armData = new ArmData();
         addCommands(
-                new AutoResetGyroCommand(_opMode, _drive),                                      // Reset the gyro
+                new InstantCommand(_drive::resetYaw),                                      // Reset the gyro
                 new AutoDelayCommand(_opMode, .75),                                             // Wait for claw to close
                 new ArmAutoGotoPosition(_opMode, _arm, 35, -10, 0),                             // Raise the arm
                 new AutoDriveTimeVel(_opMode, _drive, 0, 0.6, 0,1.75),                          // Drive to team prop
