@@ -49,6 +49,7 @@ public class AutoDriveToDistance extends CommandBase
         drvPID.reset();
         drvPID.setTolerance(1);
         drvPID.setIntegrationBounds(-0.2,0.2);
+        m_drive.resetPosition();
         m_timer = new Timing.Timer((long)(m_timeOut_sec * 1000000), TimeUnit.MICROSECONDS);
         m_timer.start();
     }

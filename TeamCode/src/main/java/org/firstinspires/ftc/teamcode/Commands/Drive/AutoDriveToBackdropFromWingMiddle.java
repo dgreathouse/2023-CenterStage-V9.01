@@ -25,7 +25,7 @@ public class AutoDriveToBackdropFromWingMiddle extends CommandBase {
     double m_driveAngle = 0;
     double m_robotAngle = 0;
     double m_timeOut_sec = 1.0;
-    double m_speed = 0.4;
+    double m_speed = 0.5;
     double m_rotSpeed = 0.3;
     PIDController rotPID;
     Timing.Timer m_timer;
@@ -45,9 +45,9 @@ public class AutoDriveToBackdropFromWingMiddle extends CommandBase {
             case CENTER:
             case NONE:
                 if (GlobalData.MATCH.AutoTeamColor == TeamColor.BLUE) {
-                    m_driveAngle = -57;
+                    m_driveAngle = -130;
                     m_robotAngle = 90;
-                    m_timeOut_sec = 2.6;
+                    m_timeOut_sec = 2.4;
                 } else {  // RED
                     m_driveAngle = 120;
                     m_robotAngle = -90;

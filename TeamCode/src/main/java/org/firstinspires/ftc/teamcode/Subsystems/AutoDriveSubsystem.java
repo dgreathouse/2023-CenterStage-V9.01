@@ -128,7 +128,11 @@ public class AutoDriveSubsystem extends SubsystemBase {
         }
         return currentSpeed;
     }
-
+    public void resetPosition(){
+        m_lDrive.encoder.reset();
+        m_rDrive.encoder.reset();
+        m_bDrive.encoder.reset();
+    }
     /**
      *
      * @return return the current position of the two front wheels in mm
