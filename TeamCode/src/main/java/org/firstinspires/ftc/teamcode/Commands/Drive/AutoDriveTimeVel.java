@@ -29,7 +29,7 @@ public class AutoDriveTimeVel extends CommandBase {
 
     double m_rotSpeed = 0.3;
     double m_rampUpTime_sec = 1.0; //Seconds
-    double m_rampDownTime_sec = 0.5;
+    double m_rampDownTime_sec = 0;
 
     PIDController rotPID = new PIDController(0.005, 0.001, 0);
     Timing.Timer m_timer;

@@ -6,6 +6,7 @@ import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 
 import org.firstinspires.ftc.teamcode.Commands.AutoDelayCommand;
 import org.firstinspires.ftc.teamcode.Commands.Drive.AutoDriveTimeVel;
+import org.firstinspires.ftc.teamcode.Commands.Drive.AutoDriveToDistance;
 import org.firstinspires.ftc.teamcode.Commands.Drive.AutoRotateRobot;
 import org.firstinspires.ftc.teamcode.Commands.Drive.AutoRotateToTeamProp;
 import org.firstinspires.ftc.teamcode.Lib.TeamPropLocation;
@@ -21,7 +22,8 @@ public class GWingBlueWallPark extends SequentialCommandGroup {
                 new InstantCommand(_drive::resetYaw),                                           // Reset the gyro
                 new AutoDelayCommand(_opMode, .75),                                             // Wait for claw to close
                 new InstantCommand(() -> _arm.setArmData(35,-10,0)),                            // Raise the arm
-                new AutoDriveTimeVel(_opMode, _drive, 0, 0.6, 0,1.75),                          // Drive to team prop
+                new AutoDriveToDistance(_opMode,_drive,100, 0.3, 0,0,2),                        // Drive to a distance
+                //new AutoDriveTimeVel(_opMode, _drive, 0, 0.6, 0,1.75),                          // Drive to team prop
                 new InstantCommand(()-> _arm.checkTeamPropLocation(TeamPropLocation.CENTER)),   // Check the center
                 new AutoRotateRobot(_opMode,_drive, -55,0.25,3),                                // Rotate to the left
                 new InstantCommand(()-> _arm.checkTeamPropLocation(TeamPropLocation.RIGHT)),    // Check the left

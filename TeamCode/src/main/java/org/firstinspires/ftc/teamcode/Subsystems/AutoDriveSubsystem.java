@@ -128,6 +128,18 @@ public class AutoDriveSubsystem extends SubsystemBase {
         }
         return currentSpeed;
     }
+
+    /**
+     *
+     * @return return the current position of the two front wheels in mm
+     */
+    public double getCurrentPosition(){
+        double rtn = 0;
+        rtn = (m_lDrive.getCurrentPosition() + m_rDrive.getCurrentPosition())/2.0;
+        rtn = rtn * k.DRIVE.InchPerCount * 25.4;
+        return rtn;
+    }
+
     public void setIsFieldOriented(boolean _val){
         m_drive.setIsFieldOriented(_val);
     }
@@ -137,20 +149,15 @@ public class AutoDriveSubsystem extends SubsystemBase {
         m_opMode.telemetry.addData("Drive Angle", "%3.3f", m_drive.getDriveAngle());
         m_opMode.telemetry.addData("Drive Strafe", "%3.3f", m_drive.getStrafe());
         m_opMode.telemetry.addData("Drive Forward", "%3.3f", m_drive.getForward());
-//
+
+        m_opMode.telemetry.addData("Pos_Left", m_lDrive.getCurrentPosition());
+        m_opMode.telemetry.addData("Pos_Right", m_rDrive.getCurrentPosition());
 //        m_opMode.telemetry.addData("TPS_Left", m_lDrive.getCorrectedVelocity());
 //        m_opMode.telemetry.addData("TPS_Right", m_rDrive.getCorrectedVelocity());
 //        m_opMode.telemetry.addData("TPS_Back", m_bDrive.getCorrectedVelocity());
 
-//        m_opMode.telemetry.addData("Pos_Left", m_lDrive.getCurrentPosition());
-//        m_opMode.telemetry.addData("Pos_Right", m_rDrive.getCurrentPosition());
 
 
-        //        m_opMode.telemetry.addLine(String.format("AprilTag X: %.4f m", GlobalData.AprilTag_X));
-//        m_opMode.telemetry.addLine(String.format("AprilTag Y: %.4f m", GlobalData.AprilTag_Y));
-//        m_opMode.telemetry.addLine(String.format("AprilTag Z: %.4f m", GlobalData.AprilTag_Z));
-//       m_opMode.telemetry.addData("AprilTag Angle", "%3.4f", GlobalData.AprilTagBearing);
-//        m_opMode.telemetry.addData("AprilTag Distance", "%3.4f", GlobalData.AprilTagRange);
 
     }
 }
