@@ -5,19 +5,12 @@ import com.arcrobotics.ftclib.command.InstantCommand;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.arcrobotics.ftclib.util.Direction;
 
-import org.firstinspires.ftc.teamcode.Commands.Arm.ArmAutoGotoPosition;
-import org.firstinspires.ftc.teamcode.Commands.Arm.ArmGetTeamPropLocation;
 import org.firstinspires.ftc.teamcode.Commands.AutoDelayCommand;
-import org.firstinspires.ftc.teamcode.Commands.AutoStopOpModeCommand;
-import org.firstinspires.ftc.teamcode.Commands.ClawGrip.ClawRotateFingers;
 import org.firstinspires.ftc.teamcode.Commands.Drive.AutoDriveTimeVel;
 import org.firstinspires.ftc.teamcode.Commands.Drive.AutoDriveToBackdrop;
-import org.firstinspires.ftc.teamcode.Commands.Drive.AutoDriveToMiddleFromBackdrop;
 import org.firstinspires.ftc.teamcode.Commands.Drive.AutoDriveToPark;
-import org.firstinspires.ftc.teamcode.Commands.Drive.AutoResetGyroCommand;
 import org.firstinspires.ftc.teamcode.Commands.Drive.AutoRotateRobot;
 import org.firstinspires.ftc.teamcode.Commands.Drive.AutoRotateToTeamProp;
-import org.firstinspires.ftc.teamcode.Lib.ArmData;
 import org.firstinspires.ftc.teamcode.Lib.TeamPropLocation;
 import org.firstinspires.ftc.teamcode.Subsystems.AutoArmSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystems.AutoClawGripSubsystem;
@@ -27,7 +20,6 @@ public class GBackdropRedParkWall extends SequentialCommandGroup {
 
     public GBackdropRedParkWall(CommandOpMode _opMode, AutoDriveSubsystem _drive, AutoArmSubsystem _arm, AutoClawGripSubsystem _claw)  {
 
-       // ArmData armData = new ArmData();
         addCommands(
                 new InstantCommand(_drive::resetYaw),                                           // Reset the gyro
                 new AutoDelayCommand(_opMode, .75),                                             // Wait for claw to close

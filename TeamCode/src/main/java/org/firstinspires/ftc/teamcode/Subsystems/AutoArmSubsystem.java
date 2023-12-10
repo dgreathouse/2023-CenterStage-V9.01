@@ -82,70 +82,70 @@ public class AutoArmSubsystem extends SubsystemBase {
                 if (_location == TeamPropLocation.CENTER) {
                     if (dis < k.ARM.TeamPropMinimumDistance_mm) {
                         GlobalData.MATCH.TeamPropLocation = TeamPropLocation.CENTER;
-                        GlobalData.tagOfInterest = 5;
+
                     }
                 } else if (_location == TeamPropLocation.RIGHT) {
                     if (dis <  k.ARM.TeamPropMinimumDistance_mm) {
                         GlobalData.MATCH.TeamPropLocation = TeamPropLocation.RIGHT;
-                        GlobalData.tagOfInterest = 6;
+
                     }
                 } else if (_location == TeamPropLocation.LEFT) {
                     if (GlobalData.MATCH.TeamPropLocation == TeamPropLocation.NONE) {
                         GlobalData.MATCH.TeamPropLocation = TeamPropLocation.LEFT;
-                        GlobalData.tagOfInterest = 4;
+
                     }
                 }
-            } else { //Blue
+            } else {                                                //Blue
                 if (_location == TeamPropLocation.CENTER) {
                     if (dis <  k.ARM.TeamPropMinimumDistance_mm) {
                         GlobalData.MATCH.TeamPropLocation = TeamPropLocation.CENTER;
-                        GlobalData.tagOfInterest = 2;
+
                     }
                 } else if (_location == TeamPropLocation.LEFT) {
                     if (dis <  k.ARM.TeamPropMinimumDistance_mm) {
                         GlobalData.MATCH.TeamPropLocation = TeamPropLocation.LEFT;
-                        GlobalData.tagOfInterest = 1;
+
                     }
                 } else if (_location == TeamPropLocation.RIGHT) {
                     if (GlobalData.MATCH.TeamPropLocation == TeamPropLocation.NONE) {
                         GlobalData.MATCH.TeamPropLocation = TeamPropLocation.RIGHT;
-                        GlobalData.tagOfInterest = 3;
+
                     }
                 }
             }
-        } else { // WING
+        } else {                                                                        // WING
             if (GlobalData.MATCH.AutoTeamColor == TeamColor.RED) { //Red
                 if (_location == TeamPropLocation.CENTER) {
                     if (dis <  k.ARM.TeamPropMinimumDistance_mm) {
                         GlobalData.MATCH.TeamPropLocation = TeamPropLocation.CENTER;
-                        GlobalData.tagOfInterest = 5;
+
                     }
                 } else if (_location == TeamPropLocation.LEFT) {
                     if (dis <  k.ARM.TeamPropMinimumDistance_mm) {
                         GlobalData.MATCH.TeamPropLocation = TeamPropLocation.LEFT;
-                        GlobalData.tagOfInterest = 4;
+
                     }
                 } else if (_location == TeamPropLocation.RIGHT) {
                     if (GlobalData.MATCH.TeamPropLocation == TeamPropLocation.NONE) {
                         GlobalData.MATCH.TeamPropLocation = TeamPropLocation.RIGHT;
-                        GlobalData.tagOfInterest = 6;
+
                     }
                 }
             } else { //Blue
                 if (_location == TeamPropLocation.CENTER) {
                     if (dis <  k.ARM.TeamPropMinimumDistance_mm) {
                         GlobalData.MATCH.TeamPropLocation = TeamPropLocation.CENTER;
-                        GlobalData.tagOfInterest = 2;
+
                     }
                 } else if (_location == TeamPropLocation.RIGHT) {
                     if (dis <  k.ARM.TeamPropMinimumDistance_mm) {
                         GlobalData.MATCH.TeamPropLocation = TeamPropLocation.RIGHT;
-                        GlobalData.tagOfInterest = 3;
+
                     }
                 } else if (_location == TeamPropLocation.LEFT) {
                     if (GlobalData.MATCH.TeamPropLocation == TeamPropLocation.NONE) {
                         GlobalData.MATCH.TeamPropLocation = TeamPropLocation.LEFT;
-                        GlobalData.tagOfInterest = 1;
+
                     }
                 }
 
