@@ -47,8 +47,8 @@ public class AutoDriveToMiddleFromBackdrop extends CommandBase {
             case NONE:
                 if (GlobalData.MATCH.AutoTeamColor == TeamColor.BLUE) {
                     m_driveAngle = 40;
-                    m_robotAngle = 90;
-                    m_timeOut_sec = 1.7;
+                    m_robotAngle = -90;
+                    m_timeOut_sec = 1.65;
                 } else {  // RED
                     m_driveAngle = -40;
                     m_robotAngle = 90;

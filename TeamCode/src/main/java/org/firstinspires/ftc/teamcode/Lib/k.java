@@ -68,7 +68,7 @@ public class k {
         public static final double Motor_CountsPDeg = 288.0/360.0;
 
         public static final double CloseAngle_22291 = 281;
-        public static final double OpenLowerAngle_22291 = 262;
+        public static final double OpenLowerAngle_22291 = 265;
         public static final double OpenUpperAngle_22291 = 240;
         public static final double OpenAngle_22291 = 220;
 
@@ -76,6 +76,7 @@ public class k {
         public static final double OpenLowerAngle_14623 = 121.0; // Right Trigger
         public static final double OpenUpperAngle_14623 = 110.0; // Right Bumper
         public static final double OpenAngle_14623 = 70.0; // Left Bumper
+
 
     }
     public static final class SHOULDER {
