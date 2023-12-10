@@ -44,13 +44,13 @@ public class AutoRotateToTeamProp extends CommandBase {
         switch (GlobalData.MATCH.TeamPropLocation) {
             case CENTER:
             case NONE:
-                m_robotAngle = GlobalData.MATCH.AutoTeamColor == TeamColor.BLUE ? 25 : -25;
+                m_robotAngle = GlobalData.MATCH.AutoTeamColor == TeamColor.BLUE ? 30 : -30;
                 break;
             case LEFT:
-                m_robotAngle = 85;
+                m_robotAngle = 90;
                 break;
             case RIGHT:
-                m_robotAngle = -85;
+                m_robotAngle = -90;
                 break;
 
         }

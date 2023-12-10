@@ -65,17 +65,17 @@ public class AutoDriveToPark extends CommandBase {
                 break;
             case LEFT:
                 if (GlobalData.MATCH.AutoTeamColor == TeamColor.BLUE) {
-                    m_timeOut_sec = (m_direction == Direction.RIGHT) ? 1.5 : 1.5;
+                    m_timeOut_sec = (m_direction == Direction.RIGHT) ? 2.5 : 2.5;
                 } else {  // RED
-                    m_timeOut_sec = (m_direction == Direction.RIGHT) ? 1.5 : 1.0;
+                    m_timeOut_sec = (m_direction == Direction.RIGHT) ? 2.5 : 2.5;
                 }
                 break;
 
             case RIGHT:
                 if (GlobalData.MATCH.AutoTeamColor == TeamColor.BLUE) {
-                    m_timeOut_sec = (m_direction == Direction.RIGHT) ? 1.0 : 1.7;
+                    m_timeOut_sec = (m_direction == Direction.RIGHT) ? 1.7 : 1.7;
                 } else {  // RED
-                    m_timeOut_sec = (m_direction == Direction.RIGHT) ? 1.0 : 1.5;
+                    m_timeOut_sec = (m_direction == Direction.RIGHT) ? 2.0 :2.0;
                 }
                 break;
         }

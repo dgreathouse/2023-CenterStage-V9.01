@@ -32,27 +32,23 @@ public class AutoClawGripSubsystem extends SubsystemBase {
     }
     public void setClawCloseAngle(){
         double angle = GlobalData.TeamNumber == 22291 ? k.CLAW.CloseAngle_22291: k.CLAW.CloseAngle_14623;
-        angle /= 300.0;
         m_gripAngle = angle;
-        m_right.setPosition(angle);
+        m_right.setPosition(angle/300.0);
     }
     public void setClawOpenAngle(){
         double angle = GlobalData.TeamNumber == 22291 ? k.CLAW.OpenAngle_22291: k.CLAW.OpenAngle_14623;
-        angle /= 300.0;
         m_gripAngle = angle;
-        m_right.setPosition(angle);
+        m_right.setPosition(angle/300.0);
     }
     public void setClawReleaseLowerAngle(){
         double angle = GlobalData.TeamNumber == 22291 ? k.CLAW.OpenLowerAngle_22291: k.CLAW.OpenLowerAngle_14623;
-        angle /= 300.0;
         m_gripAngle = angle;
-        m_right.setPosition(angle);
+        m_right.setPosition(angle/300.0);
     }
     public void setClawReleaseUpperAngle(){
         double angle = GlobalData.TeamNumber == 22291 ? k.CLAW.OpenUpperAngle_22291: k.CLAW.OpenUpperAngle_14623;
-        angle /= 300.0;
         m_gripAngle = angle;
-        m_right.setPosition(angle);
+        m_right.setPosition(angle/300.0);
     }
     public double getClawCloseAngle() {
         if (GlobalData.TeamNumber == 22291) {
