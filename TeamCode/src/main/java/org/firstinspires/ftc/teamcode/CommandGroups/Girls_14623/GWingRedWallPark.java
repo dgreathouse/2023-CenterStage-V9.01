@@ -6,6 +6,7 @@ import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 
 import org.firstinspires.ftc.teamcode.Commands.AutoDelayCommand;
 import org.firstinspires.ftc.teamcode.Commands.Drive.AutoDriveTimeVel;
+import org.firstinspires.ftc.teamcode.Commands.Drive.AutoDriveToDistance;
 import org.firstinspires.ftc.teamcode.Commands.Drive.AutoRotateRobot;
 import org.firstinspires.ftc.teamcode.Commands.Drive.AutoRotateToTeamProp;
 import org.firstinspires.ftc.teamcode.Lib.TeamPropLocation;
@@ -21,7 +22,7 @@ public class GWingRedWallPark extends SequentialCommandGroup {
                 new InstantCommand(_drive::resetYaw),                                           // Reset the gyro
                 new AutoDelayCommand(_opMode, .75),                                             // Wait for claw to close
                 new InstantCommand(() -> _arm.setArmData(35,-10,0)),                            // Raise the arm
-                new AutoDriveTimeVel(_opMode, _drive, 0, 0.6, 0,1.75),                          // Drive to team prop
+                new AutoDriveToDistance(_opMode,_drive,620, 0.5, 0,0,3),                        // Drive to team prop
                 new InstantCommand(()-> _arm.checkTeamPropLocation(TeamPropLocation.CENTER)),   // Check the center
                 new AutoRotateRobot(_opMode,_drive, 55,0.25,3),                                 // Rotate to the left
                 new InstantCommand(()-> _arm.checkTeamPropLocation(TeamPropLocation.LEFT)),     // Check the left
@@ -33,7 +34,7 @@ public class GWingRedWallPark extends SequentialCommandGroup {
                 new InstantCommand(_claw::setClawCloseAngle),                                   // Close the claw
                 new InstantCommand(() -> _arm.setArmData(35,-10,0)),                            // Set arm to backdrop
                 new AutoRotateRobot(_opMode,_drive, 0,0.25,3),                                  // Rotate back to center
-                new AutoDriveTimeVel(_opMode, _drive, 180, 0.6, 0,1.65),                        // Backup
+                new AutoDriveToDistance(_opMode,_drive,-500, 0.4, 0,0,2),                       // Drive back away from the spike marks
                 new AutoRotateRobot(_opMode,_drive, 90,0.25,3),                                 // Rotate to go under the truss
                 new AutoDriveTimeVel(_opMode, _drive, 90, 0.8, 90,2.05),                        // Drive under the truss
                 new AutoRotateRobot(_opMode,_drive, -90,0.25,3),                                // Rotate to the backdrop

@@ -27,14 +27,14 @@ public class GBackdropBlueWallGetTwo extends SequentialCommandGroup {
                 new InstantCommand(() -> _arm.setArmData(35,-10,0)),                            // Raise Arm and lower claw
                 new AutoDriveToDistance(_opMode,_drive,620, 0.5, 0,0,3),                        // Drive to team prop
                 new InstantCommand(()-> _arm.checkTeamPropLocation(TeamPropLocation.CENTER)),   // Check the center
-                new AutoRotateRobot(_opMode,_drive, 65,0.3,3),                                 // Rotate to the right
+                new AutoRotateRobot(_opMode,_drive, 65,0.3,3),                                  // Rotate to the right
                 new InstantCommand(()-> _arm.checkTeamPropLocation(TeamPropLocation.LEFT)),     // Check the Right
                 new InstantCommand(()-> _arm.checkTeamPropLocation(TeamPropLocation.RIGHT)),    // Check the Left
                 new AutoRotateToTeamProp(_opMode,_drive),                                       // Rotate to the team prop
                 new InstantCommand(() -> _arm.setArmData(25,-12,0)),                            // Lower arm to drop the pixel
-                new AutoDelayCommand(_opMode, .5),                                               // Delay for arm to lower
+                new AutoDelayCommand(_opMode, .5),                                              // Delay for arm to lower
                 new InstantCommand(_claw::setClawReleaseLowerAngle),                            // Drop the lower pixel
-                new AutoDelayCommand(_opMode, .5),                                               // Delay so the pixel can drop
+                new AutoDelayCommand(_opMode, .5),                                              // Delay so the pixel can drop
                 new InstantCommand(_claw::setClawCloseAngle),                                   // Close the claw so it does not come out
                 new InstantCommand(() -> _arm.setArmData(35,30,0)),                             // Raise the arm and set claw angle to backdrop
                 new AutoRotateRobot(_opMode,_drive, 0,0.25,3),                                  // Rotate robot back to center
@@ -46,11 +46,11 @@ public class GBackdropBlueWallGetTwo extends SequentialCommandGroup {
                 new AutoDriveToPark(_opMode, _drive, Direction.LEFT),                           // Goto the right
                 new InstantCommand(() -> _arm.setArmData(35,-6,0)),                             // Raise the arm
                 new InstantCommand(_claw::setClawOpenAngle),                                    // Open claw
-                new AutoDriveTimeVel(_opMode, _drive, 90, 0.7, 90,3.2),                        // Drive under truss to opposite wall
+                new AutoDriveTimeVel(_opMode, _drive, 90, 0.7, 90,3.2),                         // Drive under truss to opposite wall
                 new AutoRotateRobot(_opMode,_drive, -90,0.25,3),                                // Rotate robot
-                new InstantCommand(() -> _arm.setArmData(11,-6,0)),                              // Lower the arm to the stack of 5
+                new InstantCommand(() -> _arm.setArmData(11,-6,0)),                             // Lower the arm to the stack of 5
                 new AutoDriveTimeVel(_opMode, _drive, 0, 0.7, -90,1),                           // Drive to the stack of 5
-                new AutoDriveTimeVel(_opMode, _drive, 90, 0.25, -90,.9,0,0),                   // Drive into the stack of 5
+                new AutoDriveTimeVel(_opMode, _drive, 90, 0.25, -90,.9,0,0),                    // Drive into the stack of 5
                 new InstantCommand(_claw::setClawCloseAngle),                                   // Grab the pixels
                 new AutoDelayCommand(_opMode, .75),                                             // Delay for claw to close
                 new AutoDriveTimeVel(_opMode, _drive, -90, 0.25, -90,.3,0,0),                   // Back up a little

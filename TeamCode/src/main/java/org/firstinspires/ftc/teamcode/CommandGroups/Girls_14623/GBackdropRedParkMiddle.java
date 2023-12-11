@@ -8,6 +8,7 @@ import com.arcrobotics.ftclib.util.Direction;
 import org.firstinspires.ftc.teamcode.Commands.AutoDelayCommand;
 import org.firstinspires.ftc.teamcode.Commands.Drive.AutoDriveTimeVel;
 import org.firstinspires.ftc.teamcode.Commands.Drive.AutoDriveToBackdrop;
+import org.firstinspires.ftc.teamcode.Commands.Drive.AutoDriveToDistance;
 import org.firstinspires.ftc.teamcode.Commands.Drive.AutoDriveToPark;
 import org.firstinspires.ftc.teamcode.Commands.Drive.AutoRotateRobot;
 import org.firstinspires.ftc.teamcode.Commands.Drive.AutoRotateToTeamProp;
@@ -24,7 +25,7 @@ public class GBackdropRedParkMiddle extends SequentialCommandGroup {
                 new InstantCommand(_drive::resetYaw),                                           // Reset the gyro
                 new AutoDelayCommand(_opMode, .75),                                             // Wait for claw to close
                 new InstantCommand(() -> _arm.setArmData(35,-10,0)),                            // Raise Arm and lower claw
-                new AutoDriveTimeVel(_opMode, _drive, 0, 0.5, 0,1.82, 0.65, 0.65),              // Drive to team prop
+                new AutoDriveToDistance(_opMode,_drive,620, 0.5, 0,0,3),                        // Drive to team prop
                 new InstantCommand(()-> _arm.checkTeamPropLocation(TeamPropLocation.CENTER)),   // Check the center
                 new AutoRotateRobot(_opMode,_drive, -65,0.25,3),                                // Rotate to the right
                 new InstantCommand(()-> _arm.checkTeamPropLocation(TeamPropLocation.RIGHT)),    // Check the Right
@@ -37,7 +38,7 @@ public class GBackdropRedParkMiddle extends SequentialCommandGroup {
                 new InstantCommand(_claw::setClawCloseAngle),                                   // Close the claw so it does not come out
                 new InstantCommand(() -> _arm.setArmData(35,30,0)),                             // Raise the arm and set claw angle to backdrop
                 new AutoRotateRobot(_opMode,_drive, 0,0.25,3),                                  // Rotate robot back to center
-                new AutoDriveTimeVel(_opMode, _drive, 180, 0.6, 0,1.6),                         // Drive back away from team prop
+                new AutoDriveToDistance(_opMode,_drive,-500, 0.4, 0,0,2),                       // Drive back away from the spike marks
                 new AutoDriveToBackdrop(_opMode,_drive),                                        // Drive to the backdrop
                 new InstantCommand(_claw::setClawReleaseUpperAngle),                            // Release the upper pixel
                 new AutoDelayCommand(_opMode, .75),                                             // Delay to let the pixel drop
