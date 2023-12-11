@@ -34,7 +34,17 @@ public class AutoDriveTimeVel extends CommandBase {
     PIDController rotPID = new PIDController(0.005, 0.001, 0);
     Timing.Timer m_timer;
 
-
+    /**
+     *
+     * @param _opMode
+     * @param _drive
+     * @param _driveAngle The drive angle in degrees CCW(-) CW(+)
+     * @param _speed Speed from 0-1
+     * @param _robotAngle The robot angle in degrees CCW(+) CW(-)
+     * @param _timeOut_sec  The time to drive
+     * @param _rampUpTime_sec Drive speed ramp up time in seconds
+     * @param _rampDownTime_sec Drive speed ramp down time in seconds
+     */
     public AutoDriveTimeVel(CommandOpMode _opMode, AutoDriveSubsystem _drive, double _driveAngle, double _speed, double _robotAngle, double _timeOut_sec, double _rampUpTime_sec, double _rampDownTime_sec) {
         m_opMode = _opMode;
         m_drive = _drive;
@@ -47,7 +57,15 @@ public class AutoDriveTimeVel extends CommandBase {
         m_rampDownTime_sec = _rampDownTime_sec;
         m_rampUpTime_sec = _rampUpTime_sec;
     }
-
+    /** Drive for the specified time. Drive ramp times are precalculated to a max of 0.75
+     *
+     * @param _opMode
+     * @param _drive
+     * @param _driveAngle The drive angle in degrees CCW(-) CW(+)
+     * @param _speed Speed from 0-1
+     * @param _robotAngle The robot angle in degrees CCW(+) CW(-)
+     * @param _timeOut_sec  The time to drive
+     */
     public AutoDriveTimeVel(CommandOpMode _opMode, AutoDriveSubsystem _drive, double _driveAngle, double _speed, double _robotAngle, double _timeOut_sec) {
         m_opMode = _opMode;
         m_drive = _drive;

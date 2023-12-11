@@ -28,7 +28,7 @@ public class GWingBlueMiddleToBackdrop extends SequentialCommandGroup {
                 new InstantCommand(() -> _arm.setArmData(35,-10,0)),                            // Raise the arm
                 new AutoDriveToDistance(_opMode,_drive,620, 0.5, 0,0,3),                        // Drive to team prop
                 new InstantCommand(()-> _arm.checkTeamPropLocation(TeamPropLocation.CENTER)),   // Check the center
-                new AutoRotateRobot(_opMode,_drive, -55,0.25,3),                                // Rotate to the lef
+                new AutoRotateRobot(_opMode,_drive, -65,0.25,3),                                // Rotate to the lef
                 new InstantCommand(()-> _arm.checkTeamPropLocation(TeamPropLocation.RIGHT)),    // Check the left
                 new InstantCommand(()-> _arm.checkTeamPropLocation(TeamPropLocation.LEFT)),     // Check the right
                 new AutoRotateToTeamProp(_opMode,_drive),                                       // Rotate to the team prop

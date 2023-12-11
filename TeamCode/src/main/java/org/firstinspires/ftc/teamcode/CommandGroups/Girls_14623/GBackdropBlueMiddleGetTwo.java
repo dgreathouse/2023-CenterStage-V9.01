@@ -57,7 +57,7 @@ public class GBackdropBlueMiddleGetTwo extends SequentialCommandGroup {
                 new AutoDriveTimeVel(_opMode, _drive, -90, 0.5, 90,0.9, 0, 1),                  // Drive to backstage
                 new InstantCommand(() -> _arm.setArmData(0,0,0)),                               // Lower the arm to the floor
                 new InstantCommand(_claw::setClawOpenAngle),                                    // Open claw
-                new AutoDelayCommand(_opMode, 2),                                               // Delay to let the arm lower
+                new AutoDelayCommand(_opMode, 1),                                               // Delay to let the arm lower
                 new InstantCommand(_opMode::requestOpModeStop)                                  // This must be the last line of every command list
         );
 
