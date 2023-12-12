@@ -59,7 +59,7 @@ public class AutoDriveToPark extends CommandBase {
             case NONE:
                 if (GlobalData.MATCH.AutoTeamColor == TeamColor.BLUE) {
 
-                    m_timeOut_sec = (m_direction == Direction.RIGHT) ? 2.05 : 2.05;
+                    m_timeOut_sec = (m_direction == Direction.RIGHT) ? 1.2 : 2.05;
                 } else {  // RED
                     m_timeOut_sec = (m_direction == Direction.RIGHT) ? 2.05 : 2.05;
                 }
@@ -67,7 +67,7 @@ public class AutoDriveToPark extends CommandBase {
             case LEFT:
                 if (GlobalData.MATCH.AutoTeamColor == TeamColor.BLUE) {
                                                                   //  Large : Small
-                    m_timeOut_sec = (m_direction == Direction.RIGHT) ? 2.5 : 2.5;
+                    m_timeOut_sec = (m_direction == Direction.RIGHT) ? 2.5 : 2.2;
                 } else {  // RED
                                                                   // Large : Small
                     m_timeOut_sec = (m_direction == Direction.RIGHT) ? 2.5 : 2.5;
@@ -77,7 +77,7 @@ public class AutoDriveToPark extends CommandBase {
             case RIGHT:
                 if (GlobalData.MATCH.AutoTeamColor == TeamColor.BLUE) {
                                                                     // Small : Large
-                    m_timeOut_sec = (m_direction == Direction.RIGHT) ? 1.7 : 1.7;
+                    m_timeOut_sec = (m_direction == Direction.RIGHT) ? 1.7 : 2.4;
                 } else {  // RED
                                                                     // Small : Large
                     m_timeOut_sec = (m_direction == Direction.RIGHT) ? 2.0 :2.0;
