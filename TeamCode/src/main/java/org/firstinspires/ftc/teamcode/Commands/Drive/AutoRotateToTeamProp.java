@@ -5,12 +5,8 @@ import com.arcrobotics.ftclib.command.CommandOpMode;
 import com.arcrobotics.ftclib.controller.PIDController;
 import com.arcrobotics.ftclib.util.MathUtils;
 import com.arcrobotics.ftclib.util.Timing;
-
 import org.firstinspires.ftc.teamcode.Lib.GlobalData;
-import org.firstinspires.ftc.teamcode.Lib.TeamColor;
-import org.firstinspires.ftc.teamcode.Lib.k;
 import org.firstinspires.ftc.teamcode.Subsystems.AutoDriveSubsystem;
-
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -24,7 +20,7 @@ public class AutoRotateToTeamProp extends CommandBase {
     AutoDriveSubsystem m_drive;
 
     double m_robotAngle = 0;
-    int m_timeOut = 3000;
+    double m_timeOut_sec = 3.0;
     double m_speed = 0.25;
 
     PIDController rotPID;
@@ -37,7 +33,7 @@ public class AutoRotateToTeamProp extends CommandBase {
 
     @Override
     public void initialize() {
-        rotPID = new PIDController(.008, .003, 0);
+        rotPID = new PIDController(.015, .0075, 0);
         rotPID.setTolerance(2.0);
         rotPID.reset();
 
@@ -55,7 +51,7 @@ public class AutoRotateToTeamProp extends CommandBase {
 
         }
 
-        m_timer = new Timing.Timer(m_timeOut, TimeUnit.MILLISECONDS);
+        m_timer = new Timing.Timer((long)(m_timeOut_sec*1000.0), TimeUnit.MILLISECONDS);
         m_timer.start();
     }
 

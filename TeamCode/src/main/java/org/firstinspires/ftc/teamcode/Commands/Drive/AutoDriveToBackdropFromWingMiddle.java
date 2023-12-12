@@ -55,23 +55,25 @@ public class AutoDriveToBackdropFromWingMiddle extends CommandBase {
                 }
                 break;
             case LEFT:
-                m_timeOut_sec = 2.6;
+
                 if (GlobalData.MATCH.AutoTeamColor == TeamColor.BLUE) {
-                    m_driveAngle = -64;
+                    m_driveAngle = -64;  // Small angle long distance
                     m_robotAngle = 90;
+                    m_timeOut_sec = 2.6;
                 } else {  // RED
-                    m_driveAngle = 110;
+                    m_driveAngle = 110;  // Small angle short distance
                     m_robotAngle = -90;
+                    m_timeOut_sec = 2.6;
                 }
                 break;
 
             case RIGHT:
                 if (GlobalData.MATCH.AutoTeamColor == TeamColor.BLUE) {
-                    m_driveAngle = -50;
+                    m_driveAngle = -50; // Small angle short distance
                     m_robotAngle = 90;
                     m_timeOut_sec = 2.6;
                 } else {  // RED
-                    m_driveAngle = 116;
+                    m_driveAngle = 116; // Large angle long distance
                     m_robotAngle = -90;
                     m_timeOut_sec = 2.5;
                 }
