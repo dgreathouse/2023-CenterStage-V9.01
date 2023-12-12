@@ -6,12 +6,7 @@ import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 
 import org.firstinspires.ftc.teamcode.Commands.AutoDelayCommand;
 import org.firstinspires.ftc.teamcode.Commands.Drive.AutoDriveTimeVel;
-import org.firstinspires.ftc.teamcode.Commands.Drive.AutoDriveToBackdrop;
-import org.firstinspires.ftc.teamcode.Commands.Drive.AutoDriveToDistance;
 import org.firstinspires.ftc.teamcode.Commands.Drive.AutoDriveToMiddleFromBackdrop;
-import org.firstinspires.ftc.teamcode.Commands.Drive.AutoRotateRobot;
-import org.firstinspires.ftc.teamcode.Commands.Drive.AutoRotateToTeamProp;
-import org.firstinspires.ftc.teamcode.Lib.TeamPropLocation;
 import org.firstinspires.ftc.teamcode.Subsystems.AutoArmSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystems.AutoClawGripSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystems.AutoDriveSubsystem;

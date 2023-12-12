@@ -5,7 +5,6 @@ import com.arcrobotics.ftclib.command.InstantCommand;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 
 import org.firstinspires.ftc.teamcode.Commands.AutoDelayCommand;
-import org.firstinspires.ftc.teamcode.Commands.Drive.AutoDriveTimeVel;
 import org.firstinspires.ftc.teamcode.Commands.Drive.AutoDriveToDistance;
 import org.firstinspires.ftc.teamcode.Commands.Drive.AutoRotateRobot;
 import org.firstinspires.ftc.teamcode.Commands.Drive.AutoRotateToTeamProp;
