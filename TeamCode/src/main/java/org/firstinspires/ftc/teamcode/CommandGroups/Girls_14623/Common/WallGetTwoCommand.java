@@ -8,6 +8,7 @@ import com.arcrobotics.ftclib.util.Direction;
 import org.firstinspires.ftc.teamcode.Commands.AutoDelayCommand;
 import org.firstinspires.ftc.teamcode.Commands.Drive.AutoDriveTimeVel;
 import org.firstinspires.ftc.teamcode.Commands.Drive.AutoDriveToPark;
+import org.firstinspires.ftc.teamcode.Commands.Drive.AutoDriveToWallFromBackdrop;
 import org.firstinspires.ftc.teamcode.Commands.Drive.AutoRotateRobot;
 import org.firstinspires.ftc.teamcode.Lib.GlobalData;
 import org.firstinspires.ftc.teamcode.Lib.TeamColor;
@@ -21,11 +22,11 @@ public class WallGetTwoCommand extends SequentialCommandGroup {
         double sign = GlobalData.MATCH.AutoTeamColor == TeamColor.BLUE ? 1.0 : -1;
         addCommands(
 
-                new AutoDriveToPark(_opMode, _drive),                           // Goto the right
+
                 new InstantCommand(() -> _arm.setArmData(35,-6,0)),                             // Raise the arm
                 new InstantCommand(_claw::setClawOpenAngle),                                    // Open claw
+                new AutoDriveToWallFromBackdrop(_opMode, _drive),
                 new AutoDriveTimeVel(_opMode, _drive, 90 * sign, 0.7, 90 * sign,3.2),           // Drive under truss to opposite wall
-                new AutoRotateRobot(_opMode,_drive, -90* sign,0.25,3),                          // Rotate robot
                 new InstantCommand(() -> _arm.setArmData(11,-6,0)),                             // Lower the arm to the stack of 5
                 new AutoDriveTimeVel(_opMode, _drive, 0, 0.7, -90* sign,1),                     // Drive to the stack of 5
                 new AutoDriveTimeVel(_opMode, _drive, 90* sign, 0.25, -90 * sign,.9,0,0),       // Drive into the stack of 5
