@@ -6,7 +6,6 @@ import com.arcrobotics.ftclib.controller.PIDController;
 import com.arcrobotics.ftclib.util.MathUtils;
 import com.arcrobotics.ftclib.util.Timing;
 
-import org.firstinspires.ftc.teamcode.Lib.k;
 import org.firstinspires.ftc.teamcode.Subsystems.AutoDriveSubsystem;
 
 import java.util.concurrent.TimeUnit;

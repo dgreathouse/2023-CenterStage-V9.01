@@ -3,7 +3,6 @@ package org.firstinspires.ftc.teamcode.Commands.Drive;
 import com.arcrobotics.ftclib.command.CommandBase;
 import com.arcrobotics.ftclib.command.CommandOpMode;
 import com.arcrobotics.ftclib.controller.PIDController;
-import com.arcrobotics.ftclib.hardware.motors.Motor;
 import com.arcrobotics.ftclib.util.MathUtils;
 import com.arcrobotics.ftclib.util.Timing;
 
@@ -36,8 +35,8 @@ public class AutoDriveTimeVel extends CommandBase {
 
     /**
      *
-     * @param _opMode
-     * @param _drive
+     * @param _opMode The OpMode
+     * @param _drive The Drive reference
      * @param _driveAngle The drive angle in degrees CCW(-) CW(+)
      * @param _speed Speed from 0-1
      * @param _robotAngle The robot angle in degrees CCW(+) CW(-)
@@ -59,8 +58,8 @@ public class AutoDriveTimeVel extends CommandBase {
     }
     /** Drive for the specified time. Drive ramp times are precalculated to a max of 0.75
      *
-     * @param _opMode
-     * @param _drive
+     * @param _opMode The OpMode
+     * @param _drive The Drive reference
      * @param _driveAngle The drive angle in degrees CCW(-) CW(+)
      * @param _speed Speed from 0-1
      * @param _robotAngle The robot angle in degrees CCW(+) CW(-)
