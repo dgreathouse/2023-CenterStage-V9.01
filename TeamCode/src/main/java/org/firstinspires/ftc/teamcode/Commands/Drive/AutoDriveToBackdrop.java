@@ -83,13 +83,13 @@ public class AutoDriveToBackdrop extends CommandBase {
                 break;
         }
         if (m_timeOut_sec >= 2.0) {
-            m_rampUpTime_sec = 0.75;
-            m_rampDownTime_sec = 0.75;
+            m_rampUpTime_sec = 0.5;
+            m_rampDownTime_sec = 0.5;
         } else {
             m_rampUpTime_sec = m_timeOut_sec * 0.50;
-            m_rampUpTime_sec = MathUtils.clamp(m_rampUpTime_sec, 0, 0.75);
+            m_rampUpTime_sec = MathUtils.clamp(m_rampUpTime_sec, 0, 0.5);
             m_rampDownTime_sec = m_timeOut_sec * 0.50;
-            m_rampDownTime_sec = MathUtils.clamp(m_rampDownTime_sec, 0, 0.75);
+            m_rampDownTime_sec = MathUtils.clamp(m_rampDownTime_sec, 0, 0.5);
         }
         m_timer =  new Timing.Timer((long)(m_timeOut_sec*1000.0), TimeUnit.MILLISECONDS);
         m_timer.start();

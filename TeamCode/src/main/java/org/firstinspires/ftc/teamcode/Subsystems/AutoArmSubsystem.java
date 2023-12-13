@@ -169,8 +169,8 @@ public class AutoArmSubsystem extends SubsystemBase {
             if (dis < k.ARM.TeamPropMinimumDistance_mm) {
                 GlobalData.MATCH.TeamPropLocation = TeamPropLocation.CENTER;
             }
-        } else { // Do the first check
-            if (dis < k.ARM.TeamPropMinimumDistance_mm) {
+        } else if(GlobalData.MATCH.TeamPropLocation != TeamPropLocation.CENTER){ // Do the first check
+            if (dis < k.ARM.TeamPropMinimumDistance_mm ) {
                 if (GlobalData.MATCH.AutoTeamColor == TeamColor.BLUE) {
                     if (GlobalData.MATCH.AutoFieldLocation == AutoFieldLocation_enum.BACKDROP) {
                         GlobalData.MATCH.TeamPropLocation = TeamPropLocation.LEFT;

@@ -28,8 +28,8 @@ public class WingWallToBackdrop extends SequentialCommandGroup {
                 new InstantCommand(_claw::setClawReleaseUpperAngle),                            // Release the upper pixel
                 new AutoDriveTimeVel(_opMode, _drive, 90 * sign, 0.5, 90 * sign,0.6),           // Drive back a little
                 new InstantCommand(() -> _arm.setArmData(0,0,0)),                               // Lower the arm
-                new AutoDelayCommand(_opMode, 10),                                              // Delay so the arm comes down
-                new InstantCommand(_opMode::requestOpModeStop)                                  // This must be the last line of every command list
+                new AutoDelayCommand(_opMode, 0)                                                // Delay so the arm comes down
+                //new InstantCommand(_opMode::requestOpModeStop)                                  // This must be the last line of every command list
 
 
         );
