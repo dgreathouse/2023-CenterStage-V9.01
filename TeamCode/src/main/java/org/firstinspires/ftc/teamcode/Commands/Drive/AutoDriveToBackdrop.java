@@ -53,7 +53,7 @@ public class AutoDriveToBackdrop extends CommandBase {
                 } else {  // RED
                     m_driveAngle = 63;
                     m_robotAngle = -90;
-                    m_timeOut_sec = 2.025;
+                    m_timeOut_sec = 2.05;
                 }
                 break;
             case LEFT:
@@ -65,7 +65,7 @@ public class AutoDriveToBackdrop extends CommandBase {
                 } else {  // RED
                     m_driveAngle = 55;    // Small angle long distance
                     m_robotAngle = -90;
-                    m_timeOut_sec = 2.1;
+                    m_timeOut_sec = 2.3;
                 }
                 break;
 
@@ -76,9 +76,9 @@ public class AutoDriveToBackdrop extends CommandBase {
                     m_robotAngle = 90;
                     m_timeOut_sec = 2.3;
                 } else {  // RED
-                    m_driveAngle = 71;   // Large angle short distance
+                    m_driveAngle = 68;   // Large angle short distance
                     m_robotAngle = -90;
-                    m_timeOut_sec = 2;
+                    m_timeOut_sec = 2.1;
                 }
                 break;
         }

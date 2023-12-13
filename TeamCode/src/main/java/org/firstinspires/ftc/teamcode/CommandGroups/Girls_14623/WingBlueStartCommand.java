@@ -5,7 +5,6 @@ import com.arcrobotics.ftclib.command.InstantCommand;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 
 import org.firstinspires.ftc.teamcode.Commands.AutoDelayCommand;
-import org.firstinspires.ftc.teamcode.Commands.Drive.AutoDriveTimeVel;
 import org.firstinspires.ftc.teamcode.Commands.Drive.AutoDriveToDistance;
 import org.firstinspires.ftc.teamcode.Commands.Drive.AutoRotateRobot;
 import org.firstinspires.ftc.teamcode.Commands.Drive.AutoRotateToTeamProp;
@@ -32,11 +31,8 @@ public class WingBlueStartCommand extends SequentialCommandGroup {
                 new InstantCommand(_claw::setClawCloseAngle),                                   // Close the claw
                 new InstantCommand(() -> _arm.setArmData(35,30,0)),                             // Set arm to backdrop
                 new AutoRotateRobot(_opMode,_drive, 0,0.25,3),                                  // Rotate back to center
-                new AutoDriveToDistance(_opMode,_drive,-500, 0.4, 0,0,2),                       // Drive back away from the spike marks
-                new AutoRotateRobot(_opMode,_drive, -90,0.25,3),                                // Rotate to go under the truss
-                new AutoDriveTimeVel(_opMode, _drive, -90, 0.8, -90,2.05),                      // Drive under the truss
-                new AutoRotateRobot(_opMode,_drive, 90,0.25,3),                                 // Rotate to the backdrop
-                new AutoDriveTimeVel(_opMode, _drive, -90, 0.4, 90,3.05)                       // Drive to the wall
+                new AutoDriveToDistance(_opMode,_drive,-500, 0.4, 0,0,2)                       // Drive back away from the spike marks
+
         );
     }
 }

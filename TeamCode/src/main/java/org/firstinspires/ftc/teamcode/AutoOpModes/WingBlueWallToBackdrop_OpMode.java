@@ -6,7 +6,7 @@ import com.arcrobotics.ftclib.util.Timing;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
 import org.firstinspires.ftc.teamcode.CommandGroups.Boys_22291.BWingBlueWallToBackdrop;
-import org.firstinspires.ftc.teamcode.CommandGroups.Girls_14623.GWingBlueWallToBackdrop;
+import org.firstinspires.ftc.teamcode.CommandGroups.Girls_14623.GWingWallToBackdrop;
 import org.firstinspires.ftc.teamcode.Commands.Arm.AutoArmDefaultCommand;
 import org.firstinspires.ftc.teamcode.Commands.Drive.AutoDriveDefaultCommand;
 import org.firstinspires.ftc.teamcode.Lib.AutoFieldLocation_enum;
@@ -16,8 +16,6 @@ import org.firstinspires.ftc.teamcode.Lib.TeamColor;
 import org.firstinspires.ftc.teamcode.Subsystems.AutoArmSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystems.AutoClawGripSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystems.AutoDriveSubsystem;
-
-import java.util.concurrent.TimeUnit;
 
 @Autonomous(name = "Wing Blue Wall To Backdrop", group = "Wing Blue")
 public class WingBlueWallToBackdrop_OpMode extends CommandOpMode {
@@ -29,7 +27,7 @@ public class WingBlueWallToBackdrop_OpMode extends CommandOpMode {
     AutoArmDefaultCommand armDefaultCommand;
     AutoArmSubsystem arm;
     AutoClawGripSubsystem claw;
-    GWingBlueWallToBackdrop Gauto;
+    GWingWallToBackdrop Gauto;
     BWingBlueWallToBackdrop Bauto;
 
     @Override
@@ -74,7 +72,7 @@ public class WingBlueWallToBackdrop_OpMode extends CommandOpMode {
         if(GlobalData.TeamNumber == 22291) {
             Bauto = new BWingBlueWallToBackdrop(this, drive,arm,claw);
         }else {
-            Gauto = new GWingBlueWallToBackdrop(this, drive,arm,claw);
+            Gauto = new GWingWallToBackdrop(this, drive,arm,claw);
         }
 
     }

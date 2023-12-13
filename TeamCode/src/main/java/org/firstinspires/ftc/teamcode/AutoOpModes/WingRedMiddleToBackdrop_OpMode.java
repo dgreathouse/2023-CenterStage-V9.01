@@ -6,7 +6,7 @@ import com.arcrobotics.ftclib.util.Timing;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
 import org.firstinspires.ftc.teamcode.CommandGroups.Boys_22291.BWingRedMiddleToBackdrop;
-import org.firstinspires.ftc.teamcode.CommandGroups.Girls_14623.GWingRedMiddleToBackdrop;
+import org.firstinspires.ftc.teamcode.CommandGroups.Girls_14623.GWingMiddleToBackdrop;
 import org.firstinspires.ftc.teamcode.Commands.Arm.AutoArmDefaultCommand;
 import org.firstinspires.ftc.teamcode.Commands.Drive.AutoDriveDefaultCommand;
 import org.firstinspires.ftc.teamcode.Lib.AutoFieldLocation_enum;
@@ -18,8 +18,6 @@ import org.firstinspires.ftc.teamcode.Subsystems.AutoArmSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystems.AutoClawGripSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystems.AutoDriveSubsystem;
 
-import java.util.concurrent.TimeUnit;
-
 @Autonomous(name = "Wing Red Middle To Backdrop", group = "Wing Red")
 public class WingRedMiddleToBackdrop_OpMode extends CommandOpMode {
     Timing.Timer m_timer;
@@ -30,7 +28,7 @@ public class WingRedMiddleToBackdrop_OpMode extends CommandOpMode {
     AutoArmDefaultCommand armDefaultCommand;
     AutoArmSubsystem arm;
     AutoClawGripSubsystem claw;
-    GWingRedMiddleToBackdrop Gauto;
+    GWingMiddleToBackdrop Gauto;
     BWingRedMiddleToBackdrop Bauto;
 
     @Override
@@ -86,7 +84,7 @@ public class WingRedMiddleToBackdrop_OpMode extends CommandOpMode {
         if(GlobalData.TeamNumber == 22291) {
             Bauto = new BWingRedMiddleToBackdrop(this, drive,arm,claw);
         }else {
-            Gauto = new GWingRedMiddleToBackdrop(this, drive,arm,claw);
+            Gauto = new GWingMiddleToBackdrop(this, drive,arm,claw);
         }
 
     }

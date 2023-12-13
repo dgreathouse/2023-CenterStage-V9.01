@@ -6,19 +6,16 @@ import com.arcrobotics.ftclib.util.Timing;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
 import org.firstinspires.ftc.teamcode.CommandGroups.Boys_22291.BBackdropRedWallGetTwo;
-import org.firstinspires.ftc.teamcode.CommandGroups.Girls_14623.GBackdropRedWallGetTwo;
+import org.firstinspires.ftc.teamcode.CommandGroups.Girls_14623.GBackdropWallGetTwo;
 import org.firstinspires.ftc.teamcode.Commands.Arm.AutoArmDefaultCommand;
 import org.firstinspires.ftc.teamcode.Commands.Drive.AutoDriveDefaultCommand;
 import org.firstinspires.ftc.teamcode.Lib.AutoFieldLocation_enum;
 import org.firstinspires.ftc.teamcode.Lib.GlobalData;
 import org.firstinspires.ftc.teamcode.Lib.Hw;
-import org.firstinspires.ftc.teamcode.Lib.ParkDirection;
 import org.firstinspires.ftc.teamcode.Lib.TeamColor;
 import org.firstinspires.ftc.teamcode.Subsystems.AutoArmSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystems.AutoClawGripSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystems.AutoDriveSubsystem;
-
-import java.util.concurrent.TimeUnit;
 
 @Autonomous(name = "Backdrop Red Wall Get 2", group = "Backdrop Red")
 public class BackdropRedWallGetTwo_OpMode extends CommandOpMode {
@@ -30,7 +27,7 @@ public class BackdropRedWallGetTwo_OpMode extends CommandOpMode {
     AutoArmDefaultCommand armDefaultCommand;
     AutoArmSubsystem arm;
     AutoClawGripSubsystem claw;
-    GBackdropRedWallGetTwo Gauto;
+    GBackdropWallGetTwo Gauto;
     BBackdropRedWallGetTwo Bauto;
 
     @Override
@@ -76,7 +73,7 @@ public class BackdropRedWallGetTwo_OpMode extends CommandOpMode {
         if(GlobalData.TeamNumber == 22291) {
             Bauto = new BBackdropRedWallGetTwo(this, drive,arm,claw);
         }else {
-            Gauto = new GBackdropRedWallGetTwo(this, drive,arm,claw);
+            Gauto = new GBackdropWallGetTwo(this, drive,arm,claw);
         }
 
     }
