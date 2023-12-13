@@ -15,7 +15,13 @@ import org.firstinspires.ftc.teamcode.Subsystems.AutoClawGripSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystems.AutoDriveSubsystem;
 
 public class GWingWallPark extends SequentialCommandGroup {
-
+    /**
+     *
+     * @param _opMode The OpMode
+     * @param _drive The Drive subsystem reference
+     * @param _arm The Arm subsystem reference
+     * @param _claw The Claw subsystem reference
+     */
     public GWingWallPark(CommandOpMode _opMode, AutoDriveSubsystem _drive, AutoArmSubsystem _arm, AutoClawGripSubsystem _claw) {
         double sign = GlobalData.MATCH.AutoTeamColor == TeamColor.BLUE ? 1.0 : -1;
         addCommands(

@@ -13,12 +13,12 @@ import org.firstinspires.ftc.teamcode.Subsystems.AutoClawGripSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystems.AutoDriveSubsystem;
 
 public class GBackdropPark extends SequentialCommandGroup {
-    /** On the Red side and park at the middle or wall depending on the OpMode that was called
+    /**
      *
-     * @param _opMode
-     * @param _drive
-     * @param _arm
-     * @param _claw
+     * @param _opMode The OpMode
+     * @param _drive The Drive subsystem reference
+     * @param _arm The Arm subsystem reference
+     * @param _claw The Claw subsystem reference
      */
     public GBackdropPark(CommandOpMode _opMode, AutoDriveSubsystem _drive, AutoArmSubsystem _arm, AutoClawGripSubsystem _claw) {
 

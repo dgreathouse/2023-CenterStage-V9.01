@@ -11,7 +11,13 @@ import org.firstinspires.ftc.teamcode.Subsystems.AutoClawGripSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystems.AutoDriveSubsystem;
 
 public class GBackdropWallGetTwo extends SequentialCommandGroup {
-
+    /**
+     *
+     * @param _opMode The OpMode
+     * @param _drive The Drive subsystem reference
+     * @param _arm The Arm subsystem reference
+     * @param _claw The Claw subsystem reference
+     */
     public GBackdropWallGetTwo(CommandOpMode _opMode, AutoDriveSubsystem _drive, AutoArmSubsystem _arm, AutoClawGripSubsystem _claw) {
 
         addCommands(

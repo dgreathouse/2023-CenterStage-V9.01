@@ -15,10 +15,10 @@ public class GBackdropMiddleGetTwo extends SequentialCommandGroup {
 
     /**
      *
-     * @param _opMode
-     * @param _drive
-     * @param _arm
-     * @param _claw
+     * @param _opMode The OpMode
+     * @param _drive The Drive subsystem reference
+     * @param _arm The Arm subsystem reference
+     * @param _claw The Claw subsystem reference
      */
     public GBackdropMiddleGetTwo(CommandOpMode _opMode, AutoDriveSubsystem _drive, AutoArmSubsystem _arm, AutoClawGripSubsystem _claw) {
 
