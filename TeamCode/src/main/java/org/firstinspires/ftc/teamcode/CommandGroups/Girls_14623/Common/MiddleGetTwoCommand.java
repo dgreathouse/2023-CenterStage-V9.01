@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.CommandGroups.Girls_14623;
+package org.firstinspires.ftc.teamcode.CommandGroups.Girls_14623.Common;
 
 import com.arcrobotics.ftclib.command.CommandOpMode;
 import com.arcrobotics.ftclib.command.InstantCommand;
@@ -18,7 +18,7 @@ public class MiddleGetTwoCommand extends SequentialCommandGroup {
     public MiddleGetTwoCommand(CommandOpMode _opMode, AutoDriveSubsystem _drive, AutoArmSubsystem _arm, AutoClawGripSubsystem _claw)  {
         double sign = GlobalData.MATCH.AutoTeamColor == TeamColor.BLUE ? 1.0 : -1;
         addCommands(
-                new BackdropRedStartCommand(_opMode, _drive, _arm, _claw),
+
                 new AutoDriveToMiddleFromBackdrop(_opMode,_drive),                               // Drive to the middle of the field facing the audience
                 new InstantCommand(_claw::setClawOpenAngle),                                     // Open the claw to be ready to grab them
                 new InstantCommand(() -> _arm.setArmData(35,-6,0)),                              // Raise the arm and set claw angle lower to get a pixel

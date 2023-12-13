@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.CommandGroups.Girls_14623;
+package org.firstinspires.ftc.teamcode.CommandGroups.Girls_14623.Common;
 
 import com.arcrobotics.ftclib.command.CommandOpMode;
 import com.arcrobotics.ftclib.command.InstantCommand;
@@ -25,6 +25,7 @@ public class WingMiddleToBackdrop extends SequentialCommandGroup {
                 new AutoDriveTimeVel(_opMode, _drive, 0, 0.7, 90 * sign,1.8),                   // Drive forward to middle of field
                 new AutoDriveTimeVel(_opMode, _drive, -90* sign, 0.7, 90* sign,3.05),           // Drive under the truss
                 new InstantCommand(() -> _arm.setArmData(35,20,0)),                             // Set arm to backdrop
+                new AutoDelayCommand(_opMode, 0.0),                                             // TODO: add a delay if needed to wait for the other team
                 new AutoDriveToBackdropFromWingMiddle(_opMode,_drive),                          // Drive to the backdrop
                 new InstantCommand(_claw::setClawReleaseUpperAngle),                            // Release the upper pixel
                 new AutoDriveTimeVel(_opMode, _drive, 90* sign, 0.5, 90* sign,0.6),             // Drive back a little

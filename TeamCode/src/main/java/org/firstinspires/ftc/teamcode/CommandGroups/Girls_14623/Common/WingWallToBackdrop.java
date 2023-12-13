@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.CommandGroups.Girls_14623;
+package org.firstinspires.ftc.teamcode.CommandGroups.Girls_14623.Common;
 
 import com.arcrobotics.ftclib.command.CommandOpMode;
 import com.arcrobotics.ftclib.command.InstantCommand;
@@ -23,6 +23,7 @@ public class WingWallToBackdrop extends SequentialCommandGroup {
                 new AutoRotateRobot(_opMode,_drive, -90 * sign,0.25,3),                                // Rotate to go under truss
                 new AutoDriveTimeVel(_opMode, _drive, -90 * sign, 0.8, -90 * sign,2.05),                      // Drive under truss
                 new InstantCommand(() -> _arm.setArmData(42,30,0)),                             // Raise the arm to the backdrop
+                new AutoDelayCommand(_opMode, 0.0),                                             // TODO: Add a delay if teams need it
                 new AutoDriveToBackdropFromWing(_opMode,_drive),                                // Drive to the backdrop
                 new InstantCommand(_claw::setClawReleaseUpperAngle),                            // Release the upper pixel
                 new AutoDriveTimeVel(_opMode, _drive, 90 * sign, 0.5, 90 * sign,0.6),                         // Drive back a little

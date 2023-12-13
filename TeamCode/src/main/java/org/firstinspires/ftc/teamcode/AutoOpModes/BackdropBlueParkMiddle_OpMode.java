@@ -6,12 +6,13 @@ import com.arcrobotics.ftclib.util.Timing;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
 import org.firstinspires.ftc.teamcode.CommandGroups.Boys_22291.BBackdropBlueParkMiddle;
-import org.firstinspires.ftc.teamcode.CommandGroups.Girls_14623.GBackdropBlueParkMiddle;
+import org.firstinspires.ftc.teamcode.CommandGroups.Girls_14623.GBackdropPark;
 import org.firstinspires.ftc.teamcode.Commands.Arm.AutoArmDefaultCommand;
 import org.firstinspires.ftc.teamcode.Commands.Drive.AutoDriveDefaultCommand;
 import org.firstinspires.ftc.teamcode.Lib.AutoFieldLocation_enum;
 import org.firstinspires.ftc.teamcode.Lib.GlobalData;
 import org.firstinspires.ftc.teamcode.Lib.Hw;
+import org.firstinspires.ftc.teamcode.Lib.ParkDirection;
 import org.firstinspires.ftc.teamcode.Lib.TeamColor;
 import org.firstinspires.ftc.teamcode.Subsystems.AutoArmSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystems.AutoClawGripSubsystem;
@@ -27,7 +28,7 @@ public class BackdropBlueParkMiddle_OpMode extends CommandOpMode {
     AutoArmDefaultCommand armDefaultCommand;
     AutoArmSubsystem arm;
     AutoClawGripSubsystem claw;
-    GBackdropBlueParkMiddle Gauto;
+    GBackdropPark Gauto;
     BBackdropBlueParkMiddle Bauto;
 
     @Override
@@ -47,6 +48,7 @@ public class BackdropBlueParkMiddle_OpMode extends CommandOpMode {
         arm.setDefaultCommand(armDefaultCommand);
         GlobalData.MATCH.AutoTeamColor = TeamColor.BLUE;
         GlobalData.MATCH.AutoFieldLocation = AutoFieldLocation_enum.BACKDROP;
+        GlobalData.MATCH.AutoParkDirection = ParkDirection.MIDDLE;
         createCommandGroup();
         // Register subsystems
         register(drive,arm,claw);
@@ -74,7 +76,7 @@ public class BackdropBlueParkMiddle_OpMode extends CommandOpMode {
         if(GlobalData.TeamNumber == 22291) {
         	Bauto = new BBackdropBlueParkMiddle(this, drive,arm,claw);
         }else {
-        	Gauto = new GBackdropBlueParkMiddle(this, drive,arm,claw);
+        	Gauto = new GBackdropPark(this, drive,arm,claw);
         }
 
     }

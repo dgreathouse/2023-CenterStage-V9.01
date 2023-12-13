@@ -6,18 +6,17 @@ import com.arcrobotics.ftclib.util.Timing;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
 import org.firstinspires.ftc.teamcode.CommandGroups.Boys_22291.BBackdropBlueParkWall;
-import org.firstinspires.ftc.teamcode.CommandGroups.Girls_14623.GBackdropBlueParkWall;
+import org.firstinspires.ftc.teamcode.CommandGroups.Girls_14623.GBackdropPark;
 import org.firstinspires.ftc.teamcode.Commands.Arm.AutoArmDefaultCommand;
 import org.firstinspires.ftc.teamcode.Commands.Drive.AutoDriveDefaultCommand;
 import org.firstinspires.ftc.teamcode.Lib.AutoFieldLocation_enum;
 import org.firstinspires.ftc.teamcode.Lib.GlobalData;
 import org.firstinspires.ftc.teamcode.Lib.Hw;
+import org.firstinspires.ftc.teamcode.Lib.ParkDirection;
 import org.firstinspires.ftc.teamcode.Lib.TeamColor;
 import org.firstinspires.ftc.teamcode.Subsystems.AutoArmSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystems.AutoClawGripSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystems.AutoDriveSubsystem;
-
-import java.util.concurrent.TimeUnit;
 
 @Autonomous(name = "Backdrop Blue Park Wall", group = "Backdrop Blue")
 public class BackdropBlueParkWall_OpMode extends CommandOpMode {
@@ -29,7 +28,7 @@ public class BackdropBlueParkWall_OpMode extends CommandOpMode {
     AutoArmDefaultCommand armDefaultCommand;
     AutoArmSubsystem arm;
     AutoClawGripSubsystem claw;
-    GBackdropBlueParkWall Gauto;
+    GBackdropPark Gauto;
     BBackdropBlueParkWall Bauto;
 
     @Override
@@ -49,6 +48,7 @@ public class BackdropBlueParkWall_OpMode extends CommandOpMode {
         arm.setDefaultCommand(armDefaultCommand);
         GlobalData.MATCH.AutoTeamColor = TeamColor.BLUE;
         GlobalData.MATCH.AutoFieldLocation = AutoFieldLocation_enum.BACKDROP;
+        GlobalData.MATCH.AutoParkDirection = ParkDirection.WALL;
         createCommandGroup();
         // Register subsystems
         register(drive,arm,claw);
@@ -81,7 +81,7 @@ public class BackdropBlueParkWall_OpMode extends CommandOpMode {
         if(GlobalData.TeamNumber == 22291) {
             Bauto = new BBackdropBlueParkWall(this, drive,arm,claw);
         }else {
-            Gauto = new GBackdropBlueParkWall(this, drive,arm,claw);
+            Gauto = new GBackdropPark(this, drive,arm,claw);
         }
 
     }

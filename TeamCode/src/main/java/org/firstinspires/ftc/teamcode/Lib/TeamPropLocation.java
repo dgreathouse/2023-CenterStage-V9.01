@@ -4,5 +4,7 @@ public enum TeamPropLocation {
     LEFT,
     CENTER,
     RIGHT,
+    FIRST,
+    SECOND,
     NONE
 }

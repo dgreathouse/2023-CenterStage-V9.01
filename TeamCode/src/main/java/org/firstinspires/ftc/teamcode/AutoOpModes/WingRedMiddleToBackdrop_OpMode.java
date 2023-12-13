@@ -12,6 +12,7 @@ import org.firstinspires.ftc.teamcode.Commands.Drive.AutoDriveDefaultCommand;
 import org.firstinspires.ftc.teamcode.Lib.AutoFieldLocation_enum;
 import org.firstinspires.ftc.teamcode.Lib.GlobalData;
 import org.firstinspires.ftc.teamcode.Lib.Hw;
+import org.firstinspires.ftc.teamcode.Lib.ParkDirection;
 import org.firstinspires.ftc.teamcode.Lib.TeamColor;
 import org.firstinspires.ftc.teamcode.Lib.k;
 import org.firstinspires.ftc.teamcode.Subsystems.AutoArmSubsystem;
@@ -49,6 +50,7 @@ public class WingRedMiddleToBackdrop_OpMode extends CommandOpMode {
         arm.setDefaultCommand(armDefaultCommand);
         GlobalData.MATCH.AutoTeamColor = TeamColor.RED;
         GlobalData.MATCH.AutoFieldLocation = AutoFieldLocation_enum.WING;
+        GlobalData.MATCH.AutoParkDirection = ParkDirection.MIDDLE;
         createCommandGroup();
         // Register subsystems
         register(drive,arm,claw);

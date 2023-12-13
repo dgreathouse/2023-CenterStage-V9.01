@@ -8,6 +8,7 @@ import com.arcrobotics.ftclib.util.MathUtils;
 import com.arcrobotics.ftclib.util.Timing;
 
 import org.firstinspires.ftc.teamcode.Lib.GlobalData;
+import org.firstinspires.ftc.teamcode.Lib.ParkDirection;
 import org.firstinspires.ftc.teamcode.Lib.TeamColor;
 import org.firstinspires.ftc.teamcode.Lib.k;
 import org.firstinspires.ftc.teamcode.Subsystems.AutoDriveSubsystem;
@@ -21,66 +22,58 @@ public class AutoDriveToPark extends CommandBase {
     AutoDriveSubsystem m_drive;
     double m_driveAngle = 0;
     double m_robotAngle = 0;
-    Direction m_direction;
+
     double m_timeOut_sec = 1000;
     double m_speed = 0.4;
     double m_rotSpeed = 0.3;
     PIDController rotPID;
     Timing.Timer m_timer;
 
-    public AutoDriveToPark(CommandOpMode _opMode, AutoDriveSubsystem _drive, Direction _direction) {
+    public AutoDriveToPark(CommandOpMode _opMode, AutoDriveSubsystem _drive) {
         m_opMode = _opMode;
         m_drive = _drive;
-        m_direction = _direction;
+
     }
 
     @Override
     public void initialize(){
         rotPID = new PIDController(k.DRIVE.Rot_P,k.DRIVE.Rot_I,0);
         rotPID.reset();
+        // Set the robot angle
         if(GlobalData.MATCH.AutoTeamColor == TeamColor.BLUE){
             m_robotAngle = 90;
-            if(m_direction == Direction.RIGHT){
-                m_driveAngle = 0;
-
-            }else {
-                m_driveAngle = 180;
-            }
         }else { // RED
             m_robotAngle = -90;
-            if(m_direction == Direction.RIGHT){
-                m_driveAngle = -180;
-            }else {
-                m_driveAngle = 0;
-            }
         }
+        // Set the drive angle
+        if(GlobalData.MATCH.AutoParkDirection == ParkDirection.MIDDLE){
+            m_driveAngle = 0;
+
+        }else {
+            m_driveAngle = 180;
+        }
+        // Set the timeout
         switch (GlobalData.MATCH.TeamPropLocation) {
             case CENTER:
             case NONE:
                 if (GlobalData.MATCH.AutoTeamColor == TeamColor.BLUE) {
-
-                    m_timeOut_sec = (m_direction == Direction.RIGHT) ? 1.2 : 2.05;
+                    m_timeOut_sec = (GlobalData.MATCH.AutoParkDirection == ParkDirection.MIDDLE) ? 2.05 : 2.05;
                 } else {  // RED
-                    m_timeOut_sec = (m_direction == Direction.RIGHT) ? 2.05 : 2.05;
+                    m_timeOut_sec = (GlobalData.MATCH.AutoParkDirection == ParkDirection.MIDDLE) ? 2.05 : 2.05;
                 }
                 break;
             case LEFT:
                 if (GlobalData.MATCH.AutoTeamColor == TeamColor.BLUE) {
-                                                                  //  Large : Small
-                    m_timeOut_sec = (m_direction == Direction.RIGHT) ? 2.5 : 2.2;
+                    m_timeOut_sec = (GlobalData.MATCH.AutoParkDirection == ParkDirection.MIDDLE) ? 2.5 : 2.2; //  Large : Small
                 } else {  // RED
-                                                                  // Large : Small
-                    m_timeOut_sec = (m_direction == Direction.RIGHT) ? 2.5 : 2.5;
+                    m_timeOut_sec = (GlobalData.MATCH.AutoParkDirection == ParkDirection.MIDDLE) ? 2.5 : 2.5;  // Large : Small
                 }
                 break;
-
             case RIGHT:
                 if (GlobalData.MATCH.AutoTeamColor == TeamColor.BLUE) {
-                                                                    // Small : Large
-                    m_timeOut_sec = (m_direction == Direction.RIGHT) ? 1.7 : 2.4;
+                    m_timeOut_sec = (GlobalData.MATCH.AutoParkDirection == ParkDirection.MIDDLE) ? 1.7 : 2.4;  // Small : Large
                 } else {  // RED
-                                                                    // Small : Large
-                    m_timeOut_sec = (m_direction == Direction.RIGHT) ? 2.0 :2.0;
+                    m_timeOut_sec = (GlobalData.MATCH.AutoParkDirection == ParkDirection.MIDDLE) ? 2.0 :2.0; //  Small : Large
                 }
                 break;
         }

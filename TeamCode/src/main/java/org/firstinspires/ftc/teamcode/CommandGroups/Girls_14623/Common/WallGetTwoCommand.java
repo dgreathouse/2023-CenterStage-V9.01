@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.CommandGroups.Girls_14623;
+package org.firstinspires.ftc.teamcode.CommandGroups.Girls_14623.Common;
 
 import com.arcrobotics.ftclib.command.CommandOpMode;
 import com.arcrobotics.ftclib.command.InstantCommand;
@@ -21,7 +21,7 @@ public class WallGetTwoCommand extends SequentialCommandGroup {
         double sign = GlobalData.MATCH.AutoTeamColor == TeamColor.BLUE ? 1.0 : -1;
         addCommands(
 
-                new AutoDriveToPark(_opMode, _drive, Direction.LEFT),                           // Goto the right
+                new AutoDriveToPark(_opMode, _drive),                           // Goto the right
                 new InstantCommand(() -> _arm.setArmData(35,-6,0)),                             // Raise the arm
                 new InstantCommand(_claw::setClawOpenAngle),                                    // Open claw
                 new AutoDriveTimeVel(_opMode, _drive, 90 * sign, 0.7, 90 * sign,3.2),           // Drive under truss to opposite wall

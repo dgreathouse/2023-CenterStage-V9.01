@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.Subsystems;
 import com.arcrobotics.ftclib.command.CommandOpMode;
 import com.arcrobotics.ftclib.command.SubsystemBase;
 import com.qualcomm.hardware.rev.Rev2mDistanceSensor;
+
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 import org.firstinspires.ftc.teamcode.Lib.ArmData;
 import org.firstinspires.ftc.teamcode.Lib.AutoFieldLocation_enum;
@@ -21,6 +22,7 @@ public class AutoArmSubsystem extends SubsystemBase {
     private double m_requestedArmAng = 0.0;
     private double m_requestedForearmPosition = 0.0;
     private double m_requestedClawAngle = 0;
+
     public AutoArmSubsystem(CommandOpMode _opMode) {
         m_opMode = _opMode;
         initHardware();
@@ -34,10 +36,13 @@ public class AutoArmSubsystem extends SubsystemBase {
         m_claw = new Claw(m_opMode);
         m_forearm = new Forearm(m_opMode);
         ArmData m_armData = new ArmData();
-        m_shoulder = new Shoulder(m_opMode, m_armData,m_forearm);
+        m_shoulder = new Shoulder(m_opMode, m_armData, m_forearm);
         m_distanceSensor = m_opMode.hardwareMap.get(Rev2mDistanceSensor.class, Hw.DistanceSensor);
     }
-    /** Main function for the arm.*/
+
+    /**
+     * Main function for the arm.
+     */
     public void armGotoPosition() {
         // Set the shoulder
         setShoulderAngle(m_requestedArmAng);
@@ -71,7 +76,8 @@ public class AutoArmSubsystem extends SubsystemBase {
         m_requestedForearmPosition = _forearmPosition;
         m_requestedClawAngle = _clawAngle;
     }
-    public void checkTeamPropLocation(TeamPropLocation _location){
+
+    public void checkTeamPropLocation(TeamPropLocation _location) {
         double dis = getTeamPropDistance();
         for (int i = 0; i < 4; i++) {
             dis += getTeamPropDistance();
@@ -85,7 +91,7 @@ public class AutoArmSubsystem extends SubsystemBase {
 
                     }
                 } else if (_location == TeamPropLocation.RIGHT) {
-                    if (dis <  k.ARM.TeamPropMinimumDistance_mm) {
+                    if (dis < k.ARM.TeamPropMinimumDistance_mm) {
                         GlobalData.MATCH.TeamPropLocation = TeamPropLocation.RIGHT;
 
                     }
@@ -97,12 +103,12 @@ public class AutoArmSubsystem extends SubsystemBase {
                 }
             } else {                                                //Blue
                 if (_location == TeamPropLocation.CENTER) {
-                    if (dis <  k.ARM.TeamPropMinimumDistance_mm) {
+                    if (dis < k.ARM.TeamPropMinimumDistance_mm) {
                         GlobalData.MATCH.TeamPropLocation = TeamPropLocation.CENTER;
 
                     }
                 } else if (_location == TeamPropLocation.LEFT) {
-                    if (dis <  k.ARM.TeamPropMinimumDistance_mm) {
+                    if (dis < k.ARM.TeamPropMinimumDistance_mm) {
                         GlobalData.MATCH.TeamPropLocation = TeamPropLocation.LEFT;
 
                     }
@@ -116,12 +122,12 @@ public class AutoArmSubsystem extends SubsystemBase {
         } else {                                                                        // WING
             if (GlobalData.MATCH.AutoTeamColor == TeamColor.RED) { //Red
                 if (_location == TeamPropLocation.CENTER) {
-                    if (dis <  k.ARM.TeamPropMinimumDistance_mm) {
+                    if (dis < k.ARM.TeamPropMinimumDistance_mm) {
                         GlobalData.MATCH.TeamPropLocation = TeamPropLocation.CENTER;
 
                     }
                 } else if (_location == TeamPropLocation.LEFT) {
-                    if (dis <  k.ARM.TeamPropMinimumDistance_mm) {
+                    if (dis < k.ARM.TeamPropMinimumDistance_mm) {
                         GlobalData.MATCH.TeamPropLocation = TeamPropLocation.LEFT;
 
                     }
@@ -133,12 +139,12 @@ public class AutoArmSubsystem extends SubsystemBase {
                 }
             } else { //Blue
                 if (_location == TeamPropLocation.CENTER) {
-                    if (dis <  k.ARM.TeamPropMinimumDistance_mm) {
+                    if (dis < k.ARM.TeamPropMinimumDistance_mm) {
                         GlobalData.MATCH.TeamPropLocation = TeamPropLocation.CENTER;
 
                     }
                 } else if (_location == TeamPropLocation.RIGHT) {
-                    if (dis <  k.ARM.TeamPropMinimumDistance_mm) {
+                    if (dis < k.ARM.TeamPropMinimumDistance_mm) {
                         GlobalData.MATCH.TeamPropLocation = TeamPropLocation.RIGHT;
 
                     }
@@ -152,6 +158,50 @@ public class AutoArmSubsystem extends SubsystemBase {
             }
         }
     }
+
+    public void checkTeamPropLocation2(TeamPropLocation _location) {
+        double dis = getTeamPropDistance();
+        for (int i = 0; i < 4; i++) {
+            dis += getTeamPropDistance();
+        }
+        dis = dis / 5.0;
+        if (_location == TeamPropLocation.CENTER) {  // Check CENTER first
+            if (dis < k.ARM.TeamPropMinimumDistance_mm) {
+                GlobalData.MATCH.TeamPropLocation = TeamPropLocation.CENTER;
+            }
+        } else { // Do the first check
+            if (dis < k.ARM.TeamPropMinimumDistance_mm) {
+                if (GlobalData.MATCH.AutoTeamColor == TeamColor.BLUE) {
+                    if (GlobalData.MATCH.AutoFieldLocation == AutoFieldLocation_enum.BACKDROP) {
+                        GlobalData.MATCH.TeamPropLocation = TeamPropLocation.LEFT;
+                    } else {
+                        GlobalData.MATCH.TeamPropLocation = TeamPropLocation.RIGHT;
+                    }
+                } else if (GlobalData.MATCH.AutoTeamColor == TeamColor.RED) {
+                    if (GlobalData.MATCH.AutoFieldLocation == AutoFieldLocation_enum.BACKDROP) {
+                        GlobalData.MATCH.TeamPropLocation = TeamPropLocation.RIGHT;
+                    }else {
+                        GlobalData.MATCH.TeamPropLocation = TeamPropLocation.LEFT;
+                    }
+                }
+            }else {
+                if (GlobalData.MATCH.AutoTeamColor == TeamColor.BLUE) {
+                    if (GlobalData.MATCH.AutoFieldLocation == AutoFieldLocation_enum.BACKDROP) {
+                        GlobalData.MATCH.TeamPropLocation = TeamPropLocation.RIGHT;
+                    } else {
+                        GlobalData.MATCH.TeamPropLocation = TeamPropLocation.LEFT;
+                    }
+                } else if (GlobalData.MATCH.AutoTeamColor == TeamColor.RED) {
+                    if (GlobalData.MATCH.AutoFieldLocation == AutoFieldLocation_enum.BACKDROP) {
+                        GlobalData.MATCH.TeamPropLocation = TeamPropLocation.LEFT;
+                    }else {
+                        GlobalData.MATCH.TeamPropLocation = TeamPropLocation.RIGHT;
+                    }
+                }
+            }
+        }
+    }
+
     @Override
     public void periodic() {
         armGotoPosition();

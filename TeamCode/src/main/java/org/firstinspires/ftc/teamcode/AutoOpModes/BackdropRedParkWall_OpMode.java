@@ -6,7 +6,7 @@ import com.arcrobotics.ftclib.util.Timing;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
 import org.firstinspires.ftc.teamcode.CommandGroups.Boys_22291.BBackdropRedParkWall;
-import org.firstinspires.ftc.teamcode.CommandGroups.Girls_14623.GBackdropRedParkWall;
+import org.firstinspires.ftc.teamcode.CommandGroups.Girls_14623.GBackdropPark;
 import org.firstinspires.ftc.teamcode.Commands.Arm.AutoArmDefaultCommand;
 import org.firstinspires.ftc.teamcode.Commands.Drive.AutoDriveDefaultCommand;
 import org.firstinspires.ftc.teamcode.Lib.AutoFieldLocation_enum;
@@ -17,8 +17,6 @@ import org.firstinspires.ftc.teamcode.Lib.TeamColor;
 import org.firstinspires.ftc.teamcode.Subsystems.AutoArmSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystems.AutoClawGripSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystems.AutoDriveSubsystem;
-
-import java.util.concurrent.TimeUnit;
 
 @Autonomous(name = "Backdrop Red Park Wall", group = "Backdrop Red")
 public class BackdropRedParkWall_OpMode extends CommandOpMode {
@@ -31,7 +29,7 @@ public class BackdropRedParkWall_OpMode extends CommandOpMode {
     AutoArmSubsystem arm;
     AutoClawGripSubsystem claw;
 
-    GBackdropRedParkWall Gauto;
+    GBackdropPark Gauto;
     BBackdropRedParkWall Bauto;
 
     @Override
@@ -51,6 +49,7 @@ public class BackdropRedParkWall_OpMode extends CommandOpMode {
         arm.setDefaultCommand(armDefaultCommand);
         GlobalData.MATCH.AutoTeamColor = TeamColor.RED;
         GlobalData.MATCH.AutoFieldLocation = AutoFieldLocation_enum.BACKDROP;
+        GlobalData.MATCH.AutoParkDirection = ParkDirection.WALL;
         createCommandGroup();
         // Register subsystems
         register(drive,arm,claw);
@@ -78,7 +77,7 @@ public class BackdropRedParkWall_OpMode extends CommandOpMode {
         if(GlobalData.TeamNumber == 22291) {
             Bauto = new BBackdropRedParkWall(this, drive,arm,claw);
         }else {
-            Gauto = new GBackdropRedParkWall(this, drive,arm,claw);
+            Gauto = new GBackdropPark(this, drive,arm,claw);
         }
 
     }
