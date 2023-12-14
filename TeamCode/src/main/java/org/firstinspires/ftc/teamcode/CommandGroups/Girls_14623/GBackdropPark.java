@@ -25,7 +25,7 @@ public class GBackdropPark extends SequentialCommandGroup {
         addCommands(
                 new StartCommand(_opMode, _drive, _arm, _claw),
                 new DriveToBackdrop(_opMode, _drive, _arm, _claw),
-                new AutoDriveToPark(_opMode, _drive),                           // Park to the left or middle
+                new AutoDriveToPark(_opMode, _drive),                                           // Park to the left or middle
                 new InstantCommand(() -> _arm.setArmData(0,0,0)),                               // Lower the arm
                 new AutoDelayCommand(_opMode, 1),                                               // Delay to let the arm lower
                 new InstantCommand(_opMode::requestOpModeStop)                                  // This must be the last line of every command list

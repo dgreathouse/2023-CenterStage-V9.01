@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.CommandGroups.Girls_14623;
 
 import com.arcrobotics.ftclib.command.CommandOpMode;
+import com.arcrobotics.ftclib.command.InstantCommand;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 
 import org.firstinspires.ftc.teamcode.CommandGroups.Girls_14623.Common.DriveToBackdrop;
@@ -25,7 +26,8 @@ public class GBackdropMiddleGetTwo extends SequentialCommandGroup {
         addCommands(
                 new StartCommand(_opMode,_drive,_arm,_claw),                            // Drop the purple pixel and backup to wall
                 new DriveToBackdrop(_opMode,_drive,_arm,_claw),                         // Go to the backdrop from the wall
-                new MiddleGetTwoCommand(_opMode,_drive, _arm, _claw)                    // Get two from opposite wall from backdrop
+                new MiddleGetTwoCommand(_opMode,_drive, _arm, _claw) ,                  // Get two from opposite wall from backdrop
+                new InstantCommand(_opMode::requestOpModeStop)                          // This must be the last line of every command list
         );
 
     }

@@ -23,7 +23,7 @@ public class DriveToBackdrop extends SequentialCommandGroup {
                 new AutoDriveToBackdrop(_opMode, _drive),
                 new InstantCommand(_claw::setClawReleaseUpperAngle),                            // Release the upper pixel
                 new AutoDelayCommand(_opMode, .75),                                             // Delay to let the pixel drop
-                new AutoDriveTimeVel(_opMode, _drive, 90 * sign, 0.5, 90 * sign, .75)                          // Back up a little
+                new AutoDriveTimeVel(_opMode, _drive, 90 * sign, 0.5, 90 * sign, .75)           // Back up a little
         );
 
     }
