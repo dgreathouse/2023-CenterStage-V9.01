@@ -23,7 +23,7 @@ import java.util.function.BooleanSupplier;
 
 public class StartCommand extends SequentialCommandGroup {
     public StartCommand(CommandOpMode _opMode, AutoDriveSubsystem _drive, AutoArmSubsystem _arm, AutoClawGripSubsystem _claw) {
-        double sign = GlobalData.MATCH.getRotateSign();
+        double sign = _drive.getRotateSign();
 
 
         addCommands(
@@ -32,7 +32,7 @@ public class StartCommand extends SequentialCommandGroup {
                 new InstantCommand(() -> _arm.setArmData(35,-10,0)),                            // Raise Arm and lower claw
                 new AutoDriveToDistance(_opMode,_drive,620, 0.5, 0,0,3),                        // Drive to team prop
                 new InstantCommand(()-> _arm.checkTeamPropLocation2(TeamPropLocation.CENTER)),  // Check the center
-                new AutoRotateRobot(_opMode,_drive, -65,0.25,3),                          // Rotate to the one away from truss
+                new AutoRotateRobot(_opMode,_drive, -65*sign,0.25,3),                          // Rotate to the one away from truss
                 new InstantCommand(()-> _arm.checkTeamPropLocation2(TeamPropLocation.FIRST)),   // Check the one away from the truss
                 new AutoRotateToTeamProp(_opMode,_drive),                                       // Rotate to the team prop
                 new InstantCommand(() -> _arm.setArmData(25,-12,0)),                            // Lower arm to drop the pixel

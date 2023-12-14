@@ -14,22 +14,7 @@ public class GlobalData {
         public static ParkDirection AutoParkDirection = ParkDirection.MIDDLE;
         public static int AutoPixelCount = 0;
 
-        public static double getRotateSign(){
-            if(AutoTeamColor == TeamColor.BLUE){
-                if(AutoFieldLocation == AutoFieldLocation_enum.BACKDROP){
-                    return 1.0;
-                }else {
-                    return -1.0;
-                }
-            }else {
-                if(AutoFieldLocation == AutoFieldLocation_enum.BACKDROP){
-                    return -1.0;
-                }else {
-                    return 1.0;
-                }
 
-            }
-        }
     }
 
     public static int TeamNumber = 14623;

@@ -25,10 +25,10 @@ public class WallGetTwoCommand extends SequentialCommandGroup {
 
                 new InstantCommand(() -> _arm.setArmData(35,-6,0)),                             // Raise the arm
                 new InstantCommand(_claw::setClawOpenAngle),                                    // Open claw
-                new AutoDriveToWallFromBackdrop(_opMode, _drive),
-                new AutoDriveTimeVel(_opMode, _drive, 90 * sign, 0.8, -90 * sign,2.6),           // Drive under truss to opposite wall
+                new AutoDriveToWallFromBackdrop(_opMode, _drive),                               // Drive To the Wall from the Backdrop
+                new AutoDriveTimeVel(_opMode, _drive, 90 * sign, 0.8, -90 * sign,2.6),          // Drive under truss to opposite wall
                 new InstantCommand(() -> _arm.setArmData(11,-6,0)),                             // Lower the arm to the stack of 5
-                new AutoDriveTimeVel(_opMode, _drive, 0, 0.7, -90* sign,1.3),                     // Drive to the stack of 5
+                new AutoDriveTimeVel(_opMode, _drive, 0, 0.7, -90* sign,1.3),                   // Drive to the stack of 5
                 new AutoDriveTimeVel(_opMode, _drive, 90* sign, 0.25, -90 * sign,.9,0,0),       // Drive into the stack of 5
                 new InstantCommand(_claw::setClawCloseAngle),                                   // Grab the pixels
                 new AutoDelayCommand(_opMode, .75),                                             // Delay for claw to close
@@ -40,8 +40,8 @@ public class WallGetTwoCommand extends SequentialCommandGroup {
                 new AutoDriveTimeVel(_opMode, _drive, -90 * sign, 0.9, 90 * sign,1.4,0,.5),     // Drive to backstage and rotate robot
                 new InstantCommand(_claw::setClawOpenAngle),                                    // Release the pixels
                 new InstantCommand(() -> _arm.setArmData(0,0,0)),                               // Lower the arm
-                new AutoDelayCommand(_opMode, 1),                                               // Delay to let the arm lower
-                new InstantCommand(_opMode::requestOpModeStop)                                  // This must be the last line of every command list
+                new AutoDelayCommand(_opMode, 0.5)                                              // Delay to let the arm lower
+
         );
 
     }

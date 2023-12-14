@@ -9,9 +9,11 @@ import com.qualcomm.hardware.rev.Rev2mDistanceSensor;
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.YawPitchRollAngles;
+import org.firstinspires.ftc.teamcode.Lib.AutoFieldLocation_enum;
 import org.firstinspires.ftc.teamcode.Lib.GlobalData;
 import org.firstinspires.ftc.teamcode.Lib.Hw;
 import org.firstinspires.ftc.teamcode.Lib.KiwiDrive;
+import org.firstinspires.ftc.teamcode.Lib.TeamColor;
 import org.firstinspires.ftc.teamcode.Lib.k;
 
 public class AutoDriveSubsystem extends SubsystemBase {
@@ -101,6 +103,22 @@ public class AutoDriveSubsystem extends SubsystemBase {
     public double getRobotAngle(){
         YawPitchRollAngles angles = Hw.s_imu.getRobotYawPitchRollAngles();
         return angles.getYaw(AngleUnit.DEGREES);
+    }
+    public double getRotateSign(){
+        if(GlobalData.MATCH.AutoTeamColor == TeamColor.BLUE){
+            if(GlobalData.MATCH.AutoFieldLocation == AutoFieldLocation_enum.BACKDROP){
+                return 1.0;
+            }else {
+                return -1.0;
+            }
+        }else {
+            if(GlobalData.MATCH.AutoFieldLocation == AutoFieldLocation_enum.BACKDROP){
+                return -1.0;
+            }else {
+                return 1.0;
+            }
+
+        }
     }
     public double getDistanceSensorValue(){
         return m_distanceSensor.getDistance(DistanceUnit.MM);
