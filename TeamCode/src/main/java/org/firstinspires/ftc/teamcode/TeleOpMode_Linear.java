@@ -91,7 +91,6 @@ public class TeleOpMode_Linear extends CommandOpMode {
 
         // Set up buttons Driver
         // Left/Right Thumbstick for driving done in the DriveDefaultCommand class
-        // The autonomous play will determine if the team is on RED or BLUE and set a global variable to use for angles.
         // Reset Gyro
         Hw.s_gpDriver.getGamepadButton(GamepadKeys.Button.LEFT_BUMPER).whenPressed(new InstantCommand(() -> m_drive.resetGyro(), m_drive));
         // Toggle is Field Oriented Mode
