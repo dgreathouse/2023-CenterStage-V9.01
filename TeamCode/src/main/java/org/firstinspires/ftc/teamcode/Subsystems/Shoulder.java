@@ -39,14 +39,14 @@ public class Shoulder {
         m_motor.setInverted(false);
         m_motor.setZeroPowerBehavior(Motor.ZeroPowerBehavior.BRAKE);
         m_motor.resetEncoder();
-        rotPID = new PIDController(1.20,0.25,0.0);
+        rotPID = new PIDController(1.0,0.25,0.0);
         rotPID.setTolerance(0.01);
         rotPID.setIntegrationBounds(-3,3);
         rotPID.reset();
 
         ks = 0.0;
-        kv = 0.002;
-        kCos = 0.25;
+        kv = 0.0015;
+        kCos = 0.24;
         vel = 0.0;
         kfa = kCos; // Forearm Constant multiplier for arm extension.
         kfaMax = 5;
@@ -93,5 +93,8 @@ public class Shoulder {
     }
     public double getPower(){
         return m_shoulderPower;
+    }
+    public void disableMotor(){
+        m_motor.set(0);
     }
 }

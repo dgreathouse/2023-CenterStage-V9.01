@@ -20,7 +20,7 @@ public class DroneLaunchCommand extends CommandBase {
     }
     @Override
     public void initialize(){
-        m_timer = new Timing.Timer(1000, TimeUnit.MILLISECONDS);
+        m_timer = new Timing.Timer(500, TimeUnit.MILLISECONDS);
         m_timer.start();
     }
     @Override

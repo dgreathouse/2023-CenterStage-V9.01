@@ -4,6 +4,7 @@ import com.arcrobotics.ftclib.command.CommandOpMode;
 import com.arcrobotics.ftclib.command.CommandScheduler;
 import com.arcrobotics.ftclib.util.Timing;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 
 import org.firstinspires.ftc.teamcode.CommandGroups.Boys_22291.BWingBlueMiddleToBackdrop;
 import org.firstinspires.ftc.teamcode.CommandGroups.Girls_14623.GWingMiddleToBackdrop;
@@ -19,6 +20,7 @@ import org.firstinspires.ftc.teamcode.Subsystems.AutoClawGripSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystems.AutoDriveSubsystem;
 
 @Autonomous(name = "Wing Blue Middle To Backdrop", group = "Wing Blue")
+@Disabled
 public class WingBlueMiddleToBackdrop_OpMode extends CommandOpMode {
     Timing.Timer m_timer;
 

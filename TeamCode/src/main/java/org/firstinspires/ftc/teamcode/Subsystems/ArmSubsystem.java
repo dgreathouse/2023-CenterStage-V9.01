@@ -54,13 +54,7 @@ public class ArmSubsystem extends SubsystemBase {
 
         // Set the Claw
         m_IClawAngle = Interpolate.getY(k.ARM.ShoulderAngles, k.ARM.ClawAngles, m_shoulder.getAngle());
-        if(m_overrideClawFlag){
-            setClawAngle(m_overrideClawAngle);
-        }else {
-            setClawAngle(m_IClawAngle);
-        }
-
-
+        setClawAngle(m_IClawAngle);
     }
     private double getForearmPositionFromAngle(){
         // 0 between 0 and 35
@@ -83,6 +77,7 @@ public class ArmSubsystem extends SubsystemBase {
     }
     public void armForearmMove(double _speed) {
         // Limits are applied in the forearm
+        m_shoulder.disableMotor();
         m_forearm.move(_speed);
     }
     // Team Prop functions

@@ -129,7 +129,7 @@ public class TeleOpMode_Linear extends CommandOpMode {
         // Launch Drone (Button Left DPAD)
         Hw.s_gpOperator.getGamepadButton(GamepadKeys.Button.DPAD_LEFT).whenPressed(new DroneLaunchCommand(this,m_drone));
 
-        Hw.s_gpOperator.getGamepadButton(GamepadKeys.Button.DPAD_DOWN).whileHeld(new InstantCommand(() -> m_arm.lowerClaw(-6), m_arm));
+        //Hw.s_gpOperator.getGamepadButton(GamepadKeys.Button.DPAD_DOWN).whileHeld(new InstantCommand(() -> m_arm.lowerClaw(-6), m_arm));
 //        Hw.s_gpOperator.getGamepadButton(GamepadKeys.Button.DPAD_UP).whenPressed(new ArmIncreaseShouldUpVelocity(this,m_arm,0.01));
 //        Hw.s_gpOperator.getGamepadButton(GamepadKeys.Button.DPAD_DOWN).whenPressed(new ArmIncreaseShouldDownVelocity(this,m_arm,-0.01));
         // Right DPAD is used in the ArmDefaultCommand to disable the arm movement so the forearm can be moved for climbing.

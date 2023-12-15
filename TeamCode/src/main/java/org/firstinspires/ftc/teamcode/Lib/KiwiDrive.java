@@ -28,8 +28,8 @@ public class KiwiDrive extends RobotDrive{
         _forward = clipRange(_forward);
         _rotate = clipRange(_rotate);
         // Set m_vector of the x,y/forward,strafe values. Notice forward is the Vector2D X value.
-        m_vector = m_isFieldOriented ? new Vector2d(_forward,_strafe).rotateBy(_heading) : new Vector2d(_forward,_strafe);
-
+        //m_vector = m_isFieldOriented ? new Vector2d(_forward,_strafe).rotateBy(_heading) : new Vector2d(_forward,_strafe);
+        m_vector = new Vector2d(_forward,_strafe).rotateBy(_heading);
         m_driveAngle = m_vector.getX(); //Math.toDegrees(m_vector.getX());  // Set the class driveAngle that was calculated from the m_vector.
         // Scale the individual motor speeds based off the angle of the motor. Then assign to an array for normalize
         m_speeds[0] = m_vector.scalarProject(m_lVector);

@@ -58,7 +58,7 @@ public class k {
         public static final double TeamPropMinimumDistance_mm = 700;
         public static TeamPropLocation TeamPropLoc = TeamPropLocation.CENTER;
         public static final double[] ShoulderAngles = {0,8,10,35,60,85};
-        public static final double[] ClawAngles = {0,-4,10,35,0,-6};
+        public static final double[] ClawAngles = {0,-6,-8,20,0,-6};
 
     }
     public static final class CLAW {
@@ -92,7 +92,7 @@ public class k {
         public static final double AngleVertical_14623 = 125.0;
         public static final double AngleBackdropUpLimit_14623 = 85;
         public static final double AngleStraight_14623 = 35.0;
-        public static final double AngleBackdrop_14623 = 60.0;
+        public static final double AngleBackdrop_14623 = 80.0;
         public static final double AngleStack_5_14623 = 11.0;
         public static final double AngleStack_3_14623 = 8.0;
         public static final double AngleFloor_14623 = 0.0;
