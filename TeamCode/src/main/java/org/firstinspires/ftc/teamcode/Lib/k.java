@@ -75,7 +75,7 @@ public class k {
         public static final double CloseAngle_14623 = 130.50;  // Left Trigger
         public static final double OpenLowerAngle_14623 = 121.0; // Right Trigger
         public static final double OpenUpperAngle_14623 = 110.0; // Right Bumper
-        public static final double OpenAngle_14623 = 70.0; // Left Bumper
+        public static final double OpenAngle_14623 = 60.0; // Left Bumper
 
 
     }

@@ -26,7 +26,7 @@ public class AutoDriveToBackdropFromWing extends CommandBase {
     double m_robotAngle = 0;
     double m_timeOut_sec = 1.0;
     double m_speed = 0.6;
-    double m_rotSpeed = 0.3;
+    double m_rotSpeed = 0.33;
     PIDController rotPID;
     Timing.Timer m_timer;
     double m_rampUpTime_sec = 0.750;
@@ -45,37 +45,37 @@ public class AutoDriveToBackdropFromWing extends CommandBase {
             case CENTER:
             case NONE:
                 if (GlobalData.MATCH.AutoTeamColor == TeamColor.BLUE) {
-                    m_driveAngle = -49.5;
+                    m_driveAngle = -49;
                     m_robotAngle = 90;
-                    m_timeOut_sec = 3.1;
+                    m_timeOut_sec = 1.7;
                 } else {  // RED
-                    m_driveAngle = 59;
+                    m_driveAngle = 50;
                     m_robotAngle = -90;
-                    m_timeOut_sec = 2.5;
+                    m_timeOut_sec = 1.7;
                 }
                 break;
             case LEFT:
 
                 if (GlobalData.MATCH.AutoTeamColor == TeamColor.BLUE) {
-                    m_driveAngle = -64;  // Large angle short distance
+                    m_driveAngle = -55;  // Large angle short distance
                     m_robotAngle = 90;
-                    m_timeOut_sec = 2.6;
+                    m_timeOut_sec = 1.5;
                 } else {  // RED
-                    m_driveAngle = 47;  // Small angle long distance
+                    m_driveAngle = 42;  // Small angle long distance
                     m_robotAngle = -90;
-                    m_timeOut_sec = 2.6;
+                    m_timeOut_sec = 1.85;
                 }
                 break;
 
             case RIGHT:
                 if (GlobalData.MATCH.AutoTeamColor == TeamColor.BLUE) {
-                    m_driveAngle = -50;  // Small angle long distance
+                    m_driveAngle = -40;  // Small angle long distance
                     m_robotAngle = 90;
-                    m_timeOut_sec = 2.6;
+                    m_timeOut_sec = 1.85;
                 } else {  // RED
-                    m_driveAngle = 64;  // Large angle short distance
+                    m_driveAngle = 58;  // Large angle short distance
                     m_robotAngle = -90;
-                    m_timeOut_sec = 2.5;
+                    m_timeOut_sec = 1.75;
                 }
                 break;
         }

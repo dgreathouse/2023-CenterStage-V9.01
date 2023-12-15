@@ -5,7 +5,10 @@ import com.arcrobotics.ftclib.command.CommandOpMode;
 import com.arcrobotics.ftclib.controller.PIDController;
 import com.arcrobotics.ftclib.util.MathUtils;
 import com.arcrobotics.ftclib.util.Timing;
+
+import org.firstinspires.ftc.teamcode.Lib.AutoFieldLocation_enum;
 import org.firstinspires.ftc.teamcode.Lib.GlobalData;
+import org.firstinspires.ftc.teamcode.Lib.TeamColor;
 import org.firstinspires.ftc.teamcode.Subsystems.AutoDriveSubsystem;
 import java.util.concurrent.TimeUnit;
 
@@ -20,7 +23,7 @@ public class AutoRotateToTeamProp extends CommandBase {
     AutoDriveSubsystem m_drive;
 
     double m_robotAngle = 0;
-    double m_timeOut_sec = 3.0;
+    double m_timeOut_sec = 3.5;
     double m_speed = 0.25;
 
     PIDController rotPID;
@@ -34,13 +37,18 @@ public class AutoRotateToTeamProp extends CommandBase {
     @Override
     public void initialize() {
         rotPID = new PIDController(.015, .0075, 0);
-        rotPID.setTolerance(2.0);
+        rotPID.setTolerance(1.0);
         rotPID.reset();
 
         switch (GlobalData.MATCH.TeamPropLocation) {
             case CENTER:
             case NONE:
-                m_robotAngle = -30;
+                if(GlobalData.MATCH.AutoFieldLocation == AutoFieldLocation_enum.BACKDROP) {
+                    m_robotAngle = GlobalData.MATCH.AutoTeamColor == TeamColor.BLUE ? -24 : 24;
+                }else {
+                    m_robotAngle = GlobalData.MATCH.AutoTeamColor == TeamColor.BLUE ? 24 : -24;
+                }
+
                 break;
             case LEFT:
                 m_robotAngle = 85;

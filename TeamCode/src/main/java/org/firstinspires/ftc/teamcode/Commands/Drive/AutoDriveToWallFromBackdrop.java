@@ -47,11 +47,11 @@ public class AutoDriveToWallFromBackdrop extends CommandBase {
                 if (GlobalData.MATCH.AutoTeamColor == TeamColor.BLUE) {
                     m_driveAngle = 130;
                     m_robotAngle = -90;
-                    m_timeOut_sec = 3.1;
+                    m_timeOut_sec = 1.45;
                 } else {  // RED
                     m_driveAngle = -130;
                     m_robotAngle = 90;
-                    m_timeOut_sec = 2.5;
+                    m_timeOut_sec = 2.25;
                 }
                 break;
             case LEFT:

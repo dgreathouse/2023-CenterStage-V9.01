@@ -29,7 +29,7 @@ public class GWingWallPark extends SequentialCommandGroup {
                 new AutoRotateRobot(_opMode,_drive, -90 * sign,0.25,3),                                // Rotate to go under the truss
                 new AutoDriveTimeVel(_opMode, _drive, -90 * sign, 0.8, -90 * sign,2.05),                      // Drive under the truss
                 new AutoRotateRobot(_opMode,_drive, 90 * sign,0.25,3),                                 // Rotate to the backdrop
-                new AutoDriveTimeVel(_opMode, _drive, -90 * sign, 0.4, 90 * sign,3.05),                       // Drive to the wall
+                new AutoDriveTimeVel(_opMode, _drive, -90 * sign, 0.4, 90 * sign,2.75),                       // Drive to the wall
                 new InstantCommand(_claw::setClawOpenAngle),                                    // Open the claw
                 new AutoDriveTimeVel(_opMode, _drive, 90 * sign, 0.4, 90 * sign,.6),                          // Backup a little
                 new InstantCommand(() -> _arm.setArmData(0,0,0)),                               // Lower the arm

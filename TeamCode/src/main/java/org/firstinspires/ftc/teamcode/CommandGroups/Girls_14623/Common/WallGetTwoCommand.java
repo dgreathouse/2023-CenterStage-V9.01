@@ -26,15 +26,16 @@ public class WallGetTwoCommand extends SequentialCommandGroup {
                 new AutoDriveToWallFromBackdrop(_opMode, _drive),                               // Drive To the Wall from the Backdrop
                 new AutoDriveTimeVel(_opMode, _drive, 90 * sign, 0.8, -90 * sign,2.6),          // Drive under truss to opposite wall
                 new InstantCommand(() -> _arm.setArmData(11,-6,0)),                             // Lower the arm to the stack of 5
-                new AutoDriveTimeVel(_opMode, _drive, 0, 0.7, -90* sign,1.3),                   // Drive to the stack of 5
-                new AutoDriveTimeVel(_opMode, _drive, 90* sign, 0.25, -90 * sign,.9,0,0),       // Drive into the stack of 5
+                new AutoDriveTimeVel(_opMode, _drive, 0, 0.7, -90* sign,1.2),                   // Drive to the stack of 5
+                new AutoDriveTimeVel(_opMode, _drive, 90* sign, 0.25, -90 * sign,1,0,0),       // Drive into the stack of 5
                 new InstantCommand(_claw::setClawCloseAngle),                                   // Grab the pixels
                 new AutoDelayCommand(_opMode, .75),                                             // Delay for claw to close
-                new AutoDriveTimeVel(_opMode, _drive, -90 * sign, 0.25, -90 * sign,.3,0,0),     // Back up a little
-                new AutoDriveTimeVel(_opMode, _drive, 180, 0.7, -90 * sign,1.1),                // Drive back to the wall
+                new AutoDriveTimeVel(_opMode, _drive, -90 * sign, 0.25, -90 * sign,0.3,0,0),     // Back up a little
+                new AutoDriveTimeVel(_opMode, _drive, 180, 0.7, -90 * sign,1.5),                // Drive back to the wall
+                new AutoDriveTimeVel(_opMode, _drive, -90 * sign, 0.25, -90 * sign,0.5,0,0),     // Back up a little
                 new InstantCommand(() -> _arm.setArmData(35,-6,0)),                             // Raise the arm
-                new AutoDriveTimeVel(_opMode, _drive, -90 * sign, 0.9, -90 * sign,1.2,0.5,0),   // Drive under truss
-                new AutoDriveTimeVel(_opMode, _drive, -90 * sign, 0.9, 90 * sign,1.4,0,0.1),    // Drive to backstage and rotate robot
+                new AutoDriveTimeVel(_opMode, _drive, -90 * sign, 0.9, -90 * sign,1.1,0.0,0),   // Drive under truss
+                new AutoDriveTimeVel(_opMode, _drive, -90 * sign, 0.9, 90 * sign,0.9,0,0),    // Drive to backstage and rotate robot
                 new InstantCommand(_claw::setClawOpenAngle),                                    // Release the pixels
                 new InstantCommand(() -> _arm.setArmData(0,0,0)),                               // Lower the arm
                 new AutoDelayCommand(_opMode, 0.5)                                              // Delay to let the arm lower

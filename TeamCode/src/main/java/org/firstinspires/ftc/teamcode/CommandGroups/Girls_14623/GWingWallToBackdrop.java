@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.CommandGroups.Girls_14623;
 
 import com.arcrobotics.ftclib.command.CommandOpMode;
+import com.arcrobotics.ftclib.command.InstantCommand;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 
 import org.firstinspires.ftc.teamcode.CommandGroups.Girls_14623.Common.StartCommand;
@@ -21,7 +22,8 @@ public class GWingWallToBackdrop extends SequentialCommandGroup {
 
         addCommands(
                 new StartCommand(_opMode, _drive, _arm, _claw),
-                new WingWallToBackdrop(_opMode, _drive, _arm, _claw)
+                new WingWallToBackdrop(_opMode, _drive, _arm, _claw),
+                new InstantCommand(_opMode::requestOpModeStop)                                  // This must be the last line of every command list
         );
 
     }
