@@ -22,19 +22,19 @@ public class MiddleGetTwoCommand extends SequentialCommandGroup {
                 new AutoDriveToMiddleFromBackdrop(_opMode,_drive),                               // Drive to the middle of the field facing the audience
                 new InstantCommand(_claw::setClawOpenAngle),                                     // Open the claw to be ready to grab them
                 new InstantCommand(() -> _arm.setArmData(35,-6,0)),                              // Raise the arm and set claw angle lower to get a pixel
-                new AutoDriveTimeVel(_opMode, _drive, 90 * sign, 0.7, -90 * sign,2.35,.75,0),  // Drive under truss
-                new InstantCommand(() -> _arm.setArmData(15,-6,0)),                              // Lower arm to grab pixels
-                new AutoDriveTimeVel(_opMode, _drive, 90 * sign, 0.25, -90 * sign,1.85, 0, 0.5),// Drive to pixel
-                new InstantCommand(() -> _arm.setArmData(8,-6,0)),                              // Lower arm to grab pixels
+                new AutoDriveTimeVel(_opMode, _drive, 90 * sign, 0.7, -90 * sign,2.15,.75,0),  // Drive under truss
+                new InstantCommand(() -> _arm.setArmData(13,-6,0)),                              // Lower arm to grab pixels
+                new AutoDriveTimeVel(_opMode, _drive, 90 * sign, 0.25, -90 * sign,2.4, 0, 0.5),// Drive to pixel
+                new InstantCommand(() -> _arm.setArmData(6,-6,0)),                              // Lower arm to grab pixels
                 new InstantCommand(_claw::setClawCloseAngle),                                    // Grab the pixels
                 new AutoDriveTimeVel(_opMode, _drive, -90 * sign, 0.7, -90 * sign,1, 1, 0),      // Drive back a little
                 new InstantCommand(() -> _arm.setArmData(35,-6,0)),                              // Raise the arm
                 new AutoDriveTimeVel(_opMode, _drive, -90 * sign, 0.7, -90 * sign,1.60, 0, 0),   // Drive under truss
                 new InstantCommand(() -> _arm.setArmData(5,-6,0)),                               // Set arm to floor
                 new AutoDriveTimeVel(_opMode, _drive, -120 * sign, 0.5, 90* sign,0.8, 0, 0),     // Drive to backstage at angle
-                new AutoDriveTimeVel(_opMode, _drive, -90 * sign, 0.5, 90* sign,1, 0, 1),      // Drive to backstage
+                new AutoDriveTimeVel(_opMode, _drive, -90 * sign, 0.5, 90* sign,0.8, 0, 1),      // Drive to backstage
                 new InstantCommand(_claw::setClawOpenAngle),                                     // Open claw
-                new AutoDriveTimeVel(_opMode, _drive, 90 * sign, 0.3, 90 * sign,.4, 0, 0),   // Backup a little since judges can not see
+                new AutoDriveTimeVel(_opMode, _drive, 90 * sign, 0.3, 90 * sign,0.4, 0, 0),   // Backup a little since judges can not see
 
                 new InstantCommand(() -> _arm.setArmData(0,0,0)),                                // Lower the arm to the floor
 

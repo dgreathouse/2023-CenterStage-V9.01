@@ -4,6 +4,7 @@ import com.arcrobotics.ftclib.command.CommandBase;
 import com.arcrobotics.ftclib.command.CommandOpMode;
 import com.arcrobotics.ftclib.controller.PIDController;
 
+import org.firstinspires.ftc.teamcode.Lib.GlobalData;
 import org.firstinspires.ftc.teamcode.Lib.Hw;
 import org.firstinspires.ftc.teamcode.Lib.k;
 import org.firstinspires.ftc.teamcode.Subsystems.DriveSubsystem;
@@ -39,15 +40,15 @@ public class DriveDefaultCommand extends CommandBase {
         // Get the X,Y, and Z axis values from the Driver joystick.
         // The values from the joystick are always in the range of +/- 1.0
 
-//        if(GlobalData.TeamNumber == 14623) {
-//            m_y = Hw.s_gpDriver.getLeftY();
-//            m_x = Hw.s_gpDriver.getLeftX();
-//            m_z = Hw.s_gpDriver.getRightX();
-//        }else {
+        if(GlobalData.TeamNumber == 14623) {
+            m_y = Hw.s_gpDriver.getLeftY();
+            m_x = Hw.s_gpDriver.getLeftX();
+            m_z = Hw.s_gpDriver.getRightX();
+        }else {
             m_y = -Hw.s_gpDriver.getRightY();
             m_x = Hw.s_gpDriver.getRightX();
             m_z = Hw.s_gpDriver.getLeftX();
-     //   }
+        }
         // Handle rotation value
         if(Math.abs(m_z) > 0.2){ // in rotation mode
             // Scale the turning rotation down

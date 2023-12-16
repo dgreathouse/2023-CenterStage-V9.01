@@ -46,7 +46,7 @@ public class Shoulder {
 
         ks = 0.0;
         kv = 0.0015;
-        kCos = 0.24;
+        kCos = 0.22;
         vel = 0.0;
         kfa = kCos; // Forearm Constant multiplier for arm extension.
         kfaMax = 5;
